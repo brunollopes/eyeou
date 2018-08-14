@@ -1,0 +1,60 @@
+<div class="heroSection video-background-demo">
+  <div class="container">
+    <div class="navHeader herocontainer fixed-top container-fluid" id="lead-navbar">
+
+      <!-- Site Logo -->
+      <a class="navbar-brand sitelogo" href="#">
+        <img id="logo-winpic" src="assets/images/eyeouLogo.png" />
+      </a>
+
+      <!-- Site navigation Menus -->
+      <nav class="navbar navbar-expand-md navbar-dark navigations" style="float:right;">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse"
+          aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link">{{'nav-item.nav-link1' | translate}}
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link">{{'nav-item.nav-link2' | translate}}</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link">{{'nav-item.nav-link3' | translate}}</a>
+            </li>
+            <li class="nav-item lang">
+              <a *ngIf="showLanguage == 'pt'" (click)="switchLanguage('en')">EN
+                <span>
+                  <img src="assets/images/UK-flag.png" />
+                </span>
+              </a>
+              <a *ngIf="showLanguage == 'en'" (click)="switchLanguage('pt')">PT
+                <span>
+                  <img src="assets/images/PTflag.png" />
+                </span>
+              </a>
+            </li>
+          </ul> 
+          <img class="closeBtn" src="assets/images/cancel.png">
+        </div>
+      </nav>
+    </div>
+
+    <!-- Hero section title -->
+    <div class="display-3">
+      <h1>
+        <span>{{'navigations.h1.span1' | translate}}</span>
+        <span class="colorGreen">{{'navigations.h1.span2' | translate}}
+          <span class="lastIcon">!</span>
+        </span>
+      </h1>
+      <p>{{'navigations-desc.span1' | translate}}
+        <br/><span>{{'navigations-desc.span2' | translate}}</span></p>
+    </div>
+  </div>
+</div>
+<!--Hero section End -->

@@ -1,0 +1,129 @@
+<!-- Gallery content loop Start-->
+<div class=" card-columns  grid-column">
+    <div class="grid-element" *ngFor="let listing of gallerylist">
+        <img class="contestimg" style="width:100%;" src="{{listing.bgprofile_image}}">
+        <div class="imageDesc">
+            <h2 *ngIf="listing.prize_money !== 0">{{listing.prize_money}}€</h2>
+            <h2 *ngIf="listing.prize_money == 0">Free</h2>
+            <p>{{listing.contest_title}}</p>
+        </div>
+        <div class="contestcontent">
+            <p class="timeing">
+                <img src="../../../assets/images/clock.png" />{{listing.days}} {{'gallery.days' | translate}} {{listing.hours}} {{'gallery.hours' | translate}}</p>
+            <div class="innerBlock">
+                <h3 *ngIf="listing.prize_money && listing.prize_money !== 0">{{listing.prize_money}}€</h3>
+                <h3 *ngIf="listing.prize_money == undefined || listing.prize_money == '' || listing.prize_money == 0">{{'gallery.free' | translate}}</h3>
+                <p>20€ / 20 {{'gallery.photos' | translate}}</p>
+                <button type="button" (click)="openModal(template,listing)">{{'gallery.submitbutton' | translate}}</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Gallery content loop End-->
+
+<!-- Gallery Popup Start -->
+<ng-template #template data-backdrop="false" data-keyboard="false">
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">&#10799;</span>
+    </button>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">{{listingDetails.prize_money == 0 || listingDetails.prize_money == undefined || listingDetails.prize_money == ''
+            ? 'Email Checkout Validation' : 'Checkout' }}</h4>
+    </div>
+    <div class="bar" *ngIf="listingDetails.prize_money != 0 || listingDetails.prize_money != ''">
+        <h4>PayPal</h4>
+    </div>
+    <div class="modal-body">
+        <h5 *ngIf="listingDetails.prize_money != 0 || listingDetails.prize_money != ''">Payment Method
+            <span>i</span>
+        </h5>
+        <form [formGroup]="paymentForm">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="input-group input-group-lg">
+
+                        <input (change)="emailErr()" class="form-control signup-input" placeholder="bruno@guazina.com" formControlName="email" type="email">
+                        <span class="errMsg" *ngIf="errMsg == false">
+                            <img src="../../../assets/images/tick.png" />
+                        </span>
+                        <span class="errMsg_2" *ngIf="errMsg == true">
+                            <img src="../../../assets/images/close_1.png" />
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="input-group input-group-lg">
+                        <input (change)="varifyCode()" class="form-control signup-input" placeholder="1234" formControlName="numbers" type="text">
+                        <span class="errMsg" *ngIf="accesVeirfy == 'true'">
+                            <img src="../../../assets/images/tick.png" />
+                        </span>
+
+                        <span class="errMsg_2" *ngIf="accesVeirfy == 'false'">
+                            <img src="../../../assets/images/close_1.png" />
+                        </span>
+
+                    </div>
+                </div>
+                <!-- {{accesVeirfy}} -->
+                <div class="col-md-6">
+                    <div class="input-group input-group-lg" *ngIf="listingDetails.prize_money != 0 || listingDetails.prize_money != ''">
+                        <input class="form-control signup-input" placeholder="250 €" formControlName="price" type="text" readonly>
+                    </div>
+                </div>
+            </div>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting simply dummy text industry.</p>
+            <p class="termcondition">
+                <input type="checkbox" formControlName="term_condition" checked>I agree on these terms&conditions&rules of this website)</p>
+
+            <div *ngIf="listingDetails.prize_money != 0 || listingDetails.prize_money != ''">
+                <button type="button" *ngIf="!payed" class="btn btn-success" [disabled]="!paymentForm.valid || accesVeirfy == 'false' || errMsg == true"
+                    (click)="submitform()">PAY</button>
+                <button type="button" *ngIf="payed" class="btn btn-success" [disabled]="!paymentForm.valid || accesVeirfy == 'false' || errMsg == true"
+                    (click)="openuploadModal(uploadtemplate, listingDetails)">Next</button>
+            </div>
+
+            <div *ngIf="listingDetails.prize_money == 0 || listingDetails.prize_money == ''">
+                <button type="button" class="btn btn-success" [disabled]="!paymentForm.valid || accesVeirfy == 'false' || errMsg == true"
+                    (click)="openuploadModal(uploadtemplate, listingDetails)">NEXT</button>
+            </div>
+
+        </form>
+    </div>
+</ng-template>
+<!-- Gallery Popup End -->
+
+
+<!-- Images upload popup-->
+<ng-template #uploadtemplate>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">&#10799;</span>
+    </button>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">Upload</h4>
+    </div>
+    <div class="modal-body">
+        <section id="main-block">
+            <div class="row">
+                <div class="browse-me dropzone">
+                    <div class="browse-files mx-auto  text-center">
+                        <p *ngIf="resMsg !== ''" style="color:green;">Images upload successfully</p>
+                        <div class="jumbotron">
+                            <image-upload class="customClass" [preview]="true" [buttonCaption]="'Browse'" [dropBoxMessage]="'DROP FILES TO UPLOAD'" (uploadFinished)="onUploadFinished($event)"
+                                [fileTooLargeMessage]="'Image too large maximum file size is 1048576'" [extensions]="['jpg','jpeg']"
+                                [max]="10" [maxFileSize]="31457280">
+                            </image-upload>
+                            <div class="clear">
+                            </div>
+                            <div class="browse-button">
+                                <a class="btn btn-success text-uppercase" (click)=" BrowseMe()">
+                                    <i class="fa fa-cloud-upload" aria-hidden="true"></i>Browse</a>
+                                <a class="btn btn-success text-uppercase" (click)=" upload()">
+                                    <i class="fa fa-cloud-upload" aria-hidden="true"></i>Upload</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</ng-template>

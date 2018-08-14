@@ -1,0 +1,14 @@
+<div class="loop owl-carousel owl-theme">
+  <div class="item" *ngFor="let titles of slidertitle">
+  <div class="innerItem">
+    <div class="figureImage">
+      <img src="{{titles.profile}}" />
+    </div>
+    <h3>{{titles.name}}</h3>
+    <h6>{{'titles.position' | translate}}</h6>
+    <p>
+        {{titles.info}}
+    </p>
+  </div>
+</div>
+</div>

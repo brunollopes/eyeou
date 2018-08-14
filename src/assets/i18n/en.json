@@ -1,0 +1,60 @@
+{
+    "navigations": {
+        "h1": {
+            "span1": "ONE SHOT CAN BE",
+            "span2": "YOUR LUCKY DAY"
+        }
+    },
+
+    "nav-item": {
+        "nav-link1": "ABOUT",
+        "nav-link2": "CONTACT",
+        "nav-link3": "RULES"
+    },
+
+    "navigations-desc": { 
+        "span1": "Participate on our contests and show",
+        "span2": "how good are your photos"
+    },
+
+    "gallery" : {
+        "days" : "days and",
+        "hours" : "hours",
+        "submitbutton" : "Submit now",
+        "photos" : "Photos",
+        "free" : "Free"
+    },
+
+    "term-policy" : "Terms & Privacy",
+    "ambassador" : "BE our ambassador",
+    "help" : "HELP",
+    "socialTitle" : "GO SOCIAL AND SEE WHAT THEY SAY ABOUT US!",
+    "howitWork" : {
+        "title" : "HOW IT WORKS",
+        "list1" : "Choose one of the listed contests",
+        "list2" : "Pay the value to submit your photos",
+        "list3" : "Upload your photos or send it by email (in case of bank transfer)",
+        "list4" : "Wait until the end of the contest (end or REVIEW phase)",
+        "list5" : "The results will be sent to your email address with the final list of winners and your photo final position. You will also be informed about the judge decision based on this criteria"
+    },
+
+    "titles" : {
+        "position": "Photographer Pro"
+    },
+
+    "ourambassadors" : "OUR AMBASSADORS",
+    "weeklyContest" : {
+        "title" : {
+            "title1" : "new weekly",
+            "title2" : "contests"
+        },
+        "placeholder" : {
+            "name" : "name",
+            "email" : "myaddress@email.com"
+        },
+        "button" : "WARN ME"
+    },
+
+    "aFunction": "function(){return \"foo bar\";}"
+
+}

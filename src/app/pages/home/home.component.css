@@ -1,0 +1,134 @@
+
+#main-block{
+    margin-top:20px;
+}
+
+/* Weekly contest form css */
+
+.weeklyContest{
+    background-color: #00292F;
+    padding: 45px 0;
+    margin-top: 10px;
+}
+
+.weeklyContest h1{
+    color: #fff;
+    font-weight: 600;
+    font-family: 'Mitr', sans-serif;
+    line-height: 1;
+    font-size: 34px;
+    padding-left: 10px;
+    text-transform: uppercase;
+}
+.weeklyContest h1 span{
+    display: block;
+}
+.weeklyContest h1 span.colorGreen {
+    color: #45bf55;
+}
+.weeklyContest input {
+    background-color: transparent;
+    color: #fff;
+    font-size: 26px;
+    font-weight: 300;  
+    border:2px solid #3A585E;
+    padding: 8px 20px;
+    height: auto;
+    border-radius: 4px;
+    margin-top: 10px;
+}
+
+.weeklyContest input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    color: #A6BCC1;
+  }
+  .weeklyContest input::-moz-placeholder { /* Firefox 19+ */
+    color: #A6BCC1;
+  }
+  .weeklyContest input:-ms-input-placeholder { /* IE 10+ */
+    color: #A6BCC1;
+  }
+  .weeklyContest input:-moz-placeholder { /* Firefox 18- */
+    color: #A6BCC1;
+  }
+
+.weeklyContest button {
+    font-size: 22px;
+    padding: 11px 30px;
+    font-family: 'Mitr', sans-serif;
+    font-weight: 500;
+    margin-top: 10px;
+}
+
+
+/* How it work css */
+
+.howit-woks{
+    background-color: #fff;
+    padding-top: 70px;
+    padding-bottom: 40px;
+}
+
+.howit-woks h1{
+    color: #0E282B;
+    text-align: center;
+    padding-bottom: 40px;
+    font-weight: 300;
+    font-family: 'Lato', sans-serif;
+}
+
+.sliderContainer{
+    max-width: 1200px;
+    margin:auto;
+    width:90%;
+}
+
+/* Responsive media queries */
+
+@media only screen and (max-width: 980px) {
+    #contestBlock .grid-element img {
+        height: 240px;
+    }
+    .weeklyContest input {
+        font-size: 18px;
+    }
+    .weeklyContest button{
+        font-size: 18px;
+        padding: 9px 15px;
+    }
+    .weeklyContest h1 {
+        padding-left:0;
+    }
+
+}
+@media only screen and (max-width: 768px) {
+    .weeklyContest h1 {
+        text-align: center;
+    }
+}
+
+@media only screen and (max-width: 640px) {
+    #contestBlock .grid-element img {
+        height: 200px;
+    }
+    .clientBlock h1, .howit-woks h1{
+        font-size: 28px;
+    }
+}
+@media only screen and (max-width: 600px) {
+    .card-columns{
+        -webkit-column-count: 1;
+        column-count: 1;
+        max-width: 100%;
+        -webkit-column-gap: 10;
+        column-gap: 10;
+    }
+    #contestBlock .grid-element img {
+        height: 220px;
+    }
+}
+
+@media only screen and (max-width: 640px) {
+    #contestBlock .grid-element img {
+        height: 180px;
+    }
+}

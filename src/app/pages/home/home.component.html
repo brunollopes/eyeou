@@ -1,0 +1,68 @@
+<!-- GALLERY LIST START -->
+<div class="main mainblock" id="main-block">
+    <section class="contestSection" id="contestBlock">
+        <div class="container-fluid">
+            <app-gallery-list></app-gallery-list>
+        </div>
+    </section>
+    <!-- GALLERY LIST START -->
+
+    <!-- // WEEKLY CONTESTS FORM START-->
+    <section class="weeklyContest">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-3">
+                    <h1 class=" display-4 signup-title">
+                        <span> {{'weeklyContest.title.title1' | translate}}</span>
+                        <span class="colorGreen">{{'weeklyContest.title.title2' | translate}}</span>
+                    </h1>
+                </div>
+                <div class="col-md-9">
+                    <form>
+                        <div class="row">
+                            <div class="col-md-3 col-sm-3">
+                                <div class="input-group input-group-lg">
+                                    <input class="form-control signup-input" placeholder="{{'weeklyContest.placeholder.name' | translate}}" value="" type="text">
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-6">
+                                <div class="input-group input-group-lg">
+                                    <input class="form-control signup-input" placeholder="{{'weeklyContest.placeholder.email' | translate}}" value="" type="email">
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-3">
+                                <button class="btn btn-success" type="button">{{'weeklyContest.button' | translate}}</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- // WEEKLY CONTESTS FORM END-->
+
+    <!---Client Slider Block start -->
+    <div class="clientBlock">
+        <div class="sliderContainer">
+            <h1>{{'ourambassadors' | translate}}</h1>
+            <div class="sliderSection">
+                <app-slider-tiles></app-slider-tiles>
+            </div>
+        </div>
+    </div>
+    <!--Clients Block End -->
+
+    <!-- How it works start-->
+    <section class="howit-woks">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>{{'howitWork.title' | translate}}</h1>
+                    <app-howit-works></app-howit-works>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- How it works start-->
+
+</div>

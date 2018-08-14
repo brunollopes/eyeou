@@ -28,8 +28,9 @@ export class ContestService {
       .catch(err => err)
   }
 
-  varifyCode(data) {
-    return this.httpClient.post('/users/verify', data, { headers: this.headers })
+  varifyCode({email, acess_code}) {
+    console.log(email, acess_code)
+    return this.httpClient.post('/users/verify', {email, acess_code}, { headers: this.headers })
       .toPromise()
       .then(res => res)
       .catch(err => err)

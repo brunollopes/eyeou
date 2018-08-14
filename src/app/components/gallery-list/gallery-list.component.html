@@ -52,20 +52,20 @@
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <div class="input-group input-group-lg">
+                    <div class="input-group input-group-lg" *ngIf="!hideNumbers">
                         <input (change)="varifyCode()" class="form-control signup-input" placeholder="1234" formControlName="numbers" type="text">
-                        <span class="errMsg" *ngIf="accesVeirfy == 'true'">
+                        <span class="errMsg" *ngIf="accesVeirfy">
                             <img src="../../../assets/images/tick.png" />
                         </span>
 
-                        <span class="errMsg_2" *ngIf="accesVeirfy == 'false'">
+                        <span class="errMsg_2" *ngIf="!accesVeirfy">
                             <img src="../../../assets/images/close_1.png" />
                         </span>
 
                     </div>
                 </div>
                 <!-- {{accesVeirfy}} -->
-                <div class="col-md-6">
+                <div class="col-md-6" *ngIf="!hideNumbers">
                     <div class="input-group input-group-lg" *ngIf="listingDetails.prize_money != 0 || listingDetails.prize_money != ''">
                         <input class="form-control signup-input" placeholder="250 €" formControlName="price" type="text" readonly>
                     </div>
@@ -76,9 +76,9 @@
                 <input type="checkbox" formControlName="term_condition" checked>I agree on these terms&conditions&rules of this website)</p>
 
             <div *ngIf="listingDetails.prize_money != 0 || listingDetails.prize_money != ''">
-                <button type="button" *ngIf="!payed" class="btn btn-success" [disabled]="!paymentForm.valid || accesVeirfy == 'false' || errMsg == true"
+                <button type="button" *ngIf="!payed" class="btn btn-success" [disabled]="!paymentForm.valid || !accesVeirfy || errMsg == true"
                     (click)="submitform()">PAY</button>
-                <button type="button" *ngIf="payed" class="btn btn-success" [disabled]="!paymentForm.valid || accesVeirfy == 'false' || errMsg == true"
+                <button type="button" *ngIf="payed" class="btn btn-success" [disabled]="!paymentForm.valid"
                     (click)="openuploadModal(uploadtemplate, listingDetails)">Next</button>
             </div>
 

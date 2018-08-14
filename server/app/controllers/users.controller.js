@@ -273,38 +273,32 @@ exports.delete = (req, res) => {
 };
 
 exports.verify = (req, res) => {
-
-    // Validate request
+    console.log(req.body)
     if (!req.body.email) {
         return res.status(400).send({
             message: "email name cannot be empty"
-        });
+        })
     } else {
-
-        Users.find({
+        Users.findOne({
             email: req.body.email
         })
             .then((data) => {
-
-                if (data == '') {
+                if (!data) {
                     return res.status(404).send({
                         message: "Email not exists "
                     });
                 } else {
-
-                    if (data[0].acess_code == req.body.acess_code) {
-                        res.send({
-                            message: "true"
+                    if (data.acess_code == req.body.acess_code) {
+                        res.status(200).json({
+                            message: true
                         });
 
                     } else {
-                        res.send({
-                            message: "false"
+                        res.status(200).json({
+                            message: false
                         });
                     }
-
                 }
-
             });
 
     }

@@ -48,7 +48,6 @@ exports.execute = (req, res) => {
     }]
   };
   const { paymentId } = req.body;
-
   paypal.payment.execute(paymentId, execute_payment_json, (error, payment) => {
     if (error) {
       console.log(error)
@@ -62,6 +61,7 @@ exports.execute = (req, res) => {
       const trans = new Transaction(payment)
       trans.save(err => {
         if (err) return res.status(500).send(err)
+        console.log(payment)
         return res.status(200).send(trans)
       })
     }

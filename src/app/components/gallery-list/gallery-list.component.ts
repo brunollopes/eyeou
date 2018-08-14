@@ -1,4 +1,4 @@
-import { Component, OnInit, TemplateRef, NgZone } from "@angular/core";
+import { Component, OnInit, TemplateRef, NgZone, ViewChild, ElementRef } from "@angular/core";
 import { BsModalService } from "ngx-bootstrap/modal";
 import { BsModalRef } from "ngx-bootstrap/modal/bs-modal-ref.service";
 import { ActivatedRoute, Router } from "@angular/router";
@@ -12,10 +12,12 @@ import { PaypalProvider } from "../../services/paypal.service";
   styleUrls: ["./gallery-list.component.css"]
 })
 export class GalleryListComponent implements OnInit {
+  @ViewChild('template') ModelTemplate: TemplateRef<any>;
 
   addScript: boolean = false;
   finalAmount: number = 0;
 
+  hideNumbers: Boolean = false;
   public payed: Boolean = false;
   public contestId: string;
   public gallerylist: any[];
@@ -29,7 +31,7 @@ export class GalleryListComponent implements OnInit {
   public emailval: string;
   droppedimages = [];
   public errMsg: any;
-  public accesVeirfy: any;
+  public accesVeirfy: Boolean = false;
   public paymentForm: FormGroup;
   constructor(
     private modalService: BsModalService,
@@ -90,10 +92,12 @@ export class GalleryListComponent implements OnInit {
 
   // Open payment email validation popup
   openModal(template: TemplateRef<any>, data) {
+    this.hideNumbers = false;
+    this.paymentForm.addControl('numbers', new FormControl(null, Validators.required));
     this.payed = false;
     this.contestId = data._id;
     this.paymentForm.reset();
-    this.accesVeirfy = 'null';
+    this.accesVeirfy = false;
     this.errMsg = 'null';
     // console.log("Data : ", data);
     this.listingDetails = data;
@@ -124,7 +128,6 @@ export class GalleryListComponent implements OnInit {
         localStorage.setItem('currency', 'USD');
         localStorage.setItem('quantity', '1');
         localStorage.setItem('email', this.paymentForm.value.email);
-        localStorage.setItem('user', this.currentuser);
         localStorage.setItem('contestId', this.contestId);
         this.payed = false;
         window.location.href = res.approval_url;
@@ -150,59 +153,65 @@ export class GalleryListComponent implements OnInit {
 
   // Get gallery data
   getContentData() {
-    this.contestprovider.getContests().then((data: Array<any>) => {
-      // console.log("Data ", data);
-      this.gallerylist = data;
-    });
-  }
-
-  // Access get code by email
-  getaccesCode() {
-    this.emailval = this.paymentForm.get("email").value;
-    // console.log("Email sent", this.emailval);
-    this.contestprovider.getAccesCode(this.emailval).then((res: any) => {
-      this.currentuser = res._id;
-      console.log("Email sent", res);
-    });
+    return new Promise((resolve, reject) => {
+      this.contestprovider.getContests().then((data: Array<any>) => {
+        // console.log("Data ", data);
+        this.gallerylist = data;
+        resolve(data)
+      });
+    })
   }
 
   //Verify Access code with email
   varifyCode() {
+    this.accesVeirfy = false;
     this.accescode = this.paymentForm.get("numbers").value;
+    this.emailval = this.paymentForm.get('email').value;
     this.contestprovider
       .varifyCode({ email: this.emailval, acess_code: this.accescode })
       .then(data => {
-        // console.log('Data ', data);
-        this.accesVeirfy = data;
-        this.accesVeirfy = this.accesVeirfy.message;
-        if (this.accesVeirfy) {
-
-        }
+        console.log('Data ', data);
+        this.accesVeirfy = data.message;
       });
   }
 
   // Email validation
-  public async emailErr() {
+  public async emailErr(first: Boolean = true) {
     this.errMsg = this.paymentForm.get("email").invalid;
     let email = this.paymentForm.get("email").value;
-    let user = await this.contestprovider.getAccesCode(email);
+
+    if (first) {
+      this.hideNumbers = false;
+      this.paymentForm.addControl('numbers', new FormControl(null, Validators.required));
+      let user = await this.contestprovider.getAccesCode(email);
+      this.currentuser = user._id;
+      console.log(user)
+      localStorage.setItem('userId', user._id);
+    } else {
+      this.hideNumbers = true;
+      this.paymentForm.removeControl('numbers');
+      console.log(this.paymentForm.controls);
+      console.log(this.hideNumbers);
+    }
 
     if (!this.errMsg) {
       this.paypalProvider
-        .CheckTransaction({user: user._id, contest: this.contestId})
+        .CheckTransaction({ user: localStorage.getItem('userId'), contest: localStorage.getItem('contestId') })
         .then(res => {
           let transaction = JSON.parse(res._body);
           console.log(transaction)
           transaction ? this.payed = true : this.payed = false;
         })
-        .catch(err => {console.log(err)})
+        .catch(err => {
+          console.log(err)
+        })
     }
   }
 
-  ngOnInit() {
+  async ngOnInit() {
     // this.router.navigate(['/uploads']);  
     this.createForm();
-    this.getContentData();
+    let contests = await this.getContentData() as Array<any>;
     let url = new URL(window.location.href),
       paymentId = url.searchParams.get('paymentId'),
       token = url.searchParams.get('token'),
@@ -214,12 +223,20 @@ export class GalleryListComponent implements OnInit {
       contest = localStorage.getItem('contestId')
 
     if (paymentId && token && PayerID) {
-
       this.paypalProvider.ExecutePayment({
         PayerID, paymentId, items, user, contest
       })
-      .then(res => console.log(res))
-      .catch(err => console.log(err))
+        .then(res => {
+          console.log(res);
+          contests.forEach($contest => {
+            if ($contest._id == contest) {
+              this.openModal(this.ModelTemplate, $contest);
+              this.paymentForm.get('email').setValue(localStorage.getItem('email'));
+              this.emailErr(false);
+            }
+          })
+        })
+        .catch(err => console.log(err))
     }
   }
 

@@ -96,6 +96,7 @@ export class GalleryListComponent implements OnInit {
     this.paymentForm.addControl('numbers', new FormControl(null, Validators.required));
     this.payed = false;
     this.contestId = data._id;
+    localStorage.setItem('contestId', this.contestId);
     this.paymentForm.reset();
     this.accesVeirfy = false;
     this.errMsg = 'null';
@@ -128,7 +129,6 @@ export class GalleryListComponent implements OnInit {
         localStorage.setItem('currency', 'USD');
         localStorage.setItem('quantity', '1');
         localStorage.setItem('email', this.paymentForm.value.email);
-        localStorage.setItem('contestId', this.contestId);
         this.payed = false;
         window.location.href = res.approval_url;
         // this.windowRef.nativeWindow.location.href = res.approval_url

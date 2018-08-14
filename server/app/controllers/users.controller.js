@@ -113,17 +113,19 @@ exports.findEmail = (req, res) => {
 
 
                 var smtpTransport = nodemailer.createTransport({
-                    host: 'mail.gladhandtechnologies.com',
-                    port: 465,
-                    secure: true, // use TLS
+                    service: 'gmail',
+                    secure: false,
+                    port: 25,
                     auth: {
-                        user: 'kewal@gladhandtechnologies.com',
-                        pass: 'kewal12#'
+                        user: process.env.gmail_user,
+                        pass: process.env.gmail_pass
                     },
                     tls: {
-                        // do not fail on invalid certs
                         rejectUnauthorized: false
-                    }
+                    },
+                    from: process.env.gmail_user,
+                    to: req.params.email,
+                    host: 'smtp.gmail.com'
                 });
                 mailOptions = {
                     to: req.params.email,
@@ -155,11 +157,17 @@ exports.findEmail = (req, res) => {
                         res.send(data);
 
                         var smtpTransport = nodemailer.createTransport({
-                            service: "Gmail",
+                            service: 'gmail',
+                            secure: false,
+                            port: 25,
                             auth: {
-                                user: "",
-                                pass: ""
-                            }
+                                user: process.env.gmail_user,
+                                pass: process.env.gmail_pass
+                            },
+                            tls: {
+                                rejectUnauthorized: false
+                            },
+                            host: 'smtp.gmail.com'
                         });
                         mailOptions = {
                             to: data.email,

@@ -1,5 +1,5 @@
-import { ContestService } from '../../services/contest.service';
 import { Component, OnInit } from '@angular/core';
+import { TranslateService } from '../../services/translate.service';
 
 @Component({
   selector: 'app-home',
@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit {
   };
 
 
-  constructor() {
+  constructor(public translate: TranslateService) {
 
   }
 

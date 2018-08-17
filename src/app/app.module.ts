@@ -1,14 +1,15 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { ModalModule } from 'ngx-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ROUTES } from './app.router'
+import { FileDropModule } from 'ngx-file-drop';
 
-import { HttpClientModule, HttpClient } from '@angular/common/http';
-import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { TranslateService } from '@ngx-translate/core';
+import { ROUTES } from './app.router';
+import { MaterialModule } from './modules/material.module';
+
+import { HttpClientModule } from '@angular/common/http';
 
 
 import { AppComponent } from './app.component';
@@ -20,14 +21,10 @@ import { HowitWorksComponent } from './components/howit-works/howit-works.compon
 import { GalleryListComponent } from './components/gallery-list/gallery-list.component';
 import { ContestService } from './services/contest.service';
 import { PaypalProvider } from './services/paypal.service';
-import { ImageUploadModule } from "angular2-image-upload";
-
-
-export function HttpLoaderFactory(http: HttpClient) {
-  // return new TranslateHttpLoader(http);
-  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
-
-}
+import { AppHelper } from './services/app.helper';
+import { ContestComponent } from './components/contest/contest.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { ConverSizePipe } from './pipes/conver-size.pipe';
 
 @NgModule({
   declarations: [
@@ -38,25 +35,22 @@ export function HttpLoaderFactory(http: HttpClient) {
     SliderTilesComponent,
     HowitWorksComponent,
     GalleryListComponent,
+    ContestComponent,
+    NavbarComponent,
+    ConverSizePipe
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
+    MaterialModule,
+    FileDropModule,
     RouterModule.forRoot(ROUTES),
     ModalModule.forRoot(),
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule,
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
-      }
-    }),
-    ImageUploadModule.forRoot(),
-
+    HttpClientModule
   ],
-  providers: [ContestService, PaypalProvider],
+  providers: [ContestService, PaypalProvider, AppHelper],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

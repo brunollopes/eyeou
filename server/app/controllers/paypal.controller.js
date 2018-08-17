@@ -1,12 +1,13 @@
 const paypal = require('paypal-rest-sdk');
 const paypalHelper = require('../helpers/paypal.helper');
 const Transaction = require('../models/transactions.model');
+const User = require('../models/users.model');
+const Contest = require('../models/contest.model');
 
 exports.check = (req, res) => {
   const { user, contest } = req.params
-  console.log(user, contest)
   Transaction
-    .findOne({user, contest})
+    .findOne({ user, contest })
     .exec()
     .then(document => {
       res.status(200).json(document)
@@ -29,7 +30,7 @@ exports.create = (req, res) => {
     } else {
       for (var index = 0; index < payment.links.length; index++) {
         if (payment.links[index].rel === 'approval_url') {
-          res.status(200).json({approval_url: payment.links[index].href});
+          res.status(200).json({ approval_url: payment.links[index].href });
         }
       }
     }
@@ -47,23 +48,27 @@ exports.execute = (req, res) => {
       }
     }]
   };
-  const { paymentId } = req.body;
-  paypal.payment.execute(paymentId, execute_payment_json, (error, payment) => {
+  const { paymentId, user, contest } = req.body;
+
+  paypal.payment.execute(paymentId, execute_payment_json, async (error, payment) => {
     if (error) {
-      console.log(error)
       res.status(403).send(error);
     } else {
       payment.transactions.forEach(transaction => {
         delete transaction.related_resources;
       })
-      payment.user = req.body.user
-      payment.contest = req.body.contest
+      payment.user = user
+      payment.contest = contest
       const trans = new Transaction(payment)
-      trans.save(err => {
-        if (err) return res.status(500).send(err)
-        console.log(payment)
+      try {
+        const transSaved = await trans.save();
+        const userUpdate = await User.findByIdAndUpdate(user, { $push: { contests: contest } });
+        const contestUpdate = await Contest.findByIdAndUpdate(contest, { $push: { users: user } });
+
         return res.status(200).send(trans)
-      })
+      } catch (e) {
+        res.status(403).json(e)
+      }
     }
   });
 }

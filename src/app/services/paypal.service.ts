@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http'
+import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class PaypalProvider {
-  constructor(public http: Http) {}
+  constructor(public http: HttpClient) {}
 
   public PayWithPaypal({name, sku, price, currency, quantity}): Promise<any> {
     return this.http.post(
@@ -11,7 +11,7 @@ export class PaypalProvider {
       {items: [{name, sku, price, currency, quantity}]}
     )
     .toPromise()
-    .then((res:any) => JSON.parse(res._body))
+    .then(res => res)
     .catch(err => err)
   }
 

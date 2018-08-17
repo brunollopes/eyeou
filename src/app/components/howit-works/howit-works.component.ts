@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateService } from '../../services/translate.service';
 
 @Component({
   selector: 'app-howit-works',
@@ -8,6 +8,7 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class HowitWorksComponent implements OnInit {
   public worklist: any[];
+  
   constructor(public translate: TranslateService) {
   
   }

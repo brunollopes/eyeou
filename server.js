@@ -12,6 +12,17 @@ paypal.configure({
     client_secret: process.env.paypal_client_secret
 })
 
+//CORS middleware
+var allowCrossDomain = function (req, res, next) {
+    res.header('Access-Control-Allow-Origin', 'example.com');
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, userId');
+
+    next();
+}
+
+app.use(allowCrossDomain);
+
 // Configuring the database
 const mongoose = require('mongoose');
 

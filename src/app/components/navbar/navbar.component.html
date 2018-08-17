@@ -1,0 +1,49 @@
+<div 
+  class="navHeader herocontainer container-fluid" 
+  [class.navbar-fixed-top]="fixed"
+  [class.bgColor]="bgColor"
+  [class.noBgColor]="!bgColor"
+  id="lead-navbar"
+  >
+
+  <!-- Site Logo -->
+  <a class="navbar-brand sitelogo" href="#">
+    <img id="logo-winpic" src="assets/images/eyeouLogo.png" />
+  </a>
+
+  <!-- Site navigation Menus -->
+  <nav class="navbar navbar-expand-md navbar-dark navigations" style="float:right;">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse"
+      aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="nav navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link">{{translate.lang.navLink1}}
+            <span class="sr-only">(current)</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link">{{translate.lang.navLink2}}</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link">{{translate.lang.navLink3}}</a>
+        </li>
+        <li class="nav-item lang">
+          <a *ngIf="translate.showLang == 'pt'" (click)="switchLanguage('en')">EN
+            <span>
+              <img src="assets/images/UK-flag.png" />
+            </span>
+          </a>
+          <a *ngIf="translate.showLang == 'en'" (click)="switchLanguage('pt')">PT
+            <span>
+              <img src="assets/images/PTflag.png" />
+            </span>
+          </a>
+        </li>
+      </ul>
+      <img class="closeBtn" src="assets/images/cancel.png">
+    </div>
+  </nav>
+</div>

@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ApiUrls } from '../../apiurls';
-import "rxjs/add/operator/map";
 
 @Injectable()
 export class ContestService {
@@ -21,6 +20,29 @@ export class ContestService {
       .catch(err => err)
   }
 
+  getContestBySlug(slug, userId) {
+    let headers = new HttpHeaders({userId});
+    return this.httpClient.get(`/contests/findBySlug/${slug}`, { headers })
+      .toPromise()
+      .then(res => res)
+      .catch(err => err);
+  }
+
+  getContestIdBySlug(slug) {
+    return this.httpClient.get(`/contests/findIdBySlug/${slug}`)
+      .toPromise()
+      .then(res => res)
+      .catch(err => err);
+  }
+
+  joinFreeContest(userId, contestId) {
+    let headers = new HttpHeaders({userId});
+    return this.httpClient.post('/users/joinFreeContest', { userId, contestId }, { headers })
+      .toPromise()
+      .then(res => res)
+      .catch(err => err);
+  }
+
   getAccesCode(data) {
     return this.httpClient.get('/users/email/' + data, { headers: this.headers })
       .toPromise()
@@ -28,16 +50,22 @@ export class ContestService {
       .catch(err => err)
   }
 
-  varifyCode({email, acess_code}) {
-    console.log(email, acess_code)
-    return this.httpClient.post('/users/verify', {email, acess_code}, { headers: this.headers })
+  varifyCode({ email, acess_code }) {
+    return this.httpClient.post('/users/verify', { email, acess_code }, { headers: this.headers })
       .toPromise()
       .then(res => res)
       .catch(err => err)
   }
 
   uploadimages(data) {
-    return this.httpClient.post('/images/uploads', data, { headers: this.headers })
+    return this.httpClient.post('/images/uploads', data)
+      .toPromise()
+      .then(res => res)
+      .catch(err => err)
+  }
+
+  getUserImages(id) {
+    return this.httpClient.get(`/users/${id}/images`)
       .toPromise()
       .then(res => res)
       .catch(err => err)

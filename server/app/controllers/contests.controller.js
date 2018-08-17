@@ -2,14 +2,11 @@ const Contests = require('../models/contest.model.js');
 
 // Create and Save a new contest
 exports.create = (req, res) => {
-
-    // Validate request
     if (!req.body.contest_name) {
         return res.status(400).send({
             message: "Contests content can not be empty"
         });
     }
-
     // Create a contest
     const contests = new Contests({
         prize_money: req.body.prize_money,
@@ -28,7 +25,6 @@ exports.create = (req, res) => {
         type: req.body.type
     });
 
-    // Save contest in the database
     contests.save()
         .then(data => {
             res.send(data);
@@ -42,7 +38,6 @@ exports.create = (req, res) => {
 
 // Retrieve and return all contests from the database.
 exports.findAll = (req, res) => {
-
     Contests.find()
         .then(contests => {
             res.send(contests);
@@ -51,45 +46,91 @@ exports.findAll = (req, res) => {
                 message: err.message || "Some error occurred while retrieving contests."
             });
         });
-
 };
 
 // Find a single contest with a contestId
 exports.findOne = (req, res) => {
-
-    Contests.findById(req.params.contestsId)
-        .then(contests => {
-            if (!contests) {
+    Contests
+        .findById(req.params.contestId)
+        .then(contest => {
+            if (!contest) {
                 return res.status(404).send({
-                    message: "Contests not found with id " + req.params.contestsId
+                    message: "Contests not found with id " + req.params.contestId
                 });
             }
-            res.send(contests);
+            contest.userIncluded = req.locals.userIncluded;
+            res.status(200).json(contest);
         }).catch(err => {
             if (err.kind === 'ObjectId') {
                 return res.status(404).send({
-                    message: "Contest not found with id " + req.params.contestsId
+                    message: "Contest not found with id " + req.params.contestId
                 });
             }
             return res.status(500).send({
-                message: "Error retrieving contests with id " + req.params.contestsId
+                message: "Error retrieving contests with id " + req.params.contestId
             });
         });
-
 };
+
+
+
+exports.findSlug = (req, res) => {
+    const userId = req.get('userId');
+
+    Contests
+        .findOne({ slug: req.params.slug })
+        .populate({
+            path: 'users',
+            select: ['images, id'],
+            match: {
+                _id: userId
+            },
+            populate: {
+                path: 'images',
+                select: ['image_path', 'createdAt', '_id'],
+                match: {
+                    contest: req.locals.contestId
+                }
+            }
+        })
+        .exec()
+        .then(contest => {
+            if (!contest) {
+                return res.status(404).send({
+                    message: "Contests not found with slug " + req.params.slug
+                });
+            }
+            res.status(200).json({ contest, userIncluded: req.locals.userIncluded });
+        }).catch(err => {
+            if (err.kind === 'ObjectId') {
+                return res.status(404).send({
+                    message: "Contest not found with slug " + req.params.slug
+                });
+            }
+            return res.status(500).send({
+                message: "Error retrieving contests with slug " + req.params.slug
+            });
+        });
+}
+
+exports.findIdBySlug = (req, res) => {
+    const { slug } = req.params;
+    Contests
+        .findOne({ slug }, 'id')
+        .exec()
+        .then(contest => res.status(200).json(contest))
+        .catch(err => res.status(403).json(err));
+}
 
 // Update a contest identified by the contestId in the request
 exports.update = (req, res) => {
-
     // Validate Request
     if (!req.body.contest_name) {
         return res.status(400).send({
             message: "Contests name can not be empty"
         });
-    }
-
-    // Find contest and update it with the request body
-    Contests.findByIdAndUpdate(req.params.contestsId, {
+        // Find contest and update it with the request body
+        Contests.findByIdAndUpdate(req.params.contestsId, {
             prize_money: req.body.prize_money,
             start_date: req.body.start_date,
             contest_name: req.body.contest_name,
@@ -105,30 +146,29 @@ exports.update = (req, res) => {
             close_date: req.body.close_date,
             type: req.body.type
         }, { new: true })
-        .then(contests => {
-            if (!contests) {
-                return res.status(404).send({
-                    message: "Contest not found with id " + req.params.contestsId
+            .then(contests => {
+                if (!contests) {
+                    return res.status(404).send({
+                        message: "Contest not found with id " + req.params.contestsId
+                    });
+                }
+                res.send(contests);
+            }).catch(err => {
+                if (err.kind === 'ObjectId') {
+                    return res.status(404).send({
+                        message: "Contest not found with id " + req.params.contestsId
+                    });
+                }
+                return res.status(500).send({
+                    message: "Error updating contest with id " + req.params.contestsId
                 });
-            }
-            res.send(contests);
-        }).catch(err => {
-            if (err.kind === 'ObjectId') {
-                return res.status(404).send({
-                    message: "Contest not found with id " + req.params.contestsId
-                });
-            }
-            return res.status(500).send({
-                message: "Error updating contest with id " + req.params.contestsId
             });
-        });
 
-};
+    };
+}
 
 // Delete a contest with the specified contestId in the request
 exports.delete = (req, res) => {
-
-    console.log(req.params.contestsId);
 
     Contests.findByIdAndRemove(req.params.contestsId)
         .then(contests => {

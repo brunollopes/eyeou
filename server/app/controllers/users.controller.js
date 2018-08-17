@@ -1,4 +1,5 @@
 const Users = require('../models/users.model.js');
+const Contests = require('../models/contest.model');
 var nodemailer = require("nodemailer");
 
 // Create and Save a new User
@@ -300,6 +301,25 @@ exports.verify = (req, res) => {
                     }
                 }
             });
-
     }
+}
+
+exports.getUserImages = (req, res) => {
+    Users
+        .findById(req.params.id)
+        .populate('images')
+        .exec()
+        .then(user => res.status(200).json(user))
+        .catch(err => res.status(403).json(err));
+}
+
+exports.joinFreeContest = (req, res) => {
+    const { userId, contestId } = req.body;
+    Promise
+        .all([
+            Users.findByIdAndUpdate(userId, { $push: { constests: contestId } }).exec(),
+            Contests.findByIdAndUpdate(contestId, { $push: { users: userId } }).exec()
+        ])
+        .then(info => res.status(200).json(info))
+        .catch(err => res.status(403).json(err));
 }

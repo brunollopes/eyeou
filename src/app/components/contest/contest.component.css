@@ -1,0 +1,30 @@
+div.container {
+  padding: 35px 0;
+  min-height: 100vh
+}
+
+div.contest-info div.contest-image img {
+  width: 100%
+}
+
+div.contest-info div.contest-status h2 {
+  margin: 0 0 15px 0
+}
+
+div.contest-info div.contest-status span {
+  position: relative;
+  top: -6px;
+  margin-left: 10px;
+  font-size: 15px;
+}
+
+div.image-upload h3,
+div.aws-images h3 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: 400;
+}
+
+div.image-upload div.upload-table {
+  margin-top: 10px
+}

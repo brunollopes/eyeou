@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
 const ContestSchema = mongoose.Schema({
     prize_money: Number,
@@ -14,7 +15,20 @@ const ContestSchema = mongoose.Schema({
     review_startdate: Date,
     reviewphase_duration: Number,
     close_date: Date,
-    type: String
+    type: String,
+    slug: {
+        type: String,
+        required: true,
+        unique: true
+    },
+    images: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Image'
+    }],
+    users: [{
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    }]
 
 }, {
     timestamps: true

@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
 const UserSchema = mongoose.Schema({
 
@@ -7,7 +8,15 @@ const UserSchema = mongoose.Schema({
     // access_id: String,
     // access_secret: String,
     // console_link: String,
-    acess_code: Number
+    acess_code: Number,
+    images: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Image'
+    }],
+    constests: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Contest'
+    }]
 
 }, {
     timestamps: true

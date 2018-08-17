@@ -1,4 +1,6 @@
 const Image = require('../models/image.model.js');
+const User = require('../models/users.model');
+const Contest = require('../models/contest.model');
 const AWS = require('aws-sdk');
 
 AWS.config.update({
@@ -8,52 +10,41 @@ AWS.config.update({
 
 var s3 = new AWS.S3();
 
-//upload image to aws and save imagepath and contest_id to mongo db
 exports.uploadimage = (req, res) => {
-    req.body.files.forEach(file => {
+    const { file } = req;
+    const { user_id, contest_name } = req.body;
 
-        var base64Data = file.src.replace(/^data:image\/[a-z]+;base64,/, "");
-        console.log(base64Data);
-        var binaryData = new Buffer(base64Data, 'base64');
-        var params = {
-            Bucket: 'eyeou',
-            Body: binaryData,
-            ACL: 'public-read',
-            ContentEncoding: 'base64',
-            ContentType: file.type,
-            Key: req.body.contest_name + "/" + req.body.user_id + "/" + Date.now() + "_" + file.name
-        };
+    var params = {
+        Bucket: 'eyeou',
+        Body: file.buffer,
+        ACL: 'public-read',
+        ContentEncoding: 'base64',
+        ContentType: file.type,
+        Key: contest_name + "/" + user_id + "/" + Date.now() + "_" + file.name
+    };
 
-        s3.upload(params, function (err, data) {
-            //handle error
-            if (err) {
-                console.log("AWS Error ", err);
+    console.log(params)
+    s3.upload(params, async (err, data) => {
+        if (err) res.send(err)
+        if (data) {
+            const img = new Image({
+                contest: contest_name,
+                user: user_id,
+                image_path: data.Location
+            });
+
+            try {
+                const imgSaved = await img.save();
+                const userUpdate = await User.findByIdAndUpdate(user_id, { $push: { images: imgSaved.id } }).exec();
+                const contestUpdate = await Contest.findByIdAndUpdate(contest_name, { $push: { images: imgSaved.id } }).exec();
+                res.status(200).json(imgSaved);
+            } catch (e) {
+                console.log(e)
+                res.status(403).json(e);
             }
-
-            //success
-            if (data) {
-                console.log("Uploaded in:", data.Location);
-                const img = new Image({
-                    contest_name: req.body.contest_name,
-                    user_id: req.body.user_id,
-                    image_path: data.Location
-                });
-
-                // Save contest in the database
-                img.save()
-                    .then(savedimagedata => {
-                        res.send(savedimagedata);
-
-                    }).catch(err => {
-                        res.status(500).send({
-                            message: err.message || "Some error occurred while creating the Contests."
-                        });
-                    });
-
-            }
-        })
-
+        }
     });
+
 
 }
 

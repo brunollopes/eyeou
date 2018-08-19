@@ -33,7 +33,7 @@
     <div class="center image-upload" style="margin-top: 25px">
       <h3>{{translate.lang.uploadNew}}</h3>
       <div class="alert alert-danger" *ngIf="maxLimitReached">
-        {{translate.lang.limitMax}}
+        {{translate.lang.limitMax + this.uploadLimit + ' ' + translate.lang.photos}}
       </div>
       <file-drop headertext="Drop files here" (onFileDrop)="dropped($event)">
       </file-drop>

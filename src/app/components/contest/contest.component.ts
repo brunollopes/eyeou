@@ -20,6 +20,7 @@ export class ContestComponent implements OnInit {
   public contest: any;
   public userId: string;
   public maxLimitReached: Boolean = false;
+  public uploadLimit;
 
   constructor(
     public router: Router,
@@ -30,7 +31,9 @@ export class ContestComponent implements OnInit {
   ) { }
 
   public dropped(event: UploadEvent) {
-    if ((this.files.length + 1> 10) || ((event.files.length + this.contest.users[0].images.length) > 10) || ((this.files.length + 1 + this.contest.users[0].images.length) > 10)) {
+    if ((this.files.length + 1 > this.uploadLimit) ||
+      ((event.files.length + this.contest.users[0].images.length) > this.uploadLimit) ||
+      ((this.files.length + 1 + this.contest.users[0].images.length) > this.uploadLimit)) {
       this.maxLimitReached = true;
     } else {
       this.maxLimitReached = false;
@@ -100,7 +103,7 @@ export class ContestComponent implements OnInit {
   public removeDropped(index) {
     this.files.splice(index, 1);
     this.previewFiles.splice(index, 1);
-    if (this.files.length + 1 <= 10 && this.previewFiles.length <= 10) {
+    if (this.files.length + 1 <= this.uploadLimit && this.previewFiles.length <= this.uploadLimit) {
       this.maxLimitReached = false;
     }
   }
@@ -126,12 +129,14 @@ export class ContestComponent implements OnInit {
                 const joinContest = await this.contestProvider.joinFreeContest(this.userId, this.contestId);
                 const contest = await this.contestProvider.getContestBySlug(data.slug, this.userId);
                 this.contest = contest.contest;
+                this.contest.prize_money == 0 ? this.uploadLimit = 1 : this.uploadLimit = 10;
                 localStorage.setItem('contestSlug', data.slug);
               } catch (e) {
                 this.router.navigate(['/']);
               }
             } else {
               this.contest = res.contest;
+              this.contest.prize_money == 0 ? this.uploadLimit = 1 : this.uploadLimit = 10;
               localStorage.setItem('contestSlug', data.slug);
             }
           })

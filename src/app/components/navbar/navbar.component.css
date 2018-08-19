@@ -8,6 +8,13 @@
   background: transparent;
 }
 
+.navbar-brand {
+  height: auto !important;
+  position: relative;
+  top: -30px;
+  padding: 0 !important
+}
+
 .navHeader.herocontainer{
   padding: 20px;
   transition: top 0.7s ease-in;
@@ -16,7 +23,7 @@
 }
 
 .navHeader .sitelogo img {
-  max-height: 40px;
+  max-height: 110px !important;
 }
 
 .navHeader .navigations #navbarCollapse .navbar-nav li {

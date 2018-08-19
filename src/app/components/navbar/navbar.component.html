@@ -7,20 +7,20 @@
   >
 
   <!-- Site Logo -->
-  <a class="navbar-brand sitelogo" href="#">
+  <a class="navbar-brand sitelogo" routerLink="/">
     <img id="logo-winpic" src="assets/images/eyeouLogo.png" />
   </a>
 
   <!-- Site navigation Menus -->
   <nav class="navbar navbar-expand-md navbar-dark navigations" style="float:right;">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse"
+    <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse"
       aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarCollapse">
+    </button> -->
+    <div class="collapse navbar-collapse" id="navbarCollapse" style="float: right;margin: 0; position: relative; top: 15px;">
       <ul class="nav navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link">{{translate.lang.navLink1}}
+          <a class="nav-link" routerLink='/about'>{{translate.lang.navLink1}}
             <span class="sr-only">(current)</span>
           </a>
         </li>
@@ -28,7 +28,7 @@
           <a class="nav-link">{{translate.lang.navLink2}}</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link">{{translate.lang.navLink3}}</a>
+          <a class="nav-link" routerLink='/rules'>{{translate.lang.navLink3}}</a>
         </li>
         <li class="nav-item lang">
           <a *ngIf="translate.showLang == 'pt'" (click)="switchLanguage('en')">EN

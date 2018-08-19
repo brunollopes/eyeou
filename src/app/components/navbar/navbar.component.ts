@@ -22,9 +22,8 @@ export class NavbarComponent implements OnInit {
     console.log(this.fixed, this.bgColor)
     if (!this.fixed) {
       document.getElementById('lead-navbar').style.background = "rgba(0,0,0,0.9)";
-      document.getElementById('lead-navbar').style.top = "0px";
-      document.getElementById('lead-navbar').style.padding = "5px 20px";
-      document.getElementById('logo-winpic').style.maxHeight = "40px";
+      
+      document.getElementById('lead-navbar').style.height = "100px"
     }
   }
 
@@ -38,16 +37,10 @@ export class NavbarComponent implements OnInit {
     if (this.fixed) {
       if (window.scrollY >= 80) {
         document.getElementById('lead-navbar').style.background = "rgba(0,0,0,0.9)";
-        document.getElementById('lead-navbar').style.top = "0px";
-        document.getElementById('lead-navbar').style.padding = "5px 20px";
-        document.getElementById('logo-winpic').style.height = "70px";
       }
       else {
         document.getElementById('lead-navbar').style.background = "transparent";
-        document.getElementById('lead-navbar').style.top = "0px";
-        document.getElementById('lead-navbar').style.padding = "25px";
-        document.getElementById('logo-winpic').style.maxHeight = "40px";
-
+        document.getElementById('lead-navbar').style.height = "100px"
       }
     }
   }

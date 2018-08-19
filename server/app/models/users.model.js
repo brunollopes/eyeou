@@ -13,7 +13,7 @@ const UserSchema = mongoose.Schema({
         type: Schema.Types.ObjectId,
         ref: 'Image'
     }],
-    constests: [{
+    contests: [{
         type: Schema.Types.ObjectId,
         ref: 'Contest'
     }]

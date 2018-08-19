@@ -55,8 +55,8 @@ export class GalleryListComponent implements OnInit {
     this.accesVeirfy = false;
     this.errMsg = 'null';
     this.listingDetails = data;
-    this.paymentForm.controls['price'].setValue(data.prize_money);
-    this.finalAmount = data.prize_money;
+    this.paymentForm.controls['price'].setValue(data.entry_price);
+    this.finalAmount = data.entry_price;
     this.modalRef = this.modalService.show(template);
     localStorage.setItem('contestId', this.contestId);
   }
@@ -146,7 +146,7 @@ export class GalleryListComponent implements OnInit {
           transaction ? this.payed = true : this.payed = false;
         })
         .catch(err => {
-          console.log(err)
+          this.router.navigate(['/'])
         })
     }
   }
@@ -168,21 +168,15 @@ export class GalleryListComponent implements OnInit {
         price: localStorage.getItem('price')
       }];
 
-    const { user, contest } = this.helper.GetLocalStorage(['user, contest']);
+    const user = localStorage.getItem('userId');
+    const contest = localStorage.getItem('contestId')
 
     if (paymentId && token && PayerID) {
       this.paypalProvider.ExecutePayment({
         PayerID, paymentId, items, user, contest
       })
         .then(res => {
-          console.log(res);
-          contests.forEach($contest => {
-            if ($contest._id == contest) {
-              this.openModal(this.ModelTemplate, $contest);
-              this.paymentForm.get('email').setValue(localStorage.getItem('email'));
-              this.emailErr(false);
-            }
-          })
+          this.router.navigate(['contest', res.contestUpdate.slug])
         })
         .catch(err => console.log(err))
     }

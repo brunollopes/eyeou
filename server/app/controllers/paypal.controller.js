@@ -52,6 +52,7 @@ exports.execute = (req, res) => {
 
   paypal.payment.execute(paymentId, execute_payment_json, async (error, payment) => {
     if (error) {
+      console.log('>> Error excuting:', error)
       res.status(403).send(error);
     } else {
       payment.transactions.forEach(transaction => {
@@ -61,13 +62,15 @@ exports.execute = (req, res) => {
       payment.contest = contest
       const trans = new Transaction(payment)
       try {
+        console.log(user, contest)
         const transSaved = await trans.save();
-        const userUpdate = await User.findByIdAndUpdate(user, { $push: { contests: contest } });
-        const contestUpdate = await Contest.findByIdAndUpdate(contest, { $push: { users: user } });
+        const userUpdate = await User.findOneAndUpdate({_id: user}, { $push: { contests: contest } }).exec();
+        const contestUpdate = await Contest.findOneAndUpdate({_id: contest}, { $push: { users: user } }).exec();
 
-        return res.status(200).send(trans)
+        return res.status(200).json({ trans, contestUpdate })
       } catch (e) {
-        res.status(403).json(e)
+        console.log('>> ERROR SAVING', e)
+        return res.status(403).json(e)
       }
     }
   });

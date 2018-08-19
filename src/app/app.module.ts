@@ -25,6 +25,11 @@ import { AppHelper } from './services/app.helper';
 import { ContestComponent } from './components/contest/contest.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { ConverSizePipe } from './pipes/conver-size.pipe';
+import { RulesComponent } from './pages/rules/rules.component';
+import { AboutComponent } from './pages/about/about.component';
+import { ContactComponent } from './pages/contact/contact.component';
+import { AmbassadorComponent } from './pages/ambassador/ambassador.component';
+import { HelpComponent } from './pages/help/help.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +42,12 @@ import { ConverSizePipe } from './pipes/conver-size.pipe';
     GalleryListComponent,
     ContestComponent,
     NavbarComponent,
-    ConverSizePipe
+    ConverSizePipe,
+    RulesComponent,
+    AboutComponent,
+    ContactComponent,
+    AmbassadorComponent,
+    HelpComponent
   ],
   imports: [
     BrowserModule,

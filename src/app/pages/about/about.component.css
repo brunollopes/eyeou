@@ -1,0 +1,16 @@
+p {
+  font-weight: 100;
+  font-size: 21px;
+}
+
+h2 {
+  margin: 0;
+  text-align: center;
+  padding: 25px 0;
+  font-size: 36px;
+}
+
+div.content {
+  text-align: justify;
+  min-height: 70vh
+}

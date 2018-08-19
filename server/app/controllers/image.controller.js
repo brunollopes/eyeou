@@ -13,34 +13,35 @@ var s3 = new AWS.S3();
 exports.uploadimage = (req, res) => {
     const { file } = req;
     const { user_id, contest_name } = req.body;
-
+    console.log(file)
     var params = {
         Bucket: 'eyeou',
         Body: file.buffer,
         ACL: 'public-read',
         ContentEncoding: 'base64',
         ContentType: file.type,
-        Key: contest_name + "/" + user_id + "/" + Date.now() + "_" + file.name
+        Key: contest_name + "/" + user_id + "/" + Date.now() + "_" + file.originalname
     };
 
-    console.log(params)
     s3.upload(params, async (err, data) => {
-        if (err) res.send(err)
+        if (err) {
+            console.log(err)
+            return res.status(403).json(err)
+        }
         if (data) {
             const img = new Image({
                 contest: contest_name,
                 user: user_id,
                 image_path: data.Location
             });
-
             try {
                 const imgSaved = await img.save();
                 const userUpdate = await User.findByIdAndUpdate(user_id, { $push: { images: imgSaved.id } }).exec();
                 const contestUpdate = await Contest.findByIdAndUpdate(contest_name, { $push: { images: imgSaved.id } }).exec();
-                res.status(200).json(imgSaved);
+                return res.status(200).json(imgSaved);
             } catch (e) {
                 console.log(e)
-                res.status(403).json(e);
+                return res.status(403).json(e);
             }
         }
     });

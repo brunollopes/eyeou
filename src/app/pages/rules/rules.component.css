@@ -1,0 +1,36 @@
+p {
+  font-weight: 100;
+  font-size: 21px;
+}
+
+h2 {
+  margin: 0;
+  text-align: center;
+  padding: 25px 0;
+  font-size: 36px;
+}
+
+div.content {
+  text-align: justify;
+  min-height: 70vh
+}
+
+li {
+  font-size: 16px
+}
+
+table {
+  min-width: 70%;
+  margin: 0 auto 10px auto
+}
+
+tr th,
+tr td {
+  border: 1px solid #38761D;
+  padding: 5px 15px;
+  text-align: center;
+}
+
+tr th {
+  background-color: #B6D7A8
+}

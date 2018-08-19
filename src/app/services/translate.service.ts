@@ -18,6 +18,5 @@ export class TranslateService {
       this.lang = pt;
       this.showLang = 'pt';
     }
-    console.log(this.lang)
   }
 }

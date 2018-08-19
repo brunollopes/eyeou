@@ -23,7 +23,25 @@ export const en = {
   socialTitle: 'GO SOCIAL AND SEE WHAT THEY SAY ABOUT US!',
   help: 'HELP',
   ambassador: 'OUR AMBASSADORS',
-  termPolicy: 'Terms & Privacy'
+  termPolicy: 'Terms & Privacy',
+
+  remainingTime: 'Remaining Time',
+  days: 'Days',
+  hours: 'Hours',
+  photos: 'Photos',
+  yourPhotos: 'Your Photos',
+  prizeMoney: 'Prize Money',
+  uploadNew: 'UPLOAD NEW IMAGES',
+  limitMax: 'You can\'t upload more than 10 photos.',
+  name: 'Name',
+  size: 'Size',
+  lastModified: 'Last Modified',
+  type: 'Type',
+  remove: 'Remove',
+  status: 'Status',
+  yourImages: 'Your Images',
+  noImages1: 'You haven\'t upload any images to this contest yet',
+  noImages2: 'You can upload more images from the form above.'
 }
 
 export const pt = {
@@ -51,5 +69,23 @@ export const pt = {
   socialTitle: 'VEJA AS REDES SOCIAIS E O QUE DIZEM SOBRE NÓS!',
   help: 'AJUDA',
   ambassador: 'nosso embaixador',
-  termPolicy: 'Termos & Privacidade'
+  termPolicy: 'Termos & Privacidade',
+
+  remainingTime: 'tempo restante',
+  days: 'Dias',
+  hours: 'Horas',
+  photos: 'Fotos',
+  yourPhotos: 'Suas fotos',
+  prizeMoney: 'Prêmio em dinheiro',
+  uploadNew: 'UPLOAD NOVAS IMAGENS',
+  limitMax: 'Você não pode fazer upload de mais de 10 fotos.',
+  name: 'Nome',
+  size: 'Tamanho',
+  lastModified: 'Última modificação',
+  type: 'Tipo',
+  remove: 'Remover',
+  status: 'Status',
+  yourImages: 'Suas imagens',
+  noImages1: 'Você ainda não enviou nenhuma imagem para este concurso',
+  noImages2: 'Você pode enviar mais imagens do formulário acima.'
 }

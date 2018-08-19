@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { UploadEvent, UploadFile, FileSystemEntry, FileSystemFileEntry } from 'ngx-file-drop';
 import { ContestService } from '../../services/contest.service';
 import { AppHelper } from '../../services/app.helper';
+import { TranslateService } from '../../services/translate.service';
 import { join } from 'path';
 
 @Component({
@@ -24,7 +25,8 @@ export class ContestComponent implements OnInit {
     public router: Router,
     public routeParams: ActivatedRoute,
     public contestProvider: ContestService,
-    public helper: AppHelper
+    public helper: AppHelper,
+    public translate: TranslateService
   ) { }
 
   public dropped(event: UploadEvent) {

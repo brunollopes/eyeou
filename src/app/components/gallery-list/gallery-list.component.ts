@@ -78,10 +78,12 @@ export class GalleryListComponent implements OnInit {
         localStorage.setItem('currency', 'USD')
         localStorage.setItem('quantity', '1')
         localStorage.setItem('email', this.paymentForm.value.email)
+        localStorage.setItem('contestId', this.contestId)
+        console.log(localStorage.getItem('contestId'));
         console.log('>> Response:', res)
         window.location.href = res.approval_url;
       })
-      .catch(err => console.log(err))
+      .catch(err => console.log(this.contestId))
   }
 
   // Create form

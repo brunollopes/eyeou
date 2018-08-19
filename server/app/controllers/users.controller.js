@@ -317,7 +317,7 @@ exports.joinFreeContest = (req, res) => {
     const { userId, contestId } = req.body;
     Promise
         .all([
-            Users.findByIdAndUpdate(userId, { $push: { constests: contestId } }).exec(),
+            Users.findByIdAndUpdate(userId, { $push: { contests: contestId } }).exec(),
             Contests.findByIdAndUpdate(contestId, { $push: { users: userId } }).exec()
         ])
         .then(info => res.status(200).json(info))

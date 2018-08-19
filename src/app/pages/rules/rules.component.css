@@ -1,4 +1,4 @@
-p {
+/* p {
   font-weight: 100;
   font-size: 21px;
 }
@@ -13,15 +13,28 @@ h2 {
 div.content {
   text-align: justify;
   min-height: 70vh
+} */
+
+.page-title h2 {
+  margin: 0 0 15px 0
+}
+
+h2.section-title {
+  font-size: 22px;
+  font-weight: 100
+}
+
+.container-fluid {
+  padding: 40px 30px
 }
 
 li {
-  font-size: 16px
+  font-size: 15px
 }
 
 table {
-  min-width: 70%;
-  margin: 0 auto 10px auto
+  width: 70%;
+  margin: 0 0 10px 0
 }
 
 tr th,

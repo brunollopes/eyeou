@@ -1,7 +1,7 @@
 <!-- GALLERY LIST START -->
-<app-navbar fixed="false" bgColor="true"></app-navbar>
+<app-navbar fixed="true" bgColor="true"></app-navbar>
 
-<div class="container">
+<div class="container" style='padding-top: 125px'>
 
   <div class="loader" *ngIf="!contest">
     <mat-spinner style="margin: 50px auto"></mat-spinner>
@@ -14,9 +14,10 @@
       </div>
       <div class="col-md-8 col-xs-12 contest-status">
         <h2>{{contest.contest_name}}</h2>
+        <p>{{contest.description}}</p>
         <div>
           <mat-icon [matTooltip]="translate.lang.remainingTime">access_time</mat-icon>
-          <span>6 {{translate.lang.days}} 12 {{translate.lang.hours}}</span>
+          <span>6 {{translate.lang.days}} {{translate.timeRemains.days}} {{translate.lang.hours}} {{translate.timeRemains.hours}}</span>
         </div>
         <div>
           <mat-icon [matTooltip]="translate.lang.yourPhotos">insert_photo</mat-icon>
@@ -33,7 +34,7 @@
     <div class="center image-upload" style="margin-top: 25px">
       <h3>{{translate.lang.uploadNew}}</h3>
       <div class="alert alert-danger" *ngIf="maxLimitReached">
-        {{translate.lang.limitMax + this.uploadLimit + ' ' + translate.lang.photos}}
+        {{translate.lang.limitMax + this.uploadLimit + ' ' + translate.lang.photo}}
       </div>
       <file-drop headertext="Drop files here" (onFileDrop)="dropped($event)">
       </file-drop>
@@ -76,6 +77,9 @@
         </table>
         <div class="text-center">
           <button mat-button style="background-color: #41C253; font-weight: bold; color: #FFF" (click)="uploadImages()" [disabled]="maxLimitReached">UPLOAD</button>
+          <p>
+            {{translate.lang.maxLimitNotice}}
+          </p>
         </div>
       </div>
     </div>

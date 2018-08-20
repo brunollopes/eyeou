@@ -1,13 +1,9 @@
-p {
-  font-weight: 100;
-  font-size: 21px;
+.container-fluid {
+  padding: 40px 30px
 }
 
 h2 {
-  margin: 0;
-  text-align: center;
-  padding: 25px 0;
-  font-size: 36px;
+  margin: 0 0 15px 0
 }
 
 div.content {

@@ -30,6 +30,7 @@ import { AboutComponent } from './pages/about/about.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { AmbassadorComponent } from './pages/ambassador/ambassador.component';
 import { HelpComponent } from './pages/help/help.component';
+import { TermsComponent } from './pages/terms/terms.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { HelpComponent } from './pages/help/help.component';
     AboutComponent,
     ContactComponent,
     AmbassadorComponent,
-    HelpComponent
+    HelpComponent,
+    TermsComponent
   ],
   imports: [
     BrowserModule,

@@ -15,7 +15,7 @@ class Transaction {
     this.item_list = {items: []}
     this.item_list.items = items.map(item => new Item(item));
     this.amount = {
-      currency: 'USD',
+      currency: 'EUR',
       total: this.item_list.items.length > 1 ? this.item_list.items.reduce(this.amountReducer) : this.item_list.items[0].price
     };
     this.description = "Description"

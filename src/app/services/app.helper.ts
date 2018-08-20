@@ -3,6 +3,41 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class AppHelper {
 
+  public getBadge($days) {
+    const badges = [
+      '../../assets/images/badges/week.png',
+      '../../assets/images/badges/month.png',
+      '../../assets/images/badges/3month.png',
+      '../../assets/images/badges/6month.png',
+      '../../assets/images/badges/1year.png'
+    ];
+
+    if ($days <= 7) {
+      return badges[0]
+    } else if ($days <= 30) {
+      return badges[1]
+    } else if ($days <= 90) {
+      return badges[2]
+    } else if ($days <= 180) {
+      return badges[3]
+    } else if ($days <= 365) {
+      return badges[4]
+    }
+  }
+
+  public dateDiff($dateFuture: Date) {
+    const dateNow = new Date()
+    const dateFuture = new Date($dateFuture)
+    return new function () {
+      this.seconds = Math.floor((dateFuture.getTime() - (dateNow.getTime())) / 1000);
+      this.minutes = Math.floor(this.seconds / 60);
+      this.hours = Math.floor(this.minutes / 60);
+      this.days = Math.floor(this.hours / 24);
+
+      this.hours = Math.floor(this.minutes / 60) % 24;
+    }
+  }
+
   public removeDuplicates(myArr, prop) {
     return myArr.filter((obj, pos, arr) => {
       return arr.map(mapObj => mapObj[prop]).indexOf(obj[prop]) === pos;

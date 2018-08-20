@@ -9,8 +9,9 @@
         </div>
         <div class="contestcontent" (click)="openModal(template,listing)" style="cursor: pointer;">
             <p class="timeing">
-                <img src="../../../assets/images/clock.png" />{{listing.days}} {{translate.lang.days}} {{listing.hours}} {{translate.lang.hours}}</p>
+                <img [src]="listing.badge" />{{listing.timeRemains.days}} {{translate.lang.days}} {{listing.timeRemains.hours}} {{translate.lang.hours}}</p>
             <div class="innerBlock">
+                <h3>{{listing.contest_name}}</h3>
                 <h3 *ngIf="listing.entry_price && listing.entry_price !== 0">{{listing.prize_money}}€</h3>
                 <h3 *ngIf="listing.entry_price == undefined || listing.entry_price == '' || listing.entry_price == 0">{{'Free'}}</h3>
                 <p>{{listing.entry_price != 0 ? listing.entry_price + ' €' : 'Free'}}</p>
@@ -40,7 +41,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="input-group input-group-lg col-xs-12">
-                        <input (change)="emailErr()" class="form-control signup-input" placeholder="bruno@guazina.com" formControlName="email" type="email">
+                        <input (change)="emailErr()" class="form-control signup-input" placeholder="bruno@guazina.com" formControlName="email" type="email" name="enauk">
                         <span class="errMsg" *ngIf="errMsg == false">
                             <img src="../../../assets/images/tick.png" />
                         </span>
@@ -71,9 +72,9 @@
                 </div>
                 <div class="clearfix"></div>
             </div>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting simply dummy text industry.</p>
+            <p *ngIf="!errMsg">{{translate.lang.emailValid}}</p>
             <p class="termcondition">
-                <input type="checkbox" formControlName="term_condition" checked>I agree on these terms&conditions&rules of this website)</p>
+                <input type="checkbox" style="position: relative; top: 1px" formControlName="term_condition">I agree on these terms &amp; privacy &amp; rules</p>
 
             <div *ngIf="listingDetails.entry_price != 0 || listingDetails.entry_price != ''">
                 <button type="button" *ngIf="!payed" class="btn btn-success" [disabled]="!paymentForm.valid || !accesVeirfy || errMsg == true"

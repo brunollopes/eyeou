@@ -6,6 +6,7 @@ import { AboutComponent } from './pages/about/about.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { AmbassadorComponent } from './pages/ambassador/ambassador.component';
 import { HelpComponent } from './pages/help/help.component';
+import { TermsComponent } from './pages/terms/terms.component';
 
 export const ROUTES : Routes = [
   { path: '', component: HomeComponent},
@@ -15,5 +16,6 @@ export const ROUTES : Routes = [
   { path: 'about', component: AboutComponent},
   { path: 'contact', component: ContactComponent},
   { path: 'ambassador', component: AmbassadorComponent },
-  { path: 'help', component: HelpComponent }
+  { path: 'help', component: HelpComponent },
+  { path: 'terms', component: TermsComponent }
 ];

@@ -1,4 +1,5 @@
 export const en = {
+  langKey: 'en',
   header: 'ONE SHOT CAN BE',
   headerGreen: 'YOUR LUCKY DAY',
   headerDesc: 'Participate on our contests and show',
@@ -7,7 +8,13 @@ export const en = {
   navLink2: 'CONTACT',
   navLink3: 'RULES',
 
-  weeklyContestTitle: 'NEW WEEKLY',
+  paymentMethod: '',
+  iAgree: '',
+  pay: '',
+
+  emailValid: 'Please confirm your email by entering the code just sent (check spam), if not received double check the entered email',
+
+  weeklyContestTitle: 'NEW',
   weeklyContestTitleGreen: 'CONTESTS',
   weeklyContestPlaceholderName: 'name',
   weeklyContestPlaceholderEmail: 'myaddress@email.com',
@@ -15,10 +22,10 @@ export const en = {
 
   howitWorks: 'HOW IT WORKS',
   howitWorksList1: 'Choose one of the listed contests',
-  howitWorksList2: 'Pay the value to submit your photos',
-  howitWorksList3: 'Upload your photos or send it by email (in case of bank transfer)',
+  howitWorksList2: 'Pay the entry fees to submit up to 10 photos',
+  howitWorksList3: 'Upload your photos',
   howitWorksList4: 'Wait until the end of the contest (end or REVIEW phase)',
-  howitWorksList5: 'The results will be sent to your email address with the final list of winners and your photo final position. You will also be informed about the judge decision based on this criteria',
+  howitWorksList5: 'The results will be sent to your email address with the final list of winners and your photo final position. You will also be informed about the judge decision based on these',
 
   socialTitle: 'GO SOCIAL AND SEE WHAT THEY SAY ABOUT US!',
   help: 'HELP',
@@ -29,9 +36,10 @@ export const en = {
   days: 'Days',
   hours: 'Hours',
   photos: 'Photos',
+  photo: 'photo',
   yourPhotos: 'Your Photos',
   prizeMoney: 'Prize Money',
-  uploadNew: 'UPLOAD NEW IMAGES',
+  uploadNew: 'UPLOAD NEW PHOTOS',
   limitMax: 'You can\'t upload more than ',
   name: 'Name',
   size: 'Size',
@@ -39,12 +47,34 @@ export const en = {
   type: 'Type',
   remove: 'Remove',
   status: 'Status',
-  yourImages: 'Your Images',
-  noImages1: 'You haven\'t upload any images to this contest yet',
-  noImages2: 'You can upload more images from the form above.'
+  yourImages: 'Your Photos',
+  noImages1: 'You haven\'t upload any photos to this contest yet',
+  noImages2: 'You can upload more photos from the form above.',
+  maxLimitNotice: 'Maximum size allowed: 10 mb',
+
+  aboutTitle: 'ABOUT',
+  aboutP1: 'EYEOU is a web platform having available photographic contests made from professional photographers to all around photographers.',
+  aboutP2: 'It aims to provide this premium service where anyone can use it test their photographic skills by participating on the available contests. Each contest has a specific time for submission and afterwards the review done by the judge, which is set by at least 3 members of our ambassadors. For all the details please check the rules.',
+  aboutP3: 'Our team of ambassadors reflects the premium quality of these contests, we have with us the well known and best of professional photographers in Portugal and also with great references overseas, including the portuguese number 1 as traveler photographer.',
+
+  contactTitle: 'CONTACT',
+  contactP1: 'You can contact us at:',
+
+  helpTitle: 'HELP',
+  helpP1: 'Any question, suggestion you may have please don’t hesitate to send to us your query to:',
+
+  ambsTitle: 'Be Our Ambassador',
+  ambsP1: 'If you are already a professional photographer, and you would love to apply to be one of our ambassadors, please feel free to send us your curriculum vitae.',
+  ambsP2: 'You can send us',
+  ambsLi1: 'a traditional curriculum vitae',
+  ambsLi2: 'your linkedin profile',
+  ambsLi3: 'your personal website',
+  ambsP3: 'to: ',
+  ambsP4: 'We will answer you in any case.'
 }
 
 export const pt = {
+  langKey: 'pt',
   header: 'UM DISPARO PODE SER',
   headerGreen: 'SEU DIA DE SORTE',
   headerDesc: 'Participe nos nossos concursos e mostre',
@@ -53,7 +83,9 @@ export const pt = {
   navLink2: 'CONTATO',
   navLink3: 'REGRAS',
 
-  weeklyContestTitle: 'NOVOS SEMANAL',
+  emailValid: 'Por favor verifique o seu email com o código recebido (veja spam), se não recebeu verifique o se o seu email está correto.',
+
+  weeklyContestTitle: 'NOVOS',
   weeklyContestTitleGreen: 'CONCURSOS',
   weeklyContestPlaceholderName: 'nome',
   weeklyContestPlaceholderEmail: 'meuenderço@email.com',
@@ -61,10 +93,10 @@ export const pt = {
 
   howitWorks: 'HOW IT WORKS',
   howitWorksList1: 'Escolhe um dos concursos listados',
-  howitWorksList2: 'Paga o valor para submeter as tuas fotos',
-  howitWorksList3: 'Faz o upload das tuas fotos ou envia por email (no caso de regular transferência)',
-  howitWorksList4: 'Espera até ao fim do concurso (fim da fase REVIEW)',
-  howitWorksList5: 'Os resultados serão enviados para o teu endereço de email com a lista final de vencedores e a posição final da tua foto. Irás receber também os detalhes sobre a decisão do júri com base nestes critérios',
+  howitWorksList2: 'O número máximo de fotos permitido para upload são 10',
+  howitWorksList3: 'Faça o upload das suas fotos',
+  howitWorksList4: 'Espere até terminar o concurso (fim da fase de REVISÃO)',
+  howitWorksList5: 'Os resultados serão enviados para o seu endereço de email com a lista final de vencedores e a posição final das suas fotos. Receberá também os detalhes sobre a decisão do júri com base nestas',
 
   socialTitle: 'VEJA AS REDES SOCIAIS E O QUE DIZEM SOBRE NÓS!',
   help: 'AJUDA',
@@ -75,9 +107,10 @@ export const pt = {
   days: 'Dias',
   hours: 'Horas',
   photos: 'Fotos',
+  photo: 'foto',
   yourPhotos: 'Suas fotos',
   prizeMoney: 'Prêmio em dinheiro',
-  uploadNew: 'UPLOAD NOVAS IMAGENS',
+  uploadNew: 'UPLOAD NOVAS FOTOS',
   limitMax: 'Você não pode fazer upload de mais de',
   name: 'Nome',
   size: 'Tamanho',
@@ -85,7 +118,28 @@ export const pt = {
   type: 'Tipo',
   remove: 'Remover',
   status: 'Status',
-  yourImages: 'Suas imagens',
-  noImages1: 'Você ainda não enviou nenhuma imagem para este concurso',
-  noImages2: 'Você pode enviar mais imagens do formulário acima.'
+  yourImages: 'Suas Fotos',
+  noImages1: 'Ainda não submeteu fotos para este concurso',
+  noImages2: 'Ainda pode fazer upload the mais fotos.',
+  maxLimitNotice: 'Máximo tamanho permitido: 10 mb',
+
+  aboutTitle: 'SOBRE',
+  aboutP1: 'O EYEOU é uma plataforma web que disponibiliza concursos fotográficos feitos por fotógrafos profissionais para todos os fotógrafos.',
+  aboutP2: 'Destina-se a fornecer este serviço premium, onde qualquer pessoa pode usá-lo, testar suas capacidades fotográficas, participando nos concursos disponíveis. Cada concurso tem um tempo específico para submissão e posterior revisão pelo júri, sendo este constituído por no mínimo 3 dos nossos embaixadores. Para todos os detalhes, por favor, veja as regras.',
+  aboutP3: 'A nossa equipa de embaixadores reflecte a qualidade premium destes concursos, temos entre nós os mais reconhecidos fotógrafos profissionais em Portugal e também com excelentes referências no exterior, incluindo o português considerado o número 1 em Portugal como fotógrafo viajante.',
+
+  contactTitle: 'CONTACTO',
+  contactP1: 'Pode entrar em contacto com a nossa equipa através do seguinte endereço:',
+
+  helpTitle: 'AJUDA',
+  helpP1: 'Alguma questão ou sugestão que tenha, não hesite em contactar-nos para:',
+
+  ambsTitle: 'SEJA NOSSO EMBAIXADOR',
+  ambsP1: 'Caso já seja um fotógrafo profissional e gostaria de integrar a equipa dos nossos embaixadores, sinta-se à vontade para nos enviar o seu curriculum vitae.',
+  ambsP2: 'Pode-nos enviar:',
+  ambsLi1: 'Um curriculum vitae tradicional',
+  ambsLi2: 'O seu perfil linkedin',
+  ambsLi3: 'O seu website profissional',
+  ambsP3: 'para: ',
+  ambsP4: 'Nós iremos responder-lhe em qualquer dos casos.'
 }

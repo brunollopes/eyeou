@@ -33,7 +33,7 @@ export class GalleryListComponent implements OnInit {
   public errMsg: any;
   public accesVeirfy: Boolean = false;
   public paymentForm: FormGroup;
-  
+
   constructor(
     public router: Router,
     private modalService: BsModalService,
@@ -66,21 +66,18 @@ export class GalleryListComponent implements OnInit {
     this.paymentForm.value.price = this.paymentForm.value.price.toString();
     this.paymentForm.value.name = "Contest Fees";
     this.paymentForm.value.sku = "111";
-    this.paymentForm.value.currency = "USD";
+    this.paymentForm.value.currency = "EUR";
     this.paymentForm.value.quantity = 1;
 
-    console.log('>> Form Submitted!')
     this.paypalProvider.PayWithPaypal(this.paymentForm.value)
       .then(res => {
         localStorage.setItem('price', this.paymentForm.value.price.toString())
         localStorage.setItem('name', 'Contest Fees')
         localStorage.setItem('sku', '111')
-        localStorage.setItem('currency', 'USD')
+        localStorage.setItem('currency', 'EUR')
         localStorage.setItem('quantity', '1')
         localStorage.setItem('email', this.paymentForm.value.email)
         localStorage.setItem('contestId', this.contestId)
-        console.log(localStorage.getItem('contestId'));
-        console.log('>> Response:', res)
         window.location.href = res.approval_url;
       })
       .catch(err => console.log(this.contestId))
@@ -106,6 +103,11 @@ export class GalleryListComponent implements OnInit {
     return new Promise((resolve, reject) => {
       this.contestprovider.getContests().then((data: Array<any>) => {
         this.gallerylist = data;
+        this.gallerylist.forEach(gallery => {
+          gallery.timeRemains = this.helper.dateDiff(gallery.review_time)
+          gallery.badge = this.helper.getBadge(gallery.timeRemains.days)
+        })
+        console.log(this.gallerylist)
         resolve(data)
       });
     })

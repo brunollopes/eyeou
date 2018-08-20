@@ -129,6 +129,7 @@ export class ContestComponent implements OnInit {
                 const joinContest = await this.contestProvider.joinFreeContest(this.userId, this.contestId);
                 const contest = await this.contestProvider.getContestBySlug(data.slug, this.userId);
                 this.contest = contest.contest;
+                this.contest['timeRemains'] = this.helper.dateDiff(this.contest.review_time)
                 this.contest.prize_money == 0 ? this.uploadLimit = 1 : this.uploadLimit = 10;
                 localStorage.setItem('contestSlug', data.slug);
               } catch (e) {
@@ -137,6 +138,7 @@ export class ContestComponent implements OnInit {
             } else {
               this.contest = res.contest;
               this.contest.prize_money == 0 ? this.uploadLimit = 1 : this.uploadLimit = 10;
+              this.contest['timeRemains'] = this.helper.dateDiff(this.contest.review_time)
               localStorage.setItem('contestSlug', data.slug);
             }
           })

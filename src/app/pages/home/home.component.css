@@ -20,9 +20,8 @@
     padding-left: 10px;
     text-transform: uppercase;
 }
-.weeklyContest h1 span{
-    display: block;
-}
+
+
 .weeklyContest h1 span.colorGreen {
     color: #45bf55;
 }

@@ -8,9 +8,9 @@ export const en = {
   navLink2: 'CONTACT',
   navLink3: 'RULES',
 
-  paymentMethod: '',
-  iAgree: '',
-  pay: '',
+  paymentMethod: 'Payment Method',
+  iAgree: 'I agree on these',
+  pay: 'Pay',
 
   emailValid: 'Please confirm your email by entering the code just sent (check spam), if not received double check the entered email',
 
@@ -74,6 +74,7 @@ export const en = {
 }
 
 export const pt = {
+
   langKey: 'pt',
   header: 'UM DISPARO PODE SER',
   headerGreen: 'SEU DIA DE SORTE',
@@ -91,7 +92,10 @@ export const pt = {
   weeklyContestPlaceholderEmail: 'meuenderço@email.com',
   weeklyContestButton: 'AVISA ME!',
 
+  paymentMethod: 'Método de pagamento',
+  iAgree: 'Eu concordo com estes',
   howitWorks: 'HOW IT WORKS',
+  pay: 'Pagar',
   howitWorksList1: 'Escolhe um dos concursos listados',
   howitWorksList2: 'O número máximo de fotos permitido para upload são 10',
   howitWorksList3: 'Faça o upload das suas fotos',

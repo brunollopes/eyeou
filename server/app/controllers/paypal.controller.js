@@ -43,7 +43,7 @@ exports.execute = (req, res) => {
     payer_id: req.body.PayerID,
     transactions: [{
       amount: {
-        currency: 'USD',
+        currency: 'EUR',
         total: req.body.items.length > 1 ? req.body.items.reduce(amountReducer) : req.body.items[0].price
       }
     }]

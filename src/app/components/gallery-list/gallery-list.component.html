@@ -75,7 +75,7 @@
             </div>
             <p *ngIf="!errMsg">{{translate.lang.emailValid}}</p>
             <p class="termcondition">
-                <input type="checkbox" style="position: relative; top: 1px" formControlName="term_condition">{{translate.lang.iAgree}}<a routerLink="/terms">these terms &amp; privacy &amp; rules</a></p>
+                <input type="checkbox" style="position: relative; top: 1px" formControlName="term_condition">{{translate.lang.iAgree}} <a (click)='hideModal()' routerLink="/terms">these terms &amp; privacy &amp; rules</a></p>
 
             <div *ngIf="listingDetails.entry_price != 0 || listingDetails.entry_price != ''">
                 <button type="button" *ngIf="!payed" class="btn btn-success" [disabled]="!paymentForm.valid || !accesVeirfy || errMsg == true"

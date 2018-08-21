@@ -83,6 +83,10 @@ export class GalleryListComponent implements OnInit {
       .catch(err => console.log(this.contestId))
   }
 
+  hideModal(){
+    this.modalRef.hide()
+  }
+
   // Create form
   createForm() {
     this.paymentForm = this.fb.group({

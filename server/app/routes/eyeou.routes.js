@@ -41,6 +41,8 @@ module.exports = (app) => {
     app.get('/users/:id/images', users.getUserImages);
     // Join Free Contest
     app.post('/users/joinFreeContest', contestMiddlewares.isFreeContest, userMiddlewares.isUserInContest, users.joinFreeContest);
+    // Notify user
+    app.post('/users/notify', users.notify);
 
 
     const images = require('../controllers/image.controller.js');

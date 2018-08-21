@@ -3,6 +3,7 @@
     <div class="grid-element" *ngFor="let listing of gallerylist">
         <img class="contestimg" style="width:100%;" src="{{listing.bgprofile_image}}">
         <div class="imageDesc">
+            <h2>{{listing.contest_name}}</h2>
             <h2 *ngIf="listing.entry_price !== 0">{{listing.prize_money}}€</h2>
             <h2 *ngIf="listing.entry_price == 0">Free</h2>
             <p>{{listing.contest_title}}</p>
@@ -34,7 +35,7 @@
         <h4 style="margin: 0; height: 49px">PayPal</h4>
     </div>
     <div class="modal-body">
-        <h5 *ngIf="listingDetails.entry_price != 0 || listingDetails.entry_price != ''">Payment Method
+        <h5 *ngIf="listingDetails.entry_price != 0 || listingDetails.entry_price != ''">{{translate.lang.paymentMethod}}
             <span>i</span>
         </h5>
         <form [formGroup]="paymentForm">
@@ -74,18 +75,18 @@
             </div>
             <p *ngIf="!errMsg">{{translate.lang.emailValid}}</p>
             <p class="termcondition">
-                <input type="checkbox" style="position: relative; top: 1px" formControlName="term_condition">I agree on these terms &amp; privacy &amp; rules</p>
+                <input type="checkbox" style="position: relative; top: 1px" formControlName="term_condition">{{translate.lang.iAgree}}<a routerLink="/terms">these terms &amp; privacy &amp; rules</a></p>
 
             <div *ngIf="listingDetails.entry_price != 0 || listingDetails.entry_price != ''">
                 <button type="button" *ngIf="!payed" class="btn btn-success" [disabled]="!paymentForm.valid || !accesVeirfy || errMsg == true"
-                    (click)="submitform()">PAY</button>
-                <button type="button" *ngIf="payed" class="btn btn-success" [disabled]="!paymentForm.valid" (click)="navigateToContestPage(listingDetails.slug)">Next</button>
+                    (click)="submitform()">{{translate.lang.pay}}</button>
+                <button type="button" *ngIf="payed" class="btn btn-success" [disabled]="!paymentForm.valid" (click)="navigateToContestPage(listingDetails.slug)">{{translate.lang.next}}</button>
             </div>
 
             <div *ngIf="listingDetails.entry_price == 0 || listingDetails.entry_price == ''">
                 <!-- CHANGE NEXT ACTION TO NAVIGATE TO CONTEST PAGE -->
                 <button type="button" class="btn btn-success" [disabled]="!paymentForm.valid || accesVeirfy == 'false' || errMsg == true"
-                    (click)="navigateToContestPage(listingDetails.slug)">NEXT</button>
+                    (click)="navigateToContestPage(listingDetails.slug)">{{translate.lang.next}}</button>
             </div>
 
         </form>

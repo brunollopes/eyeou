@@ -1,10 +1,5 @@
-<div 
-  class="navHeader herocontainer container-fluid" 
-  [class.navbar-fixed-top]="fixed"
-  [class.bgColor]="bgColor"
-  [class.noBgColor]="!bgColor"
-  id="lead-navbar"
-  >
+<div class="navHeader herocontainer container-fluid" [class.navbar-fixed-top]="fixed" [class.bgColor]="bgColor" [class.noBgColor]="!bgColor"
+  id="lead-navbar">
 
   <!-- Site Logo -->
   <a class="navbar-brand sitelogo" routerLink="/">
@@ -13,11 +8,11 @@
 
   <!-- Site navigation Menus -->
   <nav class="navbar navbar-expand-md navbar-dark navigations" style="float:right;">
-    <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse"
-      aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button> -->
-    <div class="collapse navbar-collapse" id="navbarCollapse" style="float: right;margin: 0; position: relative; top: 15px;">
+    <button mat-icon-button type="button" class="navbar-toggle collapsed hide-small" data-toggle="collapse" data-target="#navbarCollapse"
+      aria-expanded="false" style="position: relative; top: 5px">
+      <mat-icon style="font-size: 35px; top: 5px; color: #FFF">menu</mat-icon>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="nav navbar-nav mr-auto">
         <li class="nav-item">
           <a class="nav-link" routerLink='/about'>{{translate.lang.navLink1}}

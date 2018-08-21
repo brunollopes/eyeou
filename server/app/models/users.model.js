@@ -8,6 +8,11 @@ const UserSchema = mongoose.Schema({
     // access_id: String,
     // access_secret: String,
     // console_link: String,
+    notify: {
+        type: Boolean,
+        default: false
+    },
+    full_name: String,
     acess_code: Number,
     images: [{
         type: Schema.Types.ObjectId,

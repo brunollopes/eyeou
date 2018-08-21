@@ -323,3 +323,18 @@ exports.joinFreeContest = (req, res) => {
         .then(info => res.status(200).json(info))
         .catch(err => res.status(403).json(err));
 }
+
+exports.notify = (req, res) => {
+    const { email, full_name } = req.body;
+    Users.findOne({ email }).exec()
+        .then(async $user => {
+            if ($user) {
+                const user = await Users.findOneAndUpdate({ email }, { notify: true }).exec()
+                res.status(200).json(user)
+            } else {
+                const user = await new Users({email, full_name, notify: true}).save()
+                res.status(200).json(user)
+            }
+        })
+        .catch(error => res.status(500).json(error))
+}

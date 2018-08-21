@@ -43,6 +43,13 @@ export class ContestService {
       .catch(err => err);
   }
 
+  notifyUser(name, email) {
+    return this.httpClient.post('/users/notify', { name, email })
+      .toPromise()
+      .then(res => res)
+      .catch(err => err);
+  }
+
   getAccesCode(data) {
     return this.httpClient.get('/users/email/' + data, { headers: this.headers })
       .toPromise()

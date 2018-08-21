@@ -24,17 +24,19 @@
                         <div class="row">
                             <div class="col-md-3 col-sm-3">
                                 <div class="input-group input-group-lg">
-                                    <input class="form-control signup-input" placeholder="{{translate.lang.weeklyContestPlaceholderName}}" value="" type="text">
+                                    <input class="form-control signup-input" #name placeholder="{{translate.lang.weeklyContestPlaceholderName}}" value="" type="text">
                                 </div>
                             </div>
                             <div class="col-md-6 col-sm-6">
                                 <div class="input-group input-group-lg">
-                                    <input class="form-control signup-input" placeholder="{{translate.lang.weeklyContestPlaceholderEmail}}" value="" type="email">
+                                    <input class="form-control signup-input" #email placeholder="{{translate.lang.weeklyContestPlaceholderEmail}}" value="" type="email">
                                 </div>
                             </div>
                             <div class="col-md-3 col-sm-3">
-                                <button class="btn btn-success" type="button">{{translate.lang.weeklyContestButton}}</button>
+                                <button class="btn btn-success" type="button" (click)='notifyUser(name.value, email.value)'>{{translate.lang.weeklyContestButton}}</button>
                             </div>
+                            <div class="clearfix"></div>
+                            <p *ngIf='willNotify'>You'll be notified of any new contest</p>
                         </div>
                     </form>
                 </div>

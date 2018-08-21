@@ -1,0 +1,33 @@
+
+.page-title h2 {
+  margin: 0 0 15px 0
+}
+
+h2.section-title {
+  font-size: 22px;
+  font-weight: 100
+}
+
+.container-fluid {
+  padding: 40px 30px
+}
+
+li {
+  font-size: 15px
+}
+
+table {
+  width: 70%;
+  margin: 0 0 10px 0
+}
+
+tr th,
+tr td {
+  border: 1px solid #38761D;
+  padding: 5px 15px;
+  text-align: center;
+}
+
+tr th {
+  background-color: #B6D7A8
+}

@@ -3,6 +3,16 @@
     <div class="grid-element" *ngFor="let listing of gallerylist">
         <img class="contestimg" style="width:100%;" src="{{listing.bgprofile_image}}">
         <div class="imageDesc">
+            <span style="position: absolute; top: -15px; left: -10px;">
+                <img [src]="listing.badge" style="width: 20px; height: 20px; position: relative; top: -1px; right: 8px;"/>
+                <span style="
+                    background-color: rgba(255, 255, 255, 0.3);
+                    border-top-right-radius: 12px;
+                    border-bottom-right-radius: 12px;
+                    display: inline-block;
+                    margin-left: -7px;
+                    padding: 2px 8px 4px 8px;">{{listing.openphase_duration | duration}}</span>
+            </span>
             <h2>{{listing.contest_name}}</h2>
             <h2 *ngIf="listing.entry_price !== 0">{{listing.prize_money}}€</h2>
             <h2 *ngIf="listing.entry_price == 0">Free</h2>
@@ -10,11 +20,8 @@
         </div>
         <div class="contestcontent" (click)="openModal(template,listing)" style="cursor: pointer;">
             <p class="timeing">
-                <img [src]="listing.badge" />
-                <span>{{listing.openphase_duration | duration}}</span>
                 <span>
-                    <img src="../../../assets/images/clock.png" alt="">
-                    {{listing.timeRemains.days}} {{translate.lang.days}} {{listing.timeRemains.hours}} {{translate.lang.hours}}
+                    <img src="../../../assets/images/clock.png" alt=""> {{listing.timeRemains.days}} {{translate.lang.days}} {{listing.timeRemains.hours}} {{translate.lang.hours}}
                 </span>
             </p>
             <div class="innerBlock">

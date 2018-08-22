@@ -111,7 +111,6 @@ export class GalleryListComponent implements OnInit {
           gallery.timeRemains = this.helper.dateDiff(gallery.review_time)
           gallery.badge = this.helper.getBadge(gallery.openphase_duration)
         })
-        console.log(this.gallerylist)
         resolve(data)
       });
     })

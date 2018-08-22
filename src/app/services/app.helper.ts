@@ -12,7 +12,9 @@ export class AppHelper {
       '../../assets/images/badges/1year.png'
     ];
 
-    if ($days <= 7) {
+    if ($days == 3) {
+      return badges[2]
+    } else if ($days <= 7) {
       return badges[0]
     } else if ($days <= 30) {
       return badges[1]

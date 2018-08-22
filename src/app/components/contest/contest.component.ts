@@ -37,9 +37,9 @@ export class ContestComponent implements OnInit {
   public dropped(event, browse = false) {
     if (browse) {
       event.files = event.srcElement.files
-      if ((this.files.length > this.uploadLimit) ||
+      if ((this.files.length + 1 > this.uploadLimit) ||
         ((event.files.length + this.contest.users[0].images.length) > this.uploadLimit) ||
-        ((this.files.length + this.contest.users[0].images.length) > this.uploadLimit)) {
+        ((this.files.length + 1 + this.contest.users[0].images.length) > this.uploadLimit)) {
         this.maxLimitReached = true;
         setTimeout(() => {
           this.maxLimitReached = false
@@ -65,14 +65,15 @@ export class ContestComponent implements OnInit {
         console.log('>> Upload FIles', this.files)
       }
     } else {
-      if ((this.files.length > this.uploadLimit) ||
+      if ((this.files.length + 1 > this.uploadLimit) ||
         ((event.files.length + this.contest.users[0].images.length) > this.uploadLimit) ||
-        ((this.files.length + this.contest.users[0].images.length) > this.uploadLimit)) {
+        ((this.files.length + 1 + this.contest.users[0].images.length) > this.uploadLimit)) {
         this.maxLimitReached = true;
         setTimeout(() => {
           this.maxLimitReached = false
         }, 1500)
       } else {
+        console.log(this.files.length)
         this.maxLimitReached = false;
         event.files.forEach(file => { this.files.push(file); });
         this.files = this.helper.removeDuplicates(this.files, 'relativePath');

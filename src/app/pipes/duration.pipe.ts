@@ -14,6 +14,8 @@ export class DurationPipe implements PipeTransform {
     switch(value) {
       case 7:
         return `1 ${this.translate.lang.week}`;
+      case 3:
+        return `3 ${this.translate.lang.month}`;
       case 30:
         return `1 ${this.translate.lang.month}`;
       default:

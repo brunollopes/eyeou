@@ -31,6 +31,7 @@ import { ContactComponent } from './pages/contact/contact.component';
 import { AmbassadorComponent } from './pages/ambassador/ambassador.component';
 import { HelpComponent } from './pages/help/help.component';
 import { TermsComponent } from './pages/terms/terms.component';
+import { DurationPipe } from './pipes/duration.pipe';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { TermsComponent } from './pages/terms/terms.component';
     ContactComponent,
     AmbassadorComponent,
     HelpComponent,
-    TermsComponent
+    TermsComponent,
+    DurationPipe
   ],
   imports: [
     BrowserModule,

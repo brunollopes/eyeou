@@ -11,7 +11,11 @@
         <div class="contestcontent" (click)="openModal(template,listing)" style="cursor: pointer;">
             <p class="timeing">
                 <img [src]="listing.badge" />
-                <span>{{listing.timeRemains.days}} {{translate.lang.days}} {{listing.timeRemains.hours}} {{translate.lang.hours}}</span>
+                <span>{{listing.openphase_duration | duration}}</span>
+                <span>
+                    <img src="../../../assets/images/clock.png" alt="">
+                    {{listing.timeRemains.days}} {{translate.lang.days}} {{listing.timeRemains.hours}} {{translate.lang.hours}}
+                </span>
             </p>
             <div class="innerBlock">
                 <h3>{{listing.contest_name}}</h3>
@@ -44,7 +48,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="input-group input-group-lg col-xs-12">
-                        <input (change)="emailErr()" class="form-control signup-input" placeholder="bruno@guazina.com" formControlName="email" type="email"
+                        <input (change)="emailErr()" class="form-control signup-input" placeholder="email@domain.com" formControlName="email" type="email"
                             name="enauk">
                         <span class="errMsg" *ngIf="errMsg == false">
                             <img src="../../../assets/images/tick.png" />

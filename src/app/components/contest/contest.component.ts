@@ -41,6 +41,9 @@ export class ContestComponent implements OnInit {
         ((event.files.length + this.contest.users[0].images.length) > this.uploadLimit) ||
         ((this.files.length + this.contest.users[0].images.length) > this.uploadLimit)) {
         this.maxLimitReached = true;
+        setTimeout(() => {
+          this.maxLimitReached = false
+        }, 1500)
       } else {
         console.log(event.srcElement.files)
         for (const file in event.srcElement.files) {
@@ -66,6 +69,9 @@ export class ContestComponent implements OnInit {
         ((event.files.length + this.contest.users[0].images.length) > this.uploadLimit) ||
         ((this.files.length + this.contest.users[0].images.length) > this.uploadLimit)) {
         this.maxLimitReached = true;
+        setTimeout(() => {
+          this.maxLimitReached = false
+        }, 1500)
       } else {
         this.maxLimitReached = false;
         event.files.forEach(file => { this.files.push(file); });
@@ -123,6 +129,7 @@ export class ContestComponent implements OnInit {
               });
               const contest = await this.contestProvider.getContestBySlug(localStorage.getItem('contestSlug'), this.userId);
               this.contest = contest.contest;
+              this.contest['timeRemains'] = this.helper.dateDiff(this.contest.review_time)
             } catch (e) {
               this.previewFiles.forEach($file => {
                 if ($file.name == file.name) {
@@ -157,6 +164,7 @@ export class ContestComponent implements OnInit {
               });
               const contest = await this.contestProvider.getContestBySlug(localStorage.getItem('contestSlug'), this.userId);
               this.contest = contest.contest;
+              this.contest['timeRemains'] = this.helper.dateDiff(this.contest.review_time)
             } catch (e) {
               this.previewFiles.forEach($file => {
                 if ($file.name == file.name) {

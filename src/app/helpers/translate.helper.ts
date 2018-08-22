@@ -1,9 +1,12 @@
 export const en = {
+  day: 'Day',
+  week: 'Week',
+  month: 'Month',
   langKey: 'en',
   header: 'ONE SHOT CAN BE',
   headerGreen: 'YOUR LUCKY DAY',
   headerDesc: 'Participate on our contests and show',
-  headerDesc2: 'how good are your photos',
+  headerDesc2: 'how great are your photos',
   navLink1: 'ABOUT',
   navLink2: 'CONTACT',
   navLink3: 'RULES',
@@ -138,7 +141,9 @@ export const en = {
 }
 
 export const pt = {
-
+  week: 'Semana',
+  month: 'Mês',
+  day: 'Dia',
   langKey: 'pt',
   header: 'UM DISPARO PODE SER',
   headerGreen: 'SEU DIA DE SORTE',

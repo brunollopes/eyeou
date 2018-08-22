@@ -41,17 +41,24 @@
     top: 5px;
     left: 5px;
     color: #fff;
-    text-align: center;
+    width: 100%;
     font-style: italic;
 }
 
-.timeing span {
+.timeing span:first-of-type {
     background-color: rgba(255, 255, 255, 0.3);
     border-top-right-radius: 12px;
     border-bottom-right-radius: 12px;
     display: inline-block;
-    margin-left: -1px;
+    margin-left: -7px;
     padding: 2px 8px 4px 8px;
+}
+
+.timeing span:last-of-type {
+    position: absolute;
+    background-color: transparent;
+    left: 37.5%;
+    top: 5px
 }
 
 .timeing img {

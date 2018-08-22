@@ -3,7 +3,7 @@
     <div class="grid-element" *ngFor="let listing of gallerylist">
         <img class="contestimg" style="width:100%;" src="{{listing.bgprofile_image}}">
         <div class="imageDesc">
-            <span style="position: absolute; top: -15px; left: -10px;">
+            <span class='contest-duration'>
                 <img [src]="listing.badge" style="width: 20px; height: 20px; position: relative; top: -1px; right: 8px;"/>
                 <span style="
                     background-color: rgba(255, 255, 255, 0.3);

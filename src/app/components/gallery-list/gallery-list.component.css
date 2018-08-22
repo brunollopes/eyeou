@@ -132,6 +132,23 @@
     text-shadow: 1px 1px 1px #5c5c5c;
 }
 
+.contest-duration {
+    position: absolute; 
+    top: -15px; 
+    left: -10px;
+}
+
+@media only screen and (max-width: 768px) {
+    .contest-duration {
+        position: absolute;
+        top: -50px;
+        left: 5px
+    }
+    .imageDesc h2 {
+        font-size: 32px
+    }
+}
+
 @media only screen and (max-width: 980px) {
     .grid-element img {
         height: 240px;

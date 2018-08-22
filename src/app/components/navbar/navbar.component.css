@@ -83,6 +83,9 @@
       opacity: 1 !important;
       padding-left: 40px;
   }
+  .navbar-brand {
+    left: -35px;
+  }
   #navbarCollapse .navbar-nav{
       padding:30px 0;
   }

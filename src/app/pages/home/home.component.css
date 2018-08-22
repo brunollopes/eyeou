@@ -103,6 +103,12 @@
     .weeklyContest h1 {
         text-align: center;
     }
+    .text-center-sm {
+        text-align: center;
+    }
+    .full-width-sm {
+        width: 100%
+    }
 }
 
 @media only screen and (max-width: 640px) {

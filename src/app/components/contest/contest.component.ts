@@ -14,7 +14,7 @@ import { join } from 'path';
 export class ContestComponent implements OnInit {
 
   public uploading: Boolean = false;
-  public files: UploadFile[] = [];
+  public files = [];
   public previewFiles: Array<any> = [];
   public contestId: string;
   public contest: any;
@@ -44,6 +44,7 @@ export class ContestComponent implements OnInit {
       } else {
         console.log(event.srcElement.files)
         for (const file in event.srcElement.files) {
+          console.log(event.srcElement.files[file])
           if (event.srcElement.files[file].size) {
             this.previewFiles.push({
               name: event.srcElement.files[file].name,
@@ -54,7 +55,7 @@ export class ContestComponent implements OnInit {
             });
             this.files.push(event.srcElement.files[file]);
             this.previewFiles = this.helper.removeDuplicates(this.previewFiles, 'name');
-            this.files = this.helper.removeDuplicates(this.files, 'relativePath');
+            this.files = this.helper.removeDuplicates(this.files, 'name');
           }
         }
         console.log('>> Preview Files', this.previewFiles);
@@ -92,9 +93,11 @@ export class ContestComponent implements OnInit {
 
   public uploadImages() {
     if (this.files.length) {
+      console.log(this.files)
       for (const droppedFile of this.files) {
         const fileEntry = droppedFile.fileEntry as FileSystemFileEntry;
         if (droppedFile instanceof File) {
+          console.log(droppedFile);
           (async (file: File) => {
             try {
               const formData = new FormData();

@@ -77,8 +77,9 @@
         </table>
         <div class="text-center">
           <input type="file" multiple accept="image/*" #selectedFiles id='selectedFiles' (change)="dropped($event, true)" style="display: none">
+          <button mat-button style="background-color: #41C253; font-weight: bold; color: #FFF; margin-left: 10px" (click)="browseFiles()"
+            [disabled]="maxLimitReached">BROWSE</button>
           <button mat-button style="background-color: #41C253; font-weight: bold; color: #FFF" (click)="uploadImages()" [disabled]="maxLimitReached">UPLOAD</button>
-          <button mat-button style="background-color: #41C253; font-weight: bold; color: #FFF; margin-left: 10px" (click)="browseFiles()" [disabled]="maxLimitReached">BROWSE</button>
           <p>
             {{translate.lang.maxLimitNotice}}
           </p>

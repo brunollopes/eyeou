@@ -13,7 +13,7 @@ export class SliderTilesComponent implements OnInit {
     this.slidertitle = [
       {
         name: 'Nuno Lobito',
-        profile: '../../../assets/images/imagesFooter_04.png',
+        profile: 'https://lh4.googleusercontent.com/hl_rmEuT9UCPt8MidKlRNyQlBy5GjgriicpJObjab9KNwy-ovlk1HsuWoBIhjrBSkIywvx8b_LmmcxgQLt3hzZtOuiu0Otmj6rqNIniUAlhLm8awHQLGfpNiF3ORl2b5HeNsOBbT',
         position: {
           en: 'Photographer Pro',
           pt: 'Fotógrafo Pro'
@@ -26,7 +26,7 @@ export class SliderTilesComponent implements OnInit {
       },
       {
         name: 'Angelo Lucas',
-        profile: '../../../assets/images/imagesFooter_05.png',
+        profile: 'https://lh3.googleusercontent.com/eX0xJ6hASNFl67tHumhxKu7zPaptef1GNq3wLdWH-odHAJoLiO9eF9NVsOsW8AGai_qrH55THRIuea5DvQTpo5DvUOXkCRkmWTs1ruRDPHnZO9zHi6GZk7lDZXnnLOdkyCFcdaoL',
         position: {
           en: 'Photographer Pro',
           pt: 'Fotógrafo Pro'
@@ -39,7 +39,7 @@ export class SliderTilesComponent implements OnInit {
       },
       {
         name: 'Tiago Maya',
-        profile: '../../../assets/images/imagesFooter_03.png',
+        profile: 'https://lh5.googleusercontent.com/guyLuJdHuCHJeGBUf6yMSyjVPlhv5L-ytaxnSWApohePPEvzfnmr0U4Jd2VWXyr_QQOv1GqZ-WUjjpFXStHSbKT776ZzOQ6PnReuUoyAU6V_BSDVPexAYiXeYY3SWVACZwvM0eD7',
         position: {
           en: 'Photographer Pro',
           pt: 'Fotógrafo Pro'

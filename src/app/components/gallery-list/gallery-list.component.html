@@ -10,7 +10,9 @@
         </div>
         <div class="contestcontent" (click)="openModal(template,listing)" style="cursor: pointer;">
             <p class="timeing">
-                <img [src]="listing.badge" />{{listing.timeRemains.days}} {{translate.lang.days}} {{listing.timeRemains.hours}} {{translate.lang.hours}}</p>
+                <img [src]="listing.badge" />
+                <span>{{listing.timeRemains.days}} {{translate.lang.days}} {{listing.timeRemains.hours}} {{translate.lang.hours}}</span>
+            </p>
             <div class="innerBlock">
                 <h3>{{listing.contest_name}}</h3>
                 <h3 *ngIf="listing.entry_price && listing.entry_price !== 0">{{listing.prize_money}}€</h3>
@@ -42,7 +44,8 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="input-group input-group-lg col-xs-12">
-                        <input (change)="emailErr()" class="form-control signup-input" placeholder="bruno@guazina.com" formControlName="email" type="email" name="enauk">
+                        <input (change)="emailErr()" class="form-control signup-input" placeholder="bruno@guazina.com" formControlName="email" type="email"
+                            name="enauk">
                         <span class="errMsg" *ngIf="errMsg == false">
                             <img src="../../../assets/images/tick.png" />
                         </span>
@@ -75,7 +78,9 @@
             </div>
             <p *ngIf="!errMsg">{{translate.lang.emailValid}}</p>
             <p class="termcondition">
-                <input type="checkbox" style="position: relative; top: 1px" formControlName="term_condition">{{translate.lang.iAgree}} <a (click)='hideModal()' routerLink="/terms">these terms &amp; privacy &amp; rules</a></p>
+                <input type="checkbox" style="position: relative; top: 1px" formControlName="term_condition">{{translate.lang.iAgree}}
+                <a (click)='hideModal()' routerLink="/terms">these terms &amp; privacy &amp; rules</a>
+            </p>
 
             <div *ngIf="listingDetails.entry_price != 0 || listingDetails.entry_price != ''">
                 <button type="button" *ngIf="!payed" class="btn btn-success" [disabled]="!paymentForm.valid || !accesVeirfy || errMsg == true"

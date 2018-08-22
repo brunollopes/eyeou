@@ -30,30 +30,61 @@ export class ContestComponent implements OnInit {
     public translate: TranslateService
   ) { }
 
-  public dropped(event: UploadEvent) {
-    if ((this.files.length + 1 > this.uploadLimit) ||
-      ((event.files.length + this.contest.users[0].images.length) > this.uploadLimit) ||
-      ((this.files.length + 1 + this.contest.users[0].images.length) > this.uploadLimit)) {
-      this.maxLimitReached = true;
-    } else {
-      this.maxLimitReached = false;
-      event.files.forEach(file => { this.files.push(file); });
-      this.files = this.helper.removeDuplicates(this.files, 'relativePath');
-      for (const droppedFile of this.files) {
-        if (droppedFile.fileEntry.isFile) {
-          const fileEntry = droppedFile.fileEntry as FileSystemFileEntry;
-          fileEntry.file((file: File) => {
+  public browseFiles() {
+    document.getElementById('selectedFiles').click()
+  }
+
+  public dropped(event, browse = false) {
+    if (browse) {
+      event.files = event.srcElement.files
+      if ((this.files.length > this.uploadLimit) ||
+        ((event.files.length + this.contest.users[0].images.length) > this.uploadLimit) ||
+        ((this.files.length + this.contest.users[0].images.length) > this.uploadLimit)) {
+        this.maxLimitReached = true;
+      } else {
+        console.log(event.srcElement.files)
+        for (const file in event.srcElement.files) {
+          if (event.srcElement.files[file].size) {
             this.previewFiles.push({
-              name: file.name,
-              size: file.size,
-              lastModifiedDate: file.lastModified,
-              type: file.type,
+              name: event.srcElement.files[file].name,
+              size: event.srcElement.files[file].size,
+              lastModifiedDate: event.srcElement.files[file].lastModified,
+              type: event.srcElement.files[file].type,
               status: 'Added'
             });
+            this.files.push(event.srcElement.files[file]);
             this.previewFiles = this.helper.removeDuplicates(this.previewFiles, 'name');
-          });
-        } else {
-          const fileEntry = droppedFile.fileEntry as FileSystemFileEntry;
+            this.files = this.helper.removeDuplicates(this.files, 'relativePath');
+          }
+        }
+        console.log('>> Preview Files', this.previewFiles);
+        console.log('>> Upload FIles', this.files)
+      }
+    } else {
+      if ((this.files.length > this.uploadLimit) ||
+        ((event.files.length + this.contest.users[0].images.length) > this.uploadLimit) ||
+        ((this.files.length + this.contest.users[0].images.length) > this.uploadLimit)) {
+        this.maxLimitReached = true;
+      } else {
+        this.maxLimitReached = false;
+        event.files.forEach(file => { this.files.push(file); });
+        this.files = this.helper.removeDuplicates(this.files, 'relativePath');
+        for (const droppedFile of this.files) {
+          if (droppedFile.fileEntry.isFile) {
+            const fileEntry = droppedFile.fileEntry as FileSystemFileEntry;
+            fileEntry.file((file: File) => {
+              this.previewFiles.push({
+                name: file.name,
+                size: file.size,
+                lastModifiedDate: file.lastModified,
+                type: file.type,
+                status: 'Added'
+              });
+              this.previewFiles = this.helper.removeDuplicates(this.previewFiles, 'name');
+            });
+          } else {
+            const fileEntry = droppedFile.fileEntry as FileSystemFileEntry;
+          }
         }
       }
     }
@@ -63,39 +94,75 @@ export class ContestComponent implements OnInit {
     if (this.files.length) {
       for (const droppedFile of this.files) {
         const fileEntry = droppedFile.fileEntry as FileSystemFileEntry;
-        fileEntry.file(async (file: File) => {
-          try {
-            const formData = new FormData();
-            formData.append('image', file, file.name);
-            formData.append('user_id', this.userId);
-            formData.append('contest_name', this.contestId);
-            this.uploading = true;
-            this.previewFiles.forEach($file => {
-              if ($file.name == file.name) {
-                $file.status = 'Uploading'
-              }
-            });
-            const uploadProcess = await this.contestProvider.uploadimages(formData);
-            this.previewFiles.forEach($file => {
-              if ($file.name == file.name) {
-                $file.status = 'Uploaded'
-              }
-            });
-            this.files.forEach(($file, i) => {
-              if ($file.relativePath == file.name) {
-                this.files.splice(i, 1);
-              }
-            });
-            const contest = await this.contestProvider.getContestBySlug(localStorage.getItem('contestSlug'), this.userId);
-            this.contest = contest.contest;
-          } catch (e) {
-            this.previewFiles.forEach($file => {
-              if ($file.name == file.name) {
-                $file.status = 'Failed'
-              }
-            });
-          }
-        });
+        if (droppedFile instanceof File) {
+          (async (file: File) => {
+            try {
+              const formData = new FormData();
+              formData.append('image', file, file.name);
+              formData.append('user_id', this.userId);
+              formData.append('contest_name', this.contestId);
+              this.uploading = true;
+              this.previewFiles.forEach($file => {
+                if ($file.name == file.name) {
+                  $file.status = 'Uploading'
+                }
+              });
+              const uploadProcess = await this.contestProvider.uploadimages(formData);
+              this.previewFiles.forEach($file => {
+                if ($file.name == file.name) {
+                  $file.status = 'Uploaded'
+                }
+              });
+              this.files.forEach(($file, i) => {
+                if ($file.relativePath == file.name) {
+                  this.files.splice(i, 1);
+                }
+              });
+              const contest = await this.contestProvider.getContestBySlug(localStorage.getItem('contestSlug'), this.userId);
+              this.contest = contest.contest;
+            } catch (e) {
+              this.previewFiles.forEach($file => {
+                if ($file.name == file.name) {
+                  $file.status = 'Failed'
+                }
+              });
+            }
+          })(droppedFile);
+        } else if (droppedFile instanceof UploadFile) {
+          fileEntry.file(async (file: File) => {
+            try {
+              const formData = new FormData();
+              formData.append('image', file, file.name);
+              formData.append('user_id', this.userId);
+              formData.append('contest_name', this.contestId);
+              this.uploading = true;
+              this.previewFiles.forEach($file => {
+                if ($file.name == file.name) {
+                  $file.status = 'Uploading'
+                }
+              });
+              const uploadProcess = await this.contestProvider.uploadimages(formData);
+              this.previewFiles.forEach($file => {
+                if ($file.name == file.name) {
+                  $file.status = 'Uploaded'
+                }
+              });
+              this.files.forEach(($file, i) => {
+                if ($file.relativePath == file.name) {
+                  this.files.splice(i, 1);
+                }
+              });
+              const contest = await this.contestProvider.getContestBySlug(localStorage.getItem('contestSlug'), this.userId);
+              this.contest = contest.contest;
+            } catch (e) {
+              this.previewFiles.forEach($file => {
+                if ($file.name == file.name) {
+                  $file.status = 'Failed'
+                }
+              });
+            }
+          });
+        }
       }
     }
   }

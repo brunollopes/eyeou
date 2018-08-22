@@ -26,6 +26,7 @@ exports.create = (req, res) => {
 
   paypal.payment.create(paymentJSON, (error, payment) => {
     if (error) {
+      console.log(error)
       res.status(403).send(error);
     } else {
       for (var index = 0; index < payment.links.length; index++) {

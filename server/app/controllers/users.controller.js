@@ -124,7 +124,7 @@ exports.findEmail = (req, res) => {
                     tls: {
                         rejectUnauthorized: false
                     },
-                    from: `'EYEOU' <${process.env.gmail_user}`,
+                    from: `'EYEOU' <${process.env.gmail_user}>`,
                     to: req.params.email,
                     host: 'smtp.gmail.com'
                 });
@@ -236,7 +236,7 @@ exports.findEmail = (req, res) => {
                             tls: {
                                 rejectUnauthorized: false
                             },
-                            from: `'EYEOU' <${process.env.gmail_user}`,
+                            from: `'EYEOU' <${process.env.gmail_user}>`,
                             host: 'smtp.gmail.com'
                         });
                         mailOptions = {

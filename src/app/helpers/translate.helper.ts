@@ -27,7 +27,7 @@ export const en = {
   weeklyContestPlaceholderEmail: 'myaddress@email.com',
   weeklyContestButton: 'NOTIFY ME!',
 
-  howitWorks: 'HOW IT WORKS',
+  howitWorks: 'COMO FUNCIONA',
   howitWorksList1: 'Choose one of the listed contests',
   howitWorksList2: 'Pay the entry fees to submit up to 10 photos',
   howitWorksList3: 'Upload your photos',
@@ -298,6 +298,7 @@ export const en = {
   privacyP22: 'Should any event occur where your data has been lost, stolen, or compromised, our policy is to alert you via email within 48 hours of our team becoming aware of the event. We will also report such incident to any required authority.',
   privacyP23: 'Last updated: 20/08/2018',
 
+  beOurAmbassador: 'BE OUR AMBASSADOR',
 }
 
 export const pt = {
@@ -337,7 +338,7 @@ export const pt = {
 
   socialTitle: 'VEJA AS REDES SOCIAIS E O QUE DIZEM SOBRE NÓS!',
   help: 'AJUDA',
-  ambassador: 'nosso embaixador',
+  ambassador: 'OS NOSSOS EMBAIXADORES',
   termPolicy: 'Termos & Privacidade',
 
   remainingTime: 'tempo restante',
@@ -597,5 +598,7 @@ export const pt = {
 
   privacySection9: 'Procedimentos de violação de dados',
   privacyP22: 'Caso ocorra algum evento em que os seus dados foram perdidos, roubados ou comprometidos, nossa política é alertá-lo via e-mail dentro de 48 horas após a nossa equipa tomar conhecimento do evento. Também reportaremos tal incidente a qualquer autoridade requerida.',
-  privacyP23: 'Última atualização: 20/08/2018'
+  privacyP23: 'Última atualização: 20/08/2018',
+
+  beOurAmbassador: 'SEJA NOSSO EMBAIXADOR'
 }

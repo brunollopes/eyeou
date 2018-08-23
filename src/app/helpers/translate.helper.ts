@@ -1,4 +1,5 @@
 export const en = {
+  termsAndConditions: 'terms & privacy & rules',
   day: 'Day',
   week: 'Week',
   month: 'Month',
@@ -79,7 +80,7 @@ export const en = {
   ambsP4: 'We will answer you in any case.',
 
   rulesTitle: 'CONTEST RULES',
-  
+
   rulesSection1: 'RULES',
   rulesP1: 'At any moment it will be running on EYEOU website 6 contests. One is a FREE contest and the other five are entry paid contests. Free contest only allows 1 photo per email address, while paid contest allows to upload up to 10 photos.',
   rulesP2: 'There is a minimum acceptable number of entries (users, or email addresses) required (with few exceptions) to start the contest. If at the end of the submission date, this number is not reached the contest will be cancelled or extended few more days. If the contest is cancelled all the users will receive back the paid fee.',
@@ -91,7 +92,7 @@ export const en = {
   rulesLi2: 'by chosen judge, after the OPEN phase the contest will transit to the REVIEW phase where the judge (a minimum of 3 of our ambassadors) will be deciding who the winners are.',
   rulesStrong3: 'CLOSED',
   rulesLi3: 'as soon as the judge makes the final decision the results will be sent for all the participants and the contest will be set to CLOSED.',
-  
+
   rulesSection2: 'Contest Times',
   rulesTh1: 'Time duration of the',
   rulesTh2: 'Time duration of the',
@@ -106,14 +107,14 @@ export const en = {
   rulesTd8: '5 days ( 72 hours)',
   rulesTd9: '1 Year (360 days, 8640 hours)',
   rulesTd10: '5 days ( 72 hours)',
-  
+
   rulesSection3: 'Contest Awards, entry fee (in euros €) and minimum required entries',
   rulesTh5: 'Awards',
   rulesTh6: 'Fee',
   rulesTh7: 'Minimum entries',
   rulesFree: 'FREE',
   rulesP5: 'Looking to the second line, we can have a 2500€ contest with an entry fee of 5€ or 15€ or 25€. The value of the entry fee will be linked to the time set for the contest as show in the previous table.',
-  
+
   rulesSection4: 'Winners',
   rulesP6: 'The winners will be decided by the chosen judge for that contest, there will be 3 places available for the winners.',
   rulesP7: 'EYEOU judges will be judging the photos based on the following criteria:',
@@ -139,10 +140,168 @@ export const en = {
   rulesTh3: 'Scores',
   rulesTh4: 'Maximum prize money granted (€)',
   rulesTd12: 'prize money available',
-  rulesP18: 'The winners prize money will be as follow (if score allows it or the maximum amount for the given score, as above):'
+  rulesP18: 'The winners prize money will be as follow (if score allows it or the maximum amount for the given score, as above):',
+
+  termsTitle: 'Terms and Conditions, Privacy Policy and Rules',
+
+  termsP1: 'If you are visiting or intend to enter eyeou.net, you should read these Terms and Conditions, Privacy Policy and the contests Rules. If you have any concern or questions, don’t hesitate to contact us – support@eyeou.net',
+  termsSection1: 'Terms and Conditions of use',
+  termsP2: 'These terms and conditions shall govern your use of EYEOU (www.eyeou.net). This website is managed and operated by EYEOU, UNIPESSOAL LDA (“Us” or “We”).',
+  termsP3: 'By using this website, you must accept these terms and conditions in full; accordingly, if you disagree with these terms and conditions or any part of these terms and conditions, you must not use this website.',
+  termsP4: 'If you register with this website, submit any material to this website or use any of the website services, we will ask you to expressly agree to these terms and conditions.',
+  termsP5: 'You must be at least 18 years of age to use this website (or of the age of majority in jurisdictions in your respective country); by using our website or agreeing to these terms and conditions, you warrant and represent to us that you are at least 18 years of age (or of the age of majority in jurisdictions in your respective country).',
+  termsP6: 'Copyright notice',
+  termsP7: 'Copyright (c) 2018 Eyeou',
+  termsP8: 'Subject to the express provisions of these terms and conditions: We own all the copyright and other intellectual property rights in this website and the material on this website apart from the photographs published on the website. All the photographs published on this website are copyrighted by their respective owners as indicated alongside each photograph.',
+  termsP9: 'We respect your rights and do not claim copyright for works photographs submitted to the Award. You will retain full copyright in each entry. In addition, your moral rights are respected.',
+  termsP10: 'Whenever your work is published on this website you will be credited. Failure to publish a credit due to error or oversight shall not be deemed a breach of this condition. We will seek to correct any errors or oversights when notified.',
+
+  termsSection2: 'Licence to use website',
+  termsP12: 'You may:',
+  termsLi1: 'view pages from our website in a web browser',
+  termsLi2: 'download pages from our website for caching in a web browser',
+  termsLi3: 'subject to the other provisions of these terms and conditions',
+  termsP13: 'Except as expressly permitted by the section above or the other provisions of these terms and conditions, you must not download any material from our website or save any such material to your computer. You may only use our website for your own personal and business purposes, and you must not use our website for any other purposes. Except as expressly permitted by these terms and conditions, you must not edit or otherwise modify any material on our website.',
+  termsP14: 'Unless you own or control the relevant rights in the material, you must not:',
+  termsLi4: 'republish material from our website (including republication on another website)',
+  termsLi5: 'sell, rent or sub-license material from our website',
+  termsLi6: 'exploit material from our website for a commercial purpose',
+  termsLi7: 'redistribute material from our website',
+  termsP15: 'We reserve the right to restrict access to areas of our website, or indeed our whole website, at our discretion; you must not circumvent or bypass, or attempt to circumvent or bypass, any access restriction measures on our website.',
+
+  termsSection3: 'Acceptable use',
+  termsP16: 'You must not:',
+  termsLi8: 'use our website in any way or take any action that causes, or may cause, damage to the website or impairment of the performance, availability or accessibility of the website',
+  termsLi9: 'use our website in any way that is unlawful, illegal, fraudulent or harmful, or in connection with any unlawful, illegal, fraudulent or harmful purpose or activity',
+  termsP17: 'You must ensure that all the information you supply to us through our website, or in relation to our website, is true, accurate, current, complete and non-misleading.',
+
+  termsSection4: 'Registration and accounts',
+  termsP18: 'Entrants may register for an account with our website by completing and submitting the account registration form on our website.',
+  termsP19: 'You must not use any other person’s account to access the website, unless you have that person’s express permission to do so.',
+
+  termsSection5: 'User login details',
+  termsP20: 'If you register for an account with our website, you will be asked to choose a user ID and password. Your user ID must not be liable to mislead and must comply with the content rules set out below; you must not use your account or user ID for or in connection with the impersonation of any person.',
+  termsP21: 'You must keep your password confidential. You must notify us if you become aware of any disclosure of your password.',
+
+  termsSection6: 'Cancellation and suspension of account',
+  termsP22: 'We may:',
+  termsLi10: 'suspend your account.',
+  termsLi11: 'cancel your account at any time in our sole discretion without notice or explanation.',
+
+  termsSection7: 'Limited warranties',
+  termsP23: 'We do not warrant or represent:',
+  termsLi12: 'the completeness or accuracy of the information published on this website',
+  termsLi13: 'that the material on the website is up to date; or that the website or any service on the website will remain available',
+  termsP24: 'We reserve the right to discontinue or alter any or all of our website services, and to stop publishing our website, at any time in our sole discretion without notice or explanation; and save to the extent expressly provided otherwise in these Terms and Conditions and our Rules, you will not be entitled to any compensation or other payment upon the discontinuance or alteration of any website services, or if we stop publishing the website.',
+
+  termsSection8: 'Limitations and exclusions of liability',
+  termsP25: 'Nothing in these terms and conditions will:',
+  termsLi14: 'limit or exclude any liability for death or personal injury resulting from negligence',
+  termsLi15: 'limit or exclude any liability for fraud or fraudulent misrepresentation',
+  termsLi16: 'limit any liabilities in any way that is not permitted under applicable law',
+  termsLi17: 'exclude any liabilities that may not be excluded under applicable law, and, if you are a consumer, your statutory rights will not be excluded or limited by these terms and conditions, except to the extent permitted by law',
+  termsP26: 'The limitations and exclusions of liability set out in this section and elsewhere in these terms and conditions govern all liabilities arising under these terms and conditions or relating to the subject matter of these terms and conditions, including liabilities arising in contract, in tort (including negligence) and for breach of statutory duty, except to the extent expressly provided otherwise in these terms and conditions.',
+  termsP27: 'We will not be liable to you in respect of any special, indirect or consequential loss or damage. You accept that we have an interest in limiting the personal liability of our officers and employees and, having regard to that interest, you acknowledge that we are a limited liability entity; you agree that you will not bring any claim personally against our officers or employees in respect of any losses you suffer in connection with the website or these terms and conditions.',
+
+  termsSection9: 'Class action waiver',
+  termsP28: 'You and Eyeou agree that each may bring claims against the other only in your or its individual capacity and not as a plaintiff or class member in any purported class or representative action. Unless both you and Eyeou agree, no arbitrator or judge may consolidate more than one person’s claims or otherwise preside over any form of a representative or class proceeding.',
+
+  termsSection10: 'Indemnity',
+  termsP29: 'You hereby indemnify Eyeou, and undertake to keep us indemnified, against any and all losses, damages, costs, liabilities and expenses (including without limitation legal expenses and any amounts paid by us to a third party in settlement of a claim or dispute) incurred or suffered by us and arising directly or indirectly out of your use of this website or any breach by you of any provision of these terms and conditions.',
+
+  termsSection11: 'Breaches of these terms and conditions',
+  termsP30: 'Without prejudice to our other rights under these terms and conditions, if you breach these terms and conditions in any way, or if we reasonably suspect that you have breached these terms and conditions in any way, we may:.',
+  termsLi18: 'send you one or more formal warnings',
+  termsLi19: 'temporarily suspend your access to our website',
+  termsLi20: 'permanently prohibit you from accessing our website',
+  termsLi21: 'block computers using your IP address from accessing our website',
+  termsLi22: 'commence legal action against you, whether for breach of contract or otherwise',
+  termsLi23: 'suspend or delete your account on our website',
+  termsP31: 'Where we suspend or prohibit or block your access to our website or a part of our website, you must not take any action to circumvent such suspension or prohibition or blocking (including without limitation creating and/or using a different account).',
+
+  termsSection12: 'Third party websites',
+  termsP32: 'Our website includes hyperlinks to other websites owned and operated by third parties; such hyperlinks are not recommendations. We have no control over third party websites and their contents, and subject to sections above we accept no responsibility for them or for any loss or damage that may arise from your use of them.',
+
+  termsSection13: 'Trade marks',
+  termsP33: 'Eyeou trademarks, our logos and our other registered and unregistered trade marks are trade marks belonging to us; we give no permission for the use of these trade marks, and such use may constitute an infringement of our rights.',
+  termsP34: 'The third party registered and unregistered trade marks or service marks on our website are the property of their respective owners and, unless stated otherwise in these terms and conditions, we do not endorse and are not affiliated with any of the holders of any such rights and as such we cannot grant any licence to exercise such rights.',
+
+  termsSection14: 'Variation',
+  termsP35: 'We may revise these terms and conditions from time to time. The revised terms and conditions shall apply to the use of this website from the date of publication of the revised terms and conditions on the website, and you hereby waive any right you may otherwise have to be notified of, or to consent to, revisions of these terms and conditions.',
+
+  termsSection15: 'Entire agreement',
+  termsP36: 'These terms and conditions, together with our competition rules, privacy and cookies policy shall constitute the entire agreement between you and us in relation to your use of our website and shall supersede all previous agreements between you and us in relation to your use of this website.',
+
+  termsSection16: 'Law and jurisdiction',
+  termsP37: 'These terms and conditions shall be governed by and construed in accordance with Portuguese laws.',
+
+  termsSection17: 'Our details',
+  termsP38: 'This website is owned and operated by EYEOU, UNIPESSOAL LDA. We are registered in Portugal, our registration number is 508184258 and our registered office is at Praça Bartolomeu Dias nº 113 2ªEsq, 2890-138 Alcochete. You can contact us by email (support@eyeou.net) or using any other email addresses published on our website.',
+  termsP39: 'Last updated: 20/08/2018',
+
+  privacySection1: 'Privacy Policy',
+  privacyP1: 'This privacy policy (hereafter, the Privacy Policy) sets out how Eyeou or “Us” or “We”) processes Personal Data and how various obligations under the Data Protection Legislation are met.',
+  privacyP2: 'EYEOU, UNIPESSOAL LDA is registered in Portugal, our registration number is 508184258 and our registered office is at Praça Bartolomeu Dias nº 113 2ªEsq, 2890-138 Alcochete.',
+  privacyP3: 'This Privacy Policy applies to all visitors and customers using or accessing this website and our associated services',
+  privacyP4: 'For any privacy-related questions, you can contact us by email (support@eyeou.net) or using any other email addresses published on our website.',
+
+  privacySection2: 'Your rights',
+  privacyP5: 'You may instruct us by email (support@eyeou.net) at any time to not process and/or delete some or all of your personal information. This will exclude data we are required to retain for accounting or security purposes, and any data we are required to retain by law. In addition, you can unsubscribe from our email newsletters using the link at the bottom of each edition.',
+
+  privacySection3: 'Collecting personal information',
+  privacyP6: 'We may collect, store and use the following kinds of personal information:',
+  privacyLi1: 'information about your computer and about your visits to and use of this website – your IP address, geographical location, browser type and version, operating system, referral source, length of visit)',
+  privacyLi2: 'information that you provide to us when you register to a contest – your name, username, billing country, email address, social media accounts',
+  privacyLi3: 'information that you provide when submitting images to the contest – image files and statements or image descriptions.',
+  privacyLi4: 'information that you provide for the purpose of subscribing to our email notifications and/or newsletters – your name and email address',
+  privacyLi5: 'information that you provide when buying physical content from us – your name, email address and postal address',
+
+  privacySection4: 'Using personal information',
+  privacyP7: 'Personal information submitted to us through this website will be used for the purposes specified in this Privacy Policy or on the relevant pages of this website. Any information you provide through this website will be used in accordance with General Data Protection Regulation 2018 (GDPR). You can refuse to provide personally-identifying information, with the caveat that it may prevent you from submitting to the contest or using certain part of the website.',
+  privacyP8: 'Your personal information is collected only for the purpose of administering your entry, membership or other purchase, or keeping you abreast of news with the award. This information is kept secure and confidential, and is not shared.',
+  privacyP9: 'We may also use your personal information to:',
+  privacyLi6: 'personalize this website for you',
+  privacyLi7: 'enable your use of the services available on this website',
+  privacyLi8: 'supply to you services or goods purchased through this website',
+  privacyLi9: 'send you our email newsletter (you can inform us at any time if you no longer require the newsletter) or other “system” emails, such as password reset requests or payment notifications/receipts even if you have not opted-in to email marketing lists',
+  privacyLi10: 'provide third parties with statistical information about our users (but those third parties will not be able to identify any individual user from that information)',
+  privacyLi11: 'manage complaints, feedback and queries, and handle requests for data access or correction, or the exercise of other rights relating to Personal Information',
+  privacyLi12: 'keep this website secure and prevent fraud',
+  privacyLi13: 'administer social media and web advertising campaigns. These service providers use cookies on our site and/or pixel tracking to serve ads across the different platforms – Google AdSense & DoubleClick (privacy policy, opt out) Facebook (privacy policy, opt out)',
+  privacyLi14: 'manage our business operations and IT infrastructure, in line with our internal policies and procedures, including those relating to finance and accounting; billing and collections; IT systems operation; data and website hosting; data analytics; business continuity; records management; document and print management; and auditing',
+  privaclyLi15: 'comply with applicable laws and regulatory obligations (including laws and regulations outside your country of residence), comply with legal process and court orders; and respond to requests from public and government authorities (including those outside your country of residence)',
+  privacyP10: 'All of our financial transactions are handled through our payment services providers, Braintree (privacy policy) and Paypal (privacy policy). We will share information with our payment services provider only to the extent necessary for the purposes of processing payments you make via this website',
+  privacyP11: 'Our web servers and hosting are managed by us. This includes website hosting, backups, web database, file storage, and log files.',
+
+  privacySection5: 'Disclosing personal information',
+  privacyP12: 'We may disclose your personal information to any of our employees, contractors, officers, insurers, professional advisers, insofar as reasonably necessary for the purposes set out in this policy. Some of those employees or organizations may be located outside of your home country; by using our websites and services, you consent to the transfer of such information to them.',
+  privacyp13: 'We may disclose your personal information:',
+  privacyLi16: 'to the extent that we are required to do so by law',
+  privacyLi17: 'in connection with any ongoing or prospective legal proceedings',
+  privacyLi18: 'in order to establish, exercise or defend our legal rights',
+  privacyP14: 'Except as provided in this policy, we will not provide your personal information to third parties.',
+  privacyp15: 'Eyeou acknowledges that all individuals have the right to access the personal information/data that we maintain about them. If you want to access, correct, or delete your data, you should contact us as support@eyeou.net.',
+
+  privacySection6: 'Amendments',
+  privacyP16: 'We may update this policy from time to time by publishing a new version on this website. You should check this page occasionally to ensure you are happy with any changes to this policy. We may notify you of changes to this policy by email.',
+
+  privacySection7: 'External links',
+  privacyP17: 'This website includes hyperlinks to, and details of, external websites. We have no control over, and are not responsible for, the privacy policies and practices of external websites.',
+
+  privacySection8: 'Our cookies',
+  privacyP18: 'A cookie is a file containing an identifier (a string of letters and numbers) that is sent by a web server to a web browser and is stored by the browser. The identifier is then sent back to the server each time the browser requests a page from the server. Cookies do not typically contain any information that personally identifies a user, but personal information that we store about you may be linked to the information stored in and obtained from cookies.',
+  privacyP19: 'Cookies may be either “persistent” cookies or “session” cookies: a persistent cookie will be stored by a web browser and will remain valid until its set expiry date, unless deleted by the user before the expiry date; a session cookie, on the other hand, will expire at the end of the user session, when the web browser is closed. We use both session and persistent cookies on this website and the purposes for which they are used, are as follows: to recognize a computer when a user visits this website, to track users as they navigate the website, to personalize the website for each user and to target advertisements which may be of particular interest to specific users.',
+  privacyP20: 'If you do not wish to have cookies placed on your computer, you should set your browser to refuse cookies before using our website. Certain features may not function properly if you do so.',
+  privacyP21: 'We use Google Analytics to analyse the use of this website (privacy policy, opt out). Our analytics service provider generates statistical and other information about website use by means of cookies.',
+
+  privacySection9: 'Data breach procedures',
+  privacyP22: 'Should any event occur where your data has been lost, stolen, or compromised, our policy is to alert you via email within 48 hours of our team becoming aware of the event. We will also report such incident to any required authority.',
+  privacyP23: 'Last updated: 20/08/2018',
+
 }
 
 export const pt = {
+  termsAndConditions: 'termos & privacidade & regras',
   week: 'Semana',
   month: 'Mês',
   day: 'Dia',
@@ -154,7 +313,7 @@ export const pt = {
   headerDesc: 'Participe nos nossos concursos e mostre',
   headerDesc2: 'quanto boas são as sua fotos',
   navLink1: 'SOBRE',
-  navLink2: 'CONTATO',
+  navLink2: 'CONTACTO',
   navLink3: 'REGRAS',
 
   emailValid: 'Por favor verifique o seu email com o código recebido (veja spam), se não recebeu verifique o se o seu email está correto.',
@@ -222,7 +381,7 @@ export const pt = {
   ambsP4: 'Nós iremos responder-lhe em qualquer dos casos.',
 
   rulesTitle: 'REGRAS',
-  
+
   rulesSection1: 'Concursos',
   rulesP1: 'A qualquer momento estará em execução no site do EYEOU 6 concursos, 1 deles é um concurso grátis e os outros 5 são concursos pagos. O concurso grátis permite apenas o upload de uma foto por endereço de e-mail, enquanto o concurso pago permite até 10 fotos.',
   rulesP2: 'Há um número mínimo aceitável de entradas por (utilizador / endereço de e-mail) necessários (salvo algumas exceções) para iniciar o concurso. Se no final da data de submissão, esse número não for alcançado, o concurso será cancelado ou será estendido por mais alguns dias a anunciar no momento da decisão. Se o concurso for cancelado, todos os utilizadores receberão de volta o valor pago.',
@@ -234,7 +393,7 @@ export const pt = {
   rulesLi2: 'por um júri, após a fase ABERTO o concurso irá transitar para a fase de REVISÃO onde o júri designado (um mínimo de 3 dos nossos embaixadores) decidirá quem são os vencedores.',
   rulesStrong3: 'FECHADO',
   rulesLi3: 'assim que o júri tomar a decisão final, os resultados serão enviados para todos os participantes e o concurso será FECHADO.',
-  
+
   rulesSection2: 'Tempo do concurso',
   rulesTh1: 'Tempo de duração da fase ABERTO',
   rulesTh2: 'Tempo de duração da fase de REVISÃO',
@@ -249,14 +408,14 @@ export const pt = {
   rulesTd8: '5 dias ( 120 horas)',
   rulesTd9: '1 Ano (360 dias, 8640 horas)',
   rulesTd10: '5 dias ( 120 horas)',
-  
+
   rulesSection3: 'Prémios do concurso, valor de entrada (em euros €) e número de entradas mínimo',
   rulesTh5: 'Prémios',
   rulesTh6: 'Entrada',
   rulesTh7: 'entradas mínimas',
   rulesFree: 'FREE',
   rulesP5: 'Olhando para a segunda linha, podemos assim ter um concurso de 2500€ com um valor de entrada de 5€ ou 15€ ou 25€. O valor da entrada está associado ao tempo definido para o concurso, conforme mostrado na tabela anterior.',
-  
+
   rulesSection4: 'Vencedores',
   rulesP6: 'Os vencedores serão decididos pelo júri escolhido para o concurso, haverá 3 lugares disponíveis para os vencedores.',
   rulesP7: 'O júri irá julgar as fotos com base nos seguintes critérios: ',
@@ -282,5 +441,161 @@ export const pt = {
   rulesTh3: 'Pontuação',
   rulesTh4: 'Prémio máximo garantido',
   rulesTd12: 'prémio máximo disponível',
-  rulesP18: 'Os prémios serão distribuídos aos vencedores com base na percentagem apresentada (se a pontuação das fotos vencedoras assim permitir, como indicado acima):'
+  rulesP18: 'Os prémios serão distribuídos aos vencedores com base na percentagem apresentada (se a pontuação das fotos vencedoras assim permitir, como indicado acima):',
+
+  termsTitle: 'Termos e Condições, Política de Privacidade e Regras',
+
+  termsP1: 'Se está a visitar ou tem intenção de visitar eyeou.net, deverá ler atentamente estes Termos e Condições, Política de Privacidade e Regras dos concursos. Caso tenha alguma preocupação ou questão, não hesite em contactar-nos em – support@eyeou.net.',
+  termsSection1: 'Termos e Condições de uso',
+  termsP2: 'Estes termos e condições deverão governar a sua utilização do EYEOU (www.eyeou.net). Este site web é gerido e operado por EYEOU, UNIPESSOAL LDA (“Nós”, “Nosso”).',
+  termsP3: 'Ao usar este site web, deverá aceitar estes Termos e Condições na sua totalidade; de acordo, caso não concorde com os Termos e Condições ou alguma parte destes Termos e Condições, não deverá usar este site web.',
+  termsP4: 'Se se registar neste site web, submeter algum material ou usar algum dos serviços disponíveis, nos pedimos expressamente para acordar com estes Termos e Condições.',
+  termsP5: 'O utilizador deverá ter pelo menos 18 anos para usar este site web (ou a idade de maioridade na jurisdição do respectivo país de residência); ao usar o nosso site web ou acordando nestes Termos e Condições, você garante e informa-nos que tem pelo menos 18 anos (ou a idade de maioridade na jurisdição do respectivo país de residência)',
+  termsP6: 'Nota de direitos de autor',
+  termsP7: 'Copyright (c) 2018 EYEOU',
+  termsP8: 'Sujeito às disposições expressas por estes Termos e Condições: Nós somos os proprietários de todos os direitos de autor e outros direitos de propriedade intelectual presentes neste site web e todo o material presente neste site web para além das fotografias publicadas neste site web. ',
+  termsP9: 'Todas as fotografias publicadas neste site web mantêm os direitos de autor dos respetivos proprietários como indicado associado a cada fotografia.',
+  termsP10: 'Nós respeitamos os direitos de autor e não reinviquemos direitos de autores das fotografias submetidas nos concursos. Você manterá o total direito de autor de cada fotografia submetida. Adicionalmente, os seus direitos morais serão respeitados. Sempre que o seu trabalho for publicado neste site web você será mencionado. A falta de menção do autor da fotografia devido a um erro ou supervisão não será considerada como uma violação desta condição. Nós procuramos sempre corrigir qualquer erro ou supervisão assim que notificados.',
+
+  termsSection2: 'Licença de utilização deste site web',
+  termsP12: 'Você pode',
+  termsLi1: ' ver as páginas disponíveis no nosso site web, através de um web browser',
+  termsLi2: 'fazer o download páginas do nosso site web  para  “caching” do browser',
+  termsLi3: 'Exceto quando expressamente permitido pela seção acima ou outras disposições destes Termos e Condições',
+  termsP13: 'Você só pode usar o nosso site para fins pessoais e comerciais e você não deve usar o nosso site para quaisquer outros fins. Exceto conforme expressamente permitido por estes Termos e Condições, você não deve editar ou modificar qualquer material em nosso site.',
+  termsP14: 'A menos que você possua ou controle os direitos relevantes no material, você não deve',
+  termsLi4: 'republicar material do nosso site (incluindo republicação de outro site)',
+  termsLi5: 'vender, alugar ou sublicenciar material do nosso site',
+  termsLi6: 'explorar material do nosso site para fins comerciais',
+  termsLi7: 'redistribuir material do nosso si',
+  termsP15: 'Reservamo-nos o direito de restringir o acesso a áreas do nosso site, ou na verdade todo o nosso site, a nosso critério; você não deve contornar ou ignorar ou tentar burlar ou ignorar quaisquer medidas de restrição de acesso no nosso site.',
+
+  termsSection3: 'Uso Aceitável',
+  termsP16: 'Você não deve:',
+  termsLi8: 'usar o nosso site de qualquer forma ou tomar qualquer ação que cause ou possa causar danos ao site ou prejuízo do desempenho, disponibilidade ou acessibilidade do site',
+  termsLi9: 'usar o nosso site de qualquer forma que seja ilegal, ilegal, fraudulenta ou prejudicial, ou em conexão com qualquer finalidade ou atividade ilegal, fraudulenta ou prejudicial',
+  termsP17: 'Você deve garantir que todas as informações que nos fornece através do nosso site, ou em relação ao nosso site, sejam verdadeiras, precisas, atuais, completas e não enganosas.',
+
+  termsSection4: 'Registo e contas',
+  termsP18: 'Os utilizadores podem registar-se no nosso site preenchendo e enviando o formulário de registro de conta em nosso site.',
+  termsP19: 'Você não deve usar a conta de outra pessoa para acessar o website, a menos que tenha permissão expressa dessa pessoa para fazer isso.',
+
+  termsSection5: 'Detalhes de login',
+  termsP20: 'Ao registar-se no nosso site, você será solicitado para introduzir o seu email, sendo pedido uma posterior validação através de um código enviado. Não deverá usar um endereço de email que não seja seu ou tentando passar-se por outra pessoa.',
+  termsP21: 'Você deve manter sua senha confidencial. Você deve nos notificar caso tenha conhecimento de qualquer divulgação de sua senha.',
+
+  termsSection6: 'Cancelamento e suspensão da conta',
+  termsP22: 'Nós podemos:',
+  termsLi10: 'suspender sua conta',
+  termsLi11: 'cancelar sua conta a qualquer momento, a nosso exclusivo critério, sem aviso ou explicação, deixando assim de poder participar nos concursos disponíveis.',
+
+  termsSection7: 'Garantias limitadas',
+  termsP23: 'Nós não garantimos ou representamos:',
+  termsLi12: 'a integridade ou exatidão das informações publicadas neste site',
+  termsLi13: 'que o material no site esteja atualizado; ou que o site ou qualquer serviço no site permanecerá disponível.',
+  termsP24: 'Reservamo-nos o direito de descontinuar ou alterar qualquer ou todos os serviços do nosso site, e de parar de publicar o nosso site, a qualquer momento, a nosso exclusivo critério, sem aviso prévio ou explicação; e salvo na medida expressamente prevista em contrário nestes Termos e Condições e nas nossas Regras, você não terá direito a qualquer compensação ou outro pagamento após a descontinuação ou alteração de quaisquer serviços do site, ou se pararmos de publicar o site.',
+
+  termsSection8: 'Limitações e exclusões de responsabilidade',
+  termsP25: 'Nada nestes termos e condições irá:',
+  termsLi14: 'limitar ou excluir qualquer responsabilidade por morte ou danos pessoais resultantes de negligência',
+  termsLi15: 'limitar ou excluir qualquer responsabilidade por fraude ou deturpação fraudulenta',
+  termsLi16: 'limitar quaisquer responsabilidades de qualquer forma que não seja permitida pela lei aplicável',
+  termsLi17: 'excluir quaisquer responsabilidades que não possam ser excluídas sob a lei aplicável e, se você for um consumidor, os seus direitos estatutários não serão excluídos ou limitados por estes Termos e Condições, exceto na medida permitida por lei.',
+  termsP26: 'As limitações e exclusões de responsabilidade estabelecidas nesta seção e em qualquer outro lugar nestes termos e condições regem todos os passivos decorrentes destes Termos e Condições ou relacionados ao objeto destes Termos e Condições, incluindo responsabilidades decorrentes de contrato, em delito (incluindo negligência). ) e por violação do dever estatutário, exceto na medida expressamente prevista em contrário nestes Termos e Condições.',
+  termsP27: 'Nós não seremos responsáveis ​​perante você em relação a qualquer perda ou dano especial, indireto ou conseqüente. Você aceita que temos interesse em limitar a responsabilidade pessoal dos nossos diretores e funcionários e, tendo em conta esse interesse, você reconhece que somos uma entidade de responsabilidade limitada; você concorda que não trará qualquer reclamação pessoalmente contra os nossos diretores ou funcionários em relação a quaisquer perdas que você sofra em ligação com o site ou com estes Termos e Condições.',
+
+  termsSection9: 'Renúncia de ação coletiva',
+  termsP28: 'Você e Eyeou concordam que cada um pode trazer reclamações contra o outro somente na sua capacidade individual e não como um demandante ou membro da classe em qualquer classe ou ação representativa. A menos que você e a Eyeou concordem, nenhum mediador ou juiz poderá consolidar as reivindicações de mais de uma pessoa ou, de outra forma, presidir a qualquer forma de um processo representativo ou de classe',
+
+  termsSection10: 'Indenização',
+  termsP29: 'Você neste ato garante à Eyeou, e se compromete a nos manter assegurados, contra toda e qualquer perda, danos, custos, responsabilidades e despesas (incluindo, sem limitação, despesas legais e quaisquer valores pagos por nós a terceiros na resolução de uma reclamação ou disputa) incorridas ou sofrido por nós e decorrente direta ou indiretamente do seu uso deste site ou qualquer violação por você de qualquer disposição destes termos e condições',
+
+  termsSection11: 'Violações destes termos e condições',
+  termsP30: 'Sem prejuízo de nossos outros direitos sob estes Termos e Condições, se você infringir estes Termos e Condições de qualquer maneira, ou se razoavelmente suspeitarmos que você violou estes Termos e Condições de qualquer forma, nós podemos:',
+  termsLi18: 'enviar um ou mais avisos formais',
+  termsLi19: 'suspender temporariamente seu acesso ao nosso site',
+  termsLi20: 'proibir permanentemente que você tenha acesso ao nosso site',
+  termsLi21: ' bloquear o seu acesso usando o seu endereço IP',
+  termsLi22: 'iniciar uma ação legal contra você, seja por quebra de contrato ou de outra forma',
+  termsLi23: 'suspender ou excluir a sua conta do nosso site e toda informação relevante',
+  termsP31: 'Nos casos em que suspendemos, proibimos ou bloqueamos o acesso ao nosso site ou a uma parte do nosso site, você não deve tomar nenhuma medida para contornar essa suspensão, proibição ou bloqueio (incluindo, sem limitação, criar e / ou usar uma conta diferente).',
+
+  termsSection12: 'Sites de terceiros',
+  termsP32: 'O nosso site inclui hiperlinks para outros sites de propriedade e operados por terceiros; tais hiperlinks não são recomendações. Não temos controle sobre sites de terceiros e os seus conteúdos e, sujeito às seções acima, não nos responsabilizamos por eles ou por qualquer perda ou dano que possa advir do seu uso.',
+
+  termsSection13: 'Marcas registradas',
+  termsP33: 'As marcas comerciais Eyeou, os nossos logótipos e as nossas outras marcas registadas e não registadas são marcas que nos pertencem; Nós não damos permissão para o uso dessas marcas, e tal uso pode constituir uma violação de nossos direitos.',
+  termsP34: 'As marcas registradas ou não registradas de terceiros ou marcas de serviço no nosso site são de propriedade de seus respectivos proprietários e, a menos que declarado de outra forma nestes Termos e Condições, não endossamos e não somos afiliados a nenhum dos detentores de tais direitos e como tal, não podemos conceder qualquer licença para exercer tais direitos.',
+
+  termsSection14: 'Variação',
+  termsP35: 'Podemos alterar estes Termos e Condições de tempos a tempos. Os Termos e Condições alterados aplicar-se-ão ao uso deste site a partir da data de publicação dos Termos e Condições alterados no site, e você renuncia a qualquer direito que, de outra forma, teria que ser notificado ou consentir com revisões destes Termos e Condições.',
+
+  termsSection15: 'Total acordo',
+  termsP36: 'Estes Termos e Condições, juntamente com as nossas regras de concorrência, política de privacidade e cookies, constituem o acordo integral entre você e nós em relação ao uso do nosso site e substituem todos os acordos anteriores entre você e nós em relação ao uso deste site.',
+
+  termsSection16: 'Lei e jurisdição',
+  termsP37: 'Estes Termos e Condições serão regidos e interpretados de acordo com as leis em Portugal.',
+
+  termsSection17: 'Os nossos detalhes',
+  termsP38: 'Este website pertence e é operado pela EYEOU, UNIPESSOAL LDA. Estamos registados em Portugal, o nosso número de registo é 508184258 e a nossa sede é na Praça Bartolomeu Dias nº 113 2ªEsq, 2890-138 Alcochete. Você pode nos contatar por e-mail (support@eyeou.net) ou usando qualquer outro endereço de e-mail publicado no nosso site.',
+  termsP39: 'Última atualização: 20/08/2018',
+
+  privacySection1: 'Política de Privacidade',
+  privacyP1: 'Esta política de privacidade (doravante, a Política de Privacidade) define como a Eyeou ou “nós” ou “nosso” processamos os dados pessoais e como as várias obrigações previstas na legislação de proteção de dados são cumpridas.',
+  privacyP2: 'EYEOU, UNIPESSOAL LDA está registada em Portugal, o nosso número de registo é 508184258 e a nossa sede está na Praça Bartolomeu Dias nº 113 2ªEsq, 2890-138 Alcochete.',
+  privacyP3: 'Esta Política de Privacidade aplica-se a todos os visitantes e clientes que usam ou acedam a este site e aos nossos serviços associados.',
+  privacyP4: 'Para quaisquer questões relacionadas com a  privacidade, poderá entrar em contato por e-mail (support@eyeou.net) ou usando qualquer outro endereço de e-mail publicado no nosso site',
+
+  privacySection2: 'Os seus direitos',
+  privacyP5: 'Você pode nos enviar por e-mail (support@eyeou.net) a qualquer momento para nós não processarmos e / ou excluirmos algumas ou todas as suas informações pessoais. Isso excluirá os dados que devemos reter para fins de registo ou de segurança e quaisquer dados que tenhamos que reter por lei.',
+
+  privacySection3: 'Recolhendo informações pessoais',
+  privacyP6: 'Podemos recolher, armazenar e usar os seguintes tipos de informações pessoais:',
+  privacyLi1: 'informações sobre o seu acesso e sobre as suas visitas e uso deste site - o seu endereço de IP, localização geográfica, tipo e versão do navegador web, sistema operativo, fonte de referência, duração da visita)',
+  privacyLi2: 'informações que você nos fornece quando participa num concurso - seu nome, nome de utilizador, país, endereço de e-mail, contas de redes sociais',
+  privacyLi3: 'informações que você fornece ao enviar imagens para os concursos ou descrições de imagens.',
+  privacyLi4: 'informações que você fornece com a finalidade de assinar nossas notificações por e-mail e / ou boletins informativos - seu nome e endereço de e-mail',
+  privacyLi5: 'informações que você fornece ao efetuar pagamentos no nosso site - o seu nome, endereço de e-mail e endereço postal',
+
+  privacySection4: 'Usando informações pessoais',
+  privacyP7: 'As informações pessoais enviadas a nós por meio deste site serão usadas para os fins especificados nesta Política de Privacidade ou nas páginas relevantes deste site. Qualquer informação que você fornecer através deste website será usada de acordo com o Regulamento Geral de Proteção de Dados 2018 (GDPR). Você pode se recusar a fornecer informações de identificação pessoal, com a ressalva de que isso pode impedi-lo de participar nos concursos ou usar determinada parte do site.',
+  privacyP8: 'As suas informações pessoais são recolhidas apenas com o propósito de administrar a sua inscrição, associação ou outra compra, ou mantê-lo a par das notícias com, novos concursos, os vencedores, os prémios. Essas informações são mantidas em segurança e confidenciais e não são partilhadas.',
+  privacyP9: 'Também podemos usar as suas informações pessoais para:',
+  privacyLi6: 'personalizar o site para si',
+  privacyLi7: 'permitir o uso dos serviços disponíveis neste site',
+  privacyLi8: 'enviar-lhe o nosso boletim informativo por e-mail (você pode nos informar a qualquer momento se não precisar mais de receber do boletim informativo) ou outros e-mails do sistema, como solicitações de redefinição de senha ou notificações / recibos de pagamento mesmo que não tenha optado por listas de email marketing',
+  privacyLi9: 'fornecer a terceiros informações estatísticas sobre nossos utilizadores (mas esses terceiros não poderão identificar nenhum utilizador individual a partir dessas informações)',
+  privacyLi10: 'gerir reclamações, feedback e consultas, e lidar com solicitações de acesso ou correção de dados, ou o exercício de outros direitos relacionados a Informações Pessoais',
+  privacyLi11: 'manter este site seguro e evitar fraudes',
+  privacyLi12: 'administrar campanhas nas redes sociais e publicidade na web. Esses fornecedores de serviços usam cookies no nosso site e / ou rastreamento de pixels para gerir anúncios nas diferentes plataformas - Google AdSense e DoubleClick (política de privacidade, desativação) Facebook (política de privacidade, desativação)',
+  privacyLi13: 'gerir as nossas operações de negócios e infraestrutura de TI, de acordo com nossas políticas e procedimentos internos, incluindo aqueles relacionados com finanças e contabilidade; faturação e cobrança; Operação de sistemas de TI; alojamento de dados em sites; análise de dados; continuidade de negócios; gestão de registros; gestão de documentos e impressão; e auditoria',
+  privacyLi14: 'cumprir as leis e obrigações regulamentares aplicáveis ​​(incluindo leis e regulamentos fora do seu país de residência), cumprir com o processo legal e as ordens judiciais; e responder a solicitações de autoridades públicas e governamentais (incluindo aquelas fora do seu país de residência',
+  privaclyLi15: 'estabelecer e defender os direitos legais para proteger nossas operações comerciais e garantir nossos direitos, privacidade, segurança ou propriedade, e das empresas do nosso grupo ou parceiros comerciais, você ou de outras pessoas ou de terceiros; para impor nossos Termos e Condições; e procurar soluções disponíveis ou limitar nossos danos.',
+  privacyP10: 'Todas as nossas transações financeiras são tratadas através de nossos fornecedores de serviços de pagamento, Braintree (política de privacidade) e Paypal (política de privacidade). Nós partilhamos informações com os nossos fornecedores de serviços de pagamento apenas na medida necessária para o propósito de processar os pagamentos que você fizer através deste site.',
+  privacyP11: 'Os nossos servidores e alojamento web são gerenciados por nós. Isso inclui alojamento de sites, backups, banco de dados da Web, armazenamento de arquivos e arquivos de log.',
+
+  privacySection5: 'Divulgando informações pessoais',
+  privacyP12: 'Podemos divulgar suas informações pessoais a qualquer um de nossos funcionários, contratados, executivos, seguradoras, consultores profissionais, na medida do razoavelmente enecessário para os propósitos estabelecidos nesta política. Alguns desses funcionários ou organizações podem estar localizados fora do seu país de origem; Ao usar nosso site e serviços, você concorda com a transferência de tais informações para eles.',
+  privacyp13: 'Podemos divulgar as suas informações pessoais:',
+  privacyLi16: 'na medida em que somos obrigados a fazê-lo por lei',
+  privacyLi17: 'em ligação com qualquer processo legal em andamento ou prospectivo',
+  privacyLi18: 'para estabelecer, exercer ou defender os nossos direitos legais.',
+  privacyP14: 'Exceto conforme previsto nesta política, não forneceremos as suas informações pessoais a terceiros.',
+  privacyp15: 'Eyeou reconhece que todos os indivíduos têm o direito de aceder as informações pessoais / dados que mantemos sobre eles. Se você deseja aceder, corrigir ou excluir os seus dados, entre em contato conosco para support@eyeou.net.',
+
+  privacySection6: 'Emendas',
+  privacyP16: 'Podemos atualizar esta política de tempos em tempos, publicando uma nova versão neste site. Você deve verificar esta página dos Termos e Condições e Privacidade ocasionalmente para garantir que está satisfeito com as alterações feitas nessa política. Podemos notificá-lo de alterações desta política por email.',
+
+  privacySection7: 'Links externos',
+  privacyP17: 'Este site inclui hiperlinks e detalhes de sites externos. Não temos controle e não somos responsáveis pelas políticas e práticas de privacidade de sites externos.',
+
+  privacySection8: 'Os nossos cookies',
+  privacyP18: 'Um cookie é um ficheiro que contém um identificador (uma sequência de letras e números) que é enviado por um servidor da Web para um navegador da Web e é armazenado pelo navegador. O identificador é enviado de volta ao servidor sempre que o navegador solicita uma página do servidor. Os cookies normalmente não contêm nenhuma informação que identifique pessoalmente um utilizador, mas as informações pessoais que armazenamos sobre si podem estar vinculadas às informações armazenadas e obtidas de cookies.',
+  privacyP19: 'Os cookies podem ser cookies “persistentes” ou “de sessão”: um cookie persistente será armazenado por um navegador da web e permanecerá válido até a data de validade definida, a menos que seja excluído pelo utilizador antes da data de expiração; um cookie de sessão, por outro lado, expira no final da sessão do utilizador, quando o navegador da web é fechado. Usamos cookies de sessão e persistentes neste site e as finalidades para as quais eles são usados ​​são as seguintes: reconhecer um acesso quando um utilizador visita este site, rastrear utilizadores enquanto eles navegam no site, personalizar o site para cada utilizador e para segmentar anúncios que possam ser de particular interesse para utilizadores específicos.',
+  privacyP20: 'Caso não deseja que os cookies sejam colocados no seu computador/browser, deve configurar o seu navegador para recusar cookies antes de usar nosso site. Certos recursos podem não funcionar corretamente ao fazer isso.',
+  privacyP21: 'Usamos o Google Analytics para analisar o uso deste website (política de privacidade, opt out). O nosso provedor de serviços de análise gera informações estatísticas e outras informações sobre o uso do site por meio de cookies.',
+
+  privacySection9: 'Procedimentos de violação de dados',
+  privacyP22: 'Caso ocorra algum evento em que os seus dados foram perdidos, roubados ou comprometidos, nossa política é alertá-lo via e-mail dentro de 48 horas após a nossa equipa tomar conhecimento do evento. Também reportaremos tal incidente a qualquer autoridade requerida.',
+  privacyP23: 'Última atualização: 20/08/2018'
 }

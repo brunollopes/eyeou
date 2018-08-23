@@ -131,7 +131,17 @@ exports.findEmail = (req, res) => {
                 mailOptions = {
                     to: req.params.email,
                     subject: "Please confirm your Email account with verification code",
-                    html: "Hello,<br> your verification code to verify your email is : <br>" + newusers.access_code + ""
+                    html: `
+                                <div>
+                                    <span>Hello!</span <br>
+                                    <p>Your verification code to verify your email is: ${valnew}</p>
+                                    <p>Great Shots!</p>
+                                    <img 
+                                        src="https://lh5.googleusercontent.com/YVZbtwcEGhhTTLRn5ekI852WwZ-_3rhg5wi1dRN67CkobT_NM3X59k0pmCjTOWRlT0UHAAG059EF-8xAVkYbueeOVeXNPLpk0UwlZNFbvyRIsFPxgWIsCTiEEtfUkTa-vT_kAQP2"
+                                        style="width: 10%"
+                                    />
+                                </div>
+                            `
                 }
 
                 smtpTransport.sendMail(mailOptions, function (error, response) {
@@ -173,7 +183,17 @@ exports.findEmail = (req, res) => {
                         mailOptions = {
                             to: data.email,
                             subject: "Please confirm your Email account with verification code",
-                            html: "Hello,<br> your verification code to verify your email is : <br>" + data.acess_code + ""
+                            html: `
+                                <div>
+                                    <span>Hello!</span <br>
+                                    <p>Your verification code to verify your email is: ${val}</p>
+                                    <p>Great Shots!</p>
+                                    <img 
+                                        src="https://lh5.googleusercontent.com/YVZbtwcEGhhTTLRn5ekI852WwZ-_3rhg5wi1dRN67CkobT_NM3X59k0pmCjTOWRlT0UHAAG059EF-8xAVkYbueeOVeXNPLpk0UwlZNFbvyRIsFPxgWIsCTiEEtfUkTa-vT_kAQP2"
+                                        style="width: 10%"
+                                    />
+                                </div>
+                            `
                         }
 
                         smtpTransport.sendMail(mailOptions, function (error, response) {
@@ -332,7 +352,7 @@ exports.notify = (req, res) => {
                 const user = await Users.findOneAndUpdate({ email }, { notify: true }).exec()
                 res.status(200).json(user)
             } else {
-                const user = await new Users({email, full_name, notify: true}).save()
+                const user = await new Users({ email, full_name, notify: true }).save()
                 res.status(200).json(user)
             }
         })

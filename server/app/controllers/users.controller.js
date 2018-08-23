@@ -152,9 +152,13 @@ exports.findEmail = (req, res) => {
                     </div>
                 `
                 }
+                const subject = {
+                    en: 'EYEOU email contest validation',
+                    pt: 'EYEOU validação de e-mail'
+                }
                 mailOptions = {
                     to: req.params.email,
-                    subject: "Please confirm your Email account with verification code",
+                    subject: lang == 'en' ? subject.en : subject.pt,
                     html: lang == 'en' ? html.en : html.pt
                 }
 
@@ -195,6 +199,10 @@ exports.findEmail = (req, res) => {
                     </div>
                 `
                 }
+                const subject = {
+                    en: 'EYEOU email contest validation',
+                    pt: 'EYEOU validação de e-mail'
+                }
                 Users.findByIdAndUpdate(Usersres[0]._id, {
                     email: Usersres[0].email,
                     acess_code: val
@@ -219,7 +227,7 @@ exports.findEmail = (req, res) => {
                         });
                         mailOptions = {
                             to: data.email,
-                            subject: "Please confirm your Email account with verification code",
+                            subject: lang == 'en' ? subject.en : subject.pt,
                             html: lang == 'en' ? html.en : html.pt
                         }
 

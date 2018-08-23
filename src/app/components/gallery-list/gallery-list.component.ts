@@ -63,7 +63,8 @@ export class GalleryListComponent implements OnInit {
 
   // Form submission
   submitform() {
-    this.paymentForm.value.price = this.paymentForm.value.price.toString();
+    this.paymentForm.value.price = this.paymentForm.value.price.toString().substr(0, this.paymentForm.value.price.toString().indexOf('€'));
+    console.log(this.paymentForm.value.price)
     this.paymentForm.value.name = "Contest Fees";
     this.paymentForm.value.sku = "111";
     this.paymentForm.value.currency = "EUR";

@@ -29,7 +29,7 @@ export const en = {
 
   howitWorks: 'HOW IT WORKS',
   howitWorksList1: 'Choose one of the listed contests',
-  howitWorksList2: 'Pay the entry fees to submit up to 10 photos',
+  howitWorksList2: 'Pay the entry fee to submit up to 10 photos',
   howitWorksList3: 'Upload your photos',
   howitWorksList4: 'Wait until the end of the contest (end or REVIEW phase)',
   howitWorksList5: 'The results will be sent to your email address with the final list of winners and your photos final position. You will also be informed about the judge decision based on these ',

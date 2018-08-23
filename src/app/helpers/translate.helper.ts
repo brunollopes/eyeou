@@ -32,7 +32,7 @@ export const en = {
   howitWorksList2: 'Pay the entry fees to submit up to 10 photos',
   howitWorksList3: 'Upload your photos',
   howitWorksList4: 'Wait until the end of the contest (end or REVIEW phase)',
-  howitWorksList5: 'The results will be sent to your email address with the final list of winners and your photo final position. You will also be informed about the judge decision based on these',
+  howitWorksList5: 'The results will be sent to your email address with the final list of winners and your photos final position. You will also be informed about the judge decision based on these ',
 
   socialTitle: 'GO SOCIAL AND SEE WHAT THEY SAY ABOUT US!',
   help: 'HELP',
@@ -79,6 +79,7 @@ export const en = {
   ambsP3: 'to: ',
   ambsP4: 'We will answer you in any case.',
 
+  rules: 'rules',
   rulesTitle: 'CONTEST RULES',
 
   rulesSection1: 'RULES',
@@ -322,7 +323,7 @@ export const pt = {
   weeklyContestTitle: 'NOVOS',
   weeklyContestTitleGreen: 'CONCURSOS',
   weeklyContestPlaceholderName: 'nome',
-  weeklyContestPlaceholderEmail: 'meuenderço@email.com',
+  weeklyContestPlaceholderEmail: 'omeuenderço@email.com',
   weeklyContestButton: 'AVISA ME!',
 
   paymentMethod: 'Método de pagamento',
@@ -382,7 +383,7 @@ export const pt = {
   ambsP4: 'Nós iremos responder-lhe em qualquer dos casos.',
 
   rulesTitle: 'REGRAS',
-
+  rules: 'regras',
   rulesSection1: 'Concursos',
   rulesP1: 'A qualquer momento estará em execução no site do EYEOU 6 concursos, 1 deles é um concurso grátis e os outros 5 são concursos pagos. O concurso grátis permite apenas o upload de uma foto por endereço de e-mail, enquanto o concurso pago permite até 10 fotos.',
   rulesP2: 'Há um número mínimo aceitável de entradas por (utilizador / endereço de e-mail) necessários (salvo algumas exceções) para iniciar o concurso. Se no final da data de submissão, esse número não for alcançado, o concurso será cancelado ou será estendido por mais alguns dias a anunciar no momento da decisão. Se o concurso for cancelado, todos os utilizadores receberão de volta o valor pago.',

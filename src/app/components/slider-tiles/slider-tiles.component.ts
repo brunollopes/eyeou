@@ -34,7 +34,8 @@ export class SliderTilesComponent implements OnInit {
             'Visitou todos os países do mundo (204 países) terminando em 2011/11/11'
           ]
         },
-        url: 'nlphotographer.com'
+        url: 'nlphotographer.com',
+        href: 'http://nlphotographer.com'
       },
       {
         name: 'Angelo Lucas',
@@ -55,7 +56,8 @@ export class SliderTilesComponent implements OnInit {
             'Cinegrafista, foto jornalista, documentarista'
           ]
         },
-        url: 'angelolucas.com'
+        url: 'angelolucas.com',
+        href: 'http://angelolucas.com'
       },
       {
         name: 'Tiago Maya',
@@ -76,7 +78,8 @@ export class SliderTilesComponent implements OnInit {
             'Trabalha dentro da moda e publicidade em Portugal e fora'
           ]
         },
-        url: 'tiagomaya.com'
+        url: 'tiagomaya.com',
+        href: 'http://tiagomaya.com'
       }
     ];
   }

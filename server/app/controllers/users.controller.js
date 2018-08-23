@@ -175,7 +175,7 @@ exports.findEmail = (req, res) => {
                     en: `
                     <div>
                         <h2>Hello!</h2> <br>
-                        <p>Your verification code to verify your email is: ${valnew}</p>
+                        <p>Your verification code to verify your email is: ${val}</p>
                         <p>Great Shots!</p>
                         <img 
                             src="https://lh5.googleusercontent.com/YVZbtwcEGhhTTLRn5ekI852WwZ-_3rhg5wi1dRN67CkobT_NM3X59k0pmCjTOWRlT0UHAAG059EF-8xAVkYbueeOVeXNPLpk0UwlZNFbvyRIsFPxgWIsCTiEEtfUkTa-vT_kAQP2"
@@ -186,7 +186,7 @@ exports.findEmail = (req, res) => {
                     pt: `
                     <div>
                         <h2>Olá!</h2> <br>
-                        <p>O código de verificação do seu email é: ${valnew}</p>
+                        <p>O código de verificação do seu email é: ${val}</p>
                         <p>Bons disparos!</p>
                         <img 
                             src="https://lh5.googleusercontent.com/YVZbtwcEGhhTTLRn5ekI852WwZ-_3rhg5wi1dRN67CkobT_NM3X59k0pmCjTOWRlT0UHAAG059EF-8xAVkYbueeOVeXNPLpk0UwlZNFbvyRIsFPxgWIsCTiEEtfUkTa-vT_kAQP2"

@@ -90,7 +90,7 @@
             <p *ngIf="!errMsg">{{translate.lang.emailValid}}</p>
             <p class="termcondition">
                 <input type="checkbox" style="position: relative; top: 1px" formControlName="term_condition">{{translate.lang.iAgree}}
-                <a (click)='hideModal()' routerLink="/terms">{{translate.lang.termsAndConditions}}</a>
+                <a href="/terms" target="_blank">{{translate.lang.termsAndConditions}}</a>
             </p>
 
             <div *ngIf="listingDetails.entry_price != 0 || listingDetails.entry_price != ''">

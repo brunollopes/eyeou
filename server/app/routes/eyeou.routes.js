@@ -30,7 +30,7 @@ module.exports = (app) => {
     // Retrieve a single User with usersId
     app.get('/users/:usersId', users.findOne);
     // Retrieve a single User with email
-    app.get('/users/email/:email', users.findEmail);
+    app.get('/users/email/:email/:lang', users.findEmail);
     // Update a User with usersId
     app.put('/users/:usersId', users.update);
     // Delete a User with usersId

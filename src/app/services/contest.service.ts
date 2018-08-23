@@ -50,8 +50,8 @@ export class ContestService {
       .catch(err => err);
   }
 
-  getAccesCode(data) {
-    return this.httpClient.get('/users/email/' + data, { headers: this.headers })
+  getAccesCode({email, lang}) {
+    return this.httpClient.get(`/users/email/${email}/${lang}`, { headers: this.headers })
       .toPromise()
       .then(res => res)
       .catch(err => err)

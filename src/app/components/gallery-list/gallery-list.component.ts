@@ -136,7 +136,7 @@ export class GalleryListComponent implements OnInit {
     if (first) {
       this.hideNumbers = false;
       this.paymentForm.addControl('numbers', new FormControl(null, Validators.required));
-      let user = await this.contestprovider.getAccesCode(email);
+      let user = await this.contestprovider.getAccesCode({email, lang: this.translate.lang.langKey});
       console.log(user)
       this.currentuser = user._id;
       localStorage.setItem('userId', user._id);

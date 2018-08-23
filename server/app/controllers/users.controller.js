@@ -84,7 +84,7 @@ exports.findOne = (req, res) => {
 
 // Find a single User with a UserId
 exports.findEmail = (req, res) => {
-
+    const { lang } = req.params;
     Users.find({
         email: req.params.email
     })
@@ -128,20 +128,34 @@ exports.findEmail = (req, res) => {
                     to: req.params.email,
                     host: 'smtp.gmail.com'
                 });
+                const html = {
+                    en: `
+                    <div>
+                        <h2>Hello!</h2> <br>
+                        <p>Your verification code to verify your email is: ${valnew}</p>
+                        <p>Great Shots!</p>
+                        <img 
+                            src="https://lh5.googleusercontent.com/YVZbtwcEGhhTTLRn5ekI852WwZ-_3rhg5wi1dRN67CkobT_NM3X59k0pmCjTOWRlT0UHAAG059EF-8xAVkYbueeOVeXNPLpk0UwlZNFbvyRIsFPxgWIsCTiEEtfUkTa-vT_kAQP2"
+                            style="width: 25%"
+                        />
+                    </div>
+                    `,
+                    pt: `
+                    <div>
+                        <h2>Hello!</h2> <br>
+                        <p>Your verification code to verify your email is: ${valnew}</p>
+                        <p>Great Shots!</p>
+                        <img 
+                            src="https://lh5.googleusercontent.com/YVZbtwcEGhhTTLRn5ekI852WwZ-_3rhg5wi1dRN67CkobT_NM3X59k0pmCjTOWRlT0UHAAG059EF-8xAVkYbueeOVeXNPLpk0UwlZNFbvyRIsFPxgWIsCTiEEtfUkTa-vT_kAQP2"
+                            style="width: 25%"
+                        />
+                    </div>
+                `
+                }
                 mailOptions = {
                     to: req.params.email,
                     subject: "Please confirm your Email account with verification code",
-                    html: `
-                                <div>
-                                    <h2>Hello!</h2> <br>
-                                    <p>Your verification code to verify your email is: ${valnew}</p>
-                                    <p>Great Shots!</p>
-                                    <img 
-                                        src="https://lh5.googleusercontent.com/YVZbtwcEGhhTTLRn5ekI852WwZ-_3rhg5wi1dRN67CkobT_NM3X59k0pmCjTOWRlT0UHAAG059EF-8xAVkYbueeOVeXNPLpk0UwlZNFbvyRIsFPxgWIsCTiEEtfUkTa-vT_kAQP2"
-                                        style="width: 25%"
-                                    />
-                                </div>
-                            `
+                    html: lang == 'en' ? html.en : html.pt
                 }
 
                 smtpTransport.sendMail(mailOptions, function (error, response) {
@@ -157,7 +171,30 @@ exports.findEmail = (req, res) => {
             } else {
 
                 var val = Math.floor(1000 + Math.random() * 9000);
-
+                const html = {
+                    en: `
+                    <div>
+                        <h2>Hello!</h2> <br>
+                        <p>Your verification code to verify your email is: ${valnew}</p>
+                        <p>Great Shots!</p>
+                        <img 
+                            src="https://lh5.googleusercontent.com/YVZbtwcEGhhTTLRn5ekI852WwZ-_3rhg5wi1dRN67CkobT_NM3X59k0pmCjTOWRlT0UHAAG059EF-8xAVkYbueeOVeXNPLpk0UwlZNFbvyRIsFPxgWIsCTiEEtfUkTa-vT_kAQP2"
+                            style="width: 25%"
+                        />
+                    </div>
+                    `,
+                    pt: `
+                    <div>
+                        <h2>Olá!</h2> <br>
+                        <p>O código de verificação do seu email é: ${valnew}</p>
+                        <p>Bons disparos!</p>
+                        <img 
+                            src="https://lh5.googleusercontent.com/YVZbtwcEGhhTTLRn5ekI852WwZ-_3rhg5wi1dRN67CkobT_NM3X59k0pmCjTOWRlT0UHAAG059EF-8xAVkYbueeOVeXNPLpk0UwlZNFbvyRIsFPxgWIsCTiEEtfUkTa-vT_kAQP2"
+                            style="width: 25%"
+                        />
+                    </div>
+                `
+                }
                 Users.findByIdAndUpdate(Usersres[0]._id, {
                     email: Usersres[0].email,
                     acess_code: val
@@ -183,17 +220,7 @@ exports.findEmail = (req, res) => {
                         mailOptions = {
                             to: data.email,
                             subject: "Please confirm your Email account with verification code",
-                            html: `
-                                <div>
-                                    <h2>Hello!</h2> <br>
-                                    <p>Your verification code to verify your email is: ${val}</p>
-                                    <p>Great Shots!</p>
-                                    <img 
-                                        src="https://lh5.googleusercontent.com/YVZbtwcEGhhTTLRn5ekI852WwZ-_3rhg5wi1dRN67CkobT_NM3X59k0pmCjTOWRlT0UHAAG059EF-8xAVkYbueeOVeXNPLpk0UwlZNFbvyRIsFPxgWIsCTiEEtfUkTa-vT_kAQP2"
-                                        style="width: 25%"
-                                    />
-                                </div>
-                            `
+                            html: lang == 'en' ? html.en : html.pt
                         }
 
                         smtpTransport.sendMail(mailOptions, function (error, response) {

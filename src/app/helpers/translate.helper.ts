@@ -27,7 +27,7 @@ export const en = {
   weeklyContestPlaceholderEmail: 'myaddress@email.com',
   weeklyContestButton: 'NOTIFY ME!',
 
-  howitWorks: 'COMO FUNCIONA',
+  howitWorks: 'HOW IT WORKS',
   howitWorksList1: 'Choose one of the listed contests',
   howitWorksList2: 'Pay the entry fees to submit up to 10 photos',
   howitWorksList3: 'Upload your photos',
@@ -310,7 +310,7 @@ export const pt = {
   to: 'a',
   langKey: 'pt',
   header: 'UM DISPARO PODE SER',
-  headerGreen: 'SEU DIA DE SORTE',
+  headerGreen: 'O SEU DIA DE SORTE',
   headerDesc: 'Participe nos nossos concursos e mostre',
   headerDesc2: 'quanto boas são as sua fotos',
   navLink1: 'SOBRE',
@@ -327,7 +327,7 @@ export const pt = {
 
   paymentMethod: 'Método de pagamento',
   iAgree: 'Eu concordo com estes',
-  howitWorks: 'HOW IT WORKS',
+  howitWorks: 'COMO FUNCIONA',
   pay: 'PAGAR',
   next: 'PRÓXIMO',
   howitWorksList1: 'Escolhe um dos concursos listados',

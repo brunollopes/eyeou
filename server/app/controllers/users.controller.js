@@ -133,12 +133,12 @@ exports.findEmail = (req, res) => {
                     subject: "Please confirm your Email account with verification code",
                     html: `
                                 <div>
-                                    <span>Hello!</span <br>
+                                    <h2>Hello!</h2> <br>
                                     <p>Your verification code to verify your email is: ${valnew}</p>
                                     <p>Great Shots!</p>
                                     <img 
                                         src="https://lh5.googleusercontent.com/YVZbtwcEGhhTTLRn5ekI852WwZ-_3rhg5wi1dRN67CkobT_NM3X59k0pmCjTOWRlT0UHAAG059EF-8xAVkYbueeOVeXNPLpk0UwlZNFbvyRIsFPxgWIsCTiEEtfUkTa-vT_kAQP2"
-                                        style="width: 10%"
+                                        style="width: 25%"
                                     />
                                 </div>
                             `
@@ -185,12 +185,12 @@ exports.findEmail = (req, res) => {
                             subject: "Please confirm your Email account with verification code",
                             html: `
                                 <div>
-                                    <span>Hello!</span <br>
+                                    <h2>Hello!</h2> <br>
                                     <p>Your verification code to verify your email is: ${val}</p>
                                     <p>Great Shots!</p>
                                     <img 
                                         src="https://lh5.googleusercontent.com/YVZbtwcEGhhTTLRn5ekI852WwZ-_3rhg5wi1dRN67CkobT_NM3X59k0pmCjTOWRlT0UHAAG059EF-8xAVkYbueeOVeXNPLpk0UwlZNFbvyRIsFPxgWIsCTiEEtfUkTa-vT_kAQP2"
-                                        style="width: 10%"
+                                        style="width: 25%"
                                     />
                                 </div>
                             `

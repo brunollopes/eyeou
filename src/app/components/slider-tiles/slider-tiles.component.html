@@ -6,10 +6,10 @@
       </div>
       <h3>{{titles.name}}</h3>
       <h6>{{titles.position[translate.lang.langKey]}}</h6>
-      <p>
-        {{titles.info[translate.lang.langKey]}}
+      <p *ngFor='let info of titles.info[translate.lang.langKey]' style="text-align: left; margin: 0">
+        {{info}}
       </p>
-      <p>
+      <p style="text-align: left">
         <a [href]="titles.url">{{titles.url}}</a>
       </p>
     </div>

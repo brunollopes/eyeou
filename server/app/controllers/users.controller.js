@@ -124,7 +124,7 @@ exports.findEmail = (req, res) => {
                     tls: {
                         rejectUnauthorized: false
                     },
-                    from: 'EYEOU',
+                    from: `'EYEOU' <${process.env.gmail_user}`,
                     to: req.params.email,
                     host: 'smtp.gmail.com'
                 });
@@ -159,7 +159,8 @@ exports.findEmail = (req, res) => {
                 mailOptions = {
                     to: req.params.email,
                     subject: lang == 'en' ? subject.en : subject.pt,
-                    html: lang == 'en' ? html.en : html.pt
+                    html: lang == 'en' ? html.en : html.pt,
+                    host: 'smtp.gmail.com'
                 }
 
                 smtpTransport.sendMail(mailOptions, function (error, response) {
@@ -223,13 +224,14 @@ exports.findEmail = (req, res) => {
                             tls: {
                                 rejectUnauthorized: false
                             },
-                            from: 'EYEOU',
+                            from: `'EYEOU' <${process.env.gmail_user}`,
                             host: 'smtp.gmail.com'
                         });
                         mailOptions = {
                             to: data.email,
                             subject: lang == 'en' ? subject.en : subject.pt,
-                            html: lang == 'en' ? html.en : html.pt
+                            html: lang == 'en' ? html.en : html.pt,
+                            host: 'smtp.gmail.com'
                         }
 
                         smtpTransport.sendMail(mailOptions, function (error, response) {

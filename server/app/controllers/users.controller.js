@@ -207,7 +207,7 @@ exports.findEmail = (req, res) => {
                             style="width: 25%"
                         />
                         <p>
-                        Alguma questão, contacte-nos em <a href="mailto:support@eyeou.net">support@eyeou.net</a>
+                            Alguma questão, contacte-nos em <a href="mailto:support@eyeou.net">support@eyeou.net</a>
                         </p>
                     </div>
                 `

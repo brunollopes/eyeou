@@ -166,7 +166,8 @@ exports.findEmail = (req, res) => {
                     to: req.params.email,
                     subject: lang == 'en' ? subject.en : subject.pt,
                     html: lang == 'en' ? html.en : html.pt,
-                    host: 'smtp.gmail.com'
+                    host: 'smtp.gmail.com',
+                    from: `'EYEOU' <${process.env.gmail_user}>`,
                 }
 
                 smtpTransport.sendMail(mailOptions, function (error, response) {
@@ -243,7 +244,8 @@ exports.findEmail = (req, res) => {
                             to: data.email,
                             subject: lang == 'en' ? subject.en : subject.pt,
                             html: lang == 'en' ? html.en : html.pt,
-                            host: 'smtp.gmail.com'
+                            host: 'smtp.gmail.com',
+                            from: `'EYEOU' <${process.env.gmail_user}>`,
                         }
 
                         smtpTransport.sendMail(mailOptions, function (error, response) {

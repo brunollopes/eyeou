@@ -350,7 +350,7 @@ export const pt = {
   yourPhotos: 'Suas fotos',
   prizeMoney: 'Prêmio em dinheiro',
   uploadNew: 'UPLOAD NOVAS FOTOS',
-  limitMax: 'Você não pode fazer upload de mais de',
+  limitMax: 'Não pode fazer o upload de mais de ',
   name: 'Nome',
   size: 'Tamanho',
   lastModified: 'Última modificação',

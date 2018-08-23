@@ -55,7 +55,7 @@ export class GalleryListComponent implements OnInit {
     this.accesVeirfy = false;
     this.errMsg = 'null';
     this.listingDetails = data;
-    this.paymentForm.controls['price'].setValue(data.entry_price);
+    this.paymentForm.controls['price'].setValue(data.entry_price + '€');
     this.finalAmount = data.entry_price;
     this.modalRef = this.modalService.show(template);
     localStorage.setItem('contestId', this.contestId);
@@ -71,7 +71,7 @@ export class GalleryListComponent implements OnInit {
 
     this.paypalProvider.PayWithPaypal(this.paymentForm.value)
       .then(res => {
-        localStorage.setItem('price', this.paymentForm.value.price.toString())
+        localStorage.setItem('price', this.paymentForm.value.price.toString().substr(0, this.paymentForm.value.price.toString().indexOf('€')))
         localStorage.setItem('name', 'Contest Fees')
         localStorage.setItem('sku', '111')
         localStorage.setItem('currency', 'EUR')

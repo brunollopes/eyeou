@@ -124,7 +124,7 @@ export class ContestComponent implements OnInit {
                 }
               });
               this.files.forEach(($file, i) => {
-                if ($file.relativePath == file.name) {
+                if ($file.name == file.name) {
                   this.files.splice(i, 1);
                 }
               });

@@ -332,7 +332,7 @@ export const pt = {
   pay: 'PAGAR',
   next: 'PRÓXIMO',
   howitWorksList1: 'Escolhe um dos concursos listados',
-  howitWorksList2: 'O número máximo de fotos permitido para upload são 10',
+  howitWorksList2: 'Pague a taxa de entrada para submeter até 10 fotos',
   howitWorksList3: 'Faça o upload das suas fotos',
   howitWorksList4: 'Espere até terminar o concurso (fim da fase de REVISÃO)',
   howitWorksList5: 'Os resultados serão enviados para o seu endereço de email com a lista final de vencedores e a posição final das suas fotos. Receberá também os detalhes sobre a decisão do júri com base nestas',

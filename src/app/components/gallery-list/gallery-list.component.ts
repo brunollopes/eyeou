@@ -72,7 +72,8 @@ export class GalleryListComponent implements OnInit {
 
     this.paypalProvider.PayWithPaypal(this.paymentForm.value)
       .then(res => {
-        localStorage.setItem('price', this.paymentForm.value.price.toString().substr(0, this.paymentForm.value.price.toString().indexOf('€')))
+        const priceEuro = this.paymentForm.value.price.toString()
+        localStorage.setItem('price', priceEuro)
         localStorage.setItem('name', 'Contest Fees')
         localStorage.setItem('sku', '111')
         localStorage.setItem('currency', 'EUR')

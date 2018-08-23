@@ -49,13 +49,16 @@ exports.execute = (req, res) => {
       }
     }]
   };
+  console.log(req.body.items[0])
   const { paymentId, user, contest } = req.body;
-
+  console.log('>> Executing Payment')
   paypal.payment.execute(paymentId, execute_payment_json, async (error, payment) => {
+    console.log('>> Exucted!');
     if (error) {
-      console.log('>> Error excuting:', error)
+      console.log('>> Error excuting:', error.response.details)
       res.status(403).send(error);
     } else {
+      console.log('>> SUCCESSFULLY EXECUTED')
       payment.transactions.forEach(transaction => {
         delete transaction.related_resources;
       })

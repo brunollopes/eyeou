@@ -35,7 +35,7 @@ export class NavbarComponent implements OnInit {
   // Header Fixed
   @HostListener('window:scroll', [])
   onWindowScroll($event) {
-    if (this.fixed && this.router.url === '/') {
+    if (this.fixed && (this.router.url === '/' || location.href.includes('/?'))) {
       if (window.scrollY >= 80) {
         document.getElementById('lead-navbar').style.background = "rgba(0,0,0,0.9)";
       }

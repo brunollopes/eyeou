@@ -87,7 +87,7 @@ exports.findSlug = (req, res) => {
             },
             populate: {
                 path: 'images',
-                select: ['image_path', 'createdAt', '_id'],
+                select: ['image_path', 'createdAt', '_id', 'thumbnail_path'],
                 match: {
                     contest: req.locals.contestId
                 }

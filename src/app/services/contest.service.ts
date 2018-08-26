@@ -13,6 +13,13 @@ export class ContestService {
     this.headers.append("content-Type", "Application/json");
   }
 
+  sendEmail({ name, email, subject, message }) {
+    return this.httpClient.post('/email/send', { name, email, subject, message })
+      .toPromise()
+      .then(res => res)
+      .catch(err => err)
+  }
+
   getContests() {
     return this.httpClient.get('/contests', { headers: this.headers })
       .toPromise()
@@ -21,7 +28,7 @@ export class ContestService {
   }
 
   getContestBySlug(slug, userId) {
-    let headers = new HttpHeaders({userId});
+    let headers = new HttpHeaders({ userId });
     return this.httpClient.get(`/contests/findBySlug/${slug}`, { headers })
       .toPromise()
       .then(res => res)
@@ -36,7 +43,7 @@ export class ContestService {
   }
 
   joinFreeContest(userId, contestId) {
-    let headers = new HttpHeaders({userId});
+    let headers = new HttpHeaders({ userId });
     return this.httpClient.post('/users/joinFreeContest', { userId, contestId }, { headers })
       .toPromise()
       .then(res => res)
@@ -50,7 +57,7 @@ export class ContestService {
       .catch(err => err);
   }
 
-  getAccesCode({email, lang}) {
+  getAccesCode({ email, lang }) {
     return this.httpClient.get(`/users/email/${email}/${lang}`, { headers: this.headers })
       .toPromise()
       .then(res => res)

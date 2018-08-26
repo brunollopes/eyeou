@@ -297,3 +297,13 @@ image-upload .customClass .img-ul-file-upload .img-ul-button {
         top: 30%;
     }
 }
+
+.google-button {
+    width: 80%;
+    border-radius: 4px !important;
+    background-color: #dd4b39;
+    color: #FFF;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px !important;
+    padding: 4px 15px !important;
+}

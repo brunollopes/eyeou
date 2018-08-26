@@ -1,13 +1,57 @@
-<app-navbar fixed="true" bgColor="true"></app-navbar>
+<div class="heroSection video-background-demo">
+  <div class="container">
+    <app-navbar fixed="true" bgColor="true"></app-navbar>
 
-<div class="container-fluid" style='padding-top: 125px'>
-  <div class="page-title">
-    <h2 class='text-center'>{{translate.lang.contactTitle}}</h2>
-  </div>
-  <div class="content">
-    <p>
-      {{translate.lang.contactP1}}
-      <a href="mailto:support@eyeou.net">support@eyeou.net</a>
-    </p>
+    <mat-card>
+      <div class="content">
+        <h2 class='text-center'>{{translate.lang.contactTitle}}</h2>
+      </div>
+      <p class='text-center'>
+        {{translate.lang.contactP1}}
+        <a href="mailto:support@eyeou.net">support@eyeou.net</a>
+      </p>
+      <div class="col-lg-4 col-xs-12">
+        <h3 class='text-center'>{{translate.lang.beOurAmbassador}}</h3>
+        <p>{{translate.lang.ambsP1}}</p>
+        <p>{{translate.lang.ambsP2}}</p>
+        <ul>
+          <li>{{translate.lang.ambsLi1}} </li>
+          <li>{{translate.lang.ambsLi2}}</li>
+          <li>{{translate.lang.ambsLi3}}</li>
+        </ul>
+        <p>
+          {{translate.lang.ambsP3}}
+          <a href="mailto:ambassador@eyeou.net">ambassador@eyeou.net</a>
+        </p>
+        <p>
+          {{translate.lang.ambsP4}}
+        </p>
+      </div>
+      <div class="col-lg-8 col-xs-12">
+        <h3 class='text-center'>{{translate.lang.sendUsAMessage}}</h3>
+        <form [formGroup]='contactForm'>
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Name" formControlName='name'>
+          </mat-form-field>
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Email" formControlName='email'>
+          </mat-form-field>
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Subject" formControlName='subject'>
+          </mat-form-field>
+          <mat-form-field class="full-width">
+            <textarea matInput placeholder="Message" formControlName='message'></textarea>
+          </mat-form-field>
+          <div class="text-center">
+            <button mat-button class='submit-button' (click)='sendMessage()' [disabled]='contactForm.invalid'>Send</button>
+          </div>
+          <div class='alert alert-success text-center' style="margin: 17px 0 0 0" *ngIf='msgSent'>
+            Your message has been sent.
+          </div>
+        </form>
+      </div>
+      <div class="clearfix"></div>
+    </mat-card>
+
   </div>
 </div>

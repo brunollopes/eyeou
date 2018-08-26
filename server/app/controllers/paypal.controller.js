@@ -49,33 +49,31 @@ exports.execute = (req, res) => {
       }
     }]
   };
-  console.log(req.body.items[0])
-  const { paymentId, user, contest } = req.body;
-  console.log('>> Executing Payment')
-  paypal.payment.execute(paymentId, execute_payment_json, async (error, payment) => {
-    console.log('>> Exucted!');
-    if (error) {
-      console.log('>> Error excuting:', error.response.details)
-      res.status(403).send(error);
-    } else {
-      console.log('>> SUCCESSFULLY EXECUTED')
-      payment.transactions.forEach(transaction => {
-        delete transaction.related_resources;
-      })
-      payment.user = user
-      payment.contest = contest
-      const trans = new Transaction(payment)
-      try {
-        console.log(user, contest)
-        const transSaved = await trans.save();
-        const userUpdate = await User.findOneAndUpdate({_id: user}, { $push: { contests: contest } }).exec();
-        const contestUpdate = await Contest.findOneAndUpdate({_id: contest}, { $push: { users: user } }).exec();
 
-        return res.status(200).json({ trans, contestUpdate })
-      } catch (e) {
-        console.log('>> ERROR SAVING', e)
-        return res.status(403).json(e)
-      }
+  const { paymentId, user, contest } = req.body;
+  paypal.payment.execute(paymentId, execute_payment_json, async (error, payment) => {
+    if (error) return res.status(403).send(error);
+
+    payment.transactions.forEach(transaction => {
+      delete transaction.related_resources;
+    })
+
+    payment.user = user
+    payment.contest = contest
+    const trans = new Transaction(payment)
+    try {
+      const transSaved = await trans.save();
+      const userUpdate = await User.findOneAndUpdate({ _id: user }, { $push: { contests: contest } }).exec();
+      const contestUpdate = await Contest.findOneAndUpdate({ _id: contest }, { $push: { users: user } }).exec();
+      const sentMail = await emailHelper.sendEmail({
+        $mailTo: process.env.owner_email,
+        $subject: `New Image Is Uploaded`,
+        $html: `<p>${userUpdate.email} payed the contest fee to join <strong>${contestUpdate.contest_name}</strong></p>`
+      })
+      return res.status(200).json({ trans, contestUpdate })
+    } catch (e) {
+      return res.status(403).json(e)
     }
+
   });
 }

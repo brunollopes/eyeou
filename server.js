@@ -1,71 +1,56 @@
 require('dotenv').config()
+const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-//Install express server
+const passport = require('passport');
 const express = require('express');
 const path = require('path');
 const paypal = require('paypal-rest-sdk');
+const cookieSession = require('cookie-session');
 const app = express();
 
+const passportGoogleSetup = require('./server/app/passport/gmail.strategy');
+
+app.use(cookieSession({
+  maxAge: 24 * 60 * 60 * 1000,
+  keys: [process.env.cookieSession]
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
 paypal.configure({
-    mode: 'live',    //sandbox or live
-    client_id: process.env.paypal_client_id,
-    client_secret: process.env.paypal_client_secret
+  mode: process.env.paypal_mode,    //sandbox or live
+  client_id: process.env.paypal_client_id,
+  client_secret: process.env.paypal_client_secret
 })
 
 //CORS middleware
 var allowCrossDomain = function (req, res, next) {
-    res.header('Access-Control-Allow-Origin', 'example.com');
-    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-    res.header('Access-Control-Allow-Headers', 'Content-Type, userId');
-
-    next();
+  res.header('Access-Control-Allow-Origin', 'example.com');
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, userId');
+  next();
 }
 
 app.use(allowCrossDomain);
-
-// Configuring the database
-const mongoose = require('mongoose');
-
-// Serve only the static files form the dist directory
 app.use(express.static(__dirname + '/dist'));
-
-// parse requests of content-type - application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true, limit: '1024mb' }))
-
-// parse requests of content-type - application/json
 app.use(bodyParser.json({ limit: '1024mb' }))
-
 mongoose.Promise = global.Promise;
 
-// Connecting to the database
 mongoose.connect(process.env.db_url, { useNewUrlParser: true })
-    .then(() => {
-        console.log("Successfully connected to the database");
-    }).catch(err => {
-        console.log('Could not connect to the database. Exiting now...' + err);
-        process.exit();
-    });
-
-
-
-app.use(function (req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-});
-
+  .then(() => {
+    console.log("Successfully connected to the database");
+  }).catch(err => {
+    process.exit();
+  });
 
 require('./server/app/routes/eyeou.routes.js')(app);
 
 app.get('/*', function (req, res) {
-
-    res.sendFile(path.join(__dirname + '/dist/index.html'));
+  res.sendFile(path.join(__dirname + '/dist/index.html'));
 });
 
-
-
-
-// Start the app by listening on the default Heroku port
 var server = app.listen(process.env.PORT || 8080, function () {
-    console.log("app running on port.", server.address().port);
+  console.log("app running on port.", server.address().port);
 });

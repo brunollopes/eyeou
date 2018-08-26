@@ -300,6 +300,9 @@ export const en = {
   privacyP23: 'Last updated: 20/08/2018',
 
   beOurAmbassador: 'BE OUR AMBASSADOR',
+
+  sendUsAMessage: 'SEND US A MESSAGE',
+  askForHelp: 'ASK FOR HELP'
 }
 
 export const pt = {
@@ -601,5 +604,8 @@ export const pt = {
   privacyP22: 'Caso ocorra algum evento em que os seus dados foram perdidos, roubados ou comprometidos, nossa política é alertá-lo via e-mail dentro de 48 horas após a nossa equipa tomar conhecimento do evento. Também reportaremos tal incidente a qualquer autoridade requerida.',
   privacyP23: 'Última atualização: 20/08/2018',
 
-  beOurAmbassador: 'SEJA NOSSO EMBAIXADOR'
+  beOurAmbassador: 'SEJA NOSSO EMBAIXADOR',
+
+  sendUsAMessage: 'SEND US A MESSAGE',
+  askForHelp: 'ASK FOR HELP'
 }

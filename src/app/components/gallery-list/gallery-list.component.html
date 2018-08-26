@@ -88,6 +88,12 @@
                 <div class="clearfix"></div>
             </div>
             <p *ngIf="!errMsg">{{translate.lang.emailValid}}</p>
+            <!-- <div class="row">
+                <button mat-button class='google-button'>
+                    <i class="fa fa-google-plus" aria-hidden="true"></i>
+                    <span>Sign in with Google</span>
+                </button>
+            </div> -->
             <p class="termcondition">
                 <input type="checkbox" style="position: relative; top: 1px" formControlName="term_condition">{{translate.lang.iAgree}}
                 <a href="/terms" target="_blank">{{translate.lang.termsAndConditions}}</a>

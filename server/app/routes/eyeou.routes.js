@@ -1,6 +1,8 @@
 const multer = require('multer');
+const passport = require('passport');
 const contestMiddlewares = require('../middlewares/contests.middleware');
 const userMiddlewares = require('../middlewares/users.middleware');
+const emailHelper = require('../helpers/mail.helper');
 
 module.exports = (app) => {
     const upload = multer();
@@ -43,6 +45,16 @@ module.exports = (app) => {
     app.post('/users/joinFreeContest', contestMiddlewares.isFreeContest, userMiddlewares.isUserInContest, users.joinFreeContest);
     // Notify user
     app.post('/users/notify', users.notify);
+    // Authenticate With Google
+    app.get('/auth/google', passport.authenticate('google', {
+        scope: ['profile', 'email']
+    }))
+    // Google Redirect URL
+    app.get('/auth/google/redirect', passport.authenticate('google'), (req, res) => {
+        res.redirect('/')
+    })
+    // Send Email
+    app.post('/email/send', emailHelper.sendEmailExpress);
 
 
     const images = require('../controllers/image.controller.js');

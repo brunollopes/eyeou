@@ -85,7 +85,7 @@ export class GalleryListComponent implements OnInit {
       .catch(err => console.log(this.contestId))
   }
 
-  hideModal(){
+  hideModal() {
     this.modalRef.hide()
   }
 
@@ -131,21 +131,17 @@ export class GalleryListComponent implements OnInit {
   }
 
   // Email validation
-  public async emailErr(first: Boolean = true) {
+  public async emailErr() {
     this.errMsg = this.paymentForm.get("email").invalid;
     let email = this.paymentForm.get("email").value;
 
-    if (first) {
-      this.hideNumbers = false;
-      this.paymentForm.addControl('numbers', new FormControl(null, Validators.required));
-      let user = await this.contestprovider.getAccesCode({email, lang: this.translate.lang.langKey});
-      console.log(user)
-      this.currentuser = user._id;
-      localStorage.setItem('userId', user._id);
-    } else {
-      this.hideNumbers = true;
-      this.paymentForm.removeControl('numbers');
-    }
+    this.hideNumbers = false;
+    this.paymentForm.addControl('numbers', new FormControl(null, Validators.required));
+    let user = await this.contestprovider.getAccesCode({ email, lang: this.translate.lang.langKey });
+    console.log(user)
+    this.currentuser = user._id;
+    localStorage.setItem('userId', user._id);
+
 
     if (!this.errMsg) {
       this.paypalProvider

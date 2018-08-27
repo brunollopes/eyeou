@@ -307,3 +307,11 @@ image-upload .customClass .img-ul-file-upload .img-ul-button {
     font-size: 16px !important;
     padding: 4px 15px !important;
 }
+
+.modal-dialog .modal-content .modal-body input {
+    margin-bottom: 0;
+    font-family: 'Roboto', serif;
+    color: #000;
+    border: none !important;
+    background-color: #E2E2E2;
+}

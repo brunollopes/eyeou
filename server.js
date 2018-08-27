@@ -9,6 +9,7 @@ const cookieSession = require('cookie-session');
 const app = express();
 
 const passportGoogleSetup = require('./server/app/passport/gmail.strategy');
+const passportLocalSetup = require('./server/app/passport/local.strategy');
 
 app.use(cookieSession({
   maxAge: 24 * 60 * 60 * 1000,

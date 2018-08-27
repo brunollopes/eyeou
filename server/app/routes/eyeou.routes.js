@@ -42,13 +42,19 @@ module.exports = (app) => {
     // Get User Images
     app.get('/users/:id/images', users.getUserImages);
     // Join Free Contest
-    app.post('/users/joinFreeContest', contestMiddlewares.isFreeContest, userMiddlewares.isUserInContest, users.joinFreeContest);
+    app.post('/users/joinFreeContest', contestMiddlewares.isFreeContest, userMiddlewares.isLoggedId, userMiddlewares.isUserInContest, users.joinFreeContest);
     // Notify user
     app.post('/users/notify', users.notify);
     // Authenticate With Google
     app.get('/auth/google', passport.authenticate('google', {
         scope: ['profile', 'email']
     }));
+    // Login with email and password
+    app.post('/auth/login', passport.authenticate('local'), (req, res) => res.status(200).json(req.user))
+    // Signup with email and password
+    app.post('/auth/signup', passport.authenticate('local-signup'), (req, res) => {
+        res.send(true)
+    })
     // Google Redirect URL
     app.get('/auth/google/redirect', passport.authenticate('google'), (req, res) => {
         res.redirect('/')

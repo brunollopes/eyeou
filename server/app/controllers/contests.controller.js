@@ -75,7 +75,7 @@ exports.findOne = (req, res) => {
 
 
 exports.findSlug = (req, res) => {
-    const userId = req.get('userId');
+    const userId = req.user._id
 
     Contests
         .findOne({ slug: req.params.slug })
@@ -116,7 +116,7 @@ exports.findSlug = (req, res) => {
 exports.findIdBySlug = (req, res) => {
     const { slug } = req.params;
     Contests
-        .findOne({ slug }, 'id')
+        .findOne({ slug }, ['id', 'type'])
         .exec()
         .then(contest => res.status(200).json(contest))
         .catch(err => res.status(403).json(err));

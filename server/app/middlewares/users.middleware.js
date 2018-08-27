@@ -16,7 +16,7 @@ const isLoggedId = (req, res, next) => {
 
 const isUserInContest = (req, res, next) => {
   req.locals = {};
-  const userId = req.get('userId');
+  const userId = req.user.id
 
   const query = {
     id: req.params.contestId || req.body.contestId,

@@ -24,10 +24,27 @@ export class AuthService {
       .catch(err => err);
   }
 
+  public login({ email, password }) {
+    return this.http.post('/auth/login', { email, password })
+      .toPromise()
+      .then(user => {
+        this.user = user;
+        return user;
+      })
+      .catch(err => err);
+  }
+
+  public signup({ email, password }) {
+    return this.http.post('/auth/signup', { email, password })
+      .toPromise()
+      .then(res => res)
+      .catch(err => err);
+  }
+
   public logout() {
     return this.http.get('/auth/logout')
       .toPromise()
       .then(res => res)
-      .catch(res => res);
+      .catch(err => err);
   }
 }

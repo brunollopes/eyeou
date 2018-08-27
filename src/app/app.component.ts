@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from './services/auth.service';
 import { LoginComponent } from './dialogs/login/login.component';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-root',
@@ -15,10 +15,9 @@ export class AppComponent implements OnInit {
     public dialog: MatDialog
   ) { }
 
-  openDialog(): void {
+  openLoginDialog(): void {
     const dialogRef = this.dialog.open(LoginComponent, {
-      width: '450px',
-      data: { test: 'test' }
+      width: '450px'
     });
   }
 

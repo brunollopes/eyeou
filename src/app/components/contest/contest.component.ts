@@ -4,7 +4,7 @@ import { UploadEvent, UploadFile, FileSystemEntry, FileSystemFileEntry } from 'n
 import { ContestService } from '../../services/contest.service';
 import { AppHelper } from '../../services/app.helper';
 import { TranslateService } from '../../services/translate.service';
-import { join } from 'path';
+import { AuthService } from '../../services/auth.service'
 
 @Component({
   selector: 'app-contest',
@@ -27,7 +27,8 @@ export class ContestComponent implements OnInit {
     public routeParams: ActivatedRoute,
     public contestProvider: ContestService,
     public helper: AppHelper,
-    public translate: TranslateService
+    public translate: TranslateService,
+    public auth: AuthService
   ) { }
 
   public browseFiles() {
@@ -61,8 +62,6 @@ export class ContestComponent implements OnInit {
             this.files = this.helper.removeDuplicates(this.files, 'name');
           }
         }
-        console.log('>> Preview Files', this.previewFiles);
-        console.log('>> Upload FIles', this.files)
       }
     } else {
       if ((this.files.length + 1 > this.uploadLimit) ||
@@ -128,7 +127,7 @@ export class ContestComponent implements OnInit {
                   this.files.splice(i, 1);
                 }
               });
-              const contest = await this.contestProvider.getContestBySlug(localStorage.getItem('contestSlug'), this.userId);
+              const contest = await this.contestProvider.getContestBySlug(localStorage.getItem('contestSlug'));
               this.contest = contest.contest;
               this.contest['timeRemains'] = this.helper.dateDiff(this.contest.review_time)
             } catch (e) {
@@ -163,7 +162,7 @@ export class ContestComponent implements OnInit {
                   this.files.splice(i, 1);
                 }
               });
-              const contest = await this.contestProvider.getContestBySlug(localStorage.getItem('contestSlug'), this.userId);
+              const contest = await this.contestProvider.getContestBySlug(localStorage.getItem('contestSlug'));
               this.contest = contest.contest;
               this.contest['timeRemains'] = this.helper.dateDiff(this.contest.review_time)
             } catch (e) {
@@ -187,44 +186,48 @@ export class ContestComponent implements OnInit {
     }
   }
 
-  ngOnInit() {
-    this.userId = localStorage.getItem('userId');
-
-    if (!this.userId) {
-      this.router.navigate(['/'])
-    } else {
-      this.routeParams.params.subscribe(async data => {
-        if (!data.slug) this.router.navigate(['/'])
-        try {
-          const contest = await this.contestProvider.getContestIdBySlug(data.slug);
-          this.contestId = contest._id;
-        } catch (e) {
-          this.router.navigate(['/']);
-        }
-        this.contestProvider.getContestBySlug(data.slug, this.userId)
-          .then(async res => {
-            if (!res.userIncluded) {
-              try {
-                const joinContest = await this.contestProvider.joinFreeContest(this.userId, this.contestId);
-                const contest = await this.contestProvider.getContestBySlug(data.slug, this.userId);
-                this.contest = contest.contest;
-                this.contest['timeRemains'] = this.helper.dateDiff(this.contest.review_time)
-                this.contest.prize_money == 0 ? this.uploadLimit = 1 : this.uploadLimit = 10;
-                localStorage.setItem('contestSlug', data.slug);
-              } catch (e) {
-                this.router.navigate(['/']);
-              }
-            } else {
-              this.contest = res.contest;
-              this.contest.prize_money == 0 ? this.uploadLimit = 1 : this.uploadLimit = 10;
-              this.contest['timeRemains'] = this.helper.dateDiff(this.contest.review_time)
-              localStorage.setItem('contestSlug', data.slug);
-            }
-          })
-          .catch(err => {
+  async ngOnInit() {
+    try {
+      const user = await this.auth.me()
+      this.userId = user._id
+      if (!this.userId) {
+        this.router.navigate(['/'])
+      } else {
+        this.routeParams.params.subscribe(async data => {
+          if (!data.slug) this.router.navigate(['/'])
+          try {
+            const contest = await this.contestProvider.getContestIdBySlug(data.slug);
+            this.contestId = contest._id;
+          } catch (e) {
             this.router.navigate(['/']);
-          });
-      });
+          }
+          this.contestProvider.getContestBySlug(data.slug)
+            .then(async res => {
+              if (!res.userIncluded) {
+                try {
+                  const joinContest = await this.contestProvider.joinFreeContest(this.contestId);
+                  const contest = await this.contestProvider.getContestBySlug(data.slug);
+                  this.contest = contest.contest;
+                  this.contest['timeRemains'] = this.helper.dateDiff(this.contest.review_time)
+                  this.contest.prize_money == 0 ? this.uploadLimit = 1 : this.uploadLimit = 10;
+                  localStorage.setItem('contestSlug', data.slug);
+                } catch (e) {
+                  this.router.navigate(['/']);
+                }
+              } else {
+                this.contest = res.contest;
+                this.contest.prize_money == 0 ? this.uploadLimit = 1 : this.uploadLimit = 10;
+                this.contest['timeRemains'] = this.helper.dateDiff(this.contest.review_time)
+                localStorage.setItem('contestSlug', data.slug);
+              }
+            })
+            .catch(err => {
+              this.router.navigate(['/']);
+            });
+        });
+      }
+    } catch (e) {
+
     }
   }
 

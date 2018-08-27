@@ -15,11 +15,11 @@ export class PaypalProvider {
       .catch(err => err)
   }
 
-  public ExecutePayment({ PayerID, paymentId, items, user, contest }) {
+  public ExecutePayment({ PayerID, paymentId, items, contest }) {
     return this.http.post(
       '/paypal/exec',
       {
-        PayerID, paymentId, items, user, contest
+        PayerID, paymentId, items, contest
       })
       .toPromise()
       .then(res => res)

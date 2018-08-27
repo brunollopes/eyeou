@@ -189,27 +189,35 @@ exports.delete = (req, res) => {
 };
 
 exports.verify = (req, res) => {
-  if (!req.body.email) {
+  const { acess_code, email } = req.body;
+
+  if (!email) {
     return res.status(400).send({
       message: "email name cannot be empty"
     })
   } else {
     Users.findOne({
-      email: req.body.email
+      email
     })
-      .then((data) => {
+      .then(async (data) => {
         if (!data) {
           return res.status(404).send({
             message: "Email not exists "
           });
         } else {
-          if (data.acess_code == req.body.acess_code) {
-            res.status(200).json({
-              message: true
-            });
-
+          if (data.acess_code == acess_code) {
+            try {
+              const user = await Users.findOneAndUpdate({ email }, { verified: true }).exec();
+              return res.status(200).json({
+                message: true
+              });
+            } catch (e) {
+              return res.status(200).json({
+                message: false
+              });
+            }
           } else {
-            res.status(200).json({
+            return res.status(200).json({
               message: false
             });
           }
@@ -228,7 +236,9 @@ exports.getUserImages = (req, res) => {
 }
 
 exports.joinFreeContest = (req, res) => {
-  const { userId, contestId } = req.body;
+  const { contestId } = req.body;
+  const userId = req.user._id;
+
   Promise
     .all([
       Users.findByIdAndUpdate(userId, { $push: { contests: contestId } }).exec(),

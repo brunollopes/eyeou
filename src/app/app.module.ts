@@ -72,7 +72,7 @@ import { SignupComponent } from './dialogs/signup/signup.component';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [ContestService, PaypalProvider, AppHelper],
+  providers: [ContestService, PaypalProvider, AppHelper, AppComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

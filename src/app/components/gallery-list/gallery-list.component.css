@@ -187,3 +187,16 @@
     margin: auto;
     text-align: center;
 }
+
+.duration {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+    display: inline-block;
+    margin-left: -7px;
+    padding: 2px 8px 4px 8px;
+}
+
+.modal-header {
+    padding: 0
+}

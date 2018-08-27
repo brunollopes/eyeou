@@ -27,9 +27,8 @@ export class ContestService {
       .catch(err => err)
   }
 
-  getContestBySlug(slug, userId) {
-    let headers = new HttpHeaders({ userId });
-    return this.httpClient.get(`/contests/findBySlug/${slug}`, { headers })
+  getContestBySlug(slug) {
+    return this.httpClient.get(`/contests/findBySlug/${slug}`)
       .toPromise()
       .then(res => res)
       .catch(err => err);
@@ -42,9 +41,8 @@ export class ContestService {
       .catch(err => err);
   }
 
-  joinFreeContest(userId, contestId) {
-    let headers = new HttpHeaders({ userId });
-    return this.httpClient.post('/users/joinFreeContest', { userId, contestId }, { headers })
+  joinFreeContest(contestId) {
+    return this.httpClient.post('/users/joinFreeContest', { contestId })
       .toPromise()
       .then(res => res)
       .catch(err => err);

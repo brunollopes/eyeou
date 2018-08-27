@@ -1,3 +1,37 @@
-<p>
-  signup works!
-</p>
+<div class="content">
+  <h3 class="text-center">SIGNUP</h3>
+
+  <form [formGroup]="signUpForm" (ngSubmit)="signup()">
+
+    <mat-form-field class="full-width">
+      <input type="text" matInput placeholder="Email" formControlName="email">
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <input type="password" matInput placeholder="Password" formControlName="password">
+    </mat-form-field>
+
+    <div class="text-center">
+      <button type="submit" class='submit-button' mat-button [disabled]="signUpForm.invalid">SIGNUP</button>
+    </div>
+
+    <div *ngIf="err" class="alert alert-danger text-center" style="margin-bottom: 0; margin-top: 20px; padding: 8px">
+      {{err}}
+    </div>
+    <div *ngIf="done" class="alert alert-success text-center" style="margin-bottom: 0; margin-top: 20px; padding: 8px">
+      {{done}}
+    </div>
+  </form>
+
+  <span class='bars'>OR</span>
+  <div class="clearfix"></div>
+
+  <div class="social-buttons">
+    <button mat-button class='full-width' (click)='loginWithGoogle()'>
+      <img width="20px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png"
+        alt="Google">
+      <span style="margin-left: 10px; font-family: 'Roboto', serif; font-size: 14px;">Continue with Google</span>
+    </button>
+  </div>
+
+</div>

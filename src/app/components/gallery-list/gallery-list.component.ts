@@ -7,6 +7,7 @@ import { ContestService } from "../../services/contest.service";
 import { PaypalProvider } from "../../services/paypal.service";
 import { AppHelper } from '../../services/app.helper';
 import { TranslateService } from '../../services/translate.service';
+import { AuthService } from '../../services/auth.service'
 
 @Component({
   selector: "app-gallery-list",
@@ -33,6 +34,7 @@ export class GalleryListComponent implements OnInit {
   public errMsg: any;
   public accesVeirfy: Boolean = false;
   public paymentForm: FormGroup;
+  public transactionChecked: Boolean
 
   constructor(
     public router: Router,
@@ -41,30 +43,39 @@ export class GalleryListComponent implements OnInit {
     public paypalProvider: PaypalProvider,
     public zone: NgZone,
     private fb: FormBuilder,
-    public helper: AppHelper,
-    public translate: TranslateService
+    public app: AppHelper,
+    public translate: TranslateService,
+    public auth: AuthService
   ) { }
 
   // Open payment email validation popup
-  openModal(template: TemplateRef<any>, data) {
-    this.hideNumbers = false;
-    this.paymentForm.addControl('numbers', new FormControl(null, Validators.required));
-    this.payed = false;
-    this.contestId = data._id;
-    this.paymentForm.reset();
-    this.accesVeirfy = false;
-    this.errMsg = 'null';
-    this.listingDetails = data;
-    this.paymentForm.controls['price'].setValue(data.entry_price + '€');
-    this.finalAmount = data.entry_price;
-    this.modalRef = this.modalService.show(template);
-    localStorage.setItem('contestId', this.contestId);
+  async openModal(template: TemplateRef<any>, data) {
+    console.log(data)
+    try {
+      const user = await this.auth.me()
+      if (user._id) {
+        this.payed = false;
+        this.contestId = data._id;
+        this.paymentForm.reset();
+        this.accesVeirfy = false;
+        this.errMsg = 'null';
+        this.listingDetails = data;
+        this.paymentForm.controls['price'].setValue(data.entry_price + '€');
+        this.finalAmount = data.entry_price;
+        this.modalRef = this.modalService.show(template);
+        localStorage.setItem('contestId', this.contestId);
+        this.checkTransaction()
+      } else {
+        this.app.openLoginDialog()
+      }
+    } catch (e) {
+      this.app.openLoginDialog()
+    }
   }
 
   // Form submission
   submitform() {
     this.paymentForm.value.price = this.paymentForm.value.price.toString().substr(0, this.paymentForm.value.price.toString().indexOf('€'));
-    console.log(this.paymentForm.value.price)
     this.paymentForm.value.name = "Contest Fees";
     this.paymentForm.value.sku = "111";
     this.paymentForm.value.currency = "EUR";
@@ -78,7 +89,7 @@ export class GalleryListComponent implements OnInit {
         localStorage.setItem('sku', '111')
         localStorage.setItem('currency', 'EUR')
         localStorage.setItem('quantity', '1')
-        localStorage.setItem('email', this.paymentForm.value.email)
+        localStorage.setItem('email', this.auth.user.email)
         localStorage.setItem('contestId', this.contestId)
         window.location.href = res.approval_url;
       })
@@ -92,8 +103,7 @@ export class GalleryListComponent implements OnInit {
   // Create form
   createForm() {
     this.paymentForm = this.fb.group({
-      email: [null, Validators.compose([Validators.required, Validators.email])],
-      numbers: [null, Validators.required],
+      paymentMethod: ['paypal'],
       price: [null, Validators.required],
       term_condition: [null, Validators.requiredTrue],
       name: [null],
@@ -110,8 +120,8 @@ export class GalleryListComponent implements OnInit {
       this.contestprovider.getContests().then((data: Array<any>) => {
         this.gallerylist = data;
         this.gallerylist.forEach(gallery => {
-          gallery.timeRemains = this.helper.dateDiff(gallery.review_time)
-          gallery.badge = this.helper.getBadge(gallery.openphase_duration)
+          gallery.timeRemains = this.app.dateDiff(gallery.review_time)
+          gallery.badge = this.app.getBadge(gallery.openphase_duration)
         })
         resolve(data)
       });
@@ -119,38 +129,27 @@ export class GalleryListComponent implements OnInit {
   }
 
   //Verify Access code with email
-  varifyCode() {
-    this.accesVeirfy = false;
-    this.accescode = this.paymentForm.get("numbers").value;
-    this.emailval = this.paymentForm.get('email').value;
-    this.contestprovider
-      .varifyCode({ email: this.emailval, acess_code: this.accescode })
-      .then(data => {
-        this.accesVeirfy = data.message;
-      });
-  }
+  // varifyCode() {
+  //   this.accesVeirfy = false;
+  //   this.accescode = this.paymentForm.get("numbers").value;
+  //   this.emailval = this.paymentForm.get('email').value;
+  //   this.contestprovider
+  //     .varifyCode({ email: this.emailval, acess_code: this.accescode })
+  //     .then(data => {
+  //       this.accesVeirfy = data.message;
+  //     });
+  // }
 
-  // Email validation
-  public async emailErr() {
-    this.errMsg = this.paymentForm.get("email").invalid;
-    let email = this.paymentForm.get("email").value;
-
-    this.hideNumbers = false;
-    this.paymentForm.addControl('numbers', new FormControl(null, Validators.required));
-    let user = await this.contestprovider.getAccesCode({ email, lang: this.translate.lang.langKey });
-    console.log(user)
-    this.currentuser = user._id;
-    localStorage.setItem('userId', user._id);
-
-
-    if (!this.errMsg) {
-      const contestId = localStorage.getItem('contestId')
-      try {
-        const transaction = await this.paypalProvider.CheckTransaction(contestId)
-        transaction ? this.payed = true : this.payed = false;
-      } catch (e) {
-        this.router.navigate(['/'])
-      }
+  // Check transactions for payed contests
+  public async checkTransaction() {
+    this.transactionChecked = false
+    const contestId = localStorage.getItem('contestId')
+    try {
+      const transaction = await this.paypalProvider.CheckTransaction(contestId)
+      transaction ? this.payed = true : this.payed = false;
+      this.transactionChecked = true
+    } catch (e) {
+      this.router.navigate(['/'])
     }
   }
 
@@ -170,15 +169,14 @@ export class GalleryListComponent implements OnInit {
       items = [{
         price: localStorage.getItem('price')
       }];
-
-    const user = localStorage.getItem('userId');
     const contest = localStorage.getItem('contestId')
 
     if (paymentId && token && PayerID) {
       this.paypalProvider.ExecutePayment({
-        PayerID, paymentId, items, user, contest
+        PayerID, paymentId, items, contest
       })
         .then(res => {
+          console.log(res.contestUpdate)
           this.router.navigate(['contest', res.contestUpdate.slug])
         })
         .catch(err => console.log(err))

@@ -3,10 +3,12 @@ const paypalHelper = require('../helpers/paypal.helper');
 const Transaction = require('../models/transactions.model');
 const User = require('../models/users.model');
 const Contest = require('../models/contest.model');
+const emailHelper = require('../helpers/mail.helper');
 
 exports.check = (req, res) => {
   const { contest } = req.params
   const user = req.user._id;
+  
   Transaction
     .findOne({ user, contest })
     .exec()
@@ -77,6 +79,7 @@ exports.execute = (req, res) => {
       })
       return res.status(200).json({ trans, contestUpdate })
     } catch (e) {
+      console.log(e)
       return res.status(403).json(e)
     }
 

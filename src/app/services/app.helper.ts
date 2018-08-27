@@ -1,7 +1,16 @@
 import { Injectable } from '@angular/core';
+import { AppComponent } from '../app.component'
 
 @Injectable()
 export class AppHelper {
+
+  constructor(
+    public app: AppComponent
+  ) {  }
+
+  public openLoginDialog() {
+    this.app.openLoginDialog()
+  }
 
   public getBadge($days) {
     const badges = [

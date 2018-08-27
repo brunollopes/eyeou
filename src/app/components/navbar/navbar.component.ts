@@ -1,6 +1,6 @@
 import { Component, OnInit, HostListener, Input } from '@angular/core';
-import { Router } from '@angular/router';
-import { AppComponent } from '../../app.component'
+import { Router } from '@angular/router'
+import { AppHelper } from '../../services/app.helper'
 import { TranslateService } from '../../services/translate.service';
 import { AuthService } from '../../services/auth.service'
 
@@ -14,7 +14,7 @@ export class NavbarComponent implements OnInit {
   @Input() bgColor;
 
   constructor(
-    public app: AppComponent,
+    public app: AppHelper,
     public translate: TranslateService,
     public router: Router,
     public auth: AuthService
@@ -54,7 +54,7 @@ export class NavbarComponent implements OnInit {
   }
 
   openDialog() {
-    this.app.openDialog()
+    this.app.openLoginDialog()
   }
 
   async logout() {

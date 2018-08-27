@@ -1,5 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms'
+import { MatDialog, MatDialogRef } from '@angular/material';
+import { SignupComponent } from '../../dialogs/signup/signup.component';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -8,13 +11,26 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 })
 export class LoginComponent implements OnInit {
 
+  public loginForm: FormGroup
+  public loggingIn: Boolean
+  public err: any
+
   constructor(
+    public fb: FormBuilder,
     public dialogRef: MatDialogRef<LoginComponent>,
-    @Inject(MAT_DIALOG_DATA) public data
+    public auth: AuthService,
+    public dialog: MatDialog
   ) { }
 
   onNoClick(): void {
     this.dialogRef.close();
+  }
+
+  openSignupDialog(): void {
+    this.dialogRef.close()
+    const dialogRef = this.dialog.open(SignupComponent, {
+      width: '450px'
+    });
   }
 
   loginWithGoogle() {
@@ -22,8 +38,29 @@ export class LoginComponent implements OnInit {
     location.href = `${url}/auth/google`;
   }
 
+  login() {
+    if (this.loginForm.valid) {
+      this.err = null
+      const { email, password } = this.loginForm.value
+      this.auth.login({ email, password })
+        .then(res => {
+          if (res.error) {
+            this.err = 'Invalid email or password'
+          } else {
+            this.dialogRef.close(LoginComponent)
+          }
+        })
+        .catch(err => {
+          this.err = 'Unknown error occured, please try again later.'
+        })
+    }
+  }
+
   ngOnInit() {
-    console.log(this.data)
+    this.loginForm = this.fb.group({
+      email: [null, Validators.compose([Validators.email, Validators.required])],
+      password: [null, Validators.required]
+    })
   }
 
 }

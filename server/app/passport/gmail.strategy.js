@@ -24,13 +24,13 @@ passport.use(
       .exec((err, currentUser) => {
         if (err) console.log(err)
         if (currentUser) {
-          // User Exists
           done(null, currentUser)
         } else {
           new User({
             fullName: profile.displayName,
             googleID: profile.id,
-            email: profile.emails[0].value
+            email: profile.emails[0].value,
+            verified: true
           }).save((err, user) => {
             if (err) console.log(err)
             done(null, user)

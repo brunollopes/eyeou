@@ -32,6 +32,8 @@ import { AmbassadorComponent } from './pages/ambassador/ambassador.component';
 import { HelpComponent } from './pages/help/help.component';
 import { TermsComponent } from './pages/terms/terms.component';
 import { DurationPipe } from './pipes/duration.pipe';
+import { LoginComponent } from './dialogs/login/login.component';
+import { SignupComponent } from './dialogs/signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +53,13 @@ import { DurationPipe } from './pipes/duration.pipe';
     AmbassadorComponent,
     HelpComponent,
     TermsComponent,
-    DurationPipe
+    DurationPipe,
+    LoginComponent,
+    SignupComponent
+  ],
+  entryComponents: [
+    LoginComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,

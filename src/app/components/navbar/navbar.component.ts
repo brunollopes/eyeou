@@ -1,6 +1,8 @@
 import { Component, OnInit, HostListener, Input } from '@angular/core';
 import { Router } from '@angular/router';
+import { AppComponent } from '../../app.component'
 import { TranslateService } from '../../services/translate.service';
+import { AuthService } from '../../services/auth.service'
 
 @Component({
   selector: 'app-navbar',
@@ -11,7 +13,12 @@ export class NavbarComponent implements OnInit {
   @Input() fixed;
   @Input() bgColor;
 
-  constructor(public translate: TranslateService, public router: Router) {
+  constructor(
+    public app: AppComponent,
+    public translate: TranslateService,
+    public router: Router,
+    public auth: AuthService
+  ) {
 
   }
 
@@ -24,7 +31,7 @@ export class NavbarComponent implements OnInit {
     if (!this.fixed) {
       document.getElementById('lead-navbar').style.background = "rgba(0,0,0,0.9)";
     } else {
-      document.getElementById('lead-navbar').style.height = "90px"
+      document.getElementById('lead-navbar').style.height = "53px"
     }
   }
 
@@ -41,8 +48,23 @@ export class NavbarComponent implements OnInit {
       }
       else {
         document.getElementById('lead-navbar').style.background = "transparent";
-        document.getElementById('lead-navbar').style.height = "100px"
+        document.getElementById('lead-navbar').style.height = "53px"
       }
+    }
+  }
+
+  openDialog() {
+    this.app.openDialog()
+  }
+
+  async logout() {
+    try {
+      const logout = await this.auth.logout();
+      const user = await this.auth.me();
+      console.log('>> LOGOUT:', logout);
+      console.log('>> USERL', user);
+    } catch (e) {
+      console.log(e)
     }
   }
 

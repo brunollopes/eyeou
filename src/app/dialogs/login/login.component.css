@@ -1,0 +1,45 @@
+h3 {
+  font-family: 'Roboto', serif;
+  font-weight: 200;
+  font-size: 20px;
+  margin: 0
+}
+
+.submit-button {
+  background-color: #45bf55;
+  color: #FFF;
+  text-transform: uppercase
+}
+
+.full-width {
+  width: 100%
+}
+
+span.bars {
+  position: relative;
+  display: block;
+  text-align: center;
+  margin: 15px 0 10px 0;
+  font-size: 17px;
+  font-family: 'Roboto', serif;
+}
+
+span.bars::after {
+  content: '';
+  width: 40%;
+  position: absolute;
+  height: 1px;
+  background-color: #45bf55;
+  top: 50%;
+  left: 0
+}
+
+span.bars::before {
+  content: '';
+  width: 40%;
+  position: absolute;
+  height: 1px;
+  background-color: #45bf55;
+  top: 50%;
+  right: 0
+}

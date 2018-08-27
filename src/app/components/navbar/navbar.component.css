@@ -17,33 +17,36 @@
 
 .navHeader.herocontainer{
   padding: 20px;
-  transition: top 0.7s ease-in;
-  -webkit-transition: top 0.7s ease-in !important;
-  -moz-transition: top 0.7s ease-in;
+  transition: all 0.2s ease-in-out;
 }
 
 .navHeader .sitelogo img {
-  max-height: 110px !important;
+  max-height: 70px !important;
 }
 
 .navHeader .navigations #navbarCollapse .navbar-nav li {
   position: relative;
 }
 
-.navigations #navbarCollapse .navbar-nav li.active a {
+.navigations #navbarCollapse .navbar-nav li a {
+  padding: 0;
+  background-color: transparent !important
+}
+
+.navigations #navbarCollapse .navbar-nav li.active a button {
   color: #45bf55;
 }
 
-.navigations #navbarCollapse .navbar-nav li:hover a {
+.navigations #navbarCollapse .navbar-nav li:hover a button {
   color: #45bf55;
   background-color: transparent !important
 }
 
-.navigations #navbarCollapse .navbar-nav li a {
-  font-weight: 500;
-  font-size: 18px;
+.navigations #navbarCollapse .navbar-nav li a button {
+  font-family: 'Roboto', serif;
+  font-weight: 100;
+  font-size: 16px;
   color: #fff;
-  padding: 5px 18px;
   cursor: pointer;
 }
 
@@ -72,22 +75,32 @@
   display: none;
 }
 
+.navbar {
+  min-height: auto !important;
+  margin: 0 !important;
+  border: none !important
+}
+
 @media only screen and (max-width:767px) {
   #navbarCollapse {
       position: fixed;
       width: 100%;
-      top: 80px;
       background-color: #000;
       right: 0;
       z-index: 9999;
       opacity: 1 !important;
-      padding-left: 40px;
+      padding: 10px 12px
+  }
+  #navbarCollapse ul {
+    margin: 0;
+    padding: 0
+  }
+  #navbarCollapse ul li a button {
+    width: 100%;
+    text-align: center
   }
   .navbar-brand {
-    left: -35px;
-  }
-  #navbarCollapse .navbar-nav{
-      padding:30px 0;
+    left: -20px;
   }
   .navbar-dark .navbar-toggler {
       z-index: 99999999;
@@ -97,8 +110,5 @@
 @media only screen and (min-width: 768px) {
   .hide-small {
     display: none;
-  }
-  .navigations {
-    top: 15px
   }
 }

@@ -5,7 +5,8 @@ const User = require('../models/users.model');
 const Contest = require('../models/contest.model');
 
 exports.check = (req, res) => {
-  const { user, contest } = req.params
+  const { contest } = req.params
+  const user = req.user._id;
   Transaction
     .findOne({ user, contest })
     .exec()
@@ -26,7 +27,6 @@ exports.create = (req, res) => {
 
   paypal.payment.create(paymentJSON, (error, payment) => {
     if (error) {
-      console.log(error)
       res.status(403).send(error);
     } else {
       for (var index = 0; index < payment.links.length; index++) {
@@ -50,9 +50,14 @@ exports.execute = (req, res) => {
     }]
   };
 
-  const { paymentId, user, contest } = req.body;
+  const { paymentId, contest } = req.body;
+  const user = req.user._id;
+
   paypal.payment.execute(paymentId, execute_payment_json, async (error, payment) => {
-    if (error) return res.status(403).send(error);
+    if (error) {
+      console.log('>> PAYPAL EXEC ERROR:', error)
+      return res.status(403).send(error);
+    }
 
     payment.transactions.forEach(transaction => {
       delete transaction.related_resources;

@@ -144,15 +144,13 @@ export class GalleryListComponent implements OnInit {
 
 
     if (!this.errMsg) {
-      this.paypalProvider
-        .CheckTransaction({ user: localStorage.getItem('userId'), contest: localStorage.getItem('contestId') })
-        .then(transaction => {
-          console.log(transaction)
-          transaction ? this.payed = true : this.payed = false;
-        })
-        .catch(err => {
-          this.router.navigate(['/'])
-        })
+      const contestId = localStorage.getItem('contestId')
+      try {
+        const transaction = await this.paypalProvider.CheckTransaction(contestId)
+        transaction ? this.payed = true : this.payed = false;
+      } catch (e) {
+        this.router.navigate(['/'])
+      }
     }
   }
 

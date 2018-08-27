@@ -1,0 +1,26 @@
+<div class="content">
+  <h3 class="text-center">LOGIN</h3>
+  <form>
+    <mat-form-field class="full-width">
+      <input matInput placeholder="Email">
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <input matInput placeholder="Password">
+    </mat-form-field>
+
+    <div class="text-center">
+      <button class='submit-button' mat-button>LOGIN</button>
+    </div>
+  </form>
+
+  <span class='bars'>OR</span>
+  <div class="clearfix"></div>
+
+  <div class="social-buttons">
+    <button mat-button class='full-width' (click)='loginWithGoogle()'>
+      <img width="20px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" alt="Google">
+      <span style="margin-left: 10px; font-family: 'Roboto', serif; font-size: 14px;">Login with Google</span>
+    </button>
+  </div>
+
+</div>

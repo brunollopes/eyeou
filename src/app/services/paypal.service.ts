@@ -3,16 +3,16 @@ import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class PaypalProvider {
-  constructor(public http: HttpClient) {}
+  constructor(public http: HttpClient) { }
 
-  public PayWithPaypal({name, sku, price, currency, quantity}): Promise<any> {
+  public PayWithPaypal({ name, sku, price, currency, quantity }): Promise<any> {
     return this.http.post(
       '/paypal/pay',
-      {items: [{name, sku, price, currency, quantity}]}
+      { items: [{ name, sku, price, currency, quantity }] }
     )
-    .toPromise()
-    .then(res => res)
-    .catch(err => err)
+      .toPromise()
+      .then(res => res)
+      .catch(err => err)
   }
 
   public ExecutePayment({ PayerID, paymentId, items, user, contest }) {
@@ -26,10 +26,10 @@ export class PaypalProvider {
       .catch(err => err)
   }
 
-  public CheckTransaction({user, contest}) {
-    return this.http.get(`/paypal/check/${user}/${contest}`)
-    .toPromise()
-    .then(res => res)
-    .catch(err => err)
+  public CheckTransaction(contestId) {
+    return this.http.get(`/paypal/check/${contestId}`)
+      .toPromise()
+      .then(res => res)
+      .catch(err => err)
   }
 }

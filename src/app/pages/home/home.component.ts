@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ContestService } from '../../services/contest.service';
 import { TranslateService } from '../../services/translate.service';
+import { AuthService } from '../../services/auth.service'
 
 @Component({
   selector: 'app-home',

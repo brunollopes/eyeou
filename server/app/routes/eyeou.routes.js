@@ -21,7 +21,7 @@ module.exports = (app) => {
     // Delete a Note with ContestId
     app.delete('/contests/:contestsId', contests.delete);
     // Find Contest ID By Slug
-    app.get('/contests/findIdBySlug/:slug', contests.findIdBySlug);
+    app.get('/contests/findIdBySlug/:slug', userMiddlewares.isLoggedId, contests.findIdBySlug);
 
 
     const users = require('../controllers/users.controller.js');
@@ -48,10 +48,17 @@ module.exports = (app) => {
     // Authenticate With Google
     app.get('/auth/google', passport.authenticate('google', {
         scope: ['profile', 'email']
-    }))
+    }));
     // Google Redirect URL
     app.get('/auth/google/redirect', passport.authenticate('google'), (req, res) => {
         res.redirect('/')
+    });
+    // Get Authenticated User
+    app.get('/auth/me', (req, res) => res.status(200).json(req.user));
+    // Logout
+    app.get('/auth/logout', (req, res) => {
+        req.logout();
+        return res.status(200).send(true)
     })
     // Send Email
     app.post('/email/send', emailHelper.sendEmailExpress);
@@ -59,23 +66,23 @@ module.exports = (app) => {
 
     const images = require('../controllers/image.controller.js');
     //Upload image to aws and asave data in mongo
-    app.post('/images/uploads', upload.single("image"), images.uploadimage);
+    app.post('/images/uploads', upload.single("image"), userMiddlewares.isLoggedId, images.uploadimage);
     //find all images
     app.get('/images', images.findAll);
     // Retrieve a single image with contestid
     app.get('/images/:user_id', images.findOne);
     // Update a image with contestid
-    app.put('/images/:user_id', images.update);
+    app.put('/images/:user_id', userMiddlewares.isLoggedId, images.update);
     // Delete a image with contest_id
-    app.delete('/images/:user_id', images.delete);
+    app.delete('/images/:user_id', userMiddlewares.isLoggedId, images.delete);
 
 
     const paypal = require('../controllers/paypal.controller');
     // Create New Payment
-    app.post('/paypal/pay', paypal.create);
+    app.post('/paypal/pay', userMiddlewares.isLoggedId, paypal.create);
     // Execute Payment
-    app.post('/paypal/exec', paypal.execute);
+    app.post('/paypal/exec', userMiddlewares.isLoggedId, paypal.execute);
     // Check User Transaction For Contest
-    app.get('/paypal/check/:user/:contest', paypal.check);
+    app.get('/paypal/check/:contest', userMiddlewares.isLoggedId, paypal.check);
 
 }

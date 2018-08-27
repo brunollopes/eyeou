@@ -9,32 +9,52 @@
   <!-- Site navigation Menus -->
   <nav class="navbar navbar-expand-md navbar-dark navigations" style="float:right;">
     <button mat-icon-button type="button" class="navbar-toggle collapsed hide-small" data-toggle="collapse" data-target="#navbarCollapse"
-      aria-expanded="false" style="position: relative; top: 5px">
+      aria-expanded="false" style="position: relative; bottom: 13px">
       <mat-icon style="font-size: 35px; top: 5px; color: #FFF">menu</mat-icon>
     </button>
-    <div class="collapse navbar-collapse" id="navbarCollapse">
+    <div class="collapse navbar-collapse" id="navbarCollapse" style="position: relative; bottom: 8px;">
       <ul class="nav navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link" routerLink='/about'>{{translate.lang.navLink1}}
-            <span class="sr-only">(current)</span>
+          <a class="nav-link" routerLink='/about'>
+            <button mat-button>{{translate.lang.navLink1}}</button>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/contact">{{translate.lang.navLink2}}</a>
+          <a class="nav-link" routerLink="/contact">
+            <button mat-button>{{translate.lang.navLink2}}</button>
+          </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink='/rules'>{{translate.lang.navLink3}}</a>
+          <a class="nav-link" routerLink='/rules'>
+            <button mat-button>{{translate.lang.navLink3}}</button>
+          </a>
+        </li>
+        <li class="nav-item" *ngIf='!auth.user'>
+          <a class="nav-link" (click)='openDialog()'>
+            <button mat-button>LOGIN</button>
+          </a>
+        </li>
+        <li class="nav-item" *ngIf='auth.user'>
+          <a class="nav-link" (click)='logout()'>
+            <button mat-button>LOGOUT</button>
+          </a>
         </li>
         <li class="nav-item lang">
-          <a *ngIf="translate.showLang == 'pt'" (click)="switchLanguage('en')">EN
-            <span>
-              <img src="assets/images/UK-flag.png" />
-            </span>
+          <a *ngIf="translate.showLang == 'pt'" (click)="switchLanguage('en')">
+            <button mat-button>
+              EN
+              <span>
+                <img src="assets/images/UK-flag.png" style="position: relative; bottom: 3px;" />
+              </span>
+            </button>
           </a>
-          <a *ngIf="translate.showLang == 'en'" (click)="switchLanguage('pt')">PT
-            <span>
-              <img src="assets/images/PTflag.png" />
-            </span>
+          <a *ngIf="translate.showLang == 'en'" (click)="switchLanguage('pt')">
+            <button mat-button>
+              PT
+              <span>
+                <img src="assets/images/PTflag.png" style="position: relative; bottom: 3px;" />
+              </span>
+            </button>
           </a>
         </li>
       </ul>

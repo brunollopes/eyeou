@@ -6,6 +6,14 @@ const Contests = require('../models/contest.model');
 const Users = require('../models/users.model.js');
 const Images = require('../models/image.model.js');
 
+const isLoggedId = (req, res, next) => {
+  const { user } = req;
+  if (user)
+    next();
+  else
+    return res.status(403).json({ message: "Authorization Error" });
+}
+
 const isUserInContest = (req, res, next) => {
   req.locals = {};
   const userId = req.get('userId');
@@ -33,5 +41,6 @@ const isUserInContest = (req, res, next) => {
 }
 
 module.exports = {
-  isUserInContest
+  isUserInContest,
+  isLoggedId
 }

@@ -14,7 +14,8 @@ var s3 = new AWS.S3();
 
 exports.uploadimage = (req, res) => {
     const { file } = req;
-    const { user_id, contest_name } = req.body;
+    const { contest_name } = req.body;
+    const user_id = req.user._id
 
     sharp(file.buffer)
         .resize(600, 400)

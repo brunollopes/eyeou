@@ -7,6 +7,7 @@ const path = require('path');
 const paypal = require('paypal-rest-sdk');
 const cookieSession = require('cookie-session');
 const app = express();
+const env = process.env.NODE_ENV || 'dev'
 
 const passportFacebookSetup = require('./server/app/passport/facebook.strategy');
 const passportGoogleSetup = require('./server/app/passport/gmail.strategy');

@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { MatDialog, MatDialogRef } from '@angular/material';
 import { SignupComponent } from '../../dialogs/signup/signup.component';
 import { AuthService } from '../../services/auth.service';
+import { TranslateService } from '../../services/translate.service'
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,8 @@ export class LoginComponent implements OnInit {
     public fb: FormBuilder,
     public dialogRef: MatDialogRef<LoginComponent>,
     public auth: AuthService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    public translate: TranslateService
   ) { }
 
   onNoClick(): void {
@@ -45,7 +47,7 @@ export class LoginComponent implements OnInit {
       this.auth.login({ email, password })
         .then(res => {
           if (res.error) {
-            this.err = 'Invalid email or password'
+            this.err = this.translate.lang.invalidEmail
           } else {
             this.dialogRef.close(LoginComponent)
           }

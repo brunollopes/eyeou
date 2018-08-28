@@ -74,7 +74,7 @@ exports.execute = (req, res) => {
       const contestUpdate = await Contest.findOneAndUpdate({ _id: contest }, { $push: { users: user } }).exec();
       const sentMail = await emailHelper.sendEmail({
         $mailTo: process.env.owner_email,
-        $subject: `New Image Is Uploaded`,
+        $subject: `New Contest Subscription`,
         $html: `<p>${userUpdate.email} payed the contest fee to join <strong>${contestUpdate.contest_name}</strong></p>`
       })
       return res.status(200).json({ trans, contestUpdate })

@@ -2,6 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { MatDialog, MatDialogRef } from '@angular/material';
 import { AuthService } from '../../services/auth.service';
+import { TranslateService } from '../../services/translate.service'
 
 @Component({
   selector: 'app-signup',
@@ -19,7 +20,8 @@ export class SignupComponent implements OnInit {
     public fb: FormBuilder,
     public dialogRef: MatDialogRef<SignupComponent>,
     public auth: AuthService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    public translate: TranslateService
   ) { }
 
   signup() {
@@ -29,7 +31,7 @@ export class SignupComponent implements OnInit {
       this.auth.signup({ email, password })
         .then(res => {
           if (res.error) {
-            this.err = 'Invalid email or password'
+            this.err = this.translate.lang.emailExists
           } else {
             this.done = "Account created successfully"
             setTimeout(() => {

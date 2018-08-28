@@ -1,4 +1,7 @@
-<div class="content">
+<div class="content" style="position: relative;">
+  <button mat-icon-button (click)="dialogRef.close()" style="position: absolute; top: -22px; right:-23px">
+    <mat-icon>close</mat-icon>
+  </button>
   <h3 class="text-center">SIGNUP</h3>
 
   <form [formGroup]="signUpForm" (ngSubmit)="signup()">

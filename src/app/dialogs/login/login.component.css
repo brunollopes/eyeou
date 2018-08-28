@@ -6,7 +6,7 @@ h3 {
 }
 
 .submit-button {
-  background-color: #45bf55;
+  background-color: #27ae60;
   color: #FFF;
   text-transform: uppercase
 }
@@ -29,7 +29,7 @@ span.bars::after {
   width: 40%;
   position: absolute;
   height: 1px;
-  background-color: #45bf55;
+  background-color: #27ae60;
   top: 50%;
   left: 0
 }
@@ -39,7 +39,7 @@ span.bars::before {
   width: 40%;
   position: absolute;
   height: 1px;
-  background-color: #45bf55;
+  background-color:#27ae60;
   top: 50%;
   right: 0
 }

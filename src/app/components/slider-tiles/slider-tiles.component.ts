@@ -24,14 +24,14 @@ export class SliderTilesComponent implements OnInit {
             'Photographer teacher',
             'Professional traveler photographer',
             'Portuguese N1 as world traveler',
-            'Visited all countries in the world (204 countries) finishing it in 2011/11/11'
+            'Visited all countries in the world (204 countries) finishing it in 2011'
           ],
           pt: [
             'Mais de  30 anos como fotógrafo profissional',
             'Professor em fotografia',
             'Fotógrafo profissional de viagens',
             'Português número 1 mais viajado',
-            'Visitou todos os países do mundo (204 países) terminando em 2011/11/11'
+            'Visitou todos os países do mundo (204 países) terminando em 2011'
           ]
         },
         url: 'nlphotographer.com',

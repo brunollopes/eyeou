@@ -1,4 +1,7 @@
-<div class="content">
+<div class="content" style="position: relative;">
+  <button mat-icon-button (click)="dialogRef.close()" style="position: absolute; top: -22px; right:-23px">
+    <mat-icon>close</mat-icon>
+  </button>
   <h3 class="text-center">LOGIN</h3>
 
   <form [formGroup]="loginForm">
@@ -21,7 +24,7 @@
     </div>
   </form>
 
-  <span class='bars'>OR</span>
+  <span class='bars'>{{translate.lang.or}}</span>
   <div class="clearfix"></div>
 
   <div class="social-buttons">

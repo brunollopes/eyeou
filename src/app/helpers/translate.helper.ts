@@ -125,15 +125,20 @@ export const en = {
   rulesLi7: 'creativity',
   rulesP8: 'In accordance with the contest theme.',
   rulesP9: 'When the contest is finished all the submitted photos will have a score.',
-  rulesP10: 'The sum of the score from technic, quality, originality and creativity divided by 4 will give the final judge score.',
-  rulesP11: 'The sum of the each judge score divided by the number of judges, will give the final score of the photo.',
+  rulesP10: 'The sum of the score from technic, quality, originality and creativity for each judge divided by the number of judges will give the final  score of each criteria.',
+  rulesP11: 'The sum of the total of each criteria divided by 4 (number of criteria), will give the final score of the photo. ',
   rulesP12: 'The photos with the 3 higher final scores will be the winners.',
   rulesP13: 'Each criteria will be rated from 0 to 10 where 10 is the best of that criteria and 0 the worst.',
   rulesP14: 'For instance, on a contest with 3 judges, a photo will be scored like that:',
-  rulesLi8: 'Judge 1: technic: 7 quality: 6 originality: 8 creativity: 5 > Final judge score is 6.50',
-  rulesLi9: 'Judge 2: technic: 5 quality: 4 originality: 5 creativity: 6 > Final judge score is 5.00',
-  rulesLi10: 'Judge 3: technic: 8 quality: 6 originality: 7 creativity: 4 > Final judge score is 6.25',
+  rulesLi8: 'Judge 1: technic: 7 quality: 6 originality: 8 creativity: 5 ',
+  rulesLi9: 'Judge 2: technic: 5 quality: 4 originality: 5 creativity: 6 ',
+  rulesLi10: 'Judge 3: technic: 8 quality: 6 originality: 7 creativity: 4 ',
   rulesP15: 'Final score will be set to 5.92 (we take always the integer part of the division and the following 2 decimals)',
+  rulesRes1: 'Result by criteria',
+  rulesRes2: 'Technic: 6.67',
+  rulesRes3: 'Quality: 5.33',
+  rulesRes4: 'Originality: 6.67',
+  rulesRes5: 'Creativity: 5',
   rulesP16: 'In case of tie, the photo that was submitted first, will be the winner with second precision.',
 
   rulesSection5: 'Prize money limitations',
@@ -302,7 +307,11 @@ export const en = {
   beOurAmbassador: 'BE OUR AMBASSADOR',
 
   sendUsAMessage: 'SEND US A MESSAGE',
-  askForHelp: 'ASK FOR HELP'
+  askForHelp: 'ASK FOR HELP',
+  validation: 'VALIDATION',
+  or: 'OR',
+  emailExists: 'You have already an account, please login.',
+  invalidEmail: 'Invalid email or password.'
 }
 
 export const pt = {
@@ -430,14 +439,20 @@ export const pt = {
   rulesLi7: 'criatividade',
   rulesP8: 'De acordo com o tema do concurso.',
   rulesP9: 'Quando o concurso terminar, todas as fotos enviadas terão uma pontuação.',
-  rulesP10: 'A soma da pontuação da técnica, qualidade, originalidade e criatividade dividida por 4 dará a pontuação final de cada júri.',
-  rulesP11: 'A soma da pontuação de cada júri dividida pelo número de júris, dará a pontuação final da foto.',
+
+  rulesP10: 'A soma da pontuação da técnica, qualidade, originalidade e criatividade de cada júri dividida pelo número de júris dará a pontuação final de cada critério.',
+  rulesP11: 'A soma da pontuação total de cada critério dividida por 4 (número de critérios), dará a pontuação final da foto.',
   rulesP12: 'As fotos com os 3 maiores resultados finais serão os vencedores.',
   rulesP13: 'Cada um destes critérios será classificado de 0 a 10, sendo 10 o melhor e 0 o pior.',
   rulesP14: 'Por exemplo, em um concurso com 3 júris, uma foto será assim classificada:',
-  rulesLi8: 'Júri 1: técnica: 7 qualidade: 6 originalidade: 8 criatividade: 5 > Pontuação final do júri é 6,50',
-  rulesLi9: 'Júri 2: técnica: 5 qualidade: 4 originalidade: 5 criatividade: 6 > Pontuação final do júri é 5,00',
-  rulesLi10: 'Júri 3: técnica: 8 qualidade: 6 originalidade: 7 criatividade: 4 > Pontuação final do júri é 6,25',
+  rulesLi8: 'Júri 1: técnica: 7 qualidade: 6 originalidade: 8 criatividade: 5',
+  rulesLi9: 'Júri 2: técnica: 5 qualidade: 4 originalidade: 5 criatividade: 6',
+  rulesLi10: 'Júri 3: técnica: 8 qualidade: 6 originalidade: 7 criatividade: 4',
+  rulesRes1: 'Resultado por critério: ',
+  rulesRes2: 'Técnica: 6.67',
+  rulesRes3: 'Qualidade: 5.33',
+  rulesRes4: 'Originalidade: 6.67',
+  rulesRes5: 'Criatividade: 5',
   rulesP15: 'A pontuação final será então de 5,92 (parte inteira da divisão e as duas casas decimais seguintes)',
   rulesP16: 'Em caso de empate, a foto que foi submetida em primeiro será a vencedora, com precisão ao segundo.',
 
@@ -607,5 +622,10 @@ export const pt = {
   beOurAmbassador: 'SEJA NOSSO EMBAIXADOR',
 
   sendUsAMessage: 'SEND US A MESSAGE',
-  askForHelp: 'ASK FOR HELP'
+  askForHelp: 'ASK FOR HELP',
+
+  validation: 'VALIDAÇÃO',
+  or: 'OU',
+  emailExists: 'Já existe uma conta, por favor faça o login.',
+  invalidEmail: 'Email ou password inválido'
 }

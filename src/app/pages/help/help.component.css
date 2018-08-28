@@ -1,38 +1,11 @@
 .container-fluid {
-  padding: 40px 30px
+  padding: 80px 30px
 }
 
 h2 {
   margin: 0 0 15px 0
 }
 
-.heroSection {
-  position: relative;
-  background-image: url('../../../assets/images/background.jpg');
-  min-height: 100vh;
-  background-size: cover;
-  padding-top: 30px;
-}
-
-mat-card {
-  position: absolute;
-  bottom: 0;
-  left: 10%;
-  width: 80%;
-}
-
-.full-width {
-  width: 100%
-}
-
-.submit-button {
-  background-color: #45bf55;
-  color: #FFF;
-  text-transform: uppercase
-}
-
-textarea {
-  min-height: 60px;
-  max-height: 100px;
-  resize: vertical
+div.content {
+  min-height: 70vh
 }

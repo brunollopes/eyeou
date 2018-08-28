@@ -40,6 +40,11 @@ export class LoginComponent implements OnInit {
     location.href = `${url}/auth/google`;
   }
 
+  loginWithFacebook() {
+    const url = location.origin;
+    location.href = `${url}/auth/facebook`;
+  }
+
   login() {
     if (this.loginForm.valid) {
       this.err = null

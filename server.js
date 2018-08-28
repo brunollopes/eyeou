@@ -8,6 +8,7 @@ const paypal = require('paypal-rest-sdk');
 const cookieSession = require('cookie-session');
 const app = express();
 
+const passportFacebookSetup = require('./server/app/passport/facebook.strategy');
 const passportGoogleSetup = require('./server/app/passport/gmail.strategy');
 const passportLocalSetup = require('./server/app/passport/local.strategy');
 

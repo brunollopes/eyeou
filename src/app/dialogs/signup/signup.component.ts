@@ -50,6 +50,11 @@ export class SignupComponent implements OnInit {
     location.href = `${url}/auth/google`;
   }
 
+  loginWithFacebook() {
+    const url = location.origin;
+    location.href = `${url}/auth/facebook`;
+  }
+
   ngOnInit() {
     this.signUpForm = this.fb.group({
       email: [null, Validators.compose([Validators.email, Validators.required])],

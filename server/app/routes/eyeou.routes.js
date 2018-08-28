@@ -49,16 +49,20 @@ module.exports = (app) => {
     app.get('/auth/google', passport.authenticate('google', {
         scope: ['profile', 'email']
     }));
+    // Google Redirect URL
+    app.get('/auth/google/redirect', passport.authenticate('google'), (req, res) => { res.redirect('/') });
+    // Authenticate With Facebook
+    app.get('/auth/facebook', passport.authenticate('facebook', { 
+        scope: ['public_profile', 'email']
+    }));
+    // Facebook Redirect URL
+    app.get('/auth/facebook/redirect', passport.authenticate('facebook'), (req, res) => { res.redirect('/') });
     // Login with email and password
     app.post('/auth/login', passport.authenticate('local'), (req, res) => res.status(200).json(req.user))
     // Signup with email and password
     app.post('/auth/signup', passport.authenticate('local-signup'), (req, res) => {
         res.send(true)
     })
-    // Google Redirect URL
-    app.get('/auth/google/redirect', passport.authenticate('google'), (req, res) => {
-        res.redirect('/')
-    });
     // Get Authenticated User
     app.get('/auth/me', (req, res) => res.status(200).json(req.user));
     // Logout

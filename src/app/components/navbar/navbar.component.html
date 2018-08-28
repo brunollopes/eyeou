@@ -31,12 +31,12 @@
         </li>
         <li class="nav-item" *ngIf='!auth.user'>
           <a class="nav-link" (click)='openDialog()'>
-            <button mat-button>LOGIN</button>
+            <button mat-button class="submit-button">LOGIN</button>
           </a>
         </li>
         <li class="nav-item" *ngIf='auth.user'>
           <a class="nav-link" (click)='logout()'>
-            <button mat-button>LOGOUT</button>
+            <button mat-button style="color: #F00">LOGOUT</button>
           </a>
         </li>
         <li class="nav-item lang">

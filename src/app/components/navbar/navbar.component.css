@@ -112,3 +112,9 @@
     display: none;
   }
 }
+
+.submit-button {
+  background-color: #27ae60;
+  color: #FFF;
+  text-transform: uppercase
+}

@@ -88,6 +88,9 @@
         </p>
 
         <div *ngIf="listingDetails.entry_price">
+          <p style='margin: 10px 0'>{{translate.lang.noPaypal}}
+            <a routerLink="/contact">{{translate.lang.contactUs}}</a>
+          </p>
           <button type="button" *ngIf="!payed" class="btn btn-success" [disabled]="paymentForm.invalid && transactionChecked" (click)="submitform()">{{translate.lang.pay}}</button>
           <button type="button" *ngIf="payed" class="btn btn-success" [disabled]="paymentForm.invalid && transactionChecked" (click)="navigateToContestPage(listingDetails.slug)">
             {{translate.lang.next}}

@@ -2,42 +2,46 @@
   <button mat-icon-button (click)="dialogRef.close()" style="position: absolute; top: -22px; right:-23px">
     <mat-icon>close</mat-icon>
   </button>
-  <h3 class="text-center">LOGIN</h3>
+  <div>
+    <h3 class="text-center">LOGIN</h3>
+  </div>
 
-  <form [formGroup]="loginForm">
+  <div>
+    <form [formGroup]="loginForm">
 
-    <mat-form-field class="full-width">
-      <input type="text" matInput placeholder="Email" formControlName="email">
-    </mat-form-field>
+      <mat-form-field class="full-width">
+        <input type="text" matInput placeholder="Email" formControlName="email">
+      </mat-form-field>
 
-    <mat-form-field class="full-width">
-      <input type="password" matInput placeholder="Password" formControlName="password">
-    </mat-form-field>
+      <mat-form-field class="full-width">
+        <input type="password" matInput placeholder="Password" formControlName="password">
+      </mat-form-field>
 
-    <div class="text-center">
-      <button type="submit" (click)="openSignupDialog()" mat-button style="margin-right: 10px">SIGNUP</button>
-      <button type="submit" (click)="login()" class='submit-button' mat-button [disabled]="loginForm.invalid">LOGIN</button>
-    </div>
+      <div class="text-center">
+        <button type="submit" (click)="openSignupDialog()" mat-button style="margin-right: 10px">SIGNUP</button>
+        <button type="submit" (click)="login()" class='submit-button' mat-button [disabled]="loginForm.invalid">LOGIN</button>
+      </div>
 
-    <div *ngIf="err" class="alert alert-danger text-center" style="margin-bottom: 0; margin-top: 20px; padding: 8px">
-      {{err}}
-    </div>
-  </form>
+      <div *ngIf="err" class="alert alert-danger text-center" style="margin-bottom: 0; margin-top: 20px; padding: 8px">
+        {{err}}
+      </div>
+    </form>
 
-  <span class='bars'>{{translate.lang.or}}</span>
-  <div class="clearfix"></div>
+    <span class='bars'>{{translate.lang.or}}</span>
+    <div class="clearfix"></div>
 
-  <div class="social-buttons">
-    <button mat-button class='full-width' (click)='loginWithGoogle()'>
-      <img width="20px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png"
-        alt="Google">
-      <span style="margin-left: 10px; font-family: 'Roboto', serif; font-size: 14px;">Login with Google</span>
-    </button>
+    <div class="social-buttons">
+      <button mat-button class='full-width' (click)='loginWithGoogle()'>
+        <img width="20px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png"
+          alt="Google">
+        <span style="margin-left: 10px; font-family: 'Roboto', serif; font-size: 14px;">Login with Google</span>
+      </button>
 
-    <button mat-button class='full-width' style="background-color: #4267B2; color: #FFF; margin-top: 10px" (click)="loginWithFacebook()">
+      <button mat-button class='full-width' style="background-color: #4267B2; color: #FFF; margin-top: 10px" (click)="loginWithFacebook()">
         <i class="fa fa-facebook-official" aria-hidden="true" style="font-size: 19px;"></i>
         <span style="font-family: 'Roboto', serif; margin-left: 9px; font-size: 14px; position: relative; top: 1px;">Login with Facebook</span>
-    </button>
+      </button>
+    </div>
   </div>
 
 </div>

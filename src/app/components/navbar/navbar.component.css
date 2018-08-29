@@ -37,11 +37,6 @@
   color: #45bf55;
 }
 
-.navigations #navbarCollapse .navbar-nav li:hover a button {
-  color: #45bf55;
-  background-color: transparent !important
-}
-
 .navigations #navbarCollapse .navbar-nav li a button {
   font-family: 'Roboto', serif;
   font-weight: 100;

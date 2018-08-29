@@ -68,7 +68,7 @@ module.exports = (app) => {
     // Logout
     app.get('/auth/logout', (req, res) => {
         req.logout();
-        return res.status(200).send(true)
+        return res.redirect('/')
     })
     // Send Email
     app.post('/email/send', emailHelper.sendEmailExpress);

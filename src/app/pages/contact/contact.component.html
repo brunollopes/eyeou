@@ -1,17 +1,17 @@
 <app-navbar fixed="true" bgColor="true">
 </app-navbar>
 
-<div style="padding: 70px 5px;">
+<div style="padding: 125px 5px 40px 5px;">
+  <div class="page-title">
+    <h2 class='text-center'>{{translate.lang.contactTitle}}</h2>
+  </div>
   <mat-card>
-    <div class="content">
-      <h2 class='text-center'>{{translate.lang.contactTitle}}</h2>
-    </div>
-    <p class='text-center'>
-      {{translate.lang.contactP1}}
-      <a href="mailto:support@eyeou.net">support@eyeou.net</a>
-    </p>
     <div class="col-xs-12">
       <h3 class='text-center'>{{translate.lang.sendUsAMessage}}</h3>
+      <p class='text-center'>
+        {{translate.lang.contactP1}}
+        <a href="mailto:support@eyeou.net">support@eyeou.net</a>
+      </p>
       <form [formGroup]='contactForm'>
         <mat-form-field class="full-width">
           <input matInput [placeholder]="translate.lang.name" formControlName='name'>

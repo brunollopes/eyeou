@@ -33,8 +33,13 @@
   background-color: transparent !important
 }
 
+.navigations #navbarCollapse .navbar-nav li:not(.login) button:hover {
+  color: #5cb85c;
+  background-color: transparent !important
+}
+
 .navigations #navbarCollapse .navbar-nav li.active a button {
-  color: #45bf55;
+  color: #5cb85c;
 }
 
 .navigations #navbarCollapse .navbar-nav li a button {
@@ -109,7 +114,7 @@
 }
 
 .submit-button {
-  background-color: #27ae60;
+  background-color: #5cb85c;
   color: #FFF;
   text-transform: uppercase;
   font-family: 'Roboto', serif

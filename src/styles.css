@@ -316,3 +316,9 @@ image-upload .customClass .img-ul-file-upload .img-ul-button {
     border: none !important;
     background-color: #E2E2E2;
 }
+
+.mat-button.trans .mat-button-focus-overlay,
+.mat-button.trans .mat-button-active-overlay {
+    background-color: transparent !important
+}
+

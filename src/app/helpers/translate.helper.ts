@@ -83,7 +83,7 @@ export const en = {
   rulesTitle: 'CONTEST RULES',
 
   rulesSection1: 'RULES',
-  rulesP1: 'At any moment it will be running on EYEOU website photograph contests. One is a FREE contest and the other five are entry paid contests. Free contest only allows 1 photo per email address, while paid contest allows to upload up to 10 photos.',
+  rulesP1: 'At any moment it will be running on EYEOU website photograph contests. One is a FREE contest and the other are entry paid contests. Free contest only allows 1 photo per email address, while paid contest allows to upload up to 10 photos.',
   rulesP2: 'There is a minimum acceptable number of entries (users, or email addresses) required (with few exceptions) to start the contest. If at the end of the submission date, this number is not reached the contest will be cancelled or extended few more days. If the contest is cancelled all the users will receive back the paid fee.',
   rulesP3: 'We can still continue with the contest even if the minimum number of acceptable entries is not reached, that decision will be decided by EYEOU directors, for each case individually.',
   rulesP4: 'Each contest will happen in 3 consecutive phases:',
@@ -103,11 +103,11 @@ export const en = {
   rulesTd3: '1 Month ( 30 days, 720 hours)',
   rulesTd4: '3 days ( 72 hours)',
   rulesTd5: '3 Months (90 days, 2160 hours)',
-  rulesTd6: '5 days ( 72 hours)',
+  rulesTd6: '5 days ( 120 hours)',
   rulesTd7: '6 Months (180 days, 4320 hours)',
-  rulesTd8: '5 days ( 72 hours)',
+  rulesTd8: '5 days ( 120 hours)',
   rulesTd9: '1 Year (360 days, 8640 hours)',
-  rulesTd10: '5 days ( 72 hours)',
+  rulesTd10: '5 days ( 120 hours)',
 
   rulesSection3: 'Contest Awards, entry fee (in euros €) and minimum required entries',
   rulesTh5: 'Awards',
@@ -141,7 +141,7 @@ export const en = {
   rulesRes5: 'Creativity: 5',
   rulesP16: 'In case of tie, the photo that was submitted first, will be the winner with second precision.',
 
-  rulesSection5: 'Winners',
+  rulesSection5: 'Prize money limitations',
   rulesP17: 'The prize money delivered to the winners will be based on the photo final score and the following scale, which allows us to ensure the ultimate quality of our contests:',
   rulesTh3: 'Scores',
   rulesTh4: 'Maximum prize money granted (€)',
@@ -317,7 +317,8 @@ export const en = {
   message: 'Message',
   msgSent: 'Your message has been sent',
   noPaypal: 'No paypal?',
-  contactUs: 'Contact Us'
+  contactUs: 'Contact Us',
+  send: 'SEND'
 }
 
 export const pt = {
@@ -403,7 +404,7 @@ export const pt = {
   rulesTitle: 'REGRAS',
   rules: 'regras',
   rulesSection1: 'Concursos',
-  rulesP1: 'A qualquer momento estará em execução no site do EYEOU concursos fotográficos, 1 deles é um concurso grátis e os outros 5 são concursos pagos. O concurso grátis permite apenas o upload de uma foto por endereço de e-mail, enquanto o concurso pago permite até 10 fotos.',
+  rulesP1: 'A qualquer momento estará em execução no site do EYEOU concursos fotográficos, 1 deles é um concurso grátis e os outros são concursos pagos. O concurso grátis permite apenas o upload de uma foto por endereço de e-mail, enquanto o concurso pago permite até 10 fotos.',
   rulesP2: 'Há um número mínimo aceitável de entradas por (utilizador / endereço de e-mail) necessários (salvo algumas exceções) para iniciar o concurso. Se no final da data de submissão, esse número não for alcançado, o concurso será cancelado ou será estendido por mais alguns dias a anunciar no momento da decisão. Se o concurso for cancelado, todos os utilizadores receberão de volta o valor pago.',
   rulesP3: 'Podemos continuar com o concurso mesmo que o número mínimo de entradas aceitáveis não seja alcançado, essa decisão será decidida pelos diretores da EYEOU.',
   rulesP4: 'Cada concurso terá 3 fases:',
@@ -462,10 +463,10 @@ export const pt = {
   rulesP15: 'A pontuação final será então de 5,92 (parte inteira da divisão e as duas casas decimais seguintes)',
   rulesP16: 'Em caso de empate, a foto que foi submetida em primeiro será a vencedora, com precisão ao segundo.',
 
-  rulesSection5: 'Vencedores',
+  rulesSection5: 'Limitações do prémio em dinheiro',
   rulesP17: 'O prémio em dinheiro a ser entregue aos vencedores será baseado na pontuação final da foto e na escala de qualidade a seguir apresentada, permitindo assim ter uma elevada qualidade nos nossos concursos:',
   rulesTh3: 'Pontuação',
-  rulesTh4: 'Prémio máximo garantido',
+  rulesTh4: 'Prémio máximo garantido (€)',
   rulesTd12: 'prémio máximo disponível',
   rulesP18: 'Os prémios serão distribuídos aos vencedores com base na percentagem apresentada (se a pontuação das fotos vencedoras assim permitir, como indicado acima):',
 
@@ -639,5 +640,7 @@ export const pt = {
   message: 'Mensagem',
   msgSent: 'A sua mensagem foi enviada',
   noPaypal: 'Sem paypal?',
-  contactUs: 'Contacte-nos'
+  contactUs: 'Contacte-nos',
+  
+  send: 'ENVIAR'
 }

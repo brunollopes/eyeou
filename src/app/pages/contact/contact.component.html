@@ -1,6 +1,7 @@
-<div class="container">
-  <app-navbar fixed="true" bgColor="true"></app-navbar>
+<app-navbar fixed="true" bgColor="true">
+</app-navbar>
 
+<div style="padding: 70px 5px;">
   <mat-card>
     <div class="content">
       <h2 class='text-center'>{{translate.lang.contactTitle}}</h2>
@@ -25,7 +26,7 @@
           <textarea matInput [placeholder]="translate.lang.message" formControlName='message'></textarea>
         </mat-form-field>
         <div class="text-center">
-          <button mat-button class='submit-button' (click)='sendMessage()' [disabled]='contactForm.invalid'>Send</button>
+          <button mat-button class='submit-button' (click)='sendMessage()' [disabled]='contactForm.invalid'>{{translate.lang.send}}</button>
         </div>
         <div class='alert alert-success text-center' style="margin: 17px 0 0 0" *ngIf='msgSent'>
           {{translate.lang.msgSent}}
@@ -34,5 +35,4 @@
     </div>
     <div class="clearfix"></div>
   </mat-card>
-
 </div>

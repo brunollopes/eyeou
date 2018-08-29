@@ -27,7 +27,7 @@ export class NavbarComponent implements OnInit {
     this.bgColor = (this.bgColor === 'true');
     window.scrollTo(0, 80);
     window.scrollTo(0, 0);
-    console.log(this.fixed, this.bgColor)
+
     if (!this.fixed) {
       document.getElementById('lead-navbar').style.background = "rgba(0,0,0,0.9)";
     } else {
@@ -42,7 +42,7 @@ export class NavbarComponent implements OnInit {
   // Header Fixed
   @HostListener('window:scroll', [])
   onWindowScroll($event) {
-    if (this.fixed && (this.router.url === '/' || location.href.includes('/?'))) {
+    if (this.fixed && (this.router.url === '/' || location.href.includes('/?') || location.href.includes('#'))) {
       if (window.scrollY >= 80) {
         document.getElementById('lead-navbar').style.background = "rgba(0,0,0,0.9)";
       }

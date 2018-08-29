@@ -27,5 +27,9 @@ export class AppComponent implements OnInit {
     } catch (e) {
       console.log(e)
     }
+    if (location.protocol == 'http:') {
+      const { href } = location;
+      location.href = href.replace('http', 'https');
+    }
   }
 }

@@ -34,7 +34,7 @@
 <!-- Gallery Popup Start -->
 <ng-template #template data-backdrop="false" data-keyboard="false">
   <div style="position: relative;">
-    <button mat-icon-button class='trans' (click)="modalRef.hide()" style="position: absolute; top: 0px; right: 0px">
+    <button mat-icon-button class='trans' (click)="hideModal()" style="position: absolute; top: 0px; right: 0px">
       <mat-icon>close</mat-icon>
     </button>
     <div class="modal-header">
@@ -72,23 +72,21 @@
         <form [formGroup]="paymentForm">
           <div class="row">
 
-            <div class='col-xs-6'>
-              <mat-form-field style="width: 100%" *ngIf="listingDetails.entry_price">
-                <input matInput placeholder="Payment Method" value="Paypal" readonly style="width: 100%">
-              </mat-form-field>
-
-              <div style="margin: -10px 0 0 0">
-                <mat-icon>info</mat-icon>
-                <p style=" margin: 0; text-align: left; display: inline-block; position: relative; top: -7px; left: 5px;">
-                  <span>{{translate.lang.noPaypal}}</span>
-                  <a routerLink="/contact">{{translate.lang.contactUs}}</a>
-                </p>
-              </div>
-            </div>
+            <mat-form-field class="col-xs-6" *ngIf="listingDetails.entry_price">
+              <input matInput placeholder="Payment Method" value="Paypal" readonly style="width: 100%">
+            </mat-form-field>
 
             <mat-form-field class="col-xs-6" *ngIf="listingDetails.entry_price">
               <input matInput formControlName="price" placeholder="Contest Fee" readonly style="width: 100%">
             </mat-form-field>
+
+            <div class='col-xs-12' style="margin: -10px 0 0 0" *ngIf='listingDetails.entry_price'>
+              <mat-icon style='font-size: 15px'>info</mat-icon>
+              <p style=" margin: 0; text-align: left; display: inline-block; position: relative; top: -2px; left: -4px;">
+                <span>{{translate.lang.noPaypal}} </span>
+                <a routerLink="/contact"> {{translate.lang.contactUs}}</a>
+              </p>
+            </div>
 
             <div class="clearfix"></div>
           </div>

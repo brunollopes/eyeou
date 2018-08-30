@@ -190,6 +190,11 @@
     .innerBlock p {
         margin-bottom: 10px;
     }
+    div.termcondition {
+        width: 115%;
+        position: relative;
+        left: -15px;
+    }
 }
 
 .mypaypalbtn {

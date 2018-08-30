@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener, Input } from '@angular/core';
+import { Component, OnInit, HostListener, Input, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router'
 import { AppHelper } from '../../services/app.helper'
 import { TranslateService } from '../../services/translate.service';
@@ -12,6 +12,7 @@ import { AuthService } from '../../services/auth.service'
 export class NavbarComponent implements OnInit {
   @Input() fixed;
   @Input() bgColor;
+  @ViewChild('button') button
 
   constructor(
     public app: AppHelper,
@@ -39,6 +40,10 @@ export class NavbarComponent implements OnInit {
     this.translate.changeLang(lang);
   }
 
+  public closeMenu() {
+    document.getElementById('button').click()
+  }
+
   // Header Fixed
   @HostListener('window:scroll', [])
   onWindowScroll($event) {
@@ -54,10 +59,12 @@ export class NavbarComponent implements OnInit {
   }
 
   openDialog() {
+    this.closeMenu()
     this.app.openLoginDialog()
   }
 
   async logout() {
+    this.closeMenu()
     try {
       const logout = await this.auth.logout();
       const user = await this.auth.me();

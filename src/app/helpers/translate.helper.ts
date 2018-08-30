@@ -95,8 +95,8 @@ export const en = {
   rulesLi3: 'as soon as the judge makes the final decision the results will be sent for all the participants and the contest will be set to CLOSED.',
 
   rulesSection2: 'Contest Times',
-  rulesTh1: 'Time duration of the',
-  rulesTh2: 'Time duration of the',
+  rulesTh1: 'Time duration of the OPEN phase',
+  rulesTh2: 'Time duration of the REVIEW phase',
   rulesPhase: 'phase',
   rulesTd1: '1 Week ( 7 days, 168 hours)',
   rulesTd2: '3 days ( 72 hours)',
@@ -417,7 +417,7 @@ export const pt = {
 
   rulesSection2: 'Tempo do concurso',
   rulesTh1: 'Tempo de duração da fase ABERTO',
-  rulesTh2: 'Tempo de duração da fase de REVISÃO',
+  rulesTh2: 'Tempo de duração da fase REVISÃO',
   rulesPhase: 'fase',
   rulesTd1: '1 Semana ( 7 dias, 168 horas)',
   rulesTd2: '3 dias ( 72 horas)',

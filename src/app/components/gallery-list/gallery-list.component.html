@@ -7,10 +7,12 @@
         <img [src]="listing.badge" style="width: 20px; height: 20px; position: relative; top: -1px; right: 8px;" />
         <span class='duration'>{{listing.openphase_duration | duration}}</span>
       </span>
-      <h2>{{listing.contest_name}}</h2>
-      <h2 *ngIf="listing.entry_price !== 0">{{listing.prize_money}}€</h2>
-      <h2 *ngIf="listing.entry_price == 0">Free</h2>
-      <p>{{listing.contest_title}}</p>
+      <div class="contest_name_app">
+        <h2>{{listing.contest_name}}</h2>
+        <h2 *ngIf="listing.entry_price !== 0">{{listing.prize_money}}€</h2>
+        <h2 *ngIf="listing.entry_price == 0">Free</h2>
+        <p>{{listing.contest_title}}</p>
+      </div>
     </div>
     <div class="contestcontent" (click)="openModal(template,listing)" style="cursor: pointer;">
       <p class="timeing">
@@ -66,15 +68,23 @@
       <div class="clearfix"></div>
 
       <div class="payment">
-        <h5 *ngIf="listingDetails.entry_price">{{translate.lang.paymentMethod}}
-          <span>i</span>
-        </h5>
+        <h5 *ngIf="listingDetails.entry_price">{{translate.lang.paymentMethod}}</h5>
         <form [formGroup]="paymentForm">
           <div class="row">
 
-            <mat-form-field class="col-xs-6" *ngIf="listingDetails.entry_price">
-              <input matInput placeholder="Payment Method" value="Paypal" readonly style="width: 100%">
-            </mat-form-field>
+            <div class='col-xs-6'>
+              <mat-form-field style="width: 100%" *ngIf="listingDetails.entry_price">
+                <input matInput placeholder="Payment Method" value="Paypal" readonly style="width: 100%">
+              </mat-form-field>
+
+              <div style="margin: -10px 0 0 0">
+                <mat-icon>info</mat-icon>
+                <p style=" margin: 0; text-align: left; display: inline-block; position: relative; top: -7px; left: 5px;">
+                  <span>{{translate.lang.noPaypal}}</span>
+                  <a routerLink="/contact">{{translate.lang.contactUs}}</a>
+                </p>
+              </div>
+            </div>
 
             <mat-form-field class="col-xs-6" *ngIf="listingDetails.entry_price">
               <input matInput formControlName="price" placeholder="Contest Fee" readonly style="width: 100%">
@@ -84,10 +94,6 @@
           </div>
 
           <div class="termcondition" style="text-align: center; margin: 10px 0; font-size: 13px;">
-            <p *ngIf="listingDetails.entry_price" style='margin: 10px 0'>
-              {{translate.lang.noPaypal}}
-              <a routerLink="/contact">{{translate.lang.contactUs}}</a>
-            </p>
             <input type="checkbox" style="position: relative; top: 3px" formControlName="term_condition">
             <p style="margin: 0 0 0 5px; display: inline-block;">{{translate.lang.iAgree}}
               <a href="/terms" target="_blank">{{translate.lang.termsAndConditions}}</a>

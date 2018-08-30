@@ -43,7 +43,7 @@ export class NavbarComponent implements OnInit {
   @HostListener('window:scroll', [])
   onWindowScroll($event) {
     if (this.fixed && (this.router.url === '/' || location.href.includes('/?') || location.href.includes('#'))) {
-      if (window.scrollY >= 80) {
+      if (window.scrollY >= 80 || window.screenY) {
         document.getElementById('lead-navbar').style.background = "rgba(0,0,0,0.9)";
       }
       else {
@@ -61,10 +61,9 @@ export class NavbarComponent implements OnInit {
     try {
       const logout = await this.auth.logout();
       const user = await this.auth.me();
-      console.log('>> LOGOUT:', logout);
-      console.log('>> USERL', user);
+      this.router.navigate(['/']);
     } catch (e) {
-      console.log(e)
+      console.log(e);
     }
   }
 

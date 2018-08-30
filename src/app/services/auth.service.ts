@@ -18,7 +18,7 @@ export class AuthService {
           return user;
         } else {
           this.user = null;
-          return null;
+          return {_id: null};
         }
       })
       .catch(err => err);

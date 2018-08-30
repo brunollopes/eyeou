@@ -136,11 +136,6 @@
 }
 
 @media only screen and (max-width: 768px) {
-    .contest-duration {
-        position: absolute;
-        top: -50px;
-        left: 5px
-    }
     .imageDesc h2 {
         font-size: 32px
     }
@@ -149,18 +144,6 @@
     }
     .innerBlock h3 {
         font-size: 27px
-    }
-}
-
-@media only screen and (max-width: 980px) {
-    .grid-element img {
-        height: 240px;
-    }
-    .innerBlock p {
-        margin-bottom: 10px;
-    }
-    .imageDesc {
-        top: 25%;
     }
 }
 
@@ -180,6 +163,32 @@
 @media only screen and (max-width: 640px) {
     .grid-element img {
         height: 250px;
+    }
+}
+
+@media only screen and (max-width: 1078px) {
+    .contest_name_app {
+        position: relative;
+        top: 20px
+    }
+    .contest_name_app h2 {
+        font-size: 30px;
+    }
+    .contest-duration {
+        left: 0;
+        top: -15px
+    }
+    .imageDesc {
+        top: 10%
+    }
+    .grid-element img {
+        height: 240px;
+    }
+    .innerBlock h3 {
+        font-size: 30px !important
+    }
+    .innerBlock p {
+        margin-bottom: 10px;
     }
 }
 

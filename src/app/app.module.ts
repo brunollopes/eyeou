@@ -34,6 +34,8 @@ import { TermsComponent } from './pages/terms/terms.component';
 import { DurationPipe } from './pipes/duration.pipe';
 import { LoginComponent } from './dialogs/login/login.component';
 import { SignupComponent } from './dialogs/signup/signup.component';
+import { ProcessingComponent } from './pages/processing/processing.component';
+import { FailedComponent } from './pages/failed/failed.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +57,9 @@ import { SignupComponent } from './dialogs/signup/signup.component';
     TermsComponent,
     DurationPipe,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    ProcessingComponent,
+    FailedComponent
   ],
   entryComponents: [
     LoginComponent,

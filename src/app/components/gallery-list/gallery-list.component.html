@@ -68,7 +68,7 @@
       <div class="clearfix"></div>
 
       <div class="payment">
-        <h5 *ngIf="listingDetails.entry_price">{{translate.lang.paymentMethod}}</h5>
+        <h5 *ngIf="listingDetails.entry_price">{{translate.lang.paymentMethod}} <mat-icon style='font-size: 15px'>info</mat-icon></h5>
         <form [formGroup]="paymentForm">
           <div class="row">
 
@@ -81,10 +81,9 @@
             </mat-form-field>
 
             <div class='col-xs-12' style="margin: -10px 0 0 0" *ngIf='listingDetails.entry_price'>
-              <mat-icon style='font-size: 15px'>info</mat-icon>
-              <p style=" margin: 0; text-align: left; display: inline-block; position: relative; top: -2px; left: -4px;">
+              <p style=" margin: 0; text-align: left; display: inline-block; position: relative; top: -2px; left: 0; font-size: 11px">
                 <span>{{translate.lang.noPaypal}} </span>
-                <a routerLink="/contact"> {{translate.lang.contactUs}}</a>
+                <a routerLink="/contact" (click)="hideModal()"> {{translate.lang.contactUs}}</a>
               </p>
             </div>
 

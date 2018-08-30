@@ -158,29 +158,9 @@ export class GalleryListComponent implements OnInit {
     this.router.navigate(['contest', $slug]);
   }
 
-  async ngOnInit() {
+  ngOnInit() {
     this.createForm();
-    let contests = await this.getContentData() as Array<any>;
-
-    let url = new URL(window.location.href),
-      paymentId = url.searchParams.get('paymentId'),
-      token = url.searchParams.get('token'),
-      PayerID = url.searchParams.get('PayerID'),
-      items = [{
-        price: localStorage.getItem('price')
-      }];
-    const contest = localStorage.getItem('contestId')
-
-    if (paymentId && token && PayerID) {
-      this.paypalProvider.ExecutePayment({
-        PayerID, paymentId, items, contest
-      })
-        .then(res => {
-          console.log(res.contestUpdate)
-          this.router.navigate(['contest', res.contestUpdate.slug])
-        })
-        .catch(err => console.log(err))
-    }
+    this.getContentData()
   }
 
 }

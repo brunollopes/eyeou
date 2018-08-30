@@ -316,9 +316,10 @@ export const en = {
   subject: 'Subject',
   message: 'Message',
   msgSent: 'Your message has been sent',
-  noPaypal: 'No paypal?',
-  contactUs: 'Contact Us',
-  send: 'SEND'
+  noPaypal: 'no paypal?',
+  contactUs: 'contact us',
+  send: 'SEND',
+  processing: 'Your transaction is being processed.'
 }
 
 export const pt = {
@@ -639,8 +640,9 @@ export const pt = {
   subject: 'Assunto',
   message: 'Mensagem',
   msgSent: 'A sua mensagem foi enviada',
-  noPaypal: 'Sem paypal?',
-  contactUs: 'Contacte-nos',
+  noPaypal: 'sem paypal?',
+  contactUs: 'contacte-nos',
   
-  send: 'ENVIAR'
+  send: 'ENVIAR',
+  processing: 'A sua transação está a ser processada'
 }

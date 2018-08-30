@@ -7,6 +7,7 @@ import { ContactComponent } from './pages/contact/contact.component';
 import { AmbassadorComponent } from './pages/ambassador/ambassador.component';
 import { HelpComponent } from './pages/help/help.component';
 import { TermsComponent } from './pages/terms/terms.component';
+import { ProcessingComponent } from './pages/processing/processing.component';
 
 export const ROUTES : Routes = [
   { path: '', component: HomeComponent},
@@ -17,5 +18,6 @@ export const ROUTES : Routes = [
   { path: 'contact', component: ContactComponent},
   { path: 'ambassador', component: AmbassadorComponent },
   { path: 'help', component: HelpComponent },
-  { path: 'terms', component: TermsComponent }
+  { path: 'terms', component: TermsComponent },
+  { path: 'processing', component: ProcessingComponent }
 ];

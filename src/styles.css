@@ -91,11 +91,11 @@ body {
 
 /* Gallery popup */
 
-.modal-dialog .modal-content .close:hover {
+mat-dialog-container .close:hover {
     color: #fff !important;
 }
 
-.modal-dialog .modal-content .close {
+mat-dialog-container .close {
     color: #fff;
     position: absolute;
     right: 0;
@@ -105,7 +105,7 @@ body {
     font-weight: normal;
 }
 
-.modal-dialog .modal-content .modal-header h4 {
+mat-dialog-container h4 {
     color: #626262;
     text-align: center;
     padding: 7px 0;
@@ -116,7 +116,7 @@ body {
     font-family: 'Lato', sans-serif;
 }
 
-.modal-dialog .modal-content .bar h4 {
+mat-dialog-container .bar h4 {
     background-color: #0A2D33;
     text-align: center;
     color: #fff;
@@ -126,7 +126,7 @@ body {
     margin-bottom: 0;
 }
 
-.modal-dialog .modal-content .bar h4:after {
+mat-dialog-container .bar h4:after {
     content: "";
     width: 0;
     height: 0;
@@ -141,7 +141,7 @@ body {
     z-index: 99;
 }
 
-.modal-dialog .modal-content .modal-body h5 {
+mat-dialog-container h5 {
     text-align: center;
     color: #0E282B;
     padding: 20px 0 15px;
@@ -149,7 +149,7 @@ body {
     font-size: 22px;
 }
 
-.modal-dialog .modal-content .modal-body h5 span {
+mat-dialog-container h5 span {
     color: #fff;
     background-color: #0E282B;
     font-size: 10px;
@@ -162,7 +162,7 @@ body {
     left: -5px;
 }
 
-.modal-dialog .modal-content .modal-body input {
+mat-dialog-container input {
     margin-bottom: 10px;
     font-family: 'Lato', sans-serif;
     color: #626262;
@@ -170,7 +170,7 @@ body {
     background-color: #E2E2E2;
 }
 
-.modal-dialog .modal-content .modal-body span.errMsg {
+mat-dialog-container span.errMsg {
     position: absolute;
     background-color: #28a745;
     border-radius: 50%;
@@ -182,7 +182,7 @@ body {
     z-index: 999;
 }
 
-.modal-dialog .modal-content .modal-body span.errMsg_2 {
+mat-dialog-container span.errMsg_2 {
     position: absolute;
     background-color: red;
     border-radius: 50%;
@@ -194,7 +194,7 @@ body {
     z-index: 999;
 }
 
-.modal-dialog .modal-content .modal-body span.errMsg_2 img {
+mat-dialog-container span.errMsg_2 img {
     width: auto;
     height: 8px;
     line-height: 0;
@@ -202,7 +202,7 @@ body {
     top: -5px;
 }
 
-.modal-dialog .modal-content .modal-body span.errMsg img {
+mat-dialog-container span.errMsg img {
     width: 12px;
     height: auto;
     line-height: 0;
@@ -210,21 +210,12 @@ body {
     top: -5px;
 }
 
-.modal-dialog .modal-content .modal-body button {
-    margin: 0 auto 10px;
-    display: inherit;
-    padding: 8px 40px;
-    font-size: 22px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.modal-dialog .modal-content .modal-body {
+mat-dialog-container {
     background-color: #E2E2E2;
     padding: 1rem 3rem;
 }
 
-.modal-dialog .modal-content .modal-body p {
+mat-dialog-container p {
     text-align: center;
     color: #0E282B;
     font-weight: 400;
@@ -236,11 +227,8 @@ body {
 #main-block .browse-me.dropzone{
     width:100%;
 }
-.modal-dialog {
-    margin-top: 7% !important;
-}
 
-.modal-dialog .modal-content .modal-body p.termcondition {
+mat-dialog-container p.termcondition {
     text-align: center;
     color: #0E282B;
     font-weight: 400;
@@ -250,7 +238,7 @@ body {
     font-family: 'Lato', sans-serif;
 }
 
-.modal-dialog .modal-content .modal-body p.termcondition input {
+mat-dialog-container p.termcondition input {
     position: relative;
     top: 4px;
     margin-right: 5px;
@@ -309,7 +297,7 @@ image-upload .customClass .img-ul-file-upload .img-ul-button {
     padding: 4px 15px !important;
 }
 
-.modal-dialog .modal-content .modal-body input {
+mat-dialog-container input {
     margin-bottom: 0;
     font-family: 'Roboto', serif;
     color: #000;
@@ -320,4 +308,9 @@ image-upload .customClass .img-ul-file-upload .img-ul-button {
 .mat-button.trans .mat-button-focus-overlay,
 .mat-button.trans .mat-button-active-overlay {
     background-color: transparent !important
+}
+
+.mat-dialog-container {
+    padding: 0 !important;
+    overflow: hidden !important
 }

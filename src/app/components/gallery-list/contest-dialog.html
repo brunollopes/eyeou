@@ -1,0 +1,93 @@
+<!-- Gallery Popup Start -->
+<div style="position: relative;">
+  <button mat-icon-button class='trans' (click)="onNoClick()" style="position: absolute; top: 0px; right: 0px">
+    <mat-icon>close</mat-icon>
+  </button>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left" *ngIf='!data.entry_price || payed'>
+      {{translate.lang.validation}}
+    </h4>
+    <h4 class="modal-title pull-left" *ngIf='data.entry_price && !payed'>
+      Checkout
+    </h4>
+  </div>
+  <div class="bar" *ngIf="data.entry_price && !payed">
+    <h4 style="margin: 0; height: 49px; font-size: 18px">PayPal</h4>
+  </div>
+  <div class="modal-body">
+    <div class="contest">
+      <h5>Contest Info</h5>
+    </div>
+    <div class="col-lg-4 col-xs-12">
+      <img [src]="data.bgprofile_image" alt="Contest Image" style="width: 100%">
+    </div>
+    <div class="col-lg-8 col-xs-12">
+      <h6 style="font-size: 13px; margin-top: 0;">{{data.contest_name}} - {{data.contest_title}}</h6>
+      <div>
+        <mat-icon style="font-size: 20px" [matTooltip]="translate.lang.remainingTime">access_time</mat-icon>
+        <span style="position: relative; top: -4px; left: 3px;">{{data.timeRemains.days}} {{translate.lang.days}} {{data.timeRemains.hours}} {{translate.lang.hours}}</span>
+      </div>
+      <div>
+        <mat-icon [matTooltip]="translate.lang.prizeMoney">attach_money</mat-icon>
+        <span style="position: relative; top: -4px; left: 5px;">{{data.prize_money}} €</span>
+      </div>
+    </div>
+    <div class="clearfix"></div>
+
+    <mat-spinner *ngIf='!transactionChecked' style="margin: 10px auto"></mat-spinner>
+
+    <div class="payment" *ngIf='transactionChecked'>
+      <h5 *ngIf="data.entry_price && !payed">{{translate.lang.paymentMethod}}</h5>
+      <form [formGroup]="paymentForm">
+        <div class="row">
+
+          <mat-form-field class="col-xs-6" *ngIf="data.entry_price && !payed">
+            <input matInput placeholder="Payment Method" value="Paypal" readonly style="width: 100%">
+          </mat-form-field>
+
+          <div class="col-xs-6" style="padding: 0" *ngIf="data.entry_price && !payed">
+            <mat-form-field class='col-xs-6'>
+              <mat-select placeholder="Photos" (selectionChange)="checkFees()" formControlName='photos'>
+                <mat-option value="1">1 Photo</mat-option>
+                <mat-option value="10">10 Photos</mat-option>
+                <mat-option value="30">30 Photos</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field class='col-xs-6'>
+              <input matInput formControlName="price" placeholder="Contest Fee" readonly style="width: 100%">
+            </mat-form-field>
+          </div>
+
+          <div class='col-xs-12' style="margin: -10px 0 0 0" *ngIf='data.entry_price && !payed'>
+            <p style=" margin: 0; text-align: left; display: inline-block; position: relative; top: -2px; left: 0; font-size: 11px">
+              <span>{{translate.lang.noPaypal}} </span>
+              <a routerLink="/contact" (click)="hideModal()"> {{translate.lang.contactUs}}</a>
+            </p>
+          </div>
+
+          <div class="clearfix"></div>
+        </div>
+
+        <div class="termcondition" style="text-align: center; margin: 10px 0; font-size: 13px;">
+          <input type="checkbox" style="position: relative; top: 3px" formControlName="term_condition">
+          <p style="margin: 0 0 0 5px; display: inline-block;">{{translate.lang.iAgree}}
+            <a href="/terms" target="_blank">{{translate.lang.termsAndConditions}}</a>
+          </p>
+        </div>
+
+        <div *ngIf="data.entry_price && !payed" class='text-center'>
+          <button type="button" *ngIf="!payed" class="btn btn-success" [disabled]="paymentForm.invalid || clicked" (click)="submitform()">{{translate.lang.pay}}</button>
+          <button type="button" *ngIf="payed" class="btn btn-success" [disabled]="paymentForm.invalid" (click)="navigateToContestPage(data.slug)">
+            {{translate.lang.next}}
+          </button>
+        </div>
+
+        <div *ngIf="!data.entry_price || payed" class='text-center'>
+          <button type="button" class="btn btn-success" [disabled]="paymentForm.invalid" (click)="navigateToContestPage(data.slug)">{{translate.lang.next}}</button>
+        </div>
+
+      </form>
+    </div>
+
+  </div>
+</div>

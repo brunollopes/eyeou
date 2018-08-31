@@ -14,7 +14,7 @@
         <p>{{listing.contest_title}}</p>
       </div>
     </div>
-    <div class="contestcontent" (click)="openModal(template,listing)" style="cursor: pointer;">
+    <div class="contestcontent" (click)="openModal(listing)" style="cursor: pointer;">
       <p class="timeing">
         <span>
           <img src="../../../assets/images/clock.png" alt=""> {{listing.timeRemains.days}} {{translate.lang.days}} {{listing.timeRemains.hours}} {{translate.lang.hours}}
@@ -30,91 +30,3 @@
   </div>
 </div>
 <!-- Gallery content loop End-->
-
-<!-- Gallery Popup Start -->
-<ng-template #template data-backdrop="false" data-keyboard="false">
-  <div style="position: relative;">
-    <button mat-icon-button class='trans' (click)="hideModal()" style="position: absolute; top: 0px; right: 0px">
-      <mat-icon>close</mat-icon>
-    </button>
-    <div class="modal-header">
-      <h4 class="modal-title pull-left" *ngIf='!listingDetails.entry_price || payed'>
-          {{translate.lang.validation}}
-      </h4>
-      <h4 class="modal-title pull-left" *ngIf='listingDetails.entry_price && !payed'>
-        Checkout
-      </h4>
-    </div>
-    <div class="bar" *ngIf="listingDetails.entry_price && !payed">
-      <h4 style="margin: 0; height: 49px">PayPal</h4>
-    </div>
-    <div class="modal-body">
-      <div class="contest">
-        <h5>Contest Info</h5>
-      </div>
-      <div class="col-lg-4 col-xs-12">
-        <img [src]="listingDetails.bgprofile_image" alt="Contest Image" style="width: 100%">
-      </div>
-      <div class="col-lg-8 col-xs-12">
-        <h6 style="font-size: 13px; margin-top: 0;">{{listingDetails.contest_name}} - {{listingDetails.contest_title}}</h6>
-        <div>
-          <mat-icon style="font-size: 20px" [matTooltip]="translate.lang.remainingTime">access_time</mat-icon>
-          <span style="position: relative; top: -4px; left: 3px;">{{listingDetails.timeRemains.days}} {{translate.lang.days}} {{listingDetails.timeRemains.hours}} {{translate.lang.hours}}</span>
-        </div>
-        <div>
-          <mat-icon [matTooltip]="translate.lang.prizeMoney">attach_money</mat-icon>
-          <span style="position: relative; top: -4px; left: 5px;">{{listingDetails.prize_money}} €</span>
-        </div>
-      </div>
-      <div class="clearfix"></div>
-
-      <mat-spinner *ngIf='!transactionChecked' style="margin: 10px auto"></mat-spinner>
-
-      <div class="payment" *ngIf='transactionChecked'>
-        <h5 *ngIf="listingDetails.entry_price && !payed">{{translate.lang.paymentMethod}}</h5>
-        <form [formGroup]="paymentForm">
-          <div class="row">
-
-            <mat-form-field class="col-xs-6" *ngIf="listingDetails.entry_price && !payed">
-              <input matInput placeholder="Payment Method" value="Paypal" readonly style="width: 100%">
-            </mat-form-field>
-
-            <mat-form-field class="col-xs-6" *ngIf="listingDetails.entry_price && !payed">
-              <input matInput formControlName="price" placeholder="Contest Fee" readonly style="width: 100%">
-            </mat-form-field>
-
-            <div class='col-xs-12' style="margin: -10px 0 0 0" *ngIf='listingDetails.entry_price && !payed'>
-              <p style=" margin: 0; text-align: left; display: inline-block; position: relative; top: -2px; left: 0; font-size: 11px">
-                <span>{{translate.lang.noPaypal}} </span>
-                <a routerLink="/contact" (click)="hideModal()"> {{translate.lang.contactUs}}</a>
-              </p>
-            </div>
-
-            <div class="clearfix"></div>
-          </div>
-
-          <div class="termcondition" style="text-align: center; margin: 10px 0; font-size: 13px;">
-            <input type="checkbox" style="position: relative; top: 3px" formControlName="term_condition">
-            <p style="margin: 0 0 0 5px; display: inline-block;">{{translate.lang.iAgree}}
-              <a href="/terms" target="_blank">{{translate.lang.termsAndConditions}}</a>
-            </p>
-          </div>
-
-          <div *ngIf="listingDetails.entry_price && !payed">
-            <button type="button" *ngIf="!payed" class="btn btn-success" [disabled]="paymentForm.invalid && transactionChecked" (click)="submitform()">{{translate.lang.pay}}</button>
-            <button type="button" *ngIf="payed" class="btn btn-success" [disabled]="paymentForm.invalid && transactionChecked" (click)="navigateToContestPage(listingDetails.slug)">
-              {{translate.lang.next}}
-            </button>
-          </div>
-
-          <div *ngIf="!listingDetails.entry_price || payed">
-            <button type="button" class="btn btn-success" [disabled]="paymentForm.invalid" (click)="navigateToContestPage(listingDetails.slug)">{{translate.lang.next}}</button>
-          </div>
-
-        </form>
-      </div>
-
-    </div>
-  </div>
-</ng-template>
-<!-- Gallery Popup End -->

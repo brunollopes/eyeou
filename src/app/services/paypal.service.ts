@@ -5,10 +5,11 @@ import { HttpClient } from '@angular/common/http';
 export class PaypalProvider {
   constructor(public http: HttpClient) { }
 
-  public PayWithPaypal({ name, sku, price, currency, quantity }): Promise<any> {
+  public PayWithPaypal({ contestId, photos }): Promise<any> {
+    console.log(contestId, photos)
     return this.http.post(
       '/paypal/pay',
-      { items: [{ name, sku, price, currency, quantity }] }
+      { items: [{ contestId, photos }] }
     )
       .toPromise()
       .then(res => res)

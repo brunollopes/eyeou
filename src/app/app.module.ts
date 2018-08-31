@@ -18,7 +18,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { SliderTilesComponent } from './components/slider-tiles/slider-tiles.component';
 import { HowitWorksComponent } from './components/howit-works/howit-works.component';
-import { GalleryListComponent } from './components/gallery-list/gallery-list.component';
+import { GalleryListComponent, ContestDialog } from './components/gallery-list/gallery-list.component';
 import { ContestService } from './services/contest.service';
 import { PaypalProvider } from './services/paypal.service';
 import { AppHelper } from './services/app.helper';
@@ -59,11 +59,13 @@ import { FailedComponent } from './pages/failed/failed.component';
     LoginComponent,
     SignupComponent,
     ProcessingComponent,
-    FailedComponent
+    FailedComponent,
+    ContestDialog
   ],
   entryComponents: [
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    ContestDialog
   ],
   imports: [
     BrowserModule,

@@ -100,7 +100,7 @@ exports.findSlug = (req, res) => {
                     message: "Contests not found with slug " + req.params.slug
                 });
             }
-            res.status(200).json({ contest, userIncluded: req.locals.userIncluded });
+            res.status(200).json({ contest, userIncluded: req.locals.userIncluded, transaction: req.locals.transaction });
         }).catch(err => {
             if (err.kind === 'ObjectId') {
                 return res.status(404).send({

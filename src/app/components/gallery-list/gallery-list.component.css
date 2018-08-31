@@ -214,3 +214,7 @@
 .modal-header {
     padding: 0
 }
+
+.modal-body {
+    background-color: #e2e2e2
+}

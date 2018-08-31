@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 const TransactionSchema = mongoose.Schema({
+  maxPhotosLimit: Number,
   transactionId: String,
   intent: String,
   state: String,

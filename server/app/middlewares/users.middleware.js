@@ -3,8 +3,7 @@ const mongoose = require('mongoose');
 const router = express.Router();
 
 const Contests = require('../models/contest.model');
-const Users = require('../models/users.model.js');
-const Images = require('../models/image.model.js');
+const Transactions = require('../models/transactions.model')
 
 const isLoggedId = (req, res, next) => {
   const { user } = req;
@@ -27,13 +26,15 @@ const isUserInContest = (req, res, next) => {
     .findOne(query)
     .exec()
     .then(contest => {
-      contest.users.forEach($userId => {
+      contest.users.forEach(async $userId => {
         if ($userId == userId) {
+          const $transaction = await Transactions.findOne({ user: userId, contest: contest._id }, ['maxPhotosLimit', '_id']).exec()
           req.locals.userIncluded = true;
+          req.locals.transaction = $transaction;
+          req.locals.contestId = contest.id;
+          next()
         }
       });
-      req.locals.contestId = contest.id;
-      next();
     })
     .catch(err => {
       next();

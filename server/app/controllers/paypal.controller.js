@@ -57,7 +57,7 @@ exports.execute = (req, res) => {
 
   paypal.payment.execute(paymentId, execute_payment_json, async (error, payment) => {
     if (error) {
-      console.log('>> PAYPAL EXEC ERROR:', error.details[0])
+      console.log('>> PAYPAL EXEC ERROR:', error)
       return res.status(403).send(error);
     }
 

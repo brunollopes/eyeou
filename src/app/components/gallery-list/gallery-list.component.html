@@ -38,9 +38,14 @@
       <mat-icon>close</mat-icon>
     </button>
     <div class="modal-header">
-      <h4 class="modal-title pull-left">{{!listingDetails.entry_price ? translate.lang.validation : 'Checkout' }}</h4>
+      <h4 class="modal-title pull-left" *ngIf='!listingDetails.entry_price || payed'>
+          {{translate.lang.validation}}
+      </h4>
+      <h4 class="modal-title pull-left" *ngIf='listingDetails.entry_price && !payed'>
+        Checkout
+      </h4>
     </div>
-    <div class="bar" *ngIf="listingDetails.entry_price">
+    <div class="bar" *ngIf="listingDetails.entry_price && !payed">
       <h4 style="margin: 0; height: 49px">PayPal</h4>
     </div>
     <div class="modal-body">
@@ -60,27 +65,25 @@
           <mat-icon [matTooltip]="translate.lang.prizeMoney">attach_money</mat-icon>
           <span style="position: relative; top: -4px; left: 5px;">{{listingDetails.prize_money}} €</span>
         </div>
-        <div *ngIf='transactionChecked && payed'>
-          <mat-icon>accessibility</mat-icon>
-          <span style="position: relative; top: -4px; left: 5px;">You already payed the fees for this contest.</span>
-        </div>
       </div>
       <div class="clearfix"></div>
 
-      <div class="payment">
-        <h5 *ngIf="listingDetails.entry_price">{{translate.lang.paymentMethod}} <mat-icon style='font-size: 15px'>info</mat-icon></h5>
+      <mat-spinner *ngIf='!transactionChecked' style="margin: 10px auto"></mat-spinner>
+
+      <div class="payment" *ngIf='transactionChecked'>
+        <h5 *ngIf="listingDetails.entry_price && !payed">{{translate.lang.paymentMethod}} <mat-icon style='font-size: 15px'>info</mat-icon></h5>
         <form [formGroup]="paymentForm">
           <div class="row">
 
-            <mat-form-field class="col-xs-6" *ngIf="listingDetails.entry_price">
+            <mat-form-field class="col-xs-6" *ngIf="listingDetails.entry_price && !payed">
               <input matInput placeholder="Payment Method" value="Paypal" readonly style="width: 100%">
             </mat-form-field>
 
-            <mat-form-field class="col-xs-6" *ngIf="listingDetails.entry_price">
+            <mat-form-field class="col-xs-6" *ngIf="listingDetails.entry_price && !payed">
               <input matInput formControlName="price" placeholder="Contest Fee" readonly style="width: 100%">
             </mat-form-field>
 
-            <div class='col-xs-12' style="margin: -10px 0 0 0" *ngIf='listingDetails.entry_price'>
+            <div class='col-xs-12' style="margin: -10px 0 0 0" *ngIf='listingDetails.entry_price && !payed'>
               <p style=" margin: 0; text-align: left; display: inline-block; position: relative; top: -2px; left: 0; font-size: 11px">
                 <span>{{translate.lang.noPaypal}} </span>
                 <a routerLink="/contact" (click)="hideModal()"> {{translate.lang.contactUs}}</a>
@@ -97,14 +100,14 @@
             </p>
           </div>
 
-          <div *ngIf="listingDetails.entry_price">
+          <div *ngIf="listingDetails.entry_price && !payed">
             <button type="button" *ngIf="!payed" class="btn btn-success" [disabled]="paymentForm.invalid && transactionChecked" (click)="submitform()">{{translate.lang.pay}}</button>
             <button type="button" *ngIf="payed" class="btn btn-success" [disabled]="paymentForm.invalid && transactionChecked" (click)="navigateToContestPage(listingDetails.slug)">
               {{translate.lang.next}}
             </button>
           </div>
 
-          <div *ngIf="!listingDetails.entry_price">
+          <div *ngIf="!listingDetails.entry_price || payed">
             <button type="button" class="btn btn-success" [disabled]="paymentForm.invalid" (click)="navigateToContestPage(listingDetails.slug)">{{translate.lang.next}}</button>
           </div>
 

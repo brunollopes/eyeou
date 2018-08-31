@@ -21,6 +21,15 @@ app.use(cookieSession({
 app.use(passport.initialize());
 app.use(passport.session());
 
+if (process.env.NODE_ENV === 'production') {
+  app.use(function(req, res, next) {
+    if ((req.get('X-Forwarded-Proto') !== 'https')) {
+      res.redirect('https://' + req.get('Host') + req.url);
+    } else
+      next();
+  });
+}
+
 paypal.configure({
   mode: process.env.paypal_mode,    //sandbox or live
   client_id: process.env.paypal_client_id,

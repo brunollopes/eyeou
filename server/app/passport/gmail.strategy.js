@@ -20,11 +20,13 @@ passport.use(
     clientSecret: process.env.google_clientSecret,
     callbackURL: '/auth/google/redirect'
   }, (accessToken, refreshToken, profile, done) => {
-    User.findOne({ googleID: profile.id })
+    User.findOne({ email: profile.emails[0].value })
       .exec((err, currentUser) => {
         if (err) console.log(err)
         if (currentUser) {
-          done(null, currentUser)
+          User.findOneAndUpdate({ email: profile.emails[0].value }, { googleID: profile.id }, (err, doc) => {
+            done(null, currentUser)
+          })
         } else {
           new User({
             fullName: profile.displayName,

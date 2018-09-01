@@ -61,7 +61,7 @@ export class SliderTilesComponent implements OnInit {
       },
       {
         name: 'Tiago Maya',
-        profile: 'https://lh5.googleusercontent.com/guyLuJdHuCHJeGBUf6yMSyjVPlhv5L-ytaxnSWApohePPEvzfnmr0U4Jd2VWXyr_QQOv1GqZ-WUjjpFXStHSbKT776ZzOQ6PnReuUoyAU6V_BSDVPexAYiXeYY3SWVACZwvM0eD7',
+        profile: '../../../assets/images/judge.jpg',
         position: {
           en: 'Photographer Pro',
           pt: 'Fotógrafo Pro'

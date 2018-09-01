@@ -18,7 +18,7 @@ export class AuthService {
           return user;
         } else {
           this.user = null;
-          return {_id: null};
+          return { _id: null };
         }
       })
       .catch(err => err);
@@ -43,6 +43,20 @@ export class AuthService {
 
   public logout() {
     return this.http.get('/auth/logout')
+      .toPromise()
+      .then(res => res)
+      .catch(err => err);
+  }
+
+  public resetPassword({ password, id, resetCode }) {
+    return this.http.post('/auth/reset', { password, id, resetCode })
+      .toPromise()
+      .then(res => res)
+      .catch(err => err);
+  }
+
+  public forgetPassword({ email }) {
+    return this.http.post('/auth/forget', { email })
       .toPromise()
       .then(res => res)
       .catch(err => err);

@@ -1,0 +1,38 @@
+<app-navbar fixed="true" bgColor="true"></app-navbar>
+
+<div class="container" style="padding: 20vh 0">
+  <mat-card>
+    <div class="content" style="position: relative">
+      <div>
+        <h3 class="text-center">{{translate.lang.passwordReset}}</h3>
+      </div>
+
+      <div>
+        <form [formGroup]="resetForm">
+
+          <mat-form-field class="col-xs-12">
+            <input type="password" matInput placeholder="Password" formControlName="password">
+          </mat-form-field>
+
+          <mat-form-field class="col-xs-12">
+            <input type="password" matInput placeholder="Confirm Password" formControlName="confirmPassword">
+          </mat-form-field>
+
+          <div class="col-xs-12 text-center" style="margin-top: 15px">
+            <button type="submit" (click)="submitForm()" class='submit-button' mat-button [disabled]="submitForm.invalid">{{translate.lang.reset}}</button>
+          </div>
+
+          <div class="clearfix"></div>
+
+          <div *ngIf="err.show" class="alert alert-danger text-center" style="margin-bottom: 0; margin-top: 20px; padding: 8px">
+            {{err.message}}
+          </div>
+          <div *ngIf="success" class="alert alert-success text-center" style="margin-bottom: 0; margin-top: 20px; padding: 8px">
+            {{translate.lang.passwordChanged}}
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </mat-card>
+</div>

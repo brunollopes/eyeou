@@ -7,6 +7,7 @@ const UserSchema = mongoose.Schema({
   googleID: String,
   facebookID: String,
   password: String,
+  resetCode: String,
   verified: Boolean,
   notify: {
     type: Boolean,

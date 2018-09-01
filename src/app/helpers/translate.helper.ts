@@ -119,26 +119,27 @@ export const en = {
   rulesSection4: 'Winners',
   rulesP6: 'The winners will be decided by the chosen judge for that contest, there will be 3 places available for the winners.',
   rulesP7: 'EYEOU judges will be judging the photos based on the following criteria:',
+  
   rulesLi4: 'technic',
-  rulesLi5: 'quality',
-  rulesLi6: 'originality',
-  rulesLi7: 'creativity',
+  rulesLi5: 'creativity',
+  rulesLi6: 'content',
+  
   rulesP8: 'In accordance with the contest theme.',
   rulesP9: 'When the contest is finished all the submitted photos will have a score.',
   rulesP10: 'The sum of the score from technic, quality, originality and creativity for each judge divided by the number of judges will give the final  score of each criteria.',
-  rulesP11: 'The sum of the total of each criteria divided by 4 (number of criteria), will give the final score of the photo. ',
+  rulesP11: 'The sum of the total of each criteria divided by 3 (number of criteria), will give the final score of the photo. ',
   rulesP12: 'The photos with the 3 higher final scores will be the winners.',
   rulesP13: 'Each criteria will be rated from 0 to 10 where 10 is the best of that criteria and 0 the worst.',
   rulesP14: 'For instance, on a contest with 3 judges, a photo will be scored like that:',
-  rulesLi8: 'Judge 1: technic: 7 quality: 6 originality: 8 creativity: 5 ',
-  rulesLi9: 'Judge 2: technic: 5 quality: 4 originality: 5 creativity: 6 ',
-  rulesLi10: 'Judge 3: technic: 8 quality: 6 originality: 7 creativity: 4 ',
-  rulesP15: 'Final score will be set to 5.92 (we take always the integer part of the division and the following 2 decimals)',
+  rulesLi8: 'Judge 1: technic: 7 creativity: 6 content: 9',
+  rulesLi9: 'Judge 2: technic: 5 creativity: 3 content: 7',
+  rulesLi10: 'Judge 3: technic: 8 creativity: 8 content: 4',
+  rulesP15: 'Final score will be set to 6.34 (we take always the integer part of the division and the following 2 decimals)',
   rulesRes1: 'Result by criteria',
   rulesRes2: 'Technic: 6.67',
-  rulesRes3: 'Quality: 5.33',
-  rulesRes4: 'Originality: 6.67',
-  rulesRes5: 'Creativity: 5',
+  rulesRes3: 'Creativity: 5.67',
+  rulesRes4: 'Content: 6.67',
+
   rulesP16: 'In case of tie, the photo that was submitted first, will be the winner with second precision.',
 
   rulesSection5: 'Prize money limitations',
@@ -319,7 +320,17 @@ export const en = {
   noPaypal: 'no paypal?',
   contactUs: 'contact us',
   send: 'SEND',
-  processing: 'Your transaction is being processed.'
+  processing: 'Your transaction is being processed.',
+  
+  forgotPassword: 'Forgot password?',
+  resetCodeError: 'Reset code doesn\'t belong to this user',
+  passwordReset: 'Reset Password',
+  resetEmailSent: 'Password reset link has been sent to your email',
+  passwordMatchError: 'Passwords don\'t match',
+  passwordChanged: 'Password changed successfully',
+  reset: 'Reset',
+  enterValidEmail: 'Please enter a valid email',
+  contestFee: 'Contest Fee'
 }
 
 export const pt = {
@@ -330,7 +341,7 @@ export const pt = {
   months: 'Mêses',
   to: 'a',
   langKey: 'pt',
-  header: 'UM DISPARO PODE SER',
+  header: 'UM CLIQUE PODE SER',
   headerGreen: 'O SEU DIA DE SORTE',
   headerDesc: 'Participe nos nossos concursos e mostre',
   headerDesc2: 'quanto boas são as sua fotos',
@@ -441,10 +452,11 @@ export const pt = {
   rulesSection4: 'Vencedores',
   rulesP6: 'Os vencedores serão decididos pelo júri escolhido para o concurso, haverá 3 lugares disponíveis para os vencedores.',
   rulesP7: 'O júri irá julgar as fotos com base nos seguintes critérios: ',
+
   rulesLi4: 'técnica',
-  rulesLi5: 'qualidade',
-  rulesLi6: 'originalidade',
-  rulesLi7: 'criatividade',
+  rulesLi5: 'criatividade',
+  rulesLi6: 'conteúdo',
+
   rulesP8: 'De acordo com o tema do concurso.',
   rulesP9: 'Quando o concurso terminar, todas as fotos enviadas terão uma pontuação.',
 
@@ -453,15 +465,15 @@ export const pt = {
   rulesP12: 'As fotos com os 3 maiores resultados finais serão os vencedores.',
   rulesP13: 'Cada um destes critérios será classificado de 0 a 10, sendo 10 o melhor e 0 o pior.',
   rulesP14: 'Por exemplo, em um concurso com 3 júris, uma foto será assim classificada:',
-  rulesLi8: 'Júri 1: técnica: 7 qualidade: 6 originalidade: 8 criatividade: 5',
-  rulesLi9: 'Júri 2: técnica: 5 qualidade: 4 originalidade: 5 criatividade: 6',
-  rulesLi10: 'Júri 3: técnica: 8 qualidade: 6 originalidade: 7 criatividade: 4',
+  rulesLi8: 'Júri 1: técnica: 7 criatividade: 6 conteúdo: 9 ',
+  rulesLi9: 'Júri 2: técnica: 5 criatividade: 3 conteúdo: 7 ',
+  rulesLi10: 'Júri 3: técnica: 8 criatividade: 8 conteúdo: 4 ',
   rulesRes1: 'Resultado por critério: ',
   rulesRes2: 'Técnica: 6.67',
-  rulesRes3: 'Qualidade: 5.33',
-  rulesRes4: 'Originalidade: 6.67',
-  rulesRes5: 'Criatividade: 5',
-  rulesP15: 'A pontuação final será então de 5,92 (parte inteira da divisão e as duas casas decimais seguintes)',
+  rulesRes3: 'Criatividade: 5.67',
+  rulesRes4: 'Conteúdo: 6.67',
+
+  rulesP15: 'A pontuação final será então de 6,34 (parte inteira da divisão e as duas casas decimais seguintes)',
   rulesP16: 'Em caso de empate, a foto que foi submetida em primeiro será a vencedora, com precisão ao segundo.',
 
   rulesSection5: 'Limitações do prémio em dinheiro',
@@ -642,7 +654,17 @@ export const pt = {
   msgSent: 'A sua mensagem foi enviada',
   noPaypal: 'sem paypal?',
   contactUs: 'contacte-nos',
-  
+
   send: 'ENVIAR',
-  processing: 'A sua transação está a ser processada'
+  processing: 'A sua transação está a ser processada',
+
+  forgotPassword: 'Esqueceu-se da password?',
+  resetCodeError: 'O Codigo nao pertence a este utilizador',
+  passwordReset: 'Alterar password',
+  resetEmailSent: 'Link de alteração de password foi enviado para o seu e-mail',
+  passwordMatchError: 'As passwords são diferentes.',
+  passwordChanged: 'Password alterada com sucesso.',
+  reset: 'Alterar',
+  enterValidEmail: 'Por favor insira um e-mail válido',
+  contestFee: 'Taxa de Concurso'
 }

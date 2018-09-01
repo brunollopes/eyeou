@@ -1,5 +1,5 @@
 <div class="content" style="position: relative; padding: 24px">
-  <button mat-icon-button class='trans' (click)="dialogRef.close()" style="position: absolute; top: -5px; right:-5px">
+  <button mat-icon-button class='trans' (click)="dialogRef.close()" style="position: absolute; top: 0px; right: 0px">
     <mat-icon>close</mat-icon>
   </button>
   <div>
@@ -22,8 +22,15 @@
         <button type="submit" (click)="login()" class='submit-button' mat-button [disabled]="loginForm.invalid">LOGIN</button>
       </div>
 
+      <div>
+        <a  style="cursor: pointer;" (click)="resetPassword()">{{translate.lang.forgotPassword}}</a>
+      </div>
+
       <div *ngIf="err" class="alert alert-danger text-center" style="margin-bottom: 0; margin-top: 20px; padding: 8px">
         {{err}}
+      </div>
+      <div *ngIf="success" class="alert alert-success text-center" style="margin-bottom: 0; margin-top: 20px; padding: 8px">
+        {{success}}
       </div>
     </form>
 

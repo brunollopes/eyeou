@@ -69,7 +69,11 @@ module.exports = (app) => {
     app.get('/auth/logout', (req, res) => {
         req.logout();
         return res.redirect('/')
-    })
+    });
+    // Forget Password
+    app.post('/auth/forget', users.forget);
+    // Reset Password
+    app.post('/auth/reset', users.reset);
     // Send Email
     app.post('/email/send', emailHelper.sendEmailExpress);
 

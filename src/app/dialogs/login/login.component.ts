@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
   public loginForm: FormGroup
   public loggingIn: Boolean
   public err: any
+  public success: any
 
   constructor(
     public fb: FormBuilder,
@@ -46,6 +47,7 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
+    this.success = false
     if (this.loginForm.valid) {
       this.err = null
       const { email, password } = this.loginForm.value
@@ -60,6 +62,19 @@ export class LoginComponent implements OnInit {
         .catch(err => {
           this.err = 'Unknown error occured, please try again later.'
         })
+    }
+  }
+
+  resetPassword() {
+    this.success = false;
+    const email = this.loginForm.controls['email']
+    if (email.valid) {
+      this.auth.forgetPassword({email: email.value})
+        .then(res => {
+          this.success = this.translate.lang.resetEmailSent
+        })
+    } else {
+      this.err = this.translate.lang.enterValidEmail
     }
   }
 

@@ -2,7 +2,7 @@ const Users = require('../models/users.model.js');
 const Contests = require('../models/contest.model');
 const emailHelper = require('../helpers/mail.helper');
 var nodemailer = require("nodemailer");
-
+const bcrypt = require('bcrypt')
 
 // Create and Save a new User
 exports.create = (req, res) => {
@@ -246,6 +246,61 @@ exports.joinFreeContest = (req, res) => {
     ])
     .then(info => res.status(200).json(info))
     .catch(err => res.status(403).json(err));
+}
+
+exports.forget = (req, res) => {
+  const { email } = req.body;
+  function makeid() {
+    var text = "";
+    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    for (var i = 0; i < 5; i++)
+      text += possible.charAt(Math.floor(Math.random() * possible.length));
+    return text;
+  }
+  Users.findOneAndUpdate({ email }, { resetCode: makeid() }, { new: true }).exec()
+    .then(user => {
+      if (user) {
+        emailHelper.sendEmail({
+          $mailTo: user.email,
+          $html: `
+            <p>Please click on the button below to reset your password</p>
+            <p style="text-align: center">
+              <a 
+              href="https://www.eyeou.net/reset?id=${user.id}&code=${user.resetCode}"
+              style="width: 30%; background-color: #449D44; color: #FFF; padding: 20px 40px; text-decoration: none; text-transform: uppercase; border-radius: 6px">
+                Reset
+              </a>
+            </p>
+          `,
+          $subject: 'EYEOU Password Reset'
+        })
+          .then(sent => res.status(200).send('Email Sent'))
+          .catch(err => res.status(500).json(err))
+      } else {
+        return res.status(404).send('User Not Found')
+      }
+    })
+    .catch(err => res.status(500).json(e))
+}
+
+exports.reset = (req, res) => {
+  const { password, id, resetCode } = req.body;
+
+  Users.findById(id).exec()
+    .then(user => {
+      if (user && user.resetCode == resetCode) {
+        const hashedPassword = bcrypt.hashSync(password, bcrypt.genSaltSync(5))
+        Users.findByIdAndUpdate(id, { password: hashedPassword, resetCode: null }, { new: true }, (err, info) => {
+          if (err) return res.status(500).json(err)
+          return res.status(200).send(true)
+        })
+      } else {
+        return res.status(403).send('Reset code does not belong to this user');
+      }
+    })
+    .catch(err => {
+      return res.status(500).json(err)
+    })
 }
 
 exports.notify = (req, res) => {

@@ -8,7 +8,10 @@ import { TranslateService } from '../../services/translate.service';
 })
 export class TermsComponent implements OnInit {
 
-  constructor(public translate: TranslateService) { }
+  constructor(
+    public translate: TranslateService
+  ) {
+  }
 
   ngOnInit() {
   }

@@ -24,9 +24,13 @@ passport.use(
       .exec((err, currentUser) => {
         if (err) console.log(err)
         if (currentUser) {
-          User.findOneAndUpdate({ email: profile.emails[0].value }, { googleID: profile.id }, (err, doc) => {
+          if (currentUser.googleID) {
             done(null, currentUser)
-          })
+          } else {
+            User.findOneAndUpdate({ email: profile.emails[0].value }, { googleID: profile.id }, (err, doc) => {
+              done(null, currentUser)
+            })
+          }
         } else {
           new User({
             fullName: profile.displayName,

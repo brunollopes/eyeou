@@ -29,7 +29,7 @@ export const en = {
 
   howitWorks: 'HOW IT WORKS',
   howitWorksList1: 'Choose one of the listed contests',
-  howitWorksList2: 'Pay the entry fee to submit up to 10 photos',
+  howitWorksList2: 'Pay the entry fee to submit your photos',
   howitWorksList3: 'Upload your photos',
   howitWorksList4: 'Wait until the end of the contest (end or REVIEW phase)',
   howitWorksList5: 'The results will be sent to your email address with the final list of winners and your photos final position. You will also be informed about the judge decision based on these ',
@@ -119,14 +119,21 @@ export const en = {
   rulesSection4: 'Winners',
   rulesP6: 'The winners will be decided by the chosen judge for that contest, there will be 3 places available for the winners.',
   rulesP7: 'EYEOU judges will be judging the photos based on the following criteria:',
-  
+
   rulesLi4: 'technic',
   rulesLi5: 'creativity',
   rulesLi6: 'content',
-  
+
   rulesP8: 'In accordance with the contest theme.',
   rulesP9: 'When the contest is finished all the submitted photos will have a score.',
-  rulesP10: 'The sum of the score from technic, quality, originality and creativity for each judge divided by the number of judges will give the final  score of each criteria.',
+
+  rulesP10P1: 'The sum of the score from ',
+  rulesP10P2: 'for each judge divided by the number of judges will give the final  score of each criteria.',
+  rulesP10S1: 'technic',
+  rulesP10S2: 'creativity',
+  rulesP10S3: 'content',
+  rulesP10S4: 'and',
+
   rulesP11: 'The sum of the total of each criteria divided by 3 (number of criteria), will give the final score of the photo. ',
   rulesP12: 'The photos with the 3 higher final scores will be the winners.',
   rulesP13: 'Each criteria will be rated from 0 to 10 where 10 is the best of that criteria and 0 the worst.',
@@ -321,7 +328,7 @@ export const en = {
   contactUs: 'contact us',
   send: 'SEND',
   processing: 'Your transaction is being processed.',
-  
+
   forgotPassword: 'Forgot password?',
   resetCodeError: 'Reset code doesn\'t belong to this user',
   passwordReset: 'Reset Password',
@@ -330,7 +337,12 @@ export const en = {
   passwordChanged: 'Password changed successfully',
   reset: 'Reset',
   enterValidEmail: 'Please enter a valid email',
-  contestFee: 'Contest Fee'
+  contestFee: 'Contest Fee',
+  emailNoFound: 'Email not found',
+
+  login: 'LOGIN',
+  signup: 'SIGNUP',
+  logout: 'LOGOUT'
 }
 
 export const pt = {
@@ -363,7 +375,7 @@ export const pt = {
   pay: 'PAGAR',
   next: 'PRÓXIMO',
   howitWorksList1: 'Escolhe um dos concursos listados',
-  howitWorksList2: 'Pague a taxa de entrada para submeter até 10 fotos',
+  howitWorksList2: 'Pague a taxa de entrada para submeter as suas fotos',
   howitWorksList3: 'Faça o upload das suas fotos',
   howitWorksList4: 'Espere até terminar o concurso (fim da fase de REVISÃO)',
   howitWorksList5: 'Os resultados serão enviados para o seu endereço de email com a lista final de vencedores e a posição final das suas fotos. Receberá também os detalhes sobre a decisão do júri com base nestas',
@@ -460,8 +472,14 @@ export const pt = {
   rulesP8: 'De acordo com o tema do concurso.',
   rulesP9: 'Quando o concurso terminar, todas as fotos enviadas terão uma pontuação.',
 
-  rulesP10: 'A soma da pontuação da técnica, qualidade, originalidade e criatividade de cada júri dividida pelo número de júris dará a pontuação final de cada critério.',
-  rulesP11: 'A soma da pontuação total de cada critério dividida por 4 (número de critérios), dará a pontuação final da foto.',
+  rulesP10P1: 'A soma da pontuação da ',
+  rulesP10P2: 'de cada júri dividida pelo número de júris dará a pontuação final de cada critério.',
+  rulesP10S1: 'técnica',
+  rulesP10S2: 'criatividade',
+  rulesP10S3: 'conteúdo',
+  rulesP10S4: 'e',
+
+  rulesP11: 'A soma da pontuação total de cada critério dividida por 3 (número de critérios), dará a pontuação final da foto.',
   rulesP12: 'As fotos com os 3 maiores resultados finais serão os vencedores.',
   rulesP13: 'Cada um destes critérios será classificado de 0 a 10, sendo 10 o melhor e 0 o pior.',
   rulesP14: 'Por exemplo, em um concurso com 3 júris, uma foto será assim classificada:',
@@ -666,5 +684,10 @@ export const pt = {
   passwordChanged: 'Password alterada com sucesso.',
   reset: 'Alterar',
   enterValidEmail: 'Por favor insira um e-mail válido',
-  contestFee: 'Taxa de Concurso'
+  contestFee: 'Taxa de Concurso',
+  emailNoFound: 'Ainda não se registou.',
+
+  login: 'ENTRAR',
+  signup: 'REGISTAR',
+  logout: 'SAIR'
 }

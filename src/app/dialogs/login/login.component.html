@@ -3,7 +3,7 @@
     <mat-icon>close</mat-icon>
   </button>
   <div>
-    <h3 class="text-center">LOGIN</h3>
+    <h3 class="text-center">{{translate.lang.login}}</h3>
   </div>
 
   <div>
@@ -18,8 +18,8 @@
       </mat-form-field>
 
       <div class="text-center">
-        <button type="submit" (click)="openSignupDialog()" mat-button style="margin-right: 10px">SIGNUP</button>
-        <button type="submit" (click)="login()" class='submit-button' mat-button [disabled]="loginForm.invalid">LOGIN</button>
+        <button type="submit" (click)="openSignupDialog()" mat-button style="margin-right: 10px">{{translate.lang.signup}}</button>
+        <button type="submit" (click)="login()" class='submit-button' mat-button [disabled]="loginForm.invalid">{{translate.lang.login}}</button>
       </div>
 
       <div>

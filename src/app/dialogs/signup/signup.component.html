@@ -2,7 +2,7 @@
   <button mat-icon-button class='trans' (click)="dialogRef.close()" style="position: absolute; top: 0px; right: 0px">
     <mat-icon>close</mat-icon>
   </button>
-  <h3 class="text-center">SIGNUP</h3>
+  <h3 class="text-center">{{translate.lang.signup}}</h3>
 
   <form [formGroup]="signUpForm" (ngSubmit)="signup()">
 
@@ -15,7 +15,7 @@
     </mat-form-field>
 
     <div class="text-center">
-      <button type="submit" class='submit-button' mat-button [disabled]="signUpForm.invalid">SIGNUP</button>
+      <button type="submit" class='submit-button' mat-button [disabled]="signUpForm.invalid">{{translate.lang.signup}}</button>
     </div>
 
     <div *ngIf="err" class="alert alert-danger text-center" style="margin-bottom: 0; margin-top: 20px; padding: 8px">

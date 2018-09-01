@@ -73,7 +73,11 @@ export class LoginComponent implements OnInit {
     if (email.valid) {
       this.auth.forgetPassword({email: email.value})
         .then(res => {
-          this.success = this.translate.lang.resetEmailSent
+          if (res) {
+            this.success = this.translate.lang.resetEmailSent
+          } else {
+            this.err = this.translate.lang.emailNoFound
+          }
         })
     } else {
       this.err = this.translate.lang.enterValidEmail

@@ -68,14 +68,14 @@ export class SliderTilesComponent implements OnInit {
         },
         info: {
           en: [
-            'Over 15 years of professional photographer',
-            'Internship with VII photo',
-            'Works for fashion and advertising within the Portuguese market and overseas'
+            'Over 15 years as a professional photographer.',
+            'Internship with VII photo in Brooklyn, NY.',
+            'Currently works as a visual content creator and advisor for several brands.'
           ],
           pt: [
-            'Mais de 15 anos como fotógrafo profissional',
-            'Estágio em VII photo',
-            'Trabalha dentro da moda e publicidade em Portugal e fora'
+            'Mais de 15 anos como fotógrafo profissional.',
+            'Estágio na foto VII em Brooklyn, NY.',
+            'Atualmente trabalha como criador de conteúdo visual e assessor de várias marcas.'
           ]
         },
         url: 'tiagomaya.com',

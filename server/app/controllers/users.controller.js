@@ -274,10 +274,10 @@ exports.forget = (req, res) => {
           `,
           $subject: 'EYEOU Password Reset'
         })
-          .then(sent => res.status(200).send('Email Sent'))
+          .then(sent => res.status(200).send(true))
           .catch(err => res.status(500).json(err))
       } else {
-        return res.status(404).send('User Not Found')
+        return res.status(200).send(false)
       }
     })
     .catch(err => res.status(500).json(e))

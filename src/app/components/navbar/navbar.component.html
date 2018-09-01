@@ -31,12 +31,12 @@
         </li>
         <li class="nav-item login" *ngIf='!auth.user'>
           <a class="nav-link" (click)='openDialog()'>
-            <button mat-button style="line-height: 30px" class="submit-button">LOGIN</button>
+            <button mat-button style="line-height: 30px" class="submit-button">{{translate.lang.login}}</button>
           </a>
         </li>
         <li class="nav-item" *ngIf='auth.user'>
           <a class="nav-link" (click)='logout()'>
-            <button mat-button style="color: #F00">LOGOUT</button>
+            <button mat-button style="color: #F00">{{translate.lang.logout}}</button>
           </a>
         </li>
         <li class="nav-item lang">

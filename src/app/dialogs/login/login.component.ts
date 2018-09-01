@@ -47,7 +47,8 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.success = false
+    this.success = false;
+    this.err = false
     if (this.loginForm.valid) {
       this.err = null
       const { email, password } = this.loginForm.value
@@ -67,6 +68,7 @@ export class LoginComponent implements OnInit {
 
   resetPassword() {
     this.success = false;
+    this.err = false;
     const email = this.loginForm.controls['email']
     if (email.valid) {
       this.auth.forgetPassword({email: email.value})

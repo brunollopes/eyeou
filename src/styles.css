@@ -312,5 +312,30 @@ mat-dialog-container input {
 
 .mat-dialog-container {
     padding: 0 !important;
-    overflow: hidden !important
+}
+
+.mat-dialog-container.ng-tns-c10-0 {
+    overflow-x: hidden !important;
+    overflow-y: scroll !important;
+    height: 70vh !important;
+}
+
+.mat-dialog-container.ng-tns-c10-0::-webkit-scrollbar {
+    width: 6px;
+    border-radius: 2px
+}
+
+/* Track */
+.mat-dialog-container.ng-tns-c10-0::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+}
+
+/* Handle */
+.mat-dialog-container.ng-tns-c10-0::-webkit-scrollbar-thumb {
+    background: #888; 
+}
+
+/* Handle on hover */
+.mat-dialog-container.ng-tns-c10-0::-webkit-scrollbar-thumb:hover {
+    background: #555; 
 }

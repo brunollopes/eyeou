@@ -46,7 +46,7 @@ export class GalleryListComponent implements OnInit {
   openModal(listing) {
     if (this.auth.user) {
       this.dialog.open(ContestDialog, {
-        width: '500px',
+        width: '450px',
         data: listing
       })
     } else {

@@ -2,7 +2,7 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
 body {
-    font-family: 'Mitr', sans-serif !important;
+    font-family: 'Open Sans', sans-serif !important;
     background-color: #E9E9E9 !important
 }
 

@@ -10,7 +10,7 @@ exports.location = (req, res) => {
   iplocation(ip, (error, location) => {
     if (error) return res.status(200).json(error)
     const { country } = location
-    return res.status(200).send(country)
+    return res.status(200).json({ country })
   })
 }
 

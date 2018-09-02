@@ -27,7 +27,7 @@ export class AppComponent implements OnInit {
     try {
       const location = await this.auth.location()
       console.log(location)
-      if (location === 'PT') {
+      if (location.country === 'PT') {
         this.translate.changeLang('pt');
       }
     } catch (e) {

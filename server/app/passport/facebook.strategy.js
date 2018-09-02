@@ -6,8 +6,7 @@ passport.use(
   new FacebookStrategy({
     clientID: process.env.facebook_clientID,
     clientSecret: process.env.facebook_clientSecret,
-    // callbackURL: 'https://www.eyeou.net/auth/facebook/redirect',
-    callbackURL: 'http://localhost:8080/auth/facebook/redirect',
+    callbackURL: 'https://www.eyeou.net/auth/facebook/redirect',
     profileFields: ['emails']
   }, (accessToken, refreshToken, profile, done) => {
     let query = {

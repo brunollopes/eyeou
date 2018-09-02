@@ -1,18 +1,14 @@
 var nodemailer = require("nodemailer");
 
 const smtpTransport = nodemailer.createTransport({
-  service: 'gmail',
-  secure: false,
-  port: 25,
+  service: 'smtp-en.securemail.pro',
+  secure: true,
+  port: 465,
   auth: {
-    user: process.env.gmail_user,
-    pass: process.env.gmail_pass
+    user: process.env.eyeou_user,
+    pass: process.env.eyeou_pass
   },
-  tls: {
-    rejectUnauthorized: false
-  },
-  from: `EYEOU <${process.env.gmail_user}>`,
-  host: 'smtp.gmail.com'
+  from: `EYEOU <${process.env.eyeou_user}>`
 });
 
 exports.sendEmail = ({ $mailTo, $subject, $html }) => {
@@ -20,13 +16,16 @@ exports.sendEmail = ({ $mailTo, $subject, $html }) => {
     to: $mailTo,
     subject: $subject,
     html: $html,
-    host: 'smtp.gmail.com',
-    from: `EYEOU <${process.env.gmail_user}>`,
+    from: `EYEOU <${process.env.eyeou_user}>`
   }
 
   return new Promise((resolve, reject) => {
     smtpTransport.sendMail(mailOptions, function (error, response) {
-      if (error) return reject(error)
+      if (error) {
+        console.log('>> ERROR:', error)
+        return reject(error)
+      }
+      console.log('>> SENT:', response)
       return resolve(response)
     });
   })

@@ -1,11 +1,17 @@
 const Users = require('../models/users.model.js');
 const Contests = require('../models/contest.model');
 const emailHelper = require('../helpers/mail.helper');
-var nodemailer = require("nodemailer");
-const bcrypt = require('bcrypt')
+const nodemailer = require("nodemailer");
+const bcrypt = require('bcrypt');
+const iplocation = require('iplocation')
 
 exports.location = (req, res) => {
-  return res.status(200).send(req.ip)
+  const { ip } = req;
+  iplocation(ip, (error, location) => {
+    if (err) return res.status(200).json(error)
+    const { countryCode } = location
+    return res.status(200).send(countryCode)
+  })
 }
 
 // Create and Save a new User

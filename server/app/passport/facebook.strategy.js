@@ -7,6 +7,7 @@ passport.use(
     clientID: process.env.facebook_clientID,
     clientSecret: process.env.facebook_clientSecret,
     callbackURL: 'https://www.eyeou.net/auth/facebook/redirect',
+    // callbackURL: 'http://localhost:8080/auth/facebook/redirect',
     profileFields: ['emails']
   }, (accessToken, refreshToken, profile, done) => {
     let query = {
@@ -20,7 +21,13 @@ passport.use(
       .exec((err, currentUser) => {
         if (err) console.log(err)
         if (currentUser) {
-          done(null, currentUser)
+          if (currentUser.facebookID) {
+            done(null, currentUser)
+          } else {
+            User.findOneAndUpdate({ email: profile.emails[0].value }, { facebookID: profile.id }, (err, doc) => {
+              done(null, currentUser)
+            })
+          }
         } else {
           new User({
             fullName: profile.displayName,

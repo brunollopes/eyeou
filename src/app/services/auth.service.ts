@@ -61,4 +61,11 @@ export class AuthService {
       .then(res => res)
       .catch(err => err);
   }
+
+  public location() {
+    return this.http.get('/users/location')
+      .toPromise()
+      .then(res => res)
+      .catch(err => err);
+  }
 }

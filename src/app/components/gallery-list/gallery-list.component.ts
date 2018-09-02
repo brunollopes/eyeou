@@ -7,7 +7,9 @@ import { PaypalProvider } from "../../services/paypal.service";
 import { AppHelper } from '../../services/app.helper';
 import { TranslateService } from '../../services/translate.service';
 import { AuthService } from '../../services/auth.service';
-import { resolve } from "../../../../node_modules/@types/q";
+
+import { BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 
 @Component({
   selector: "app-gallery-list",
@@ -34,21 +36,24 @@ export class GalleryListComponent implements OnInit {
   public paymentForm: FormGroup;
   public transactionChecked: Boolean
 
+  bsModalRef: BsModalRef;
   constructor(
     public contestprovider: ContestService,
     public app: AppHelper,
     public translate: TranslateService,
     public dialog: MatDialog,
-    public auth: AuthService
+    public auth: AuthService,
+    private modalService: BsModalService
   ) { }
 
   // Open Modal
   openModal(listing) {
     if (this.auth.user) {
-      this.dialog.open(ContestDialog, {
-        width: '450px',
-        data: listing
-      })
+      this.bsModalRef = this.modalService.show(ContestDialog, { initialState: { data: listing } })
+      // this.dialog.open(ContestDialog, {
+      //   width: '450px',
+      //   data: listing
+      // })
     } else {
       this.app.openLoginDialog()
     }
@@ -88,16 +93,18 @@ export class ContestDialog implements OnInit {
   public paymentForm: FormGroup;
   public transactionChecked: Boolean;
   public clicked: Boolean = false;
+  public data: any = {}
 
   constructor(
     public paypalProvider: PaypalProvider,
-    public dialogRef: MatDialogRef<ContestDialog>,
+    // public dialogRef: MatDialogRef<ContestDialog>,
     public router: Router,
     public auth: AuthService,
     public fb: FormBuilder,
     public app: AppHelper,
     public translate: TranslateService,
-    @Inject(MAT_DIALOG_DATA) public data
+    public bsModalRef: BsModalRef
+    // @Inject(MAT_DIALOG_DATA) public data
   ) { }
 
   public checkTransaction(contestId) {
@@ -116,7 +123,8 @@ export class ContestDialog implements OnInit {
   }
 
   public navigateToContestPage($slug) {
-    this.dialogRef.close()
+    this.bsModalRef.hide();
+    // this.dialogRef.close()
     this.router.navigate(['contest', $slug]);
   }
 
@@ -140,7 +148,7 @@ export class ContestDialog implements OnInit {
   }
 
   onNoClick(): void {
-    this.dialogRef.close();
+    this.bsModalRef.hide();
   }
 
   public checkFees() {

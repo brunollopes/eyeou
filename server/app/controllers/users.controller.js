@@ -257,22 +257,26 @@ exports.isInContest = (req, res) => {
     .findOne(query)
     .exec()
     .then(contest => {
-      contest.users.forEach(async ($userId, index) => {
-        if ($userId == userId) {
-          if (contest.type == 'paid') {
-            const $transaction = await Transactions.findOne({ user: userId, contest: contest.id }, ['maxPhotosLimit', '_id']).exec()
-            if ($transaction) {
-              return res.status(200).json({ userIncluded: true, contestType: contest.type })
+      if (contest.users.length) {
+        contest.users.forEach(async ($userId, index) => {
+          if ($userId == userId) {
+            if (contest.type == 'paid') {
+              const $transaction = await Transactions.findOne({ user: userId, contest: contest.id }, ['maxPhotosLimit', '_id']).exec()
+              if ($transaction) {
+                return res.status(200).json({ userIncluded: true, contestType: contest.type })
+              } else {
+                return res.status(200).json({ userIncluded: false, contestType: contest.type })
+              }
             } else {
-              return res.status(200).json({ userIncluded: false, contestType: contest.type })
+              return res.status(200).json({ userIncluded: true, contestType: contest.type })
             }
-          } else {
-            return res.status(200).json({ userIncluded: true, contestType: contest.type })
           }
-        }
-        if (index === contest.users.length - 1)
-          res.status(200).json({ userIncluded: false, contestType: contest.type })
-      });
+          if (index === contest.users.length - 1)
+            res.status(200).json({ userIncluded: false, contestType: contest.type })
+        });
+      } else {
+          return res.status(200).json({ userIncluded: false, contestType: contest.type })
+      }
     })
     .catch(err => {
       console.log(err)

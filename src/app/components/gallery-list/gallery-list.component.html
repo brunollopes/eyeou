@@ -23,6 +23,7 @@
       <div class="innerBlock">
         <h3>{{listing.contest_name}}</h3>
         <h3 *ngIf="listing.entry_price && listing.entry_price !== 0">{{listing.prize_money}}€</h3>
+        <h3 *ngIf="!listing.entry_price">{{'Free'}}</h3>
       </div>
     </div>
   </div>

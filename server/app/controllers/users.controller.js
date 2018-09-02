@@ -4,6 +4,10 @@ const emailHelper = require('../helpers/mail.helper');
 var nodemailer = require("nodemailer");
 const bcrypt = require('bcrypt')
 
+exports.location = (req, res) => {
+  return res.status(200).send(req.ip)
+}
+
 // Create and Save a new User
 exports.create = (req, res) => {
 

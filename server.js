@@ -20,6 +20,7 @@ app.use(cookieSession({
 
 app.use(passport.initialize());
 app.use(passport.session());
+app.enable('trust proxy');
 
 if (process.env.NODE_ENV === 'production') {
   app.use(function(req, res, next) {

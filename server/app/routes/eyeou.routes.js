@@ -25,6 +25,8 @@ module.exports = (app) => {
 
 
     const users = require('../controllers/users.controller.js');
+    // User Location
+    app.get('/users/location', users.location);
     // Create a new User
     app.post('/users', users.create);
     // Retrieve all Users

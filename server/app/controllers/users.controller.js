@@ -9,9 +9,8 @@ exports.location = (req, res) => {
   const { ip } = req;
   iplocation(ip, (error, location) => {
     if (error) return res.status(200).json(error)
-    const { countryCode } = location
-    console.log(location)
-    return res.status(200).send(countryCode)
+    const { country } = location
+    return res.status(200).send(country)
   })
 }
 

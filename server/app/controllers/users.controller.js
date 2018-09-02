@@ -8,7 +8,7 @@ const iplocation = require('iplocation')
 exports.location = (req, res) => {
   const { ip } = req;
   iplocation(ip, (error, location) => {
-    if (err) return res.status(200).json(error)
+    if (error) return res.status(200).json(error)
     const { countryCode } = location
     return res.status(200).send(countryCode)
   })

@@ -13,6 +13,13 @@ export class ContestService {
     this.headers.append("content-Type", "Application/json");
   }
 
+  isInContest({ slug }) {
+    return this.httpClient.get(`/users/isInContest/${slug}`)
+      .toPromise()
+      .then(res => res)
+      .catch(err => err)
+  }
+
   sendEmail({ name, email, subject, message }) {
     return this.httpClient.post('/email/send', { name, email, subject, message })
       .toPromise()

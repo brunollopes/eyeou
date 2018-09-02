@@ -195,30 +195,38 @@ export class ContestComponent implements OnInit {
       } else {
         this.routeParams.params.subscribe(async data => {
           if (!data.slug) this.router.navigate(['/'])
-          try {
-            const contest = await this.contestProvider.getContestIdBySlug(data.slug);
-            this.contestId = contest._id;
-          } catch (e) {
-            this.router.navigate(['/']);
-          }
-          this.contestProvider.getContestBySlug(data.slug)
+          localStorage.setItem('contestSlug', data.slug)
+          const contest = await this.contestProvider.getContestIdBySlug(data.slug);
+          this.contestId = contest._id;
+
+          this.contestProvider.isInContest({ slug: data.slug })
             .then(async res => {
-              if (!res.userIncluded) {
-                try {
-                  const joinContest = await this.contestProvider.joinFreeContest(this.contestId);
-                  const contest = await this.contestProvider.getContestBySlug(data.slug);
-                  this.contest = contest.contest;
-                  this.contest['timeRemains'] = this.helper.dateDiff(this.contest.review_time);
-                  this.contest.prize_money == 0 ? this.uploadLimit = 1 : this.uploadLimit = res.transaction.maxPhotosLimit;
-                  localStorage.setItem('contestSlug', data.slug);
-                } catch (e) {
-                  this.router.navigate(['/']);
-                }
-              } else {
-                this.contest = res.contest;
-                this.contest.prize_money == 0 ? this.uploadLimit = 1 : this.uploadLimit = res.transaction.maxPhotosLimit;
-                this.contest['timeRemains'] = this.helper.dateDiff(this.contest.review_time)
-                localStorage.setItem('contestSlug', data.slug);
+              if (!res.userIncluded && res.contestType == 'free') {
+                console.log('>> FREE CONTEST, USER NOT INCLUDED', res)
+                this.contestProvider.joinFreeContest(contest._id)
+                  .then($contest => {
+                    this.contest = $contest.contest;
+                    this.contest['timeRemains'] = this.helper.dateDiff(this.contest.review_time);
+                    this.contest.prize_money == 0 ? this.uploadLimit = 1 : this.uploadLimit = res.transaction.maxPhotosLimit;
+                    localStorage.setItem('contestSlug', data.slug);
+                  })
+                  .catch(err => { console.log(">> ERROR JOIN FREE:", err) })
+
+              } else if (!res.userIncluded && res.contestType !== 'free') {
+                console.log('>> NOT FREE CONTEST & USER NOT INCLUDED', res)
+                return this.router.navigate(['/'])
+
+              } else if (res.userIncluded) {
+                console.log('>> USER INCLUDED')
+                this.contestProvider.getContestBySlug(data.slug)
+                  .then($contest => {
+                    this.contest = $contest.contest;
+                    console.log($contest)
+                    this.contest['timeRemains'] = this.helper.dateDiff(this.contest.review_time);
+                    this.contest.prize_money == 0 ? this.uploadLimit = 1 : this.uploadLimit = res.transaction.maxPhotosLimit;
+                    localStorage.setItem('contestSlug', data.slug);
+                  })
+                  .catch(err => { console.log(">> ERROR GET CONTEST USER INCLUDED:", err) })
               }
             })
             .catch(err => {

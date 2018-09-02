@@ -3,7 +3,8 @@ const Contests = require('../models/contest.model');
 const emailHelper = require('../helpers/mail.helper');
 const nodemailer = require("nodemailer");
 const bcrypt = require('bcrypt');
-const iplocation = require('iplocation')
+const iplocation = require('iplocation');
+const Transactions = require('../models/transactions.model');
 
 exports.location = (req, res) => {
   const { ip } = req;
@@ -245,6 +246,40 @@ exports.getUserImages = (req, res) => {
     .catch(err => res.status(403).json(err));
 }
 
+exports.isInContest = (req, res) => {
+  const userId = req.user.id
+
+  const query = {
+    slug: req.params.slug
+  }
+
+  Contests
+    .findOne(query)
+    .exec()
+    .then(contest => {
+      contest.users.forEach(async ($userId, index) => {
+        if ($userId == userId) {
+          if (contest.type == 'paid') {
+            const $transaction = await Transactions.findOne({ user: userId, contest: contest.id }, ['maxPhotosLimit', '_id']).exec()
+            if ($transaction) {
+              return res.status(200).json({ userIncluded: true, contestType: contest.type })
+            } else {
+              return res.status(200).json({ userIncluded: false, contestType: contest.type })
+            }
+          } else {
+            return res.status(200).json({ userIncluded: true, contestType: contest.type })
+          }
+        }
+        if (index === contest.users.length - 1)
+          res.status(200).json({ userIncluded: false, contestType: contest.type })
+      });
+    })
+    .catch(err => {
+      console.log(err)
+      return res.status(500).json(err);
+    })
+}
+
 exports.joinFreeContest = (req, res) => {
   const { contestId } = req.body;
   const userId = req.user._id;
@@ -252,9 +287,25 @@ exports.joinFreeContest = (req, res) => {
   Promise
     .all([
       Users.findByIdAndUpdate(userId, { $push: { contests: contestId } }).exec(),
-      Contests.findByIdAndUpdate(contestId, { $push: { users: userId } }).exec()
+      Contests.findByIdAndUpdate(contestId, { $push: { users: userId } }, { new: true }).populate({
+        path: 'users',
+        select: ['images, id'],
+        match: {
+          _id: userId
+        },
+        populate: {
+          path: 'images',
+          select: ['image_path', 'createdAt', '_id', 'thumbnail_path'],
+          match: {
+            contest: req.locals.contestId
+          }
+        }
+      }).exec()
     ])
-    .then(info => res.status(200).json(info))
+    .then(info => {
+      console.log(info[1]);
+      return res.status(200).json({ contest: info[1] })
+    })
     .catch(err => res.status(403).json(err));
 }
 
@@ -281,6 +332,11 @@ exports.forget = (req, res) => {
                 Reset
               </a>
             </p>
+            <p>Great Shots!</p>
+            <img 
+                src="https://lh5.googleusercontent.com/YVZbtwcEGhhTTLRn5ekI852WwZ-_3rhg5wi1dRN67CkobT_NM3X59k0pmCjTOWRlT0UHAAG059EF-8xAVkYbueeOVeXNPLpk0UwlZNFbvyRIsFPxgWIsCTiEEtfUkTa-vT_kAQP2"
+                style="width: 25%"
+            />
           `,
           $subject: 'EYEOU Password Reset'
         })

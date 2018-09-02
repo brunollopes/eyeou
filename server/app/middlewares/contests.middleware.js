@@ -8,17 +8,21 @@ const Images = require('../models/image.model.js');
 
 const isFreeContest = (req, res, next) => {
   const { contestId } = req.body;
+
   Contests
     .findById(contestId)
     .exec()
     .then(contest => {
       if (contest.entry_price == 0 && contest.type == 'free') {
-        next();
+        return next();
       } else {
-        res.status(403).json({ message: 'Contest is not free', err: true })
+        return res.status(403).json({ message: 'Contest is not free', err: true })
       }
     })
-    .catch(err => res.status(500).json(e));
+    .catch(err => {
+      console.log(err.message);
+      return res.status(500).json(err)
+    });
 };
 
 module.exports = {

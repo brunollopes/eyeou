@@ -49,6 +49,7 @@ export class GalleryListComponent implements OnInit {
   // Open Modal
   openModal(listing) {
     if (this.auth.user) {
+      localStorage.setItem('contestId', listing._id)
       this.bsModalRef = this.modalService.show(ContestDialog, { initialState: { data: listing } })
       // this.dialog.open(ContestDialog, {
       //   width: '450px',

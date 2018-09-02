@@ -28,11 +28,17 @@ const isUserInContest = (req, res, next) => {
     .then(contest => {
       contest.users.forEach(async $userId => {
         if ($userId == userId) {
-          const $transaction = await Transactions.findOne({ user: userId, contest: contest._id }, ['maxPhotosLimit', '_id']).exec()
-          req.locals.userIncluded = true;
-          req.locals.transaction = $transaction;
-          req.locals.contestId = contest.id;
-          next()
+          if (contest.type == 'paid') {
+            const $transaction = await Transactions.findOne({ user: userId, contest: contest._id }, ['maxPhotosLimit', '_id']).exec()
+            req.locals.userIncluded = true;
+            req.locals.transaction = $transaction;
+            req.locals.contestId = contest.id;
+            next()
+          } else {
+            req.locals.userIncluded = true;
+            req.locals.contestId = contest.id;
+            next()
+          }
         }
       });
     })

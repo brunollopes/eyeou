@@ -78,6 +78,8 @@ module.exports = (app) => {
     app.post('/auth/reset', users.reset);
     // Send Email
     app.post('/email/send', emailHelper.sendEmailExpress);
+    // Is User In Contest
+    app.get('/users/isInContest/:slug', userMiddlewares.isLoggedId ,users.isInContest);
 
 
     const images = require('../controllers/image.controller.js');

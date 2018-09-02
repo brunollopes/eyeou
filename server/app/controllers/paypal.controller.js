@@ -72,21 +72,21 @@ exports.execute = async (req, res) => {
       payment.contest = contest
       payment.maxPhotosLimit = paypalHelper.getMaxPhotoLength($transaction.transaction.transactions[0].amount.total)
       const trans = new Transaction(payment)
-      try {
-        const transSaved = await trans.save();
-        const userUpdate = await User.findOneAndUpdate({ _id: user }, { $push: { contests: contest } }).exec();
-        const contestUpdate = await Contest.findOneAndUpdate({ _id: contest }, { $push: { users: user } }).exec();
-        const sentMail = await emailHelper.sendEmail({
-          $mailTo: process.env.owner_email,
-          $subject: `New Contest Subscription`,
-          $html: `<p>${userUpdate.email} payed the contest fee to join <strong>${contestUpdate.contest_name}</strong></p>`
+      trans.save();
+      Promise.all([
+        User.findOneAndUpdate({ _id: user }, { $push: { contests: contest } }, { new: true }).exec(),
+        Contest.findOneAndUpdate({ _id: contest }, { $push: { users: user } }, { new: true }).exec()
+      ])
+        .then(resolve => {
+          const userUpdate = resolve[0]
+          const contestUpdate = resolve[1]
+          emailHelper.sendEmail({
+            $mailTo: process.env.owner_email,
+            $subject: `New Contest Subscription`,
+            $html: `<p>${userUpdate.email} payed the contest fee to join <strong>${contestUpdate.contest_name}</strong></p>`
+          })
+          return res.status(200).json({ trans, contestUpdate })
         })
-        return res.status(200).json({ trans, contestUpdate })
-      } catch (e) {
-        console.log(e)
-        return res.status(403).json(e)
-      }
-
     });
   } catch (e) {
     console.log(e)

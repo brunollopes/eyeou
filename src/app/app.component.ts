@@ -25,6 +25,7 @@ export class AppComponent implements OnInit {
 
   async ngOnInit() {
     try {
+      const user = await this.auth.me()
       const location = await this.auth.location()
       console.log(location)
       if (location.country === 'PT') {

@@ -219,7 +219,15 @@ export class ContestComponent implements OnInit {
                   .then($contest => {
                     this.contest = $contest.contest;
                     this.contest['timeRemains'] = this.helper.dateDiff(this.contest.review_time);
-                    this.contest.prize_money == 0 ? this.uploadLimit = 1 : this.uploadLimit = $contest.transaction.maxPhotosLimit;
+                    if (this.contest.prize_money == 0) {
+                      this.uploadLimit = 1
+                    } else {
+                      if ($contest.transaction.maxPhotosLimit == 30) {
+                        this.uploadLimit = 27
+                      } else {
+                        this.uploadLimit = $contest.transaction.maxPhotosLimit
+                      }
+                    }
                     localStorage.setItem('contestSlug', data.slug);
                   })
                   .catch(err => { console.log(">> ERROR JOIN FREE:", err) })
@@ -235,7 +243,15 @@ export class ContestComponent implements OnInit {
                     this.contest = $contest.contest;
                     console.log($contest)
                     this.contest['timeRemains'] = this.helper.dateDiff(this.contest.review_time);
-                    this.contest.prize_money == 0 ? this.uploadLimit = 1 : this.uploadLimit = $contest.transaction.maxPhotosLimit;
+                    if (this.contest.prize_money == 0) {
+                      this.uploadLimit = 1
+                    } else {
+                      if ($contest.transaction.maxPhotosLimit == 30) {
+                        this.uploadLimit = 27
+                      } else {
+                        this.uploadLimit = $contest.transaction.maxPhotosLimit
+                      }
+                    }
                     localStorage.setItem('contestSlug', data.slug);
                   })
                   .catch(err => { console.log(">> ERROR GET CONTEST USER INCLUDED:", err) })

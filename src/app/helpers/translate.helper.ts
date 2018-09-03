@@ -57,7 +57,7 @@ export const en = {
   yourImages: 'Your Photos',
   noImages1: 'You haven\'t upload any photos to this contest yet',
   noImages2: 'You can upload more photos from the form above.',
-  maxLimitNotice: 'Maximum size allowed: 10 mb',
+  maxLimitNotice: 'Maximum size allowed: 15 mb',
 
   aboutTitle: 'ABOUT',
   aboutP1: 'EYEOU is a web platform having available photographic contests made from professional photographers to all around photographers.',
@@ -403,7 +403,7 @@ export const pt = {
   yourImages: 'Suas Fotos',
   noImages1: 'Ainda não submeteu fotos para este concurso',
   noImages2: 'Ainda pode fazer upload the mais fotos.',
-  maxLimitNotice: 'Máximo tamanho permitido: 10 mb',
+  maxLimitNotice: 'Máximo tamanho permitido: 15 mb',
 
   aboutTitle: 'SOBRE',
   aboutP1: 'O EYEOU é uma plataforma web que disponibiliza concursos fotográficos feitos por fotógrafos profissionais para todos os fotógrafos.',

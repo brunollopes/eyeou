@@ -48,8 +48,10 @@ export class ContestComponent implements OnInit {
       } else {
         console.log(event.srcElement.files)
         for (const file in event.srcElement.files) {
+          // FILE SIZE LIMIT HERE
           console.log(event.srcElement.files[file])
-          if (event.srcElement.files[file].size) {
+          if (event.srcElement.files[file].size < 1.5e+7) {
+            console.log('>> FILE ADDED', event.srcElement.files[file])
             this.previewFiles.push({
               name: event.srcElement.files[file].name,
               size: event.srcElement.files[file].size,
@@ -60,6 +62,8 @@ export class ContestComponent implements OnInit {
             this.files.push(event.srcElement.files[file]);
             this.previewFiles = this.helper.removeDuplicates(this.previewFiles, 'name');
             this.files = this.helper.removeDuplicates(this.files, 'name');
+          } else {
+            console.log('>> FILE NOT ADDED', event.srcElement.files[file])
           }
         }
       }
@@ -74,20 +78,28 @@ export class ContestComponent implements OnInit {
       } else {
         console.log(this.files.length)
         this.maxLimitReached = false;
-        event.files.forEach(file => { this.files.push(file); });
-        this.files = this.helper.removeDuplicates(this.files, 'relativePath');
-        for (const droppedFile of this.files) {
+
+        for (const droppedFile of event.files) {
+          // FILE SIZE LIMIT HERE
           if (droppedFile.fileEntry.isFile) {
             const fileEntry = droppedFile.fileEntry as FileSystemFileEntry;
             fileEntry.file((file: File) => {
-              this.previewFiles.push({
-                name: file.name,
-                size: file.size,
-                lastModifiedDate: file.lastModified,
-                type: file.type,
-                status: 'Added'
-              });
-              this.previewFiles = this.helper.removeDuplicates(this.previewFiles, 'name');
+              if (file.size < 1.5e+7) {
+                console.log('>> FILE ADDED', file)
+                this.previewFiles.push({
+                  name: file.name,
+                  size: file.size,
+                  lastModifiedDate: file.lastModified,
+                  type: file.type,
+                  status: 'Added'
+                });
+                event.files.forEach($file => { this.files.push($file); });
+                console.log(this.files)
+                this.files = this.helper.removeDuplicates(this.files, 'relativePath');
+                this.previewFiles = this.helper.removeDuplicates(this.previewFiles, 'name');
+              } else {
+                console.log('>> FILE NOT ADDED', file)
+              }
             });
           } else {
             const fileEntry = droppedFile.fileEntry as FileSystemFileEntry;
@@ -207,7 +219,7 @@ export class ContestComponent implements OnInit {
                   .then($contest => {
                     this.contest = $contest.contest;
                     this.contest['timeRemains'] = this.helper.dateDiff(this.contest.review_time);
-                    this.contest.prize_money == 0 ? this.uploadLimit = 1 : this.uploadLimit = res.transaction.maxPhotosLimit;
+                    this.contest.prize_money == 0 ? this.uploadLimit = 1 : this.uploadLimit = $contest.transaction.maxPhotosLimit;
                     localStorage.setItem('contestSlug', data.slug);
                   })
                   .catch(err => { console.log(">> ERROR JOIN FREE:", err) })
@@ -223,7 +235,7 @@ export class ContestComponent implements OnInit {
                     this.contest = $contest.contest;
                     console.log($contest)
                     this.contest['timeRemains'] = this.helper.dateDiff(this.contest.review_time);
-                    this.contest.prize_money == 0 ? this.uploadLimit = 1 : this.uploadLimit = res.transaction.maxPhotosLimit;
+                    this.contest.prize_money == 0 ? this.uploadLimit = 1 : this.uploadLimit = $contest.transaction.maxPhotosLimit;
                     localStorage.setItem('contestSlug', data.slug);
                   })
                   .catch(err => { console.log(">> ERROR GET CONTEST USER INCLUDED:", err) })

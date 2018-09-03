@@ -248,6 +248,8 @@ export class ContestComponent implements OnInit {
                     } else {
                       if ($contest.transaction.maxPhotosLimit == 30) {
                         this.uploadLimit = 30
+                      } else if ($contest.transaction.maxPhotosLimit == 10) {
+                        this.uploadLimit = 10
                       } else {
                         this.uploadLimit = $contest.transaction.maxPhotosLimit
                       }

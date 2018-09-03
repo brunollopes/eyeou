@@ -37,7 +37,7 @@ export class ContestComponent implements OnInit {
 
   public dropped(event, browse = false) {
     if (browse) {
-      event.files = event.srcElement.files
+      event.files = event.target.files
       if ((this.files.length + 1 > this.uploadLimit) ||
         ((event.files.length + this.contest.users[0].images.length) > this.uploadLimit) ||
         ((this.files.length + 1 + this.contest.users[0].images.length) > this.uploadLimit)) {
@@ -46,24 +46,24 @@ export class ContestComponent implements OnInit {
           this.maxLimitReached = false
         }, 1500)
       } else {
-        console.log(event.srcElement.files)
-        for (const file in event.srcElement.files) {
+        console.log(event.target.files)
+        for (const file in event.target.files) {
           // FILE SIZE LIMIT HERE
-          console.log(event.srcElement.files[file])
-          if (event.srcElement.files[file].size < 1.5e+7) {
-            console.log('>> FILE ADDED', event.srcElement.files[file])
+          console.log(event.target.files[file])
+          if (event.target.files[file].size < 1.5e+7) {
+            console.log('>> FILE ADDED', event.target.files[file])
             this.previewFiles.push({
-              name: event.srcElement.files[file].name,
-              size: event.srcElement.files[file].size,
-              lastModifiedDate: event.srcElement.files[file].lastModified,
-              type: event.srcElement.files[file].type,
+              name: event.target.files[file].name,
+              size: event.target.files[file].size,
+              lastModifiedDate: event.target.files[file].lastModified,
+              type: event.target.files[file].type,
               status: 'Added'
             });
-            this.files.push(event.srcElement.files[file]);
+            this.files.push(event.target.files[file]);
             this.previewFiles = this.helper.removeDuplicates(this.previewFiles, 'name');
             this.files = this.helper.removeDuplicates(this.files, 'name');
           } else {
-            console.log('>> FILE NOT ADDED', event.srcElement.files[file])
+            console.log('>> FILE NOT ADDED', event.target.files[file])
           }
         }
       }

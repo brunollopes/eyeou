@@ -243,7 +243,7 @@ export class ContestComponent implements OnInit {
                     this.contest = $contest.contest;
                     console.log($contest)
                     this.contest['timeRemains'] = this.helper.dateDiff(this.contest.review_time);
-                    if (this.contest.prize_money == 0) {
+                    if (this.contest.entry_price == 0) {
                       this.uploadLimit = 1
                     } else {
                       if ($contest.transaction.maxPhotosLimit == 30) {

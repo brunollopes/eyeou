@@ -10,7 +10,7 @@
   <main *ngIf="contest">
     <div class="contest-info">
       <div class="col-md-4 col-xs-12 contest-image">
-        <img [src]="contest.bgprofile_image" alt="Contest Display Picture">
+        <img [src]="contest.bgprofile_image[0]" alt="Contest Display Picture">
       </div>
       <div class="col-md-8 col-xs-12 contest-status">
         <h2>{{contest.contest_name}}</h2>

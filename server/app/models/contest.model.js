@@ -9,7 +9,9 @@ const ContestSchema = mongoose.Schema({
     contest_title: String,
     submit_time: Date,
     review_time: Date,
-    bgprofile_image: String,
+    bgprofile_image: [{
+        type: String
+    }],
     entry_price: Number,
     results: String,
     review_startdate: Date,

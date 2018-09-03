@@ -1,7 +1,7 @@
 <!-- Gallery content loop Start-->
 <div class=" card-columns  grid-column">
   <div class="grid-element" *ngFor="let listing of gallerylist">
-    <img class="contestimg" style="width:100%;" src="{{listing.bgprofile_image}}">
+    <img class="contestimg" style="width:100%;" [src]="listing.image">
     <div class="imageDesc">
       <span class='contest-duration'>
         <img [src]="listing.badge" style="width: 20px; height: 20px; position: relative; top: -1px; right: 8px;" />
@@ -24,6 +24,7 @@
         <h3>{{listing.contest_name}}</h3>
         <h3 *ngIf="listing.entry_price && listing.entry_price !== 0">{{listing.prize_money}}€</h3>
         <h3 *ngIf="!listing.entry_price">{{'Free'}}</h3>
+        <p>{{listing.entry_price != 0 ? translate.lang.from + ' ' + 2 + '€' : 'Free'}}</p>
       </div>
     </div>
   </div>

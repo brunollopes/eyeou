@@ -342,7 +342,8 @@ export const en = {
 
   login: 'LOGIN',
   signup: 'SIGNUP',
-  logout: 'LOGOUT'
+  logout: 'LOGOUT',
+  from: 'from'
 }
 
 export const pt = {
@@ -689,5 +690,6 @@ export const pt = {
 
   login: 'ENTRAR',
   signup: 'REGISTAR',
-  logout: 'SAIR'
+  logout: 'SAIR',
+  from: 'desde'
 }

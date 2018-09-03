@@ -68,6 +68,21 @@ export class GalleryListComponent implements OnInit {
         this.gallerylist.forEach(gallery => {
           gallery.timeRemains = this.app.dateDiff(gallery.review_time)
           gallery.badge = this.app.getBadge(gallery.openphase_duration)
+          gallery.counter = 0
+          gallery.setImage = () => { gallery.image = gallery.bgprofile_image[gallery.counter] }
+          gallery.pickImage = () => {
+            gallery.counter = gallery.counter + 1;
+            gallery.counter == 3 ? gallery.counter = 0 : gallery.counter = gallery.counter;
+            return gallery.counter
+          }
+          gallery.setImage()
+          gallery.changeImage = () => {
+            setInterval(() => {
+              gallery.pickImage()
+              gallery.setImage()
+            }, 5000)
+          }
+          gallery.changeImage()
         })
         resolve(data)
       });

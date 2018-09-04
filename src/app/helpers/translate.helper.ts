@@ -8,7 +8,7 @@ export const en = {
   langKey: 'en',
   header: 'ONE SHOT CAN BE',
   headerGreen: 'YOUR LUCKY DAY',
-  headerDesc: 'Participate on by joining our contests and show',
+  headerDesc: 'Join our contests and show',
   headerDesc2: 'how great are your photos',
   navLink1: 'ABOUT',
   navLink2: 'CONTACT',
@@ -61,7 +61,9 @@ export const en = {
 
   aboutTitle: 'ABOUT',
   aboutP1: 'EYEOU is a web platform that offers photography contests to anyone passionate about photography.',
-  aboutP2: 'Its goal is to provide a service that any photographer can use, in order to test his photographic skills, and to compete in photographic contests. Each contest has a specific timeframe in which you can submit your pictures, which will then be evaluated by a panel comprised by at least three of our ambassadors. Check our rules for more detailed info please.',
+  aboutP2: 'Its goal is to provide a service that any photographer can use, in order to test his photographic skills, and to compete in photographic contests. Each contest has a specific timeframe in which you can submit your pictures, which will then be evaluated by a panel comprised by at least three of our ambassadors. Check our ',
+  aboutA1: 'rules ',
+  aboutP4: 'for more detailed info please.',
   aboutP3: 'Our ambassadors’ team is comprised exclusively by professional photographers with a broad experience and a proven track record.  ',
 
   contactTitle: 'CONTACT',
@@ -357,8 +359,8 @@ export const pt = {
   langKey: 'pt',
   header: 'UM CLIQUE PODE SER',
   headerGreen: 'O SEU DIA DE SORTE',
-  headerDesc: 'Participa nos nossos concursos e mostre',
-  headerDesc2: 'quanto boas são as sua fotos',
+  headerDesc: 'Participa nos nossos concursos e mostra',
+  headerDesc2: 'quanto boas são as tuas fotos',
   navLink1: 'SOBRE',
   navLink2: 'CONTACTO',
   navLink3: 'REGRAS',
@@ -409,7 +411,9 @@ export const pt = {
 
   aboutTitle: 'SOBRE',
   aboutP1: 'A EYEOU é uma plataforma web que oferece concursos fotográficos a todos os fotógrafos interessados em participar.',
-  aboutP2: 'O seu objetivo é disponibilizar este serviço a qualquer individuo interessado em fotografia, para testar as suas capacidades fotográficas e participar nos concursos que disponibilizamos. Cada concurso tem um tempo específico para envio das fotografias e posterior revisão por parte do júri, sendo este constituído, no mínimo, por três dos nossos embaixadores. Por favor, consulte as regras para ficar a par de todos os detalhes.',
+  aboutP2: 'O seu objetivo é disponibilizar este serviço a qualquer individuo interessado em fotografia, para testar as suas capacidades fotográficas e participar nos concursos que disponibilizamos. Cada concurso tem um tempo específico para envio das fotografias e posterior revisão por parte do júri, sendo este constituído, no mínimo, por três dos nossos embaixadores. Por favor, consulte as ',
+  aboutA1: 'regras ',
+  aboutP4: 'para ficar a par de todos os detalhes.',
   aboutP3: 'A nossa equipa de embaixadores é constituída, exclusivamente, por fotógrafos profissionais com uma vasta experiência e créditos comprovados nas suas respectivas áreas.',
 
   contactTitle: 'CONTACTO',

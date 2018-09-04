@@ -343,7 +343,8 @@ export const en = {
   login: 'LOGIN',
   signup: 'SIGNUP',
   logout: 'LOGOUT',
-  from: 'from'
+  from: 'from',
+  contestInfo: 'Contest Info'
 }
 
 export const pt = {
@@ -691,5 +692,6 @@ export const pt = {
   login: 'ENTRAR',
   signup: 'REGISTAR',
   logout: 'SAIR',
-  from: 'desde'
+  from: 'desde',
+  contestInfo: 'Informação do Concurso'
 }

@@ -48,9 +48,9 @@
           <div class="col-xs-6" style="padding: 0" *ngIf="data.entry_price && !payed">
             <mat-form-field class='col-xs-6'>
               <mat-select [placeholder]="translate.lang.photos" (selectionChange)="checkFees()" formControlName='photos'>
-                <mat-option value="1">1 Photo</mat-option>
-                <mat-option value="10">10 Photos</mat-option>
-                <mat-option value="30">30 Photos</mat-option>
+                <mat-option value="1">1 {{translate.lang.photo}}</mat-option>
+                <mat-option value="10">10 {{translate.lang.photos}}</mat-option>
+                <mat-option value="30">30 {{translate.lang.photos}}</mat-option>
               </mat-select>
             </mat-form-field>
             <mat-form-field class='col-xs-6'>

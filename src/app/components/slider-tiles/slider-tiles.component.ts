@@ -15,8 +15,8 @@ export class SliderTilesComponent implements OnInit {
         name: 'Nuno Lobito',
         profile: 'https://lh4.googleusercontent.com/hl_rmEuT9UCPt8MidKlRNyQlBy5GjgriicpJObjab9KNwy-ovlk1HsuWoBIhjrBSkIywvx8b_LmmcxgQLt3hzZtOuiu0Otmj6rqNIniUAlhLm8awHQLGfpNiF3ORl2b5HeNsOBbT',
         position: {
-          en: 'Photographer Pro',
-          pt: 'Fotógrafo Pro'
+          en: 'Photographer',
+          pt: 'Fotógrafo'
         },
         info: {
           en: [
@@ -41,8 +41,8 @@ export class SliderTilesComponent implements OnInit {
         name: 'Angelo Lucas',
         profile: 'https://lh3.googleusercontent.com/eX0xJ6hASNFl67tHumhxKu7zPaptef1GNq3wLdWH-odHAJoLiO9eF9NVsOsW8AGai_qrH55THRIuea5DvQTpo5DvUOXkCRkmWTs1ruRDPHnZO9zHi6GZk7lDZXnnLOdkyCFcdaoL',
         position: {
-          en: 'Photographer Pro',
-          pt: 'Fotógrafo Pro'
+          en: 'Photographer',
+          pt: 'Fotógrafo'
         },
         info: {
           en: [
@@ -63,8 +63,8 @@ export class SliderTilesComponent implements OnInit {
         name: 'Tiago Maya',
         profile: '../../../assets/images/judge.jpg',
         position: {
-          en: 'Photographer Pro',
-          pt: 'Fotógrafo Pro'
+          en: 'Photographer',
+          pt: 'Fotógrafo'
         },
         info: {
           en: [
@@ -75,7 +75,7 @@ export class SliderTilesComponent implements OnInit {
           pt: [
             'Mais de 15 anos como fotógrafo profissional.',
             'Estágio na foto VII em Brooklyn, NY.',
-            'Atualmente trabalha como criador de conteúdo visual e assessor de várias marcas.'
+            'Atualmente trabalha como Visual Content Creator e Advisor de várias marcas.'
           ]
         },
         url: 'tiagomaya.com',

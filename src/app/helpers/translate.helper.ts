@@ -339,6 +339,7 @@ export const en = {
   passwordChanged: 'Password changed successfully',
   reset: 'Reset',
   enterValidEmail: 'Please enter a valid email',
+  notifyNote: "You'll be notified of any new contest",
   contestFee: 'Contest Fee',
   emailNoFound: 'Email not found',
 
@@ -350,6 +351,7 @@ export const en = {
 }
 
 export const pt = {
+  notifyNote: "Será notificado de novos concursos",
   termsAndConditions: 'termos & privacidade & regras',
   week: 'Semana',
   month: 'Mês',
@@ -359,7 +361,7 @@ export const pt = {
   langKey: 'pt',
   header: 'UM CLIQUE PODE SER',
   headerGreen: 'O SEU DIA DE SORTE',
-  headerDesc: 'Participe nos nossos concursos e mostra',
+  headerDesc: 'Participe nos nossos concursos e mostre',
   headerDesc2: 'quão boas são as suas fotos',
   navLink1: 'SOBRE',
   navLink2: 'CONTACTO',

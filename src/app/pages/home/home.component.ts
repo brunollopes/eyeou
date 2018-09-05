@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
 import { ContestService } from '../../services/contest.service';
 import { TranslateService } from '../../services/translate.service';
-import { AuthService } from '../../services/auth.service'
 
 @Component({
   selector: 'app-home',
@@ -29,20 +29,33 @@ export class HomeComponent implements OnInit {
   };
 
 
+  notifyGroup: FormGroup;
+  err: boolean
   constructor(
+    public fb: FormBuilder,
     public translate: TranslateService,
     public contestProvider: ContestService
   ) {
 
   }
 
-  notifyUser(name, email) {
-    console.log(name, email)
-    this.contestProvider.notifyUser(name, email).then(res => { this.willNotify = true })
+  notifyUser() {
+    const {name, email} = this.notifyGroup.value;
+    if (this.notifyGroup.valid) {
+      this.err = false;
+      this.willNotify = false;
+      this.contestProvider.notifyUser(name, email).then(res => { this.willNotify = true })
+    } else {
+      this.willNotify = false;
+      this.err = true
+    }
   }
 
   ngOnInit() {
-    console.log('Hello home component');
+    this.notifyGroup = this.fb.group({
+      email: [null, Validators.compose([Validators.required, Validators.email])],
+      name: [null, Validators.required]
+    })
   }
 
 

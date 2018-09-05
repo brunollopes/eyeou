@@ -20,23 +20,25 @@
                     </h1>
                 </div>
                 <div class="col-md-9 text-center-sm">
-                    <form>
+                    <form [formGroup]="notifyGroup">
                         <div class="row">
                             <div class="col-md-3 col-sm-3">
                                 <div class="input-group full-width-sm input-group-lg" style="width: 100%">
-                                    <input class="form-control signup-input" #name placeholder="{{translate.lang.weeklyContestPlaceholderName}}" value="" type="text">
+                                    <input class="form-control signup-input" formControlName="name" placeholder="{{translate.lang.weeklyContestPlaceholderName}}" type="text">
                                 </div>
                             </div>
                             <div class="col-md-6 col-sm-6">
                                 <div class="input-group full-width-sm input-group-lg" style="width: 100%">
-                                    <input class="form-control signup-input" #email placeholder="{{translate.lang.weeklyContestPlaceholderEmail}}" value="" type="email">
+                                    <input class="form-control signup-input" formControlName="email" placeholder="{{translate.lang.weeklyContestPlaceholderEmail}}" type="email">
                                 </div>
                             </div>
                             <div class="col-md-3 col-sm-3">
-                                <button class="btn btn-success" type="button" (click)='notifyUser(name.value, email.value)'>{{translate.lang.weeklyContestButton}}</button>
+                                <button class="btn btn-success" type="button" (click)='notifyUser()'>{{translate.lang.weeklyContestButton}}</button>
                             </div>
                             <div class="clearfix"></div>
-                            <p *ngIf='willNotify'>You'll be notified of any new contest</p>
+                            <div class='alert alert-success col-xs-6 col-xs-push-1' style="margin-top: 15px" *ngIf='willNotify'>{{translate.lang.notifyNote}}</div>
+                            <div class='alert alert-danger  col-xs-6 col-xs-push-1' style="margin-top: 15px" *ngIf='err'>{{translate.lang.enterValidEmail}}</div>
+                            <div class="clearfix"></div>
                         </div>
                     </form>
                 </div>

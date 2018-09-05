@@ -39,7 +39,7 @@ export class SliderTilesComponent implements OnInit {
       },
       {
         name: 'Angelo Lucas',
-        profile: 'https://lh3.googleusercontent.com/eX0xJ6hASNFl67tHumhxKu7zPaptef1GNq3wLdWH-odHAJoLiO9eF9NVsOsW8AGai_qrH55THRIuea5DvQTpo5DvUOXkCRkmWTs1ruRDPHnZO9zHi6GZk7lDZXnnLOdkyCFcdaoL',
+        profile: 'https://s3.amazonaws.com/eyeou-public/angelo.jpeg',
         position: {
           en: 'Photographer',
           pt: 'Fotógrafo'

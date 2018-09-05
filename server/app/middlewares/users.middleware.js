@@ -7,10 +7,11 @@ const Transactions = require('../models/transactions.model')
 
 const isLoggedId = (req, res, next) => {
   const { user } = req;
-  if (user)
+  // const { user_id } = req.body
+  if (user._id)
     next();
   else
-    return res.status(403).json({ message: "Authorization Error" });
+    return res.status(403).json({ message: "Authorization Error: User is not logged in" });
 }
 
 const isUserInContest = (req, res, next) => {

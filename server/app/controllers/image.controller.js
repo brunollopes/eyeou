@@ -16,7 +16,8 @@ exports.uploadimage = (req, res) => {
   const { file } = req;
   const { contest_name } = req.body;
   const user_id = req.user._id
-  
+  // const { user_id } = req.body
+
   sharp(file.buffer)
     .resize(600, 400)
     .min()

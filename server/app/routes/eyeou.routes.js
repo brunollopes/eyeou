@@ -2,6 +2,7 @@ const multer = require('multer');
 const passport = require('passport');
 const contestMiddlewares = require('../middlewares/contests.middleware');
 const userMiddlewares = require('../middlewares/users.middleware');
+const imagesMiddlewares = require('../middlewares/images.middleware');
 const emailHelper = require('../helpers/mail.helper');
 
 module.exports = (app) => {
@@ -84,7 +85,7 @@ module.exports = (app) => {
 
     const images = require('../controllers/image.controller.js');
     //Upload image to aws and asave data in mongo
-    app.post('/images/uploads', upload.single("image"), userMiddlewares.isLoggedId, images.uploadimage);
+    app.post('/images/uploads', upload.single("image"), userMiddlewares.isLoggedId, imagesMiddlewares.photosLimit, images.uploadimage);
     //find all images
     app.get('/images', images.findAll);
     // Retrieve a single image with contestid

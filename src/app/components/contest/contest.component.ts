@@ -46,12 +46,9 @@ export class ContestComponent implements OnInit {
           this.maxLimitReached = false
         }, 1500)
       } else {
-        console.log(event.target.files)
         for (const file in event.target.files) {
           // FILE SIZE LIMIT HERE
-          console.log(event.target.files[file])
           if (event.target.files[file].size < 1.5e+7) {
-            console.log('>> FILE ADDED', event.target.files[file])
             this.previewFiles.push({
               name: event.target.files[file].name,
               size: event.target.files[file].size,
@@ -63,7 +60,7 @@ export class ContestComponent implements OnInit {
             this.previewFiles = this.helper.removeDuplicates(this.previewFiles, 'name');
             this.files = this.helper.removeDuplicates(this.files, 'name');
           } else {
-            console.log('>> FILE NOT ADDED', event.target.files[file])
+            console.log('>> FILE NOT ADDED')
           }
         }
       }
@@ -76,7 +73,6 @@ export class ContestComponent implements OnInit {
           this.maxLimitReached = false
         }, 1500)
       } else {
-        console.log(this.files.length)
         this.maxLimitReached = false;
 
         for (const droppedFile of event.files) {
@@ -85,7 +81,6 @@ export class ContestComponent implements OnInit {
             const fileEntry = droppedFile.fileEntry as FileSystemFileEntry;
             fileEntry.file((file: File) => {
               if (file.size < 1.5e+7) {
-                console.log('>> FILE ADDED', file)
                 this.previewFiles.push({
                   name: file.name,
                   size: file.size,
@@ -94,11 +89,10 @@ export class ContestComponent implements OnInit {
                   status: 'Added'
                 });
                 event.files.forEach($file => { this.files.push($file); });
-                console.log(this.files)
                 this.files = this.helper.removeDuplicates(this.files, 'relativePath');
                 this.previewFiles = this.helper.removeDuplicates(this.previewFiles, 'name');
               } else {
-                console.log('>> FILE NOT ADDED', file)
+                console.log('>> FILE NOT ADDED')
               }
             });
           } else {
@@ -111,11 +105,9 @@ export class ContestComponent implements OnInit {
 
   public uploadImages() {
     if (this.files.length) {
-      console.log(this.files)
       for (const droppedFile of this.files) {
         const fileEntry = droppedFile.fileEntry as FileSystemFileEntry;
         if (droppedFile instanceof File) {
-          console.log(droppedFile);
           (async (file: File) => {
             try {
               const formData = new FormData();
@@ -129,19 +121,27 @@ export class ContestComponent implements OnInit {
                 }
               });
               const uploadProcess = await this.contestProvider.uploadimages(formData);
-              this.previewFiles.forEach($file => {
-                if ($file.name == file.name) {
-                  $file.status = 'Uploaded'
-                }
-              });
-              this.files.forEach(($file, i) => {
-                if ($file.name == file.name) {
-                  this.files.splice(i, 1);
-                }
-              });
-              const contest = await this.contestProvider.getContestBySlug(localStorage.getItem('contestSlug'));
-              this.contest = contest.contest;
-              this.contest['timeRemains'] = this.helper.dateDiff(this.contest.review_time)
+              if (uploadProcess.error) {
+                this.previewFiles.forEach($file => {
+                  if ($file.name == file.name) {
+                    $file.status = 'Failed'
+                  }
+                });
+              } else {
+                this.previewFiles.forEach($file => {
+                  if ($file.name == file.name) {
+                    $file.status = 'Uploaded'
+                  }
+                });
+                this.files.forEach(($file, i) => {
+                  if ($file.name == file.name) {
+                    this.files.splice(i, 1);
+                  }
+                });
+                const contest = await this.contestProvider.getContestBySlug(localStorage.getItem('contestSlug'));
+                this.contest = contest.contest;
+                this.contest['timeRemains'] = this.helper.dateDiff(this.contest.review_time)
+              }
             } catch (e) {
               this.previewFiles.forEach($file => {
                 if ($file.name == file.name) {
@@ -164,19 +164,28 @@ export class ContestComponent implements OnInit {
                 }
               });
               const uploadProcess = await this.contestProvider.uploadimages(formData);
-              this.previewFiles.forEach($file => {
-                if ($file.name == file.name) {
-                  $file.status = 'Uploaded'
-                }
-              });
-              this.files.forEach(($file, i) => {
-                if ($file.relativePath == file.name) {
-                  this.files.splice(i, 1);
-                }
-              });
-              const contest = await this.contestProvider.getContestBySlug(localStorage.getItem('contestSlug'));
-              this.contest = contest.contest;
-              this.contest['timeRemains'] = this.helper.dateDiff(this.contest.review_time)
+              if (uploadProcess.error) {
+                this.previewFiles.forEach($file => {
+                  if ($file.name == file.name) {
+                    $file.status = 'Failed'
+                  }
+                });
+              } else {
+                console.log('>> UPLOAD COMPLETE:', uploadProcess)
+                this.previewFiles.forEach($file => {
+                  if ($file.name == file.name) {
+                    $file.status = 'Uploaded'
+                  }
+                });
+                this.files.forEach(($file, i) => {
+                  if ($file.relativePath == file.name) {
+                    this.files.splice(i, 1);
+                  }
+                });
+                const contest = await this.contestProvider.getContestBySlug(localStorage.getItem('contestSlug'));
+                this.contest = contest.contest;
+                this.contest['timeRemains'] = this.helper.dateDiff(this.contest.review_time)
+              }
             } catch (e) {
               this.previewFiles.forEach($file => {
                 if ($file.name == file.name) {
@@ -214,7 +223,6 @@ export class ContestComponent implements OnInit {
           this.contestProvider.isInContest({ slug: data.slug })
             .then(async res => {
               if (!res.userIncluded && res.contestType == 'free') {
-                console.log('>> FREE CONTEST, USER NOT INCLUDED', res)
                 this.contestProvider.joinFreeContest(contest._id)
                   .then($contest => {
                     this.contest = $contest.contest;
@@ -233,15 +241,12 @@ export class ContestComponent implements OnInit {
                   .catch(err => { console.log(">> ERROR JOIN FREE:", err) })
 
               } else if (!res.userIncluded && res.contestType !== 'free') {
-                console.log('>> NOT FREE CONTEST & USER NOT INCLUDED', res)
                 return this.router.navigate(['/'])
 
               } else if (res.userIncluded) {
-                console.log('>> USER INCLUDED')
                 this.contestProvider.getContestBySlug(data.slug)
                   .then($contest => {
                     this.contest = $contest.contest;
-                    console.log($contest)
                     this.contest['timeRemains'] = this.helper.dateDiff(this.contest.review_time);
                     if (this.contest.entry_price == 0) {
                       this.uploadLimit = 1

@@ -48,12 +48,12 @@ export class SliderTilesComponent implements OnInit {
           en: [
             'Over 20 years of professional photographer',
             'Photographer teacher',
-            'Videographer, photojournalist, documentarian'
+            'photojournalist, documentarian'
           ],
           pt: [
             'Mais de 20 anos como fotógrafo profissional',
             'Professor em fotografia',
-            'Cinegrafista, foto jornalista, documentarista'
+            'fotojornalista, documentarista'
           ]
         },
         url: 'angelolucas.com',
@@ -61,7 +61,7 @@ export class SliderTilesComponent implements OnInit {
       },
       {
         name: 'Tiago Maya',
-        profile: '../../../assets/images/judge.jpg',
+        profile: '../../../assets/images/judge.jpeg',
         position: {
           en: 'Photographer',
           pt: 'Fotógrafo'
@@ -74,7 +74,7 @@ export class SliderTilesComponent implements OnInit {
           ],
           pt: [
             'Mais de 15 anos como fotógrafo profissional.',
-            'Estágio na foto VII em Brooklyn, NY.',
+            'Estágio na agȇncia VII em Brooklyn, NY.',
             'Atualmente trabalha como Visual Content Creator e Advisor de várias marcas.'
           ]
         },

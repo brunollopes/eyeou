@@ -360,7 +360,7 @@ export const pt = {
   header: 'UM CLIQUE PODE SER',
   headerGreen: 'O SEU DIA DE SORTE',
   headerDesc: 'Participa nos nossos concursos e mostra',
-  headerDesc2: 'quanto boas são as tuas fotos',
+  headerDesc2: 'quão boas são as tuas fotos',
   navLink1: 'SOBRE',
   navLink2: 'CONTACTO',
   navLink3: 'REGRAS',

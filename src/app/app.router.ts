@@ -21,5 +21,6 @@ export const ROUTES : Routes = [
   { path: 'help', component: HelpComponent },
   { path: 'terms', component: TermsComponent },
   { path: 'processing', component: ProcessingComponent },
-  { path: 'reset', component: ResetComponent }
+  { path: 'reset', component: ResetComponent },
+  { path: '**', redirectTo: '' }
 ];

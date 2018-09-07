@@ -23,11 +23,11 @@
           <mat-icon [matTooltip]="translate.lang.yourPhotos">insert_photo</mat-icon>
           <span>{{contest.users[0].images.length}} {{translate.lang.photos}}</span>
         </div>
-        <div *ngIf='uploadLimit - contest.users[0].images.length == 0'>
+        <div *ngIf='uploadLimit - contest.users[0].images.length > 0'>
           <mat-icon [matTooltip]="translate.lang.photos">add_photo_alternate</mat-icon>
           <span>{{translate.lang.youCanUpload}} {{uploadLimit - contest.users[0].images.length}} {{translate.lang.photos}}</span>
         </div>
-        <div *ngIf='uploadLimit - contest.users[0].images.length > 0'>
+        <div *ngIf='uploadLimit - contest.users[0].images.length == 0'>
           <mat-icon [matTooltip]="translate.lang.photos">add_photo_alternate</mat-icon>
           <span>{{translate.lang.noMorePhotos}}</span>
         </div>

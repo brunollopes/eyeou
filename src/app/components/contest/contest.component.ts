@@ -65,10 +65,9 @@ export class ContestComponent implements OnInit {
         }
       }
     } else {
-      // (this.files.length + 1 > this.uploadLimit) ||
-      //   ((event.files.length + this.contest.users[0].images.length) > this.uploadLimit) ||
-      //   ((this.files.length + 1 + this.contest.users[0].images.length) > this.uploadLimit)
-      if (2 > 1) {
+      if ((this.files.length + 1 > this.uploadLimit) ||
+      ((event.files.length + this.contest.users[0].images.length) > this.uploadLimit) ||
+      ((this.files.length + 1 + this.contest.users[0].images.length) > this.uploadLimit)) {
         this.maxLimitReached = true;
         setTimeout(() => {
           this.maxLimitReached = false

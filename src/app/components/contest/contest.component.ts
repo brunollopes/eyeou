@@ -65,9 +65,10 @@ export class ContestComponent implements OnInit {
         }
       }
     } else {
-      if ((this.files.length + 1 > this.uploadLimit) ||
-        ((event.files.length + this.contest.users[0].images.length) > this.uploadLimit) ||
-        ((this.files.length + 1 + this.contest.users[0].images.length) > this.uploadLimit)) {
+      // (this.files.length + 1 > this.uploadLimit) ||
+      //   ((event.files.length + this.contest.users[0].images.length) > this.uploadLimit) ||
+      //   ((this.files.length + 1 + this.contest.users[0].images.length) > this.uploadLimit)
+      if (2 > 1) {
         this.maxLimitReached = true;
         setTimeout(() => {
           this.maxLimitReached = false
@@ -105,97 +106,80 @@ export class ContestComponent implements OnInit {
 
   public uploadImages() {
     if (this.files.length) {
+      let files = []
       for (const droppedFile of this.files) {
         const fileEntry = droppedFile.fileEntry as FileSystemFileEntry;
         if (droppedFile instanceof File) {
-          (async (file: File) => {
-            try {
-              const formData = new FormData();
-              formData.append('image', file, file.name);
-              formData.append('user_id', this.userId);
-              formData.append('contest_name', this.contestId);
-              this.uploading = true;
-              this.previewFiles.forEach($file => {
-                if ($file.name == file.name) {
-                  $file.status = 'Uploading'
-                }
-              });
-              const uploadProcess = await this.contestProvider.uploadimages(formData);
-              if (uploadProcess.error) {
-                this.previewFiles.forEach($file => {
-                  if ($file.name == file.name) {
-                    $file.status = 'Failed'
-                  }
-                });
-              } else {
-                this.previewFiles.forEach($file => {
-                  if ($file.name == file.name) {
-                    $file.status = 'Uploaded'
-                  }
-                });
-                this.files.forEach(($file, i) => {
-                  if ($file.name == file.name) {
-                    this.files.splice(i, 1);
-                  }
-                });
-                const contest = await this.contestProvider.getContestBySlug(localStorage.getItem('contestSlug'));
-                this.contest = contest.contest;
-                this.contest['timeRemains'] = this.helper.dateDiff(this.contest.review_time)
-              }
-            } catch (e) {
-              this.previewFiles.forEach($file => {
-                if ($file.name == file.name) {
-                  $file.status = 'Failed'
-                }
-              });
-            }
+          ((file: File) => {
+            files.push(file)
           })(droppedFile);
         } else if (droppedFile instanceof UploadFile) {
-          fileEntry.file(async (file: File) => {
-            try {
-              const formData = new FormData();
-              formData.append('image', file, file.name);
-              formData.append('user_id', this.userId);
-              formData.append('contest_name', this.contestId);
-              this.uploading = true;
-              this.previewFiles.forEach($file => {
-                if ($file.name == file.name) {
-                  $file.status = 'Uploading'
-                }
-              });
-              const uploadProcess = await this.contestProvider.uploadimages(formData);
-              if (uploadProcess.error) {
-                this.previewFiles.forEach($file => {
-                  if ($file.name == file.name) {
-                    $file.status = 'Failed'
-                  }
-                });
-              } else {
-                console.log('>> UPLOAD COMPLETE:', uploadProcess)
-                this.previewFiles.forEach($file => {
-                  if ($file.name == file.name) {
-                    $file.status = 'Uploaded'
-                  }
-                });
-                this.files.forEach(($file, i) => {
-                  if ($file.relativePath == file.name) {
-                    this.files.splice(i, 1);
-                  }
-                });
-                const contest = await this.contestProvider.getContestBySlug(localStorage.getItem('contestSlug'));
-                this.contest = contest.contest;
-                this.contest['timeRemains'] = this.helper.dateDiff(this.contest.review_time)
-              }
-            } catch (e) {
-              this.previewFiles.forEach($file => {
-                if ($file.name == file.name) {
-                  $file.status = 'Failed'
-                }
-              });
-            }
+          fileEntry.file((file: File) => {
+            files.push(file)
           });
         }
       }
+      setTimeout(async () => {
+        try {
+          const formData = new FormData()
+          formData.append('contest_name', this.contestId);
+          formData.append('user_id', this.userId);
+          files.forEach(file => { formData.append('images', file, file.name) })
+          this.uploading = true;
+          this.previewFiles.forEach(($file) => {
+            files.forEach(file => {
+              if ($file.name == file.name) {
+                $file.status = 'Uploading'
+              }
+            })
+          });
+          const uploadProcess = await this.contestProvider.uploadimages(formData);
+          if (uploadProcess.error) {
+            this.previewFiles.forEach(($file) => {
+              files.forEach(file => {
+                if ($file.name == file.name) {
+                  $file.status = 'Failed'
+                }
+              })
+            });
+          } else {
+            this.previewFiles.forEach(($file) => {
+              files.forEach(file => {
+                if ($file.name == file.name) {
+                  $file.status = 'Uploaded'
+                }
+              })
+            });
+            this.files.forEach(($file, i) => {
+              files.forEach(file => {
+                if ($file.relativePath == file.name) {
+                  this.files.splice(i, 1);
+                }
+              })
+            });
+            setTimeout(async () => {
+              const contest = await this.contestProvider.getContestBySlug(localStorage.getItem('contestSlug'));
+              this.contest = contest.contest;
+              this.contest['timeRemains'] = this.helper.dateDiff(this.contest.review_time)
+            }, 3000)
+          }
+        } catch (e) {
+          this.previewFiles.forEach(($file) => {
+            files.forEach(file => {
+              if ($file.name == file.name) {
+                $file.status = 'Failed'
+              }
+            })
+          });
+          this.files.forEach(($file, i) => {
+            files.forEach(file => {
+              if ($file.relativePath == file.name) {
+                this.files.splice(i, 1);
+              }
+            })
+          });
+        }
+      }, 1200)
     }
   }
 

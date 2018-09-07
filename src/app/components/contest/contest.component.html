@@ -24,6 +24,10 @@
           <span>{{contest.users[0].images.length}} {{translate.lang.photos}}</span>
         </div>
         <div>
+          <mat-icon [matTooltip]="translate.lang.photos">add_photo_alternate</mat-icon>
+          <span>You can upload {{uploadLimit - contest.users[0].images.length}} more photos</span>
+        </div>
+        <div>
           <mat-icon [matTooltip]="translate.lang.prizeMoney">attach_money</mat-icon>
           <span>{{contest.prize_money}} €</span>
         </div>
@@ -65,7 +69,7 @@
                 <strong>{{ item.type }}</strong>
               </td>
               <td>
-                <button mat-icon-button style="top: -10px" (click)="removeDropped(i)" [disabled]="item.status != 'Added'">
+                <button mat-icon-button style="top: -10px" (click)="removeDropped(i)" [disabled]="item.status == 'Uploaded'">
                   <mat-icon style="color: #F00">delete</mat-icon>
                 </button>
               </td>

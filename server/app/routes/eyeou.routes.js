@@ -85,7 +85,7 @@ module.exports = (app) => {
 
     const images = require('../controllers/image.controller.js');
     //Upload image to aws and asave data in mongo
-    app.post('/images/uploads', upload.single("image"), userMiddlewares.isLoggedId, imagesMiddlewares.photosLimit, images.uploadimage);
+    app.post('/images/uploads', upload.array("images", 30), userMiddlewares.isLoggedId, imagesMiddlewares.photosLimit, images.uploadimage);
     //find all images
     app.get('/images', images.findAll);
     // Retrieve a single image with contestid

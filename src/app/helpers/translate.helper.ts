@@ -347,7 +347,9 @@ export const en = {
   signup: 'SIGNUP',
   logout: 'LOGOUT',
   from: 'from',
-  contestInfo: 'Contest Info'
+  contestInfo: 'Contest Info',
+  youCanUpload: 'You can upload',
+  noMorePhotos: 'You can\'t upload any more photos'
 }
 
 export const pt = {
@@ -699,5 +701,7 @@ export const pt = {
   signup: 'REGISTAR',
   logout: 'SAIR',
   from: 'desde',
-  contestInfo: 'Informação do Concurso'
+  contestInfo: 'Informação do Concurso',
+  youCanUpload: 'Pode fazer o upload de mais',
+  noMorePhotos: 'Não pode fazer upload de mais fotos'
 }

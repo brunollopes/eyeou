@@ -49,7 +49,7 @@ color: #fff;
 
 /* Sire header responsive media Queries */
 
-@media only screen and (max-width: 910px) {
+@media only screen and (max-width: 1000px) {
     .heroSection .display-3 h1 {
         font-size: 40px;
     }

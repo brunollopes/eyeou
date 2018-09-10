@@ -114,7 +114,6 @@ export class ContestDialog implements OnInit {
 
   constructor(
     public paypalProvider: PaypalProvider,
-    // public dialogRef: MatDialogRef<ContestDialog>,
     public dialog: MatDialog,
     public router: Router,
     public auth: AuthService,
@@ -123,6 +122,11 @@ export class ContestDialog implements OnInit {
     public translate: TranslateService,
     public bsModalRef: BsModalRef
   ) { }
+
+  onNoClick() {
+    console.log('>> HIDE MODAL')
+    this.bsModalRef.hide()
+  }
 
   public checkTransaction(contestId) {
     return new Promise(async (resolve, reject) => {
@@ -176,10 +180,6 @@ export class ContestDialog implements OnInit {
     });
   }
 
-  onNoClick(): void {
-    this.bsModalRef.hide();
-  }
-
   public checkFees() {
     const photos = this.paymentForm.controls['photos'].value
     let price;
@@ -200,14 +200,19 @@ export class ContestDialog implements OnInit {
   async ngOnInit() {
     this.createPaymentForm();
 
-    this.data.type == 'paid' ? this.paymentForm.addControl('paymentMethod', new FormControl(null, Validators.required)) : null
     try {
       const user = await this.auth.me()
       if (user._id) {
         this.contestId = this.data._id;
         this.paymentForm.controls['contestId'].setValue(this.contestId);
         const transaction = await this.checkTransaction(this.contestId);
-        this.data.entry_price && !this.payed ? this.paymentForm.addControl('photos', new FormControl(null, Validators.required)) : this.paymentForm.removeControl('photos');
+        if (this.data.entry_price && !this.payed) {
+          this.paymentForm.addControl('photos', new FormControl(null, Validators.required))
+          this.paymentForm.addControl('paymentMethod', new FormControl(null, Validators.required))
+        } else {
+          this.paymentForm.removeControl('photos')
+          this.paymentForm.removeControl('paymentMethod')
+        }
       } else {
         this.app.openLoginDialog()
       }
@@ -231,13 +236,16 @@ export class ContestDialog implements OnInit {
         <button 
           type="submit" 
           style="text-transform: uppercase"
-          class="btn btn-success">
+          class="btn btn-success"
+          [disabled]="loading">
           {{translate.lang.pay}}
         </button>
+        <mat-spinner *ngIf='loading' style="margin: 10px auto" diameter="15"></mat-spinner>
       </div>
     </form>
   `,
-  styleUrls: ["./gallery-list.component.css"]
+  styleUrls: ["./gallery-list.component.css"],
+  providers: [ContestDialog]
 })
 export class StripeModal {
 
@@ -246,12 +254,15 @@ export class StripeModal {
   card: any;
   cardHandler = this.onChange.bind(this);
   error: string;
+  loading: boolean
 
   constructor(
     private cd: ChangeDetectorRef,
     public translate: TranslateService,
     public stripe: StripeService,
     public dialogRef: MatDialogRef<StripeModal>,
+    public router: Router,
+    public contestDialog: ContestDialog,
     @Inject(MAT_DIALOG_DATA) public data
   ) { }
 
@@ -277,17 +288,29 @@ export class StripeModal {
   }
 
   ngOnInit() {
-    console.log('>> OPENED!')
+    console.log(this.data)
   }
 
   async onSubmit(form) {
+    this.loading = true
     const { token, error } = await stripe.createToken(this.card);
 
     if (error) {
+      this.loading = false
       console.log('Something is wrong:', error);
     } else {
       this.stripe.pay({ token, amount: this.data.price.replace('€', ''), maxPhotosLimit: this.data.photos, contest: this.data.contestId })
-      console.log('>> Success!', token);
+        .then(charge => {
+          this.loading = false
+          if (charge.paid) {
+            location.href = `${location.origin}/contest/${charge.slug}`
+          } else {
+
+          }
+        })
+        .catch(error => {
+          this.loading = false
+        })
     }
   }
 }

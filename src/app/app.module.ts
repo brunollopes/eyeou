@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { ModalModule } from 'ngx-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FileDropModule } from 'ngx-file-drop';
+import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 
 import { ROUTES } from './app.router';
 import { MaterialModule } from './modules/material.module';
@@ -82,7 +83,7 @@ import { ResetComponent } from './components/reset/reset.component';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [ContestService, PaypalProvider, AppHelper, AppComponent],
+  providers: [ContestService, PaypalProvider, AppHelper, AppComponent, BsModalRef],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,10 +1,12 @@
 const stripe = require('stripe')(process.env.stripe_sk_key)
+const User = require('../models/users.model');
+const Contest = require('../models/contest.model');
 const Transactions = require('../models/transactions.model')
 
 exports.pay = (req, res) => {
   const { email, id } = req.user
   const { token, amount, maxPhotosLimit, contest } = req.body
-  
+
   stripe.customers.list({
     limit: 1,
     email
@@ -22,7 +24,12 @@ exports.pay = (req, res) => {
             user: id
           }, (err, info) => {
             if (err) return res.status(500).json(err)
-            return res.status(200).json(info)
+            Promise.all([
+              User.findByIdAndUpdate(id, { $push: { contests: contest } }, { new: true }).exec(),
+              Contest.findByIdAndUpdate(contest, { $push: { users: id } }, { new: true }).exec()
+            ])
+              .then($info => res.status(200).json({ ...info, slug: $info[1].slug }))
+              .catch(error => res.status(500).json(error))
           })
         })
         .catch(error => {
@@ -42,7 +49,19 @@ exports.pay = (req, res) => {
             user: id
           }, (err, info) => {
             if (err) return res.status(500).json(err)
-            return res.status(200).json(info)
+            Promise.all([
+              User.findByIdAndUpdate(id, { $push: { contests: contest } }, { new: true }).exec(),
+              Contest.findByIdAndUpdate(contest, { $push: { users: id } }, { new: true }).exec()
+            ])
+              .then($info => {
+                emailHelper.sendEmail({
+                  $mailTo: process.env.owner_email,
+                  $subject: `New Contest Subscription`,
+                  $html: `<p>${userUpdate.email} payed the contest fee to join <strong>${contestUpdate.contest_name}</strong></p>`
+                })
+                res.status(200).json({ ...info, slug: $info[1].slug })
+              })
+              .catch(error => res.status(500).json(error))
           })
         })
         .catch(error => {
@@ -74,8 +93,9 @@ const createSource = (customerId, token) => {
 
 const createCharge = (amount, customer) => {
   return stripe.charges.create({
-    amount: parseInt(amount) * 100,
-    currency: 'EUR',
+    // amount: parseInt(amount) * 100,
+    amount: 50,
+    currency: 'USD',
     customer
   })
     .then(charge => charge)

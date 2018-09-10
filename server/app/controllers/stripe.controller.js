@@ -23,13 +23,19 @@ exports.pay = (req, res) => {
             contest,
             user: id
           }, (err, info) => {
-            if (err) return res.status(500).json(err)
+            if (err) {
+              console.log('>> ERR LINE 27', err)
+              return res.status(500).json(err)
+            }
             Promise.all([
               User.findByIdAndUpdate(id, { $push: { contests: contest } }, { new: true }).exec(),
               Contest.findByIdAndUpdate(contest, { $push: { users: id } }, { new: true }).exec()
             ])
               .then($info => res.status(200).json({ ...info, slug: $info[1].slug }))
-              .catch(error => res.status(500).json(error))
+              .catch(error => {
+                console.log('>> ERR LINE 36', error)
+                return res.status(500).json(error)
+              })
           })
         })
         .catch(error => {
@@ -48,7 +54,10 @@ exports.pay = (req, res) => {
             contest,
             user: id
           }, (err, info) => {
-            if (err) return res.status(500).json(err)
+            if (err) {
+              console.log('>> ERR LINE 58', err)
+              return res.status(500).json(err)
+            }
             Promise.all([
               User.findByIdAndUpdate(id, { $push: { contests: contest } }, { new: true }).exec(),
               Contest.findByIdAndUpdate(contest, { $push: { users: id } }, { new: true }).exec()
@@ -61,7 +70,10 @@ exports.pay = (req, res) => {
                 })
                 res.status(200).json({ ...info, slug: $info[1].slug })
               })
-              .catch(error => res.status(500).json(error))
+              .catch(error => {
+                console.log('>> ERR LINE 74', error)
+                return res.status(500).json(error)
+              })
           })
         })
         .catch(error => {

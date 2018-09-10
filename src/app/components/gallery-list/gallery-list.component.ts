@@ -299,6 +299,7 @@ export class StripeModal {
       this.loading = false
       console.log('Something is wrong:', error);
     } else {
+      console.log(token)
       this.stripe.pay({ token, amount: this.data.price.replace('€', ''), maxPhotosLimit: this.data.photos, contest: this.data.contestId })
         .then(charge => {
           this.loading = false

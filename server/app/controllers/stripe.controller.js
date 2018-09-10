@@ -2,6 +2,7 @@ const stripe = require('stripe')(process.env.stripe_sk_key)
 const User = require('../models/users.model');
 const Contest = require('../models/contest.model');
 const Transactions = require('../models/transactions.model')
+const emailHelper = require('../helpers/mail.helper');
 
 exports.pay = (req, res) => {
   const { email, id } = req.user
@@ -106,7 +107,7 @@ const createSource = (customerId, token) => {
 const createCharge = (amount, customer) => {
   return stripe.charges.create({
     // amount: parseInt(amount) * 100,
-    amount: 50,
+    amount: 60,
     currency: 'USD',
     customer
   })

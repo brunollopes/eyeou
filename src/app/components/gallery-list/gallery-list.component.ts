@@ -1,4 +1,4 @@
-import { Component, OnInit, TemplateRef, NgZone, ViewChild, Inject } from "@angular/core";
+import { Component, OnInit, TemplateRef, ViewChild, ChangeDetectorRef, ElementRef, Inject } from "@angular/core";
 import { Router } from '@angular/router';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material'
 import { FormGroup, FormBuilder, Validators, FormControl } from "@angular/forms";
@@ -7,6 +7,7 @@ import { PaypalProvider } from "../../services/paypal.service";
 import { AppHelper } from '../../services/app.helper';
 import { TranslateService } from '../../services/translate.service';
 import { AuthService } from '../../services/auth.service';
+import { StripeService } from '../../services/stripe.service'
 
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
@@ -114,13 +115,13 @@ export class ContestDialog implements OnInit {
   constructor(
     public paypalProvider: PaypalProvider,
     // public dialogRef: MatDialogRef<ContestDialog>,
+    public dialog: MatDialog,
     public router: Router,
     public auth: AuthService,
     public fb: FormBuilder,
     public app: AppHelper,
     public translate: TranslateService,
     public bsModalRef: BsModalRef
-    // @Inject(MAT_DIALOG_DATA) public data
   ) { }
 
   public checkTransaction(contestId) {
@@ -145,18 +146,30 @@ export class ContestDialog implements OnInit {
   }
 
   submitform() {
-    this.clicked = true;
-    this.paymentForm.value.price = this.paymentForm.value.price.toString().substr(0, this.paymentForm.value.price.toString().indexOf('€'));
-    this.paypalProvider.PayWithPaypal(this.paymentForm.value)
-      .then(res => {
-        window.location.href = res.approval_url;
-      })
-      .catch(err => { console.log(err) })
+    if (this.paymentForm.controls['paymentMethod']) {
+      const paymentMethod = this.paymentForm.controls['paymentMethod'].value
+      if (paymentMethod == 'Paypal') {
+        this.clicked = true;
+        this.paymentForm.value.price = this.paymentForm.value.price.toString().substr(0, this.paymentForm.value.price.toString().indexOf('€'));
+        this.paypalProvider.PayWithPaypal(this.paymentForm.value)
+          .then(res => {
+            window.location.href = res.approval_url;
+          })
+          .catch(err => { console.log(err) })
+      } else {
+        this.dialog.open(StripeModal, {
+          width: '600px',
+          data: {
+            ...this.paymentForm.value,
+            contestId: this.contestId
+          }
+        })
+      }
+    }
   }
 
-  createForm() {
+  createPaymentForm() {
     this.paymentForm = this.fb.group({
-      paymentMethod: ['paypal'],
       term_condition: [null, Validators.requiredTrue],
       price: [null],
       contestId: [null]
@@ -185,7 +198,9 @@ export class ContestDialog implements OnInit {
   }
 
   async ngOnInit() {
-    this.createForm();
+    this.createPaymentForm();
+
+    this.data.type == 'paid' ? this.paymentForm.addControl('paymentMethod', new FormControl(null, Validators.required)) : null
     try {
       const user = await this.auth.me()
       if (user._id) {
@@ -200,5 +215,79 @@ export class ContestDialog implements OnInit {
       this.app.openLoginDialog()
     }
   }
+}
 
+@Component({
+  template: `
+    <form #checkout (ngSubmit)="onSubmit(checkout)" class="checkout" style="padding: 25px 20px">
+      <div class="form-row">
+        <h5 style="text-align: center; color: #0E282B; font-weight: 200; font-size: 22px;">Card Info</h5>
+        <div id="card-info" #cardInfo></div>
+
+        <div id="card-errors" role="alert" *ngIf="error">{{ error }}</div>
+      </div>
+
+      <div class='text-center'>
+        <button 
+          type="submit" 
+          style="text-transform: uppercase"
+          class="btn btn-success">
+          {{translate.lang.pay}}
+        </button>
+      </div>
+    </form>
+  `,
+  styleUrls: ["./gallery-list.component.css"]
+})
+export class StripeModal {
+
+  @ViewChild('cardInfo') cardInfo: ElementRef;
+
+  card: any;
+  cardHandler = this.onChange.bind(this);
+  error: string;
+
+  constructor(
+    private cd: ChangeDetectorRef,
+    public translate: TranslateService,
+    public stripe: StripeService,
+    public dialogRef: MatDialogRef<StripeModal>,
+    @Inject(MAT_DIALOG_DATA) public data
+  ) { }
+
+  ngAfterViewInit() {
+    this.card = elements.create('card');
+    this.card.mount(this.cardInfo.nativeElement);
+
+    this.card.addEventListener('change', this.cardHandler);
+  }
+
+  ngOnDestroy() {
+    this.card.removeEventListener('change', this.cardHandler);
+    this.card.destroy();
+  }
+
+  onChange({ error }) {
+    if (error) {
+      this.error = error.message;
+    } else {
+      this.error = null;
+    }
+    this.cd.detectChanges();
+  }
+
+  ngOnInit() {
+    console.log('>> OPENED!')
+  }
+
+  async onSubmit(form) {
+    const { token, error } = await stripe.createToken(this.card);
+
+    if (error) {
+      console.log('Something is wrong:', error);
+    } else {
+      this.stripe.pay({ token, amount: this.data.price.replace('€', ''), maxPhotosLimit: this.data.photos, contest: this.data.contestId })
+      console.log('>> Success!', token);
+    }
+  }
 }

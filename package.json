@@ -50,6 +50,8 @@
     "paypal-rest-sdk": "^1.8.1",
     "rxjs": "^6.2.2",
     "sharp": "^0.20.7",
+    "stripe": "^6.10.0",
+    "stripe-client": "^1.1.5",
     "zone.js": "^0.8.19"
   },
   "devDependencies": {

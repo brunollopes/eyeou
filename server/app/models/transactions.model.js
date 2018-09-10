@@ -58,7 +58,8 @@ const TransactionSchema = mongoose.Schema({
   contest: { type: Schema.Types.ObjectId, ref: 'Contest' }
 },
   {
-    timestamps: true
+    timestamps: true,
+    strict: false
   }
 );
 

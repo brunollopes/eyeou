@@ -104,4 +104,8 @@ module.exports = (app) => {
     // Check User Transaction For Contest
     app.get('/paypal/check/:contest', userMiddlewares.isLoggedId, paypal.check);
 
+    const stripe = require('../controllers/stripe.controller');
+    // Pay With Stripe
+    app.post('/stripe/pay', userMiddlewares.isLoggedId, stripe.pay)
+
 }

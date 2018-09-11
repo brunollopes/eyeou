@@ -17,60 +17,78 @@ exports.pay = (req, res) => {
       createSource(customer.id, token.id)
         .then(source => createCharge(amount, source.customer))
         .then(charge => {
-          const $charge = clean(charge)
-          Transactions.create({
-            ...$charge,
-            maxPhotosLimit,
-            contest,
-            user: id
-          }, (err, info) => {
-            if (err) {
-              return res.status(500).json(err)
-            }
-            Promise.all([
-              User.findByIdAndUpdate(id, { $push: { contests: contest } }, { new: true }).exec(),
-              Contest.findByIdAndUpdate(contest, { $push: { users: id } }, { new: true }).exec()
-            ])
-              .then($info => res.status(200).json({ ...info, slug: $info[1].slug }))
-              .catch(error => res.status(500).json(error))
-          })
+          if (charge.paid) {
+            const $charge = clean(charge)
+            Transactions.create({
+              ...$charge,
+              maxPhotosLimit,
+              contest,
+              user: id
+            }, (err, info) => {
+              if (err) {
+                console.log('>> ERR:', err)
+                return res.status(500).json(err)
+              }
+              Promise.all([
+                User.findByIdAndUpdate(id, { $push: { contests: contest } }, { new: true }).exec(),
+                Contest.findByIdAndUpdate(contest, { $push: { users: id } }, { new: true }).exec()
+              ])
+                .then($info => {
+                  // emailHelper.sendEmail({
+                  //   $mailTo: process.env.owner_email,
+                  //   $subject: `New Contest Subscription`,
+                  //   $html: `<p>${userUpdate.email} payed the contest fee to join <strong>${contestUpdate.contest_name}</strong></p>`
+                  // })
+                  return res.status(200).json({ ...info, slug: $info[1].slug })
+                })
+                .catch(error => {
+                  console.log('>> ERROR:', error)
+                  return res.status(500).json(error)
+                })
+            })
+          } else {
+            return res.status(charge.statusCode).send(charge.message)
+          }
         })
         .catch(error => {
-          console.log(err)
+          console.log(error)
           res.send(false)
         })
     } else {
       createCustomer(email)
         .then(customer => createSource(customer.id, token.id))
         .then(source => {
-          console.log(source)
           return createCharge(amount, source.customer)
         })
         .then(charge => {
-          const $charge = clean(charge)
-          Transactions.create({
-            ...$charge,
-            maxPhotosLimit,
-            contest,
-            user: id
-          }, (err, info) => {
-            if (err) {
-              return res.status(500).json(err)
-            }
-            Promise.all([
-              User.findByIdAndUpdate(id, { $push: { contests: contest } }, { new: true }).exec(),
-              Contest.findByIdAndUpdate(contest, { $push: { users: id } }, { new: true }).exec()
-            ])
-              .then($info => {
-                emailHelper.sendEmail({
-                  $mailTo: process.env.owner_email,
-                  $subject: `New Contest Subscription`,
-                  $html: `<p>${userUpdate.email} payed the contest fee to join <strong>${contestUpdate.contest_name}</strong></p>`
+          if (charge.paid) {
+            const $charge = clean(charge)
+            Transactions.create({
+              ...$charge,
+              maxPhotosLimit,
+              contest,
+              user: id
+            }, (err, info) => {
+              if (err) {
+                return res.status(500).json(err)
+              }
+              Promise.all([
+                User.findByIdAndUpdate(id, { $push: { contests: contest } }, { new: true }).exec(),
+                Contest.findByIdAndUpdate(contest, { $push: { users: id } }, { new: true }).exec()
+              ])
+                .then($info => {
+                  emailHelper.sendEmail({
+                    $mailTo: process.env.owner_email,
+                    $subject: `New Contest Subscription`,
+                    $html: `<p>${userUpdate.email} payed the contest fee to join <strong>${contestUpdate.contest_name}</strong></p>`
+                  })
+                  return res.status(200).json({ ...info, slug: $info[1].slug })
                 })
-                res.status(200).json({ ...info, slug: $info[1].slug })
-              })
-              .catch(error => res.status(500).json(error))
-          })
+                .catch(error => res.status(500).json(error))
+            })
+          } else {
+            return res.status(charge.statusCode).send(charge.message)
+          }
         })
         .catch(error => {
           console.log(error)
@@ -101,8 +119,8 @@ const createSource = (customerId, token) => {
 
 const createCharge = (amount, customer) => {
   return stripe.charges.create({
-    // amount: parseInt(amount) * 100,
-    amount: 60,
+    amount: parseInt(amount) * 100,
+    // amount: 60,
     currency: 'USD',
     customer
   })

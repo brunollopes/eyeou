@@ -226,10 +226,8 @@ export class ContestDialog implements OnInit {
   template: `
     <form #checkout (ngSubmit)="onSubmit(checkout)" class="checkout" style="padding: 25px 20px">
       <div class="form-row">
-        <h5 style="text-align: center; color: #0E282B; font-weight: 200; font-size: 22px;">Card Info</h5>
+        <h5 style="text-align: center; color: #0E282B; font-weight: 200; font-size: 22px; margin-bottom: 15px">{{translate.lang.cardInfo}}</h5>
         <div id="card-info" #cardInfo></div>
-
-        <div id="card-errors" role="alert" *ngIf="error">{{ error }}</div>
       </div>
 
       <div class='text-center'>
@@ -240,6 +238,7 @@ export class ContestDialog implements OnInit {
           [disabled]="loading">
           {{translate.lang.pay}}
         </button>
+        <div class='alert alert-danger text-center' style='margin: 15px 0 0 0' id="card-errors" role="alert" *ngIf="error">{{ error }}</div>
         <mat-spinner *ngIf='loading' style="margin: 10px auto" diameter="15"></mat-spinner>
       </div>
     </form>
@@ -280,33 +279,47 @@ export class StripeModal {
 
   onChange({ error }) {
     if (error) {
-      this.error = error.message;
+      if (error.message === 'Your postal code is incomplete.') {
+        this.error = this.translate.lang.incompletePostCode
+      } else if (error.message === 'Your card\'s security code is incomplete.') {
+        this.error = this.translate.lang.incompleteCVC
+      } else if (error.message === 'Your card\'s expiration date is incomplete.') {
+        this.error = this.translate.lang.incompleteExpDate
+      } else if (error.message === 'Your card number is incomplete.') {
+        this.error = this.translate.lang.incompleteCardNumber
+      } else if (error.message === 'Your card number is invalid.') {
+        this.error = this.translate.lang.invalidCardNumber
+      } else {
+        this.error = error.message
+      }
     } else {
       this.error = null;
     }
     this.cd.detectChanges();
   }
 
-  ngOnInit() {
-    console.log(this.data)
-  }
-
   async onSubmit(form) {
     this.loading = true
+    this.error = null
     const { token, error } = await stripe.createToken(this.card);
 
     if (error) {
       this.loading = false
-      console.log('Something is wrong:', error);
+      this.error = this.translate.lang.paymentError
     } else {
-      console.log(token)
       this.stripe.pay({ token, amount: this.data.price.replace('€', ''), maxPhotosLimit: this.data.photos, contest: this.data.contestId })
         .then(charge => {
           this.loading = false
           if (charge.paid) {
             location.href = `${location.origin}/contest/${charge.slug}`
           } else {
-
+            if (charge.error === 'Must provide source or customer.') {
+              this.error = this.translate.lang.invalidCardData
+            } else if (charge.error === 'Your card has insufficient funds.') {
+              this.error = this.translate.lang.fundsError
+            } else {
+              this.error = this.translate.lang.paymentError
+            }
           }
         })
         .catch(error => {

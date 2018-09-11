@@ -349,7 +349,19 @@ export const en = {
   from: 'from',
   contestInfo: 'Contest Info',
   youCanUpload: 'You can upload',
-  noMorePhotos: 'You can\'t upload any more photos'
+  noMorePhotos: 'You can\'t upload any more photos',
+  card: 'Debit/Credit Card',
+  cardInfo: 'Card Info',
+
+  invalidCardData: 'Invalid card information.',
+  fundsError: 'Your card has insufficient funds.',
+  paymentError: 'Unknown error occurred, please try again later',
+
+  incompletePostCode: 'Your postal code is incomplete.',
+  incompleteCVC: 'Your card\'s security code is incomplete.',
+  incompleteExpDate: 'Your card\'s expiration date is incomplete.',
+  incompleteCardNumber: 'Your card number is incomplete.',
+  invalidCardNumber: 'Your card number is invalid.'
 }
 
 export const pt = {
@@ -703,5 +715,16 @@ export const pt = {
   from: 'desde',
   contestInfo: 'Informação do Concurso',
   youCanUpload: 'Pode fazer o upload de mais',
-  noMorePhotos: 'Não pode fazer upload de mais fotos'
+  noMorePhotos: 'Não pode fazer upload de mais fotos',
+
+  card: 'Cartão de Débito/Crédito',
+  cardInfo: 'Informação do Cartão',
+  invalidCardData: 'Informação do cartão inválida.',
+  fundsError: 'Sem fundos disponíveis no seu cartão.',
+  paymentError: 'Erro desconhecido,  tente novamente mais tarde.',
+  incompletePostCode: 'O seu código postal está errado.',
+  incompleteCVC: 'Código de segurança do cartão incompleto.',
+  incompleteExpDate: 'Data de expiração do cartão incompleta.',
+  incompleteCardNumber: 'Número de cartão incompleto.',
+  invalidCardNumber: 'Número de cartão inválido.'
 }

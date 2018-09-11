@@ -44,7 +44,7 @@
           <mat-form-field class="col-xs-6" *ngIf="data.entry_price && !payed">
             <mat-select [placeholder]="translate.lang.paymentMethod" formControlName='paymentMethod' style="width: 100%">
               <mat-option value="Paypal">Paypal</mat-option>
-              <mat-option value="CreditCard">Credit Card</mat-option>
+              <mat-option value="CreditCard">{{translate.lang.card}}</mat-option>
             </mat-select>
           </mat-form-field>
 
@@ -59,13 +59,6 @@
             <mat-form-field class='col-xs-6 '>
               <input matInput formControlName="price" [placeholder]="translate.lang.contestFee" readonly style="width: 100%">
             </mat-form-field>
-          </div>
-
-          <div class='col-xs-12 ' style="margin: -10px 0 0 0" *ngIf='data.entry_price && !payed '>
-            <p style=" margin: 0; text-align: left; display: inline-block; position: relative; top: -2px; left: 0; font-size: 11px">
-              <span>{{translate.lang.noPaypal}} </span>
-              <a routerLink="/contact" (click)="hideModal()"> {{translate.lang.contactUs}}</a>
-            </p>
           </div>
 
           <div class="clearfix"></div>

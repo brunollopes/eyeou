@@ -16,7 +16,7 @@ exports.pay = (req, res) => {
       const customer = customers.data[0]
       createSource(customer.id, token.id)
         .then(source => {
-          console.log(source.customer)
+          console.log(source)
           return createCharge(amount, source.customer)
         })
         .then(charge => {
@@ -50,7 +50,7 @@ exports.pay = (req, res) => {
       createCustomer(email)
         .then(customer => createSource(customer.id, token.id))
         .then(source => {
-          console.log(source.customer)
+          console.log(source)
           return createCharge(amount, source.customer)
         })
         .then(charge => {

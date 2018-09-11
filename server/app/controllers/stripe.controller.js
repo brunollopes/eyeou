@@ -15,10 +15,7 @@ exports.pay = (req, res) => {
     if (customers.data.length) {
       const customer = customers.data[0]
       createSource(customer.id, token.id)
-        .then(source => {
-          console.log(source)
-          return createCharge(amount, source.customer)
-        })
+        .then(source => createCharge(amount, source.customer))
         .then(charge => {
           const $charge = clean(charge)
           Transactions.create({
@@ -28,7 +25,6 @@ exports.pay = (req, res) => {
             user: id
           }, (err, info) => {
             if (err) {
-              console.log('>> ERR LINE 27', err)
               return res.status(500).json(err)
             }
             Promise.all([
@@ -36,10 +32,7 @@ exports.pay = (req, res) => {
               Contest.findByIdAndUpdate(contest, { $push: { users: id } }, { new: true }).exec()
             ])
               .then($info => res.status(200).json({ ...info, slug: $info[1].slug }))
-              .catch(error => {
-                console.log('>> ERR LINE 36', error)
-                return res.status(500).json(error)
-              })
+              .catch(error => res.status(500).json(error))
           })
         })
         .catch(error => {
@@ -62,7 +55,6 @@ exports.pay = (req, res) => {
             user: id
           }, (err, info) => {
             if (err) {
-              console.log('>> ERR LINE 58', err)
               return res.status(500).json(err)
             }
             Promise.all([
@@ -77,10 +69,7 @@ exports.pay = (req, res) => {
                 })
                 res.status(200).json({ ...info, slug: $info[1].slug })
               })
-              .catch(error => {
-                console.log('>> ERR LINE 74', error)
-                return res.status(500).json(error)
-              })
+              .catch(error => res.status(500).json(error))
           })
         })
         .catch(error => {

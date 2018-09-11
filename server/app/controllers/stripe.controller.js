@@ -15,7 +15,10 @@ exports.pay = (req, res) => {
     if (customers.data.length) {
       const customer = customers.data[0]
       createSource(customer.id, token.id)
-        .then(source => createCharge(amount, source.customer))
+        .then(source => {
+          console.log(source.customer)
+          return createCharge(amount, source.customer)
+        })
         .then(charge => {
           const $charge = clean(charge)
           Transactions.create({
@@ -46,7 +49,10 @@ exports.pay = (req, res) => {
     } else {
       createCustomer(email)
         .then(customer => createSource(customer.id, token.id))
-        .then(source => createCharge(amount, source.customer))
+        .then(source => {
+          console.log(source.customer)
+          return createCharge(amount, source.customer)
+        })
         .then(charge => {
           const $charge = clean(charge)
           Transactions.create({

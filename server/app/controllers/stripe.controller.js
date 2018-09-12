@@ -121,7 +121,7 @@ const createCharge = (amount, customer) => {
   return stripe.charges.create({
     amount: parseInt(amount) * 100,
     // amount: 60,
-    currency: 'USD',
+    currency: 'EUR',
     customer
   })
     .then(charge => charge)

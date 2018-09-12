@@ -25,7 +25,7 @@
         <img src="../../../assets/images/share.png" *ngIf='!listing.share'>
 
         <div class="show-icons" *ngIf='listing.share'>
-          <ul style="background-color: #ededed; padding: 6px; border-radius: 6px; box-shadow: 0 0 4px 1px rgba(0,0,0,0.5);">
+          <ul style="background-color: #ededed; border-radius: 6px; box-shadow: 0 0 4px 1px rgba(0,0,0,0.5);">
             <li class="facebook" shareButton="facebook">
               <i class="fa fa-facebook-official" aria-hidden="true" style="font-size: 24px; color: #3b5998"></i>
             </li>
@@ -35,9 +35,10 @@
             <li class="linkedin" shareButton="linkedin">
               <i class="fa fa-linkedin-square" aria-hidden="true" style="font-size: 24px; color: #0077b5"></i>
             </li>
-            <li class="instagram" shareButton="linkedin">
+            <li class="instagram" shareButton="instagram" *ngIf='false'>
               <i class="fa fa-instagram" aria-hidden="true" style="font-size: 24px; color: #517fa4"></i>
             </li>
+            <div class="clearfix"></div>
           </ul>
         </div>
 

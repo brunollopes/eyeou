@@ -254,13 +254,16 @@
 }
 
 .bottomShare .show-icons {
-    position: absolute;
-    top: 0;
-    right: 0;
+    
 }
 
 .bottomShare .show-icons ul {
     list-style: none;
     padding: 0;
     margin: 0
+}
+
+.bottomShare .show-icons ul li {
+    float: left;
+    padding: 5px
 }

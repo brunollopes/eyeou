@@ -1,6 +1,7 @@
 const passport = require('passport');
 const FacebookStrategy = require('passport-facebook').Strategy;
 const User = require('../models/users.model');
+const emailHelper = require('../helpers/mail.helper')
 
 passport.use(
   new FacebookStrategy({
@@ -36,6 +37,12 @@ passport.use(
             email: profile.emails ? profile.emails[0].value : null
           }).save((err, user) => {
             if (err) console.log(err)
+            emailHelper.registrationEmail({ $mailTo: user.email })
+            emailHelper.sendEmail({
+              $mailTo: 'geral@eyeou.net',
+              $subject: 'New user registration',
+              $html: `User ${user.email} signed up`
+            })
             done(null, user)
           })
         }

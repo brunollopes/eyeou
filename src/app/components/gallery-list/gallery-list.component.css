@@ -241,3 +241,26 @@
 .StripeElement--webkit-autofill {
   background-color: #fefde5 !important;
 }
+
+.bottomShare {
+    position: absolute;
+    right: 10px;
+    top: 9px;
+}
+
+.bottomShare img {
+    width: 30px;
+    height: 30px;
+}
+
+.bottomShare .show-icons {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.bottomShare .show-icons ul {
+    list-style: none;
+    padding: 0;
+    margin: 0
+}

@@ -29,6 +29,32 @@ exports.sendEmail = ({ $mailTo, $subject, $html }) => {
   })
 };
 
+exports.registrationEmail = ({ $mailTo }) => {
+  exports.sendEmail({
+    $mailTo,
+    $subject: 'Eyeou welcome!',
+    $html: `
+    <div>
+      <h2>Hello!</h2> <br>
+      <p>
+        You have just joined up to our community, we are hope that you will have a great experience with us and enjoy it!
+      </p>
+      <p>
+        Check the <a href="https://www.eyeou.net" target="_blank">available contests</a> and good luck!
+      </p>
+      <p>Great Shots!</p>
+      <img 
+          src="https://lh5.googleusercontent.com/YVZbtwcEGhhTTLRn5ekI852WwZ-_3rhg5wi1dRN67CkobT_NM3X59k0pmCjTOWRlT0UHAAG059EF-8xAVkYbueeOVeXNPLpk0UwlZNFbvyRIsFPxgWIsCTiEEtfUkTa-vT_kAQP2"
+          style="width: 25%"
+      />
+      <p>
+      Alguma questão, contacte-nos em <a href="mailto:support@eyeou.net">support@eyeou.net</a>
+      </p>
+    </div>
+    `
+  })
+}
+
 exports.sendEmailExpress = (req, res) => {
   const { name, email, subject, message } = req.body;
   exports.sendEmail({
@@ -40,8 +66,8 @@ exports.sendEmailExpress = (req, res) => {
       <p>${message}</p>
     `
   })
-  .then(info => res.status(200).json(info))
-  .catch(error => res.status(500).json(error))
+    .then(info => res.status(200).json(info))
+    .catch(error => res.status(500).json(error))
 }
 
 exports.validationEmailTemplate = (lang, accessCode) => {

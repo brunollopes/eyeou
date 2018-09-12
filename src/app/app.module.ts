@@ -6,6 +6,8 @@ import { ModalModule } from 'ngx-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FileDropModule } from 'ngx-file-drop';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
+import { ShareModule } from '@ngx-share/core';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { ROUTES } from './app.router';
 import { MaterialModule } from './modules/material.module';
@@ -81,7 +83,9 @@ import { ResetComponent } from './components/reset/reset.component';
     ModalModule.forRoot(),
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ShareModule.forRoot(),
+    FontAwesomeModule
   ],
   providers: [ContestService, PaypalProvider, AppHelper, AppComponent, BsModalRef],
   bootstrap: [AppComponent]

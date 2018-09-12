@@ -1,6 +1,7 @@
 const passport = require('passport')
 const GoogleStrategy = require('passport-google-oauth20')
 const User = require('../models/users.model')
+const emailHelper = require('../helpers/mail.helper')
 
 passport.serializeUser((user, done) => {
   done(null, user.id)
@@ -39,6 +40,12 @@ passport.use(
             verified: true
           }).save((err, user) => {
             if (err) console.log(err)
+            emailHelper.registrationEmail({ $mailTo: user.email })
+            emailHelper.sendEmail({
+              $mailTo: 'geral@eyeou.net',
+              $subject: 'New user registration',
+              $html: `User ${user.email} signed up`
+            })
             done(null, user)
           })
         }

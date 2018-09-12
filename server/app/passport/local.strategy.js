@@ -2,6 +2,7 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const User = require('../models/users.model');
 const bcrypt = require('bcrypt');
+const emailHelper = require('../helpers/mail.helper')
 
 passport.use(new LocalStrategy(
   {
@@ -39,6 +40,12 @@ passport.use('local-signup', new LocalStrategy(
         });
         user.save(err => {
           if (err) return done(err)
+          emailHelper.registrationEmail({ $mailTo: user.email })
+          emailHelper.sendEmail({
+            $mailTo: 'geral@eyeou.net',
+            $subject: 'New user registration',
+            $html: `User ${user.email} signed up`
+          })
           return done(null, user)
         })
       }

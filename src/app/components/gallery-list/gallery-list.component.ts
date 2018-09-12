@@ -11,6 +11,7 @@ import { StripeService } from '../../services/stripe.service'
 
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
+import { ShareButtons } from '@ngx-share/core';
 
 @Component({
   selector: "app-gallery-list",
@@ -44,7 +45,8 @@ export class GalleryListComponent implements OnInit {
     public translate: TranslateService,
     public dialog: MatDialog,
     public auth: AuthService,
-    private modalService: BsModalService
+    private modalService: BsModalService,
+    public share: ShareButtons
   ) { }
 
   // Open Modal
@@ -52,10 +54,6 @@ export class GalleryListComponent implements OnInit {
     if (this.auth.user) {
       localStorage.setItem('contestId', listing._id)
       this.bsModalRef = this.modalService.show(ContestDialog, { initialState: { data: listing } })
-      // this.dialog.open(ContestDialog, {
-      //   width: '450px',
-      //   data: listing
-      // })
     } else {
       this.app.openLoginDialog()
     }
@@ -70,6 +68,8 @@ export class GalleryListComponent implements OnInit {
           gallery.timeRemains = this.app.dateDiff(gallery.review_time)
           gallery.badge = this.app.getBadge(gallery.openphase_duration)
           gallery.counter = 0
+          gallery.share = false;
+          gallery.enableShare = () => { gallery.share = true }
           gallery.setImage = () => { gallery.image = gallery.bgprofile_image[gallery.counter] }
           gallery.pickImage = () => {
             gallery.counter = gallery.counter + 1;

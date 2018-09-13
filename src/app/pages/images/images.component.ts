@@ -22,7 +22,7 @@ Object.defineProperty(Array.prototype, 'chunk_inefficient', {
 })
 export class ImagesComponent implements OnInit {
 
-  private images: any;
+  public images: any;
   private cooling: boolean = false;
 
   constructor(
@@ -44,7 +44,7 @@ export class ImagesComponent implements OnInit {
 
   coolPhoto(id, i, $i) {
     this.images[i][$i].cooling = false
-    
+
     if (!this.images[i][$i].cooling) {
       this.images[i][$i].cooling = true
       this.contestProvider.coolImage(id)

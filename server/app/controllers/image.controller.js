@@ -73,12 +73,12 @@ exports.uploadimage = (req, res) => {
                 if (errThumb) return res.status(203).json(imgSaved)
                 Image.findByIdAndUpdate(imgSaved.id, { thumbnail_path: thumbnail.Location }, { new: true })
                   .then(async imgUpdated => {
-                    // const sentMail = await emailHelper.sendEmail({
-                    //   $mailTo: process.env.owner_email,
-                    //   $subject: `New Image Is Uploaded`,
-                    //   $html: `<p>${userUpdate.email} Uploaded a new image in <strong>${contestUpdate.contest_name}</strong></p>
-                    //           <p>Image URL on AWS: <a href="${data.Location}">Here</a></p>`
-                    // })
+                    const sentMail = await emailHelper.sendEmail({
+                      $mailTo: process.env.owner_email,
+                      $subject: `New Image Is Uploaded`,
+                      $html: `<p>${userUpdate.email} Uploaded a new image in <strong>${contestUpdate.contest_name}</strong></p>
+                              <p>Image URL on AWS: <a href="${data.Location}">Here</a></p>`
+                    })
                     if (i == params.length - 1)
                       return res.status(200).send(imgUpdated)
                   })
@@ -95,7 +95,7 @@ exports.uploadimage = (req, res) => {
             }
           })
         } else {
-          if (i == params.length - 1) 
+          if (i == params.length - 1)
             return res.status(200).send(true)
         }
       })
@@ -105,12 +105,45 @@ exports.uploadimage = (req, res) => {
     })
 }
 
+exports.cool = (req, res) => {
+  const userId = req.user.id;
+  const { id } = req.params
+
+  Image.findById(id, (err, image) => {
+    if (err) return res.status(404).json(err)
+    if (image.cools.indexOf(userId) > -1) {
+      return res.status(403).json({ message: 'User already cooled this image' });
+    } else {
+      Image.findByIdAndUpdate(
+        id,
+        { $push: { cools: userId } },
+        { new: true },
+        ($err, info) => {
+          if ($err) return res.status(500).json($err)
+          return res.status(200).send({ status: true })
+        })
+    }
+  })
+}
+
 // Retrieve and return all images from the mongo database.
 exports.findAll = (req, res) => {
+  const userId = req.user ? req.user.id : null
 
-  Image.find()
+  Image
+    .find({}, ['cools', 'contest', 'id', 'thumbnail_path'])
+    .populate({
+      path: 'contest',
+      select: ['contest_name', 'contest_title', 'bgprofile_image']
+    })
+    .exec()
     .then(images => {
-      res.send(images);
+      let $images = images.map(img => {
+        const { cools, contest, id, thumbnail_path } = img
+        return { cools, contest, id, thumbnail_path }
+      })
+      $images.forEach(img => { img.userCooled = img.cools.indexOf(userId) > -1 ? true : false })
+      res.status(200).json($images);
     }).catch(err => {
       res.status(500).send({
         message: err.message || "Some error occurred while retrieving images."

@@ -6,7 +6,7 @@ const Contests = require('../models/contest.model');
 const Transactions = require('../models/transactions.model')
 
 const isLoggedId = (req, res, next) => {
-  const { user } = req;
+  const user = req.user ? req.user : { _id: false }
   // const { user_id } = req.body
   if (user._id)
     next();

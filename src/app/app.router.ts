@@ -9,6 +9,7 @@ import { HelpComponent } from './pages/help/help.component';
 import { TermsComponent } from './pages/terms/terms.component';
 import { ProcessingComponent } from './pages/processing/processing.component';
 import { ResetComponent } from './components/reset/reset.component';
+import { ImagesComponent } from './pages/images/images.component';
 
 export const ROUTES : Routes = [
   { path: '', component: HomeComponent},
@@ -21,5 +22,6 @@ export const ROUTES : Routes = [
   { path: 'help', component: HelpComponent },
   { path: 'terms', component: TermsComponent },
   { path: 'processing', component: ProcessingComponent },
-  { path: 'reset', component: ResetComponent }
+  { path: 'reset', component: ResetComponent },
+  { path: 'photos', component: ImagesComponent }
 ];

@@ -90,4 +90,18 @@ export class ContestService {
       .catch(err => err)
   }
 
+  coolImage(id) {
+    return this.httpClient.post(`/images/${id}/cool`, {})
+      .toPromise()
+      .then(res => res)
+      .catch(err => err)
+  }
+
+  getImages() {
+    return this.httpClient.get('/images')
+      .toPromise()
+      .then(res => res)
+      .catch(err => err)
+  }
+
 }

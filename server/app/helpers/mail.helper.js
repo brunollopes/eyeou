@@ -47,9 +47,6 @@ exports.registrationEmail = ({ $mailTo }) => {
           src="https://lh5.googleusercontent.com/YVZbtwcEGhhTTLRn5ekI852WwZ-_3rhg5wi1dRN67CkobT_NM3X59k0pmCjTOWRlT0UHAAG059EF-8xAVkYbueeOVeXNPLpk0UwlZNFbvyRIsFPxgWIsCTiEEtfUkTa-vT_kAQP2"
           style="width: 25%"
       />
-      <p>
-      Alguma questão, contacte-nos em <a href="mailto:support@eyeou.net">support@eyeou.net</a>
-      </p>
     </div>
     `
   })

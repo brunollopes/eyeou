@@ -94,6 +94,10 @@ module.exports = (app) => {
     app.put('/images/:user_id', userMiddlewares.isLoggedId, images.update);
     // Delete a image with contest_id
     app.delete('/images/:user_id', userMiddlewares.isLoggedId, images.delete);
+    // Cool an image
+    app.post('/images/:id/cool', userMiddlewares.isLoggedId, images.cool);
+    // Random 50% of contest Images
+    // app.get('/images/random', images.random);
 
 
     const paypal = require('../controllers/paypal.controller');

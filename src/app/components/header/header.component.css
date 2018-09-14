@@ -46,12 +46,19 @@ color: #fff;
     display: none;
 }
 
+.stamp {
+    width: 15%; position: absolute; top: 60%; left: 80%
+}
 
 /* Sire header responsive media Queries */
 
 @media only screen and (max-width: 1000px) {
     .heroSection .display-3 h1 {
         font-size: 40px;
+    }
+    .stamp {
+        width: 25%; 
+        left: 95%
     }
 }
 
@@ -67,5 +74,10 @@ color: #fff;
     }
     .navHeader .sitelogo img {
         height: 35px;
+    }
+    .stamp {
+        width: 25%; 
+        left: 75%;
+        top: 70%
     }
 }

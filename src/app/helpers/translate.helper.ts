@@ -361,7 +361,8 @@ export const en = {
   incompleteCVC: 'Your card\'s security code is incomplete.',
   incompleteExpDate: 'Your card\'s expiration date is incomplete.',
   incompleteCardNumber: 'Your card number is incomplete.',
-  invalidCardNumber: 'Your card number is invalid.'
+  invalidCardNumber: 'Your card number is invalid.',
+  stampURL: '../../../assets/images/stamp/stamp_en.png'
 }
 
 export const pt = {
@@ -726,5 +727,6 @@ export const pt = {
   incompleteCVC: 'Código de segurança do cartão incompleto.',
   incompleteExpDate: 'Data de expiração do cartão incompleta.',
   incompleteCardNumber: 'Número de cartão incompleto.',
-  invalidCardNumber: 'Número de cartão inválido.'
+  invalidCardNumber: 'Número de cartão inválido.',
+  stampURL: '../../../assets/images/stamp/stamp_pt.png'
 }

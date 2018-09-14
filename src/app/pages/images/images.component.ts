@@ -50,15 +50,18 @@ export class ImagesComponent implements OnInit {
       this.contestProvider.coolImage(id)
         .then(info => {
           if (info.status === 403) {
-            if (info.error.message == 'User already cooled this image') {
-              return;
-            } else if (info.error.message == 'Authorization Error: User is not logged in') {
+            if (info.error.message == 'Authorization Error: User is not logged in') {
               this.helper.openLoginDialog()
             }
           } else {
-            this.images[i][$i].userCooled = true
-            this.images[i][$i].cools.push(true)
             this.images[i][$i].cooling = false
+            if (info.status) {
+              this.images[i][$i].userCooled = true
+              this.images[i][$i].cools.push(true)
+            } else {
+              this.images[i][$i].userCooled = false
+              this.images[i][$i].cools.pop()
+            }
           }
         })
         .catch(err => {

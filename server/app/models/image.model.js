@@ -7,7 +7,8 @@ const ImageSchema = mongoose.Schema(
         thumbnail_path: String,
         user: { type: Schema.Types.ObjectId, ref: 'User' },
         contest: { type: Schema.Types.ObjectId, ref: 'Contest' },
-        cools: [{ type: Schema.Types.ObjectId, ref: 'User' }]
+        cools: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+        approved: Boolean
     }, {
         timestamps: true
     });

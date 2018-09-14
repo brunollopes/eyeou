@@ -109,21 +109,33 @@ exports.cool = (req, res) => {
   const userId = req.user.id;
   const { id } = req.params
 
-  Image.findById(id, (err, image) => {
-    if (err) return res.status(404).json(err)
-    if (image.cools.indexOf(userId) > -1) {
-      return res.status(403).json({ message: 'User already cooled this image' });
-    } else {
-      Image.findByIdAndUpdate(
-        id,
-        { $push: { cools: userId } },
-        { new: true },
-        ($err, info) => {
-          if ($err) return res.status(500).json($err)
-          return res.status(200).send({ status: true })
-        })
-    }
-  })
+  Image.findById(
+    id,
+    ['id', 'cools'],
+    (err, image) => {
+      if (err) return res.status(404).json(err)
+      const index = image.cools.indexOf(userId)
+      if (index > -1) {
+        Image.findByIdAndUpdate(
+          id,
+          { $pull: { cools: userId } },
+          { new: true },
+          ($err, info) => {
+            if ($err) return res.status(500).json($err)
+            return res.status(200).send({ status: false })
+          }
+        )
+      } else {
+        Image.findByIdAndUpdate(
+          id,
+          { $push: { cools: userId } },
+          { new: true },
+          ($err, info) => {
+            if ($err) return res.status(500).json($err)
+            return res.status(200).send({ status: true })
+          })
+      }
+    })
 }
 
 // Retrieve and return all images from the mongo database.
@@ -131,7 +143,7 @@ exports.findAll = (req, res) => {
   const userId = req.user ? req.user.id : null
 
   Image
-    .find({}, ['cools', 'contest', 'id', 'thumbnail_path'])
+    .find({approved: true}, ['cools', 'contest', 'id', 'thumbnail_path', 'approved'])
     .populate({
       path: 'contest',
       select: ['contest_name', 'contest_title', 'bgprofile_image']

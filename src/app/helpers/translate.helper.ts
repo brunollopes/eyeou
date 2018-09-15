@@ -6,7 +6,7 @@ export const en = {
   months: 'Months',
   to: 'to',
   langKey: 'en',
-  header: 'ONE SHOT CAN AND',
+  header: 'ONE SHOT AND',
   headerGreen: 'BE THE WINNER',
   headerDesc: 'Join our contests and show',
   headerDesc2: 'how great your photos are',

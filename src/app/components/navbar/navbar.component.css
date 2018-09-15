@@ -48,6 +48,7 @@
   font-size: 15px;
   color: #fff;
   cursor: pointer;
+  transition: all 0.1s ease-in-out
 }
 
 .navigations #navbarCollapse .navbar-nav li:last-child a{
@@ -122,4 +123,14 @@
 
 .mat-button.mat-primary .mat-button-focus-overlay {
   background-color: transparent;
+}
+
+.photosLink {
+  text-transform: uppercase; 
+  color: #449d44 !important;
+  transition: all 0.1s ease-in-out
+}
+
+.photosLink:hover {
+  color: #FFF !important
 }

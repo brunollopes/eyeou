@@ -40,7 +40,7 @@ import { SignupComponent } from './dialogs/signup/signup.component';
 import { ProcessingComponent } from './pages/processing/processing.component';
 import { FailedComponent } from './pages/failed/failed.component';
 import { ResetComponent } from './components/reset/reset.component';
-import { ImagesComponent } from './pages/images/images.component';
+import { ImagesComponent, ImageModal } from './pages/images/images.component';
 
 @NgModule({
   declarations: [
@@ -68,13 +68,15 @@ import { ImagesComponent } from './pages/images/images.component';
     ContestDialog,
     ResetComponent,
     StripeModal,
-    ImagesComponent
+    ImagesComponent,
+    ImageModal
   ],
   entryComponents: [
     LoginComponent,
     SignupComponent,
     ContestDialog,
-    StripeModal
+    StripeModal,
+    ImageModal
   ],
   imports: [
     BrowserModule,

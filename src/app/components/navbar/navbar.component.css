@@ -83,6 +83,10 @@
 }
 
 @media only screen and (max-width:767px) {
+  .navigations #navbarCollapse .navbar-nav li a button {
+    font-size: 16px;
+    font-weight: bold
+  }
   #navbarCollapse {
       position: fixed;
       width: 100%;
@@ -127,7 +131,7 @@
 
 .photosLink {
   text-transform: uppercase; 
-  color: #449d44 !important;
+  color: #2ecc71 !important;
   transition: all 0.1s ease-in-out
 }
 

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener, Inject } from '@angular/core';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Router } from '@angular/router';
 import { ContestService } from '../../services/contest.service';
 import { TranslateService } from '../../services/translate.service';
@@ -21,25 +22,37 @@ Object.defineProperty(Array.prototype, 'chunk_inefficient', {
   styleUrls: ['./images.component.css']
 })
 export class ImagesComponent implements OnInit {
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    this.images = this.fullArray.chunk_inefficient(Math.floor(this.fullArray.length / this.widthContainer()))
+  }
 
   public images: any;
-  private cooling: boolean = false;
+  public fullArray: any;
 
   constructor(
     public router: Router,
     public contestProvider: ContestService,
     public translate: TranslateService,
-    public helper: AppHelper
+    public helper: AppHelper,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit() {
     this.contestProvider.getImages()
       .then(res => {
-        this.images = res.chunk_inefficient(Math.ceil(res.length / 4))
+        this.fullArray = res;
+        this.images = res.chunk_inefficient(Math.floor(res.length / this.widthContainer()))
       })
       .catch(err => {
         this.router.navigate(['/'])
       })
+  }
+
+  openDialog(img): void {
+    const dialogRef = this.dialog.open(ImageModal, {
+      data: { src: img.thumbnail_path }
+    });
   }
 
   coolPhoto(id, i, $i) {
@@ -70,4 +83,36 @@ export class ImagesComponent implements OnInit {
     }
   }
 
+  widthContainer() {
+    const width = window.innerWidth;
+    if (width >= 1200) {
+      return 4;
+    } else if (width < 1200 && width >= 992) {
+      return 3;
+    } else if (width < 9920 && width >= 768) {
+      return 2;
+    } else {
+      return 1;
+    }
+  }
+
+}
+
+@Component({
+  template: `
+    <img [src]="data.src" />
+  `,
+  styles: [
+
+  ]
+})
+export class ImageModal {
+  constructor(
+    public dialogRef: MatDialogRef<ImageModal>,
+    @Inject(MAT_DIALOG_DATA) public data
+  ) { }
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
 }

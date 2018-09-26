@@ -362,7 +362,8 @@ export const en = {
   incompleteExpDate: 'Your card\'s expiration date is incomplete.',
   incompleteCardNumber: 'Your card number is incomplete.',
   invalidCardNumber: 'Your card number is invalid.',
-  stampURL: '../../../assets/images/stamp/stamp_en.png'
+  stampURL: '../../../assets/images/stamp/stamp_en.png',
+  promoCode: 'Promo Code'
 }
 
 export const pt = {
@@ -728,5 +729,6 @@ export const pt = {
   incompleteExpDate: 'Data de expiração do cartão incompleta.',
   incompleteCardNumber: 'Número de cartão incompleto.',
   invalidCardNumber: 'Número de cartão inválido.',
-  stampURL: '../../../assets/images/stamp/stamp_pt.png'
+  stampURL: '../../../assets/images/stamp/stamp_pt.png',
+  promoCode: 'Código promocional'
 }

@@ -110,7 +110,10 @@ export class ContestDialog implements OnInit {
   public paymentForm: FormGroup;
   public transactionChecked: Boolean;
   public clicked: Boolean = false;
-  public data: any = {}
+  public data: any = {};
+  public paymentMethod;
+  public voucherError;
+  public loadingVoucher: Boolean = false
 
   constructor(
     public paypalProvider: PaypalProvider,
@@ -149,6 +152,21 @@ export class ContestDialog implements OnInit {
     this.router.navigate(['contest', $slug]);
   }
 
+  paymentMethodChange(value) {
+    this.paymentMethod = value
+    if (value == 'promoCode') {
+      this.paymentForm.controls['price'].setValue('Free')
+      this.paymentForm.controls['photos'].setValue('1')
+      this.paymentForm.addControl('code', new FormControl(null, Validators.required))
+    } else {
+      this.paymentForm.controls['price'].reset()
+      if (this.paymentForm.value.photos)
+        this.checkFees()
+
+      this.paymentForm.removeControl('code')
+    }
+  }
+
   submitform() {
     if (this.paymentForm.controls['paymentMethod']) {
       const paymentMethod = this.paymentForm.controls['paymentMethod'].value
@@ -160,7 +178,7 @@ export class ContestDialog implements OnInit {
             window.location.href = res.approval_url;
           })
           .catch(err => { console.log(err) })
-      } else {
+      } else if (paymentMethod == 'CreditCard') {
         this.dialog.open(StripeModal, {
           width: '600px',
           data: {
@@ -168,6 +186,23 @@ export class ContestDialog implements OnInit {
             contestId: this.contestId
           }
         })
+      } else if (paymentMethod == 'promoCode') {
+        this.loadingVoucher = true
+        this.paypalProvider.activateVoucher({ contestId: this.contestId, code: this.paymentForm.value.code })
+          .then(res => {
+            this.loadingVoucher = false
+            if (res.error) {
+              this.voucherError = res.error
+            } else {
+              this.voucherError = null
+              location.href = `${location.origin}/contest/${res.slug}`
+              this.bsModalRef.hide()
+            }
+          })
+          .catch(err => {
+            this.loadingVoucher = false
+            console.log(err)
+          })
       }
     }
   }

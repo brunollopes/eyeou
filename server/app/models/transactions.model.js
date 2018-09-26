@@ -2,6 +2,10 @@ const mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 const TransactionSchema = mongoose.Schema({
+  voucher: {
+    type: Schema.Types.ObjectId,
+    ref: 'PromoCodes'
+  },
   maxPhotosLimit: Number,
   transactionId: String,
   intent: String,

@@ -33,4 +33,11 @@ export class PaypalProvider {
       .then(res => res)
       .catch(err => err)
   }
+
+  public activateVoucher({ contestId, code }) {
+    return this.http.post('/voucher/activate', { contestId, code })
+      .toPromise()
+      .then(res => res)
+      .catch(err => err)
+  }
 }

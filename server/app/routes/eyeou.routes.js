@@ -112,4 +112,7 @@ module.exports = (app) => {
     // Pay With Stripe
     app.post('/stripe/pay', userMiddlewares.isLoggedId, stripe.pay)
 
+    const voucher = require('../controllers/vouchers.controller')
+    app.post('/voucher/activate', voucher.activate)
+    app.post('/voucher/create', voucher.create)
 }

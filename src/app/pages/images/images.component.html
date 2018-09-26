@@ -11,7 +11,7 @@
   <main *ngIf="images" (window:resize)="onResize($event)">
     <div class='col-lg-3 col-md-4 col-sm-6 col-xs-12' *ngFor="let imageSecion of images; let i = index">
       <div class="imgContainer" *ngFor="let image of imageSecion; let $i = index">
-        <div class="overlay" (dblclick)='openDialog(image)'>
+        <div class="overlay">
           <div class="cool">
             <div *ngIf='!image.userCooled'>
               <span>{{20 + image.cools.length}}</span>
@@ -20,6 +20,9 @@
             <div *ngIf='image.userCooled'>
               <span>{{20 + image.cools.length}}</span>
               <img src="../../../assets/images/cool-actived.png" alt="cool" (click)="coolPhoto(image.id, i, $i)">
+            </div>
+            <div style="position: absolute; top: 8px; right: 8px; cursor: pointer;" (click)='openDialog(image)'>
+              <mat-icon style="color: #FFF; font-size: 30px;">fullscreen</mat-icon>
             </div>
           </div>
         </div>

@@ -127,7 +127,6 @@ export class ContestDialog implements OnInit {
   ) { }
 
   onNoClick() {
-    console.log('>> HIDE MODAL')
     this.bsModalRef.hide()
   }
 
@@ -192,7 +191,22 @@ export class ContestDialog implements OnInit {
           .then(res => {
             this.loadingVoucher = false
             if (res.error) {
-              this.voucherError = res.error
+              const errors = [
+                "Código promocional inválido",
+                "Já usou este código promocional",
+                "Este código não pode ser usado novamente"
+              ]
+              if (this.translate.lang.langKey == 'pt') {
+                if (res.error == 'You have already used this voucher') {
+                  this.voucherError = errors[1]
+                } else if (res.error == 'This voucher can not be used anymore') {
+                  this.voucherError = errors[2]
+                } else if (res.error == 'Invalid voucher code') {
+                  this.voucherError = errors[0]
+                }
+              } else {
+                this.voucherError = res.error
+              }
             } else {
               this.voucherError = null
               location.href = `${location.origin}/contest/${res.slug}`

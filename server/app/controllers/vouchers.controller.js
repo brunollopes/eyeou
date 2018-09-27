@@ -59,7 +59,7 @@ exports.activate = (req, res) => {
             return res.status(500).json(error)
           })
       } else {
-        return res.status(403).send('Invalid voucher code.')
+        return res.status(403).send('Invalid voucher code')
       }
 
     })

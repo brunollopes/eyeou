@@ -12,30 +12,22 @@ export class SliderTilesComponent implements OnInit {
   constructor(public translate: TranslateService) {
     this.slidertitle = [
       {
-        name: 'Nuno Lobito',
-        profile: 'https://lh4.googleusercontent.com/hl_rmEuT9UCPt8MidKlRNyQlBy5GjgriicpJObjab9KNwy-ovlk1HsuWoBIhjrBSkIywvx8b_LmmcxgQLt3hzZtOuiu0Otmj6rqNIniUAlhLm8awHQLGfpNiF3ORl2b5HeNsOBbT',
+        name: 'Ana Mandes',
+        profile: 'https://s3.amazonaws.com/eyeou-public/anaa.png',
         position: {
           en: 'Photographer',
           pt: 'Fotógrafo'
         },
         info: {
           en: [
-            'Over 30 years of professional photographer',
-            'Photographer teacher',
-            'Professional traveler photographer',
-            'Portuguese N1 as world traveler',
-            'Visited all countries in the world (204 countries) finishing it in 2011'
+            'Visual Artist'
           ],
           pt: [
-            'Mais de  30 anos como fotógrafo profissional',
-            'Professor em fotografia',
-            'Fotógrafo profissional de viagens',
-            'Português número 1 mais viajado',
-            'Visitou todos os países do mundo (204 países) terminando em 2011'
+            'Artista Visual'
           ]
         },
-        url: 'nlphotographer.com',
-        href: 'http://nlphotographer.com'
+        url: 'instagram',
+        href: 'https://www.instagram.com/by_anamendes/'
       },
       {
         name: 'Angelo Lucas',
@@ -56,7 +48,7 @@ export class SliderTilesComponent implements OnInit {
             'fotojornalista, documentarista'
           ]
         },
-        url: 'angelolucas.com',
+        url: 'website',
         href: 'http://angelolucas.com'
       },
       {
@@ -78,7 +70,7 @@ export class SliderTilesComponent implements OnInit {
             'Atualmente trabalha como Visual Content Creator e Advisor de várias marcas.'
           ]
         },
-        url: 'tiagomaya.com',
+        url: 'website',
         href: 'http://tiagomaya.com'
       }
     ];

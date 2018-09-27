@@ -1,9 +1,10 @@
 import { Component, OnInit, HostListener, Inject } from '@angular/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Router } from '@angular/router';
 import { ContestService } from '../../services/contest.service';
 import { TranslateService } from '../../services/translate.service';
 import { AppHelper } from '../../services/app.helper';
+import { BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 
 Object.defineProperty(Array.prototype, 'chunk_inefficient', {
   value: function (chunkSize) {
@@ -24,25 +25,26 @@ Object.defineProperty(Array.prototype, 'chunk_inefficient', {
 export class ImagesComponent implements OnInit {
   @HostListener('window:resize', ['$event'])
   onResize(event) {
-    this.images = this.fullArray.chunk_inefficient(Math.floor(this.fullArray.length / this.widthContainer()))
+    this.images = this.fullArray.chunk_inefficient(Math.ceil(this.fullArray.length / this.widthContainer()))
   }
 
   public images: any;
   public fullArray: any;
 
+  bsModalRef: BsModalRef;
   constructor(
     public router: Router,
     public contestProvider: ContestService,
     public translate: TranslateService,
     public helper: AppHelper,
-    public dialog: MatDialog
+    private modalService: BsModalService,
   ) { }
 
   ngOnInit() {
     this.contestProvider.getImages()
       .then(res => {
         this.fullArray = res;
-        this.images = res.chunk_inefficient(Math.floor(res.length / this.widthContainer()))
+        this.images = res.chunk_inefficient(Math.ceil(res.length / this.widthContainer()))
       })
       .catch(err => {
         this.router.navigate(['/'])
@@ -50,9 +52,8 @@ export class ImagesComponent implements OnInit {
   }
 
   openDialog(img): void {
-    const dialogRef = this.dialog.open(ImageModal, {
-      data: { src: img.thumbnail_path }
-    });
+    localStorage.setItem('src', img.thumbnail_path)
+    this.bsModalRef = this.modalService.show(ImageModal)
   }
 
   coolPhoto(id, i, $i) {
@@ -100,19 +101,26 @@ export class ImagesComponent implements OnInit {
 
 @Component({
   template: `
-    <img [src]="data.src" />
+    <div style="max-width: 1200px; min-width: 600px">
+      <img [src]="data.src" style="width: 100%"/>
+    </div>
   `,
   styles: [
-
   ]
 })
-export class ImageModal {
+export class ImageModal implements OnInit {
+  public data: any = {}
+
   constructor(
-    public dialogRef: MatDialogRef<ImageModal>,
-    @Inject(MAT_DIALOG_DATA) public data
-  ) { }
+    public bsModalRef: BsModalRef
+  ) {
+  }
 
   onNoClick(): void {
-    this.dialogRef.close();
+    this.bsModalRef.hide()
+  }
+
+  ngOnInit() {
+    this.data.src = localStorage.getItem('src')
   }
 }

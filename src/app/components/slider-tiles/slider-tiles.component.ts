@@ -12,7 +12,7 @@ export class SliderTilesComponent implements OnInit {
   constructor(public translate: TranslateService) {
     this.slidertitle = [
       {
-        name: 'Ana Mandes',
+        name: 'Ana Mendes',
         profile: 'https://s3.amazonaws.com/eyeou-public/anaa.png',
         position: {
           en: 'Photographer',

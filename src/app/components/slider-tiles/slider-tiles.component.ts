@@ -16,7 +16,7 @@ export class SliderTilesComponent implements OnInit {
         profile: 'https://s3.amazonaws.com/eyeou-public/anaa.png',
         position: {
           en: 'Photographer',
-          pt: 'Fotógrafo'
+          pt: 'Fotógrafa'
         },
         info: {
           en: [

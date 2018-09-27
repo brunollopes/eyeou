@@ -101,9 +101,7 @@ export class ImagesComponent implements OnInit {
 
 @Component({
   template: `
-    <div style="max-width: 1200px; min-width: 600px">
-      <img [src]="data.src" style="width: 100%"/>
-    </div>
+      <img [src]="data.src" style="width: 100%" (click)="onNoClick()"/>
   `,
   styles: [
   ]

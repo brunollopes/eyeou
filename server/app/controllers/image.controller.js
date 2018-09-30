@@ -17,7 +17,6 @@ exports.uploadimage = (req, res) => {
   const { contest_name } = req.body;
   const user_id = req.user._id
   // const { user_id } = req.body
-
   function createParams($files, $contest_name, $user_id) {
     let params = [];
     return new Promise(async (resolve, reject) => {
@@ -39,7 +38,7 @@ exports.uploadimage = (req, res) => {
               ACL: 'public-read',
               ContentEncoding: 'base64',
               ContentType: file.type,
-              Key: `${$contest_name}/${$user_id}/${Date.now()}_${file.originalname.substr(0, file.originalname.indexOf('.'))}_thumbnail.jpeg`
+              Key: `${$contest_name}/${$user_id}/${Date.now()}_${file.originalname.substr(0, file.originalname.indexOf('.'))}_thumbnail020GH.jpeg`
             }
           );
           if ($i == $files.length - 1)
@@ -54,7 +53,7 @@ exports.uploadimage = (req, res) => {
   createParams(files, contest_name, user_id)
     .then(params => {
       params.forEach(async (param, i) => {
-        if (!param.Key.includes('thumbnail')) {
+        if (!param.Key.includes('thumbnail020GH')) {
           s3.upload(param, async (err, data) => {
             if (err) {
               console.log('>> UPLOAD ERROR', err)

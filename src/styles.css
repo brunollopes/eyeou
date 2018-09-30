@@ -310,7 +310,8 @@ image-upload .customClass .img-ul-file-upload .img-ul-button {
     background-color: transparent !important
 }
 
-.cdk-global-overlay-wrapper, .cdk-overlay-container {
+.cdk-global-overlay-wrapper, 
+.cdk-overlay-container {
     z-index: 99999 !important;
   }
 

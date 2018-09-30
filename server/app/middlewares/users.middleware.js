@@ -30,9 +30,9 @@ const isUserInContest = (req, res, next) => {
       if (contest.users.indexOf(userId) > -1) {
         if (contest.type == 'paid') {
           try {
-            const $transaction = await Transactions.findOne({ user: userId, contest: contest._id }, ['maxPhotosLimit', '_id']).exec()
+            const $transactions = await Transactions.find({ user: userId, contest: contest._id }, ['maxPhotosLimit', '_id']).exec()
             req.locals.userIncluded = true;
-            req.locals.transaction = $transaction;
+            req.locals.transaction = $transactions;
             req.locals.contestId = contest.id;
             next();
           } catch (e) {

@@ -35,6 +35,12 @@
           <mat-icon [matTooltip]="translate.lang.prizeMoney">attach_money</mat-icon>
           <span>{{contest.prize_money}} €</span>
         </div>
+        <div *ngIf='contest.entry_price'>
+          <button mat-button style="background-color: #41C253; color: #FFF; text-transform: uppercase" (click)="openDialog()">
+            <mat-icon style="font-size: 22px">add_circle</mat-icon>
+            <span style="top: 0">Buy more photos</span>
+          </button>
+        </div>
       </div>
       <div class="clearfix"></div>
     </div>
@@ -85,9 +91,9 @@
         </table>
         <div class="text-center">
           <input type="file" multiple accept="image/*" #selectedFiles id='selectedFiles' (change)="dropped($event, true)" style="display: none">
-          <button mat-button style="background-color: #41C253; font-weight: bold; color: #FFF; margin-right: 10px" (click)="browseFiles()"
+          <button mat-button style="background-color: #41C253; color: #FFF; margin-right: 10px" (click)="browseFiles()"
             [disabled]="maxLimitReached">BROWSE</button>
-          <button mat-button style="background-color: #41C253; font-weight: bold; color: #FFF" (click)="uploadImages()" [disabled]="maxLimitReached">UPLOAD</button>
+          <button mat-button style="background-color: #41C253; color: #FFF" (click)="uploadImages()" [disabled]="maxLimitReached">UPLOAD</button>
           <p>
             {{translate.lang.maxLimitNotice}}
           </p>

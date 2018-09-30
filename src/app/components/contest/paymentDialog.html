@@ -1,0 +1,67 @@
+<div class="payment-min" style="padding: 24px">
+  <h5 *ngIf="data.entry_price">{{translate.lang.paymentMethod}}</h5>
+  <form [formGroup]="paymentForm">
+    <div class="row">
+
+      <mat-form-field class="col-xs-6">
+        <mat-select [placeholder]="translate.lang.paymentMethod" (selectionChange)="paymentMethodChange($event.value)" formControlName='paymentMethod'
+          style="width: 100%">
+          <mat-option value="Paypal">Paypal</mat-option>
+          <mat-option value="CreditCard">{{translate.lang.card}}</mat-option>
+          <mat-option value="promoCode">{{translate.lang.promoCode}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <div class="col-xs-6" style="padding: 0">
+
+        <mat-form-field class=' col-xs-6' *ngIf="paymentMethod == 'promoCode'">
+          <mat-select [placeholder]="translate.lang.photos" formControlName='photos'>
+            <mat-option value="1">1 {{translate.lang.photo}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class=' col-xs-6' *ngIf="paymentMethod != 'promoCode'">
+          <mat-select [placeholder]="translate.lang.photos" (selectionChange)="checkFees()" formControlName='photos'>
+            <mat-option value="1">1 {{translate.lang.photo}}</mat-option>
+            <mat-option value="10">10 {{translate.lang.photos}}</mat-option>
+            <mat-option value="30">30 {{translate.lang.photos}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class='col-xs-6 '>
+          <input matInput formControlName="price" [placeholder]="translate.lang.contestFee" readonly style="width: 100%">
+        </mat-form-field>
+
+      </div>
+
+      <div class="clearfix"></div>
+
+      <mat-form-field class='col-xs-6 col-xs-push-3' *ngIf="paymentMethod == 'promoCode'">
+        <input matInput formControlName="code" placeholder="Code" style="width: 100%">
+      </mat-form-field>
+
+      <div class="clearfix" *ngIf="paymentMethod == 'promoCode'"></div>
+
+      <div class="alert alert-danger text-center" *ngIf='voucherError'>
+        {{voucherError}}
+      </div>
+
+    </div>
+
+    <div class="termcondition" style="text-align: center; margin: 10px 0; font-size: 13px;">
+      <input type="checkbox" style="position: relative; top: 3px" formControlName="term_condition">
+      <p style="margin: 0 0 0 5px; display: inline-block;">{{translate.lang.iAgree}}
+        <a href="/terms" target="_blank">{{translate.lang.termsAndConditions}}</a>
+      </p>
+    </div>
+
+    <div class='text-center '>
+      <button type="button" style="text-transform: uppercase" class="btn btn-success" [disabled]="paymentForm.invalid || clicked"
+        (click)="submitform()">{{translate.lang.pay}}</button>
+    </div>
+
+  </form>
+
+  <mat-spinner *ngIf='loadingVoucher' diameter="35" style="margin: 10px auto"></mat-spinner>
+
+</div>

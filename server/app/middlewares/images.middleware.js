@@ -22,15 +22,17 @@ exports.photosLimit = (req, res, next) => {
           })
         } else {
           try {
-            const $transaction = await Transaction.findOne({ user: user_id, contest: contest_name }).exec()
+            const $transactions = await Transaction.find({ user: user_id, contest: contest_name }).exec()
             const $images = await Image.find({ user: user_id, contest: contest_name }).exec()
-            if ($transaction) {
-              console.log($images.length + files.length, $transaction.maxPhotosLimit)
-              return $images.length + files.length > $transaction.maxPhotosLimit ? res.status(403).send('Authorization Error: You can\'t upload more images') : next()
+            if ($transactions) {
+              const reducer = (accumulator, currentValue) => accumulator + currentValue;
+              let maxPhotosLength = $transactions.map($transaction => $transaction.maxPhotosLimit).reduce(reducer)
+              return $images.length + files.length > maxPhotosLength ? res.status(403).send('Authorization Error: You can\'t upload more images') : next()
             } else {
               return res.status(403).send('Authorization Error: User is not in this paid contest')
             }
           } catch (err) {
+            console.log('>> ERROR:', err)
             return res.status(500).json(err)
           }
         }

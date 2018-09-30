@@ -25,7 +25,7 @@ import { GalleryListComponent, ContestDialog, StripeModal } from './components/g
 import { ContestService } from './services/contest.service';
 import { PaypalProvider } from './services/paypal.service';
 import { AppHelper } from './services/app.helper';
-import { ContestComponent } from './components/contest/contest.component';
+import { ContestComponent, PostPaymentDialog } from './components/contest/contest.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { ConverSizePipe } from './pipes/conver-size.pipe';
 import { RulesComponent } from './pages/rules/rules.component';
@@ -69,14 +69,16 @@ import { ImagesComponent, ImageModal } from './pages/images/images.component';
     ResetComponent,
     StripeModal,
     ImagesComponent,
-    ImageModal
+    ImageModal,
+    PostPaymentDialog
   ],
   entryComponents: [
     LoginComponent,
     SignupComponent,
     ContestDialog,
     StripeModal,
-    ImageModal
+    ImageModal,
+    PostPaymentDialog
   ],
   imports: [
     BrowserModule,

@@ -40,7 +40,7 @@
           </a>
         </li>
         <li class="nav-item" *ngIf='auth.user'>
-          <button [matMenuTriggerFor]="menu" style="margin: 0; padding: 0; border-radius: 50%; border: 1px solid #FFF; width: 35px; position: relative; outline: none">
+          <!-- <button [matMenuTriggerFor]="menu" style="margin: 0; padding: 0; border-radius: 50%; border: 1px solid #FFF; width: 35px; position: relative; outline: none">
             <img style="width: 100%; border-radius: 50%;" src="https://s3.amazonaws.com/eyeou-public/anonymous-avatar-sm.jpg" alt="">
           </button>
           <mat-menu #menu="matMenu">
@@ -52,10 +52,11 @@
               <mat-icon>exit_to_app</mat-icon>
               <span>LOGOUT</span>
             </button>
-          </mat-menu>
-          <!-- <a class="nav-link" (click)='logout()'>
+          </mat-menu> -->
+          
+          <a class="nav-link logout" (click)='logout()'>
             <button mat-button style="color: #F00">{{translate.lang.logout}}</button>
-          </a> -->
+          </a>
         </li>
         <li class="nav-item lang">
           <a *ngIf="translate.showLang == 'pt'" (click)="switchLanguage('en')">

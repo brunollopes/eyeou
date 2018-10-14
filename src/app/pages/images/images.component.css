@@ -45,3 +45,120 @@ div.overlay div.cool img {
 div.overlay div.cool img:active {
   transform: scale(1.2, 1.2)
 }
+
+div.comment {
+  padding: 10px 10px 10px 0px;
+  position: relative
+}
+
+div.avatar {
+  overflow: hidden;
+  text-align: center;
+  padding: 0;
+}
+
+div.avatar img {
+  width: 54px;
+  border-radius: 50%;
+  height: 50px;
+}
+
+div.text {
+  text-align: left;
+  padding: 10px 10px;
+  background-color: #FFF;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  position: relative;
+}
+
+div.text h5 {
+  text-align: left;
+  margin: 0 0 7px 0;
+  padding: 0;
+  font-size: 14px;
+  color: #333;
+  font-weight: 500;
+  font-family: 'Roboto', serif;
+}
+
+div.text p {
+  text-align: left;
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', serif;
+  font-size: 14px;
+  color: #333;
+  font-weight: 300
+}
+
+div.timestamp {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  font-size: 10px;
+  font-weight: bold;
+  color: #AAA;
+  font-family: 'Roboto', serif;
+}
+
+div.reply {
+  margin: 10px 0 10px 0 
+}
+
+
+p.description {
+  text-align: left;
+  padding: 15px 15px;
+  margin: 0;
+}
+
+form.newComment {
+  padding: 10px 15px;
+}
+
+.fullRadius {
+  border-radius: 10px
+}
+
+textarea {
+  background-color: #FFF;
+  border: 1px solid #EFEFEF;
+  box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.2);
+  resize: vertical;
+  width: 100%;
+  max-height: 55px;
+  border-radius: 8px;
+  padding: 10px 15px;
+  font-family: 'Roboto', serif;
+  font-size: 13px;
+  outline: none
+}
+
+div.view-replies {
+  text-align: center;
+  font-family: 'Roboto', serif;
+  padding: 5px 15px;
+  background-color: #FFF;
+  border-top: 1px solid #DEDEDE;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.15);
+  transition: all 0.1s ease-in-out;
+  cursor: pointer;
+}
+
+div.no-replies {
+  text-align: center;
+  font-family: 'Roboto', serif;
+  padding: 5px 15px;
+  background-color: #FFF;
+  border-top: 1px solid #DEDEDE;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.15);
+}
+
+div.view-replies:hover {
+  background: linear-gradient(to top, rgba(0,0,0,0.2) 0%,rgba(0,0,0,0) 100%)
+}

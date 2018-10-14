@@ -41,6 +41,7 @@ import { ProcessingComponent } from './pages/processing/processing.component';
 import { FailedComponent } from './pages/failed/failed.component';
 import { ResetComponent } from './components/reset/reset.component';
 import { ImagesComponent, ImageModal } from './pages/images/images.component';
+import { ProfileComponent } from './pages/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -70,7 +71,8 @@ import { ImagesComponent, ImageModal } from './pages/images/images.component';
     StripeModal,
     ImagesComponent,
     ImageModal,
-    PostPaymentDialog
+    PostPaymentDialog,
+    ProfileComponent
   ],
   entryComponents: [
     LoginComponent,

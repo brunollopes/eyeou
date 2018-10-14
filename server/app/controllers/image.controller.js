@@ -1,6 +1,7 @@
 const Image = require('../models/image.model.js');
 const User = require('../models/users.model');
 const Contest = require('../models/contest.model');
+const Comments = require('../models/comment.model');
 const AWS = require('aws-sdk');
 const sharp = require('sharp');
 const emailHelper = require('../helpers/mail.helper');
@@ -137,12 +138,92 @@ exports.cool = (req, res) => {
     })
 }
 
+exports.addComment = async (req, res) => {
+  const userId = req.user ? req.user.id : null
+  const { imageId, text, commentId } = req.body
+
+  if (commentId) {
+    // REPLY
+    const reply = new Comments({ comment: commentId, text, user: userId })
+    const savedReply = await reply.save()
+    Comments.findByIdAndUpdate(commentId, { $push: { replies: savedReply.id } }, { new: true }).exec()
+      .then(info => {
+        return res.status(200).send(true)
+      })
+      .catch(err => {
+        console.log(err)
+        return res.status(500).send(false)
+      })
+  } else {
+    // NO REPLY
+    const comment = new Comments({ image: imageId, text, user: userId })
+    const savedComment = await comment.save()
+    Image.findByIdAndUpdate(imageId, { $push: { comments: savedComment.id } }, { new: true }).exec()
+      .then(info => {
+        return res.status(200).send(true)
+      })
+      .catch(err => {
+        console.log(err)
+        return res.status(500).send(false)
+      })
+  }
+}
+
+exports.findOne = (req, res) => {
+  const userId = req.user ? req.user.id : null;
+  const { id } = req.params
+
+  Image
+    .findById(id)
+    .populate([
+      {
+        path: 'user',
+        select: ['firstName', 'lastName', 'profilePictureURL']
+      },
+      {
+        path: 'comments',
+        populate: {
+          path: 'user',
+          select: ['firstName', 'lastName', 'profilePictureURL']
+        }
+      }
+    ])
+    .exec()
+    .then(image => {
+      return res.status(200).json(image)
+    })
+    .catch(err => {
+      return res.status(500).json(err)
+    })
+}
+
+exports.getCommentReplies = (req, res) => {
+  const { id } = req.params
+
+  Comments
+    .findById(id)
+    .populate({
+      path: 'replies',
+      populate: {
+        path: 'user',
+        select: ['firstName', 'lastName', 'profilePictureURL']
+      }
+    })
+    .exec()
+    .then(comment => {
+      return res.status(200).json(comment.replies)
+    })
+    .catch(err => {
+      return res.status(500).json(err)
+    })
+}
+
 // Retrieve and return all images from the mongo database.
 exports.findAll = (req, res) => {
   const userId = req.user ? req.user.id : null
 
   Image
-    .find({approved: true}, ['cools', 'contest', 'id', 'thumbnail_path', 'approved'])
+    .find({ approved: true }, ['cools', 'contest', 'id', 'thumbnail_path', 'approved'])
     .populate({
       path: 'contest',
       select: ['contest_name', 'contest_title', 'bgprofile_image']
@@ -158,32 +239,6 @@ exports.findAll = (req, res) => {
     }).catch(err => {
       res.status(500).send({
         message: err.message || "Some error occurred while retrieving images."
-      });
-    });
-
-};
-
-// Find a single image with a imageid
-exports.findOne = (req, res) => {
-
-  Image.find({
-    user_id: req.params.user_id
-  })
-    .then(images => {
-      if (!images) {
-        return res.status(404).send({
-          message: "Image not found with user_id " + req.params.user_id
-        });
-      }
-      res.send(images);
-    }).catch(err => {
-      if (err.kind === 'ObjectId') {
-        return res.status(404).send({
-          message: "Image not found with user_id " + req.params.user_id
-        });
-      }
-      return res.status(500).send({
-        message: "Error retrieving image with user_id " + req.params.user_id
       });
     });
 

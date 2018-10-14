@@ -3,17 +3,24 @@ const bcrypt = require('bcrypt');
 const Schema = mongoose.Schema;
 
 const UserSchema = mongoose.Schema({
+  firstName: String,
+  lastName: String,
+  birthDate: Date,
+  locationAddress: String,
+  phoneNumber: String,
+  gender: String,
+  aboutMe: String,
   email: String,
   googleID: String,
   facebookID: String,
   password: String,
   resetCode: String,
   verified: Boolean,
+  profilePictureURL: String,
   notify: {
     type: Boolean,
     default: false
   },
-  full_name: String,
   acess_code: Number,
   images: [{
     type: Schema.Types.ObjectId,

@@ -104,4 +104,25 @@ export class ContestService {
       .catch(err => err)
   }
 
+  getImage(id) {
+    return this.httpClient.get(`/images/${id}`)
+      .toPromise()
+      .then(res => res)
+      .catch(err => err)
+  }
+
+  addComment({ imageId, text, commentId }) {
+    return this.httpClient.post('/images/comment', { imageId, text, commentId })
+      .toPromise()
+      .then(res => res)
+      .catch(err => err)
+  }
+
+  getCommentReplies(commentId) {
+    return this.httpClient.get(`/images/comment/${commentId}/replies`)
+      .toPromise()
+      .then(res => res)
+      .catch(err => err)
+  }
+
 }

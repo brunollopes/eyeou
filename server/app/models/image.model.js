@@ -8,7 +8,8 @@ const ImageSchema = mongoose.Schema(
         user: { type: Schema.Types.ObjectId, ref: 'User' },
         contest: { type: Schema.Types.ObjectId, ref: 'Contest' },
         cools: [{ type: Schema.Types.ObjectId, ref: 'User' }],
-        approved: Boolean
+        approved: Boolean,
+        comments: [{ type: Schema.Types.ObjectId, ref: 'Comment' }]
     }, {
         timestamps: true
     });

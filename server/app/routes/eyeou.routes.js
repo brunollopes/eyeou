@@ -89,13 +89,15 @@ module.exports = (app) => {
     //find all images
     app.get('/images', images.findAll);
     // Retrieve a single image with contestid
-    app.get('/images/:user_id', images.findOne);
+    app.get('/images/:id', images.findOne);
     // Update a image with contestid
     app.put('/images/:user_id', userMiddlewares.isLoggedId, images.update);
     // Delete a image with contest_id
     app.delete('/images/:user_id', userMiddlewares.isLoggedId, images.delete);
     // Cool an image
     app.post('/images/:id/cool', userMiddlewares.isLoggedId, images.cool);
+    app.post('/images/comment', userMiddlewares.isLoggedId, images.addComment)
+    app.get('/images/comment/:id/replies', images.getCommentReplies)
     // Random 50% of contest Images
     // app.get('/images/random', images.random);
 

@@ -23,7 +23,8 @@ div.info {
     border-radius: 6px;
     padding: 15px 15px;
     text-align: center;
-    padding: 0
+    padding: 0;
+    margin-bottom: 30px
 }
 
 div.info img {
@@ -63,6 +64,7 @@ div.data {
   border-radius: 6px;
   padding: 0 0 15px 0;
   overflow: hidden;
+  margin-bottom: 30px
 }
 
 textarea {

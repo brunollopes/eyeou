@@ -134,7 +134,7 @@ export class ImagesComponent implements OnInit {
               This comment has no replies.
             </div>
 
-            <form [formGroup]='comment.replyForm' class='col-xs-10 col-xs-push-2' *ngIf='comment.viewReplies' style='padding: 0'>
+            <form [formGroup]='comment.replyForm' class='col-xs-10 col-xs-push-2' *ngIf='comment.viewReplies && auth.user' style='padding: 0'>
               <textarea formControlName='text' placeholder="Type your reply here..." style="margin: 10px 0px 0px; min-height: 55px; max-height: 55px; resize: none; width: 90%; display: inline-block"></textarea>
               <button (click)="reply(i, comment._id)" mat-icon-button style="top: -25px; background-color: #41C253; color: #FFF; position: relative; left: 7px;">
                 <mat-icon style="position: relative; top: -3px;">reply</mat-icon>

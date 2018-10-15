@@ -2,12 +2,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { ModalModule } from 'ngx-bootstrap';
+import { ModalModule, BsDropdownModule } from 'ngx-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FileDropModule } from 'ngx-file-drop';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 import { ShareModule } from '@ngx-share/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { MatNativeDateModule } from '@angular/material'
 
 import { ROUTES } from './app.router';
 import { MaterialModule } from './modules/material.module';
@@ -89,13 +90,15 @@ import { ProfileComponent } from './pages/profile/profile.component';
     FileDropModule,
     RouterModule.forRoot(ROUTES),
     ModalModule.forRoot(),
+    BsDropdownModule.forRoot(),
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
     ShareModule.forRoot(),
-    FontAwesomeModule
+    FontAwesomeModule,
+    MatNativeDateModule
   ],
-  providers: [ContestService, PaypalProvider, AppHelper, AppComponent, BsModalRef],
+  providers: [ContestService, PaypalProvider, AppHelper, AppComponent, BsModalRef, MatNativeDateModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

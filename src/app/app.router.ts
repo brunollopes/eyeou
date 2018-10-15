@@ -10,6 +10,7 @@ import { TermsComponent } from './pages/terms/terms.component';
 import { ProcessingComponent } from './pages/processing/processing.component';
 import { ResetComponent } from './components/reset/reset.component';
 import { ImagesComponent } from './pages/images/images.component';
+import { ProfileComponent } from './pages/profile/profile.component';
 
 export const ROUTES : Routes = [
   { path: '', component: HomeComponent},
@@ -23,5 +24,6 @@ export const ROUTES : Routes = [
   { path: 'terms', component: TermsComponent },
   { path: 'processing', component: ProcessingComponent },
   { path: 'reset', component: ResetComponent },
-  { path: 'photos', component: ImagesComponent }
+  { path: 'photos', component: ImagesComponent },
+  { path: 'me', component: ProfileComponent }
 ];

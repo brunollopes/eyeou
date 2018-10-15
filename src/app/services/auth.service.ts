@@ -24,6 +24,20 @@ export class AuthService {
       .catch(err => err);
   }
 
+  public myProfile() {
+    return this.http.get('/auth/me')
+      .toPromise()
+      .then(res => res)
+      .catch(err => err);
+  }
+
+  public updateMe($data) {
+    return this.http.post('/users/me/update', $data)
+      .toPromise()
+      .then(res => res)
+      .catch(err => err);
+  }
+
   public login({ email, password }) {
     return this.http.post('/auth/login', { email, password })
       .toPromise()

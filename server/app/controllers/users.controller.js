@@ -237,6 +237,23 @@ exports.verify = (req, res) => {
   }
 }
 
+exports.me = (req, res) => {
+  const { id } = req.user
+
+  Users.findById(id).exec()
+    .then(user => res.status(200).json(user))
+    .catch(err => res.status(500).json(err))
+}
+
+exports.updateMe = (req, res) => {
+  const data = req.body;
+  const { id } = req.user;
+
+  Users.findByIdAndUpdate(id, data, { new: true }).exec()
+    .then(info => res.status(200).json(info))
+    .catch(err => res.status(500).json(err))
+}
+
 exports.getUserImages = (req, res) => {
   Users
     .findById(req.params.id)

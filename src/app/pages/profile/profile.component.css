@@ -1,0 +1,70 @@
+h2.title {
+  margin: 0 0 30px 0;
+  text-transform: uppercase;
+  text-align: center
+}
+
+div.title h5 {
+  margin: 0 0 15px 0;
+  padding: 10px;
+  font-family: 'Roboto', serif;
+  font-weight: 400;
+  color: #444;
+  text-transform: uppercase;
+  background-color: #F5F5F5;
+  border-bottom: 1px solid #CECECE;
+  box-shadow: 0 5px 5px -5px rgba(0, 0, 0, 0.2);
+}
+
+div.info {
+  background-color: #FFF;
+    border: 1px solid #EDEDEDED;
+    box-shadow: 0 0 0.5px 1.2px rgba(0, 0, 0, 0.15);
+    border-radius: 6px;
+    padding: 15px 15px;
+    text-align: center;
+    padding: 0
+}
+
+div.info img {
+  border-radius: 50%;
+  position: relative;
+  top: -100px;
+  border: 1px solid #CFCFCF;
+  box-shadow: 0 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+div.tabs button {
+  width: 100%;
+  font-size: 18px;
+  text-align: left;
+  border-left: 11px solid #45bf55;
+  border-top: 1px solid #DEDEDE;
+  background-color: #FFF;
+  font-family: 'Roboto', serif;
+  font-weight: 400;
+  box-shadow: 0 -5px 5px -5px rgba(0, 0, 0, 0.2);
+  background-color: #F5F5F5
+}
+
+div.info h3 {
+  margin: 0;
+    position: relative;
+    top: -80px;
+    font-family: 'Roboto', serif;
+    font-weight: 300;
+    font-size: 27px
+}
+
+div.data {
+  background-color: #FFF;
+  border: 1px solid #EDEDEDED;
+  box-shadow: 0 0 0.5px 1.2px rgba(0, 0, 0, 0.15);
+  border-radius: 6px;
+  padding: 0 0 15px 0;
+  overflow: hidden;
+}
+
+textarea {
+  max-height: 70px
+}

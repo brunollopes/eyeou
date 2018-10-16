@@ -45,7 +45,7 @@
           <button id="button-basic" dropdownToggle type="button" aria-controls="dropdown-basic" style="margin: 0; padding: 0; border-radius: 50%; border: 1px solid #FFF; width: 35px; position: relative; outline: none">
             <img style="width: 100%; border-radius: 50%;" [src]="auth.user.profilePictureURL || 'https://s3.amazonaws.com/eyeou-public/anonymous-avatar-sm.jpg'" alt="">
           </button>
-          <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic" style="left: -16px; top: 40px">
+          <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
             <li role="menuitem">
               <a class="dropdown-item" routerLink="/me">
                 <button mat-button class='profile-button' style="width: 100%; color: #333; text-transform: uppercase;">

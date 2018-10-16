@@ -118,6 +118,16 @@
   }
 }
 
+li.open {
+  background-color: #FFF;
+  height: 42px;
+}
+
+.dropdown-menu {
+  top: 41px !important;
+  left: -58px;
+}
+
 @media only screen and (min-width: 768px) {
   .menu {
     display: inline-block

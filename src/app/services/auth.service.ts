@@ -38,6 +38,13 @@ export class AuthService {
       .catch(err => err);
   }
 
+  public updateImage($data) {
+    return this.http.post('/users/me/updateImage', $data)
+      .toPromise()
+      .then(res => res)
+      .catch(err => err);
+  }
+
   public login({ email, password }) {
     return this.http.post('/auth/login', { email, password })
       .toPromise()

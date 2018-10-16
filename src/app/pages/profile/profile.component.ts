@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { TranslateService } from '../../services/translate.service';
 import { AppHelper } from '../../services/app.helper';
@@ -10,9 +10,11 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
+  @ViewChild('profileImage') clicker: ElementRef;
 
   public infoForm: FormGroup
   public loading: Boolean
+  public loadingImage: Boolean
   public user: any
 
   constructor(
@@ -54,6 +56,28 @@ export class ProfileComponent implements OnInit {
       id: 'birthDate',
       value: $event.value
     })
+  }
+
+  selectFile() {
+    let el: HTMLElement = this.clicker.nativeElement as HTMLElement;
+    el.click();
+  }
+
+  fileChangeEvent(fileInput: any) {
+
+    if (fileInput.target.files && fileInput.target.files[0]) {
+      const formData = new FormData()
+      formData.append('file', fileInput.target.files[0], 'file')
+      this.loadingImage = true
+      this.auth.updateImage(formData)
+        .then(user => {
+          this.user = user
+          this.loadingImage = false
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    }
   }
 
   ngOnInit() {

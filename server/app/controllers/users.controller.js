@@ -5,6 +5,14 @@ const nodemailer = require("nodemailer");
 const bcrypt = require('bcrypt');
 const iplocation = require('iplocation');
 const Transactions = require('../models/transactions.model');
+const AWS = require('aws-sdk');
+
+AWS.config.update({
+  accessKeyId: process.env.aws_access_key,
+  secretAccessKey: process.env.aws_access_secret
+});
+
+var s3 = new AWS.S3();
 
 exports.location = (req, res) => {
   const { ip } = req;
@@ -235,6 +243,31 @@ exports.verify = (req, res) => {
         }
       });
   }
+}
+
+exports.updateImage = (req, res) => {
+  const { file } = req;
+  const userId = req.user._id;
+  const params = {
+    Bucket: 'eyeou',
+    Body: file.buffer,
+    ACL: 'public-read',
+    ContentEncoding: 'base64',
+    ContentType: file.type,
+    Key: `${userId}/profileImages/${Date.now()}_${file.originalname}`
+  }
+
+  s3.upload(params, async (error, image) => {
+    if (error) {
+      console.log(error)
+      return res.status(500).json(error)
+    }
+    
+    Users.findByIdAndUpdate(userId, { profilePictureURL: image.Location }, { new: true }).exec()
+      .then(info => res.status(200).json(info))
+      .catch(err => res.status(500).json(err))
+  })
+
 }
 
 exports.me = (req, res) => {

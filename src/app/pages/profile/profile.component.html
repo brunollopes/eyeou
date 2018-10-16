@@ -8,11 +8,18 @@
   <main>
     <div class="col-md-4 col-xs-12">
       <div class="info">
-        
+
         <mat-spinner *ngIf='loading' style="margin: 0 auto"></mat-spinner>
 
         <div *ngIf='!loading'>
-          <img src="https://s3.amazonaws.com/eyeou-public/anonymous-avatar-sm.jpg" alt="">
+          <div class='avatar'>
+            <img *ngIf='!loadingImage' [src]="user.profilePictureURL || 'https://s3.amazonaws.com/eyeou-public/anonymous-avatar-sm.jpg'" alt="">
+            <mat-spinner *ngIf='loadingImage' style="margin: 0 auto"></mat-spinner>
+            <div class="change" (click)="selectFile()">
+              <span>Change</span>
+              <input type="file" #profileImage style="display: none;" (change)="fileChangeEvent($event)" placeholder="Upload file..." />
+            </div>
+          </div>
           <h3>{{user.firstName || 'Anonymous'}} {{user.lastName || 'User'}}</h3>
           <div class="tabs">
             <button mat-button>
@@ -39,8 +46,7 @@
         <div class="clearfix"></div>
 
         <mat-form-field class='col-xs-6'>
-          <input (dateChange)="dateChange($event)" formControlName='birthDate' id='birthDate' matInput [matDatepicker]="picker"
-            placeholder="Birth Date">
+          <input (dateChange)="dateChange($event)" formControlName='birthDate' id='birthDate' matInput [matDatepicker]="picker" placeholder="Birth Date">
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>

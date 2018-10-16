@@ -83,6 +83,7 @@ module.exports = (app) => {
     app.get('/users/isInContest/:slug', userMiddlewares.isLoggedId ,users.isInContest);
     app.get('/users/me', userMiddlewares.isLoggedId, users.me);
     app.post('/users/me/update', userMiddlewares.isLoggedId, users.updateMe);
+    app.post('/users/me/updateImage', upload.single('file'), userMiddlewares.isLoggedId, users.updateImage);
 
 
     const images = require('../controllers/image.controller.js');

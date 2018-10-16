@@ -17,7 +17,7 @@
             <mat-spinner *ngIf='loadingImage' style="margin: 0 auto"></mat-spinner>
             <div class="change" (click)="selectFile()">
               <span>Change</span>
-              <input type="file" #profileImage style="display: none;" (change)="fileChangeEvent($event)" placeholder="Upload file..." />
+              <input type="file" #profileImage style="display: none;" accept="image/*" (change)="fileChangeEvent($event)" placeholder="Upload file..." />
             </div>
           </div>
           <h3>{{user.firstName || 'Anonymous'}} {{user.lastName || 'User'}}</h3>

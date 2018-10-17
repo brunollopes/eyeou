@@ -41,7 +41,7 @@
         </li>
 
         <!-- MENU -->
-        <li class="nav-item text-center menu" *ngIf='auth.user' dropdown>
+        <!-- <li class="nav-item text-center menu" *ngIf='auth.user' dropdown>
           <button id="button-basic" dropdownToggle type="button" aria-controls="dropdown-basic" style="margin: 0; padding: 0; border-radius: 50%; border: 1px solid #FFF; width: 35px; position: relative; outline: none">
             <img style="width: 100%; border-radius: 50%;" [src]="auth.user.profilePictureURL || 'https://s3.amazonaws.com/eyeou-public/anonymous-avatar-sm.jpg'" alt="">
           </button>
@@ -63,11 +63,11 @@
               </a>
             </li>
           </ul>
-        </li>
+        </li> -->
         <!-- / MENU -->
 
         <!-- NO MENU -->
-        <li class="nav-item no-menu" *ngIf='auth.user'>
+        <!-- <li class="nav-item no-menu" *ngIf='auth.user'>
           <a class="nav-link" routerLink='/me'>
             <button mat-button class='profile-button' style="width: 100%; color: #FFF; text-transform: uppercase;">
               <mat-icon style="position: relative; right: 10px;">account_box</mat-icon>
@@ -82,9 +82,18 @@
               <span>{{translate.lang.logout}}</span>
             </button>
           </a>
-        </li>
+        </li> -->
         <!-- / NO MENU -->
 
+        <li class="nav-item" *ngIf='auth.user'>
+          <a class="nav-link" (click)='logout()'>
+            <button mat-button style="color: #F00; width: 100%">
+              <mat-icon style="position: relative; right: 10px;">exit_to_app</mat-icon>
+              <span>{{translate.lang.logout}}</span>
+            </button>
+          </a>
+        </li>
+        
         <li class="nav-item lang">
           <a *ngIf="translate.showLang == 'pt'" (click)="switchLanguage('en')">
             <button mat-button class='trans'>

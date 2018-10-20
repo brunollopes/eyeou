@@ -12,6 +12,7 @@ import { MatNativeDateModule } from '@angular/material'
 
 import { ROUTES } from './app.router';
 import { MaterialModule } from './modules/material.module';
+import { ImageCropperModule } from 'ngx-image-cropper';
 
 import { HttpClientModule } from '@angular/common/http';
 
@@ -96,7 +97,8 @@ import { ProfileComponent } from './pages/profile/profile.component';
     HttpClientModule,
     ShareModule.forRoot(),
     FontAwesomeModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    ImageCropperModule
   ],
   providers: [ContestService, PaypalProvider, AppHelper, AppComponent, BsModalRef, MatNativeDateModule],
   bootstrap: [AppComponent]

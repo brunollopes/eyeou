@@ -17,12 +17,37 @@ export class ProfileComponent implements OnInit {
   public loadingImage: Boolean
   public user: any
 
+  imageChangedEvent: any = '';
+  croppedImage: any = '';
+
+  fileChangeEvent(event: any): void {
+    this.imageChangedEvent = event
+  }
+  imageCropped(event) {
+    const url = event.base64
+    fetch(url)
+    .then(res => res.blob())
+    .then(blob => {
+      this.croppedImage = new File([blob], "file")
+    })
+  }
+  imageLoaded() {
+    console.log('>> IMAGE LOADDED')
+      // show cropper
+  }
+  loadImageFailed() {
+    console.log('>> IMAGE LOADING FAILED')
+      // show message
+  }
+
   constructor(
     public translate: TranslateService,
     public helper: AppHelper,
     public auth: AuthService,
     public fb: FormBuilder
-  ) { }
+  ) {
+    
+  }
 
   public buildForm() {
     this.infoForm = this.fb.group({
@@ -63,14 +88,15 @@ export class ProfileComponent implements OnInit {
     el.click();
   }
 
-  fileChangeEvent(fileInput: any) {
-
-    if (fileInput.target.files && fileInput.target.files[0]) {
+  uploadImage() {
+    this.imageChangedEvent = null
+    if (this.croppedImage) {
       const formData = new FormData()
-      formData.append('file', fileInput.target.files[0], 'file')
+      formData.append('file', this.croppedImage, 'file')
       this.loadingImage = true
       this.auth.updateImage(formData)
         .then(user => {
+          console.log(user)
           this.user = user
           this.loadingImage = false
         })

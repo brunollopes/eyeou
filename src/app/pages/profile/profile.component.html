@@ -4,7 +4,11 @@
   <h2 class="title">
     My Profile
   </h2>
-
+  <image-cropper *ngIf='imageChangedEvent' style="margin-bottom: 150px" [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true" [aspectRatio]="1 / 1" [resizeToWidth]="128"
+    format="png" (imageCropped)="imageCropped($event)" (imageLoaded)="imageLoaded()" (loadImageFailed)="loadImageFailed()"></image-cropper>
+  <div *ngIf='imageChangedEvent' class='text-center' style="position: relative; top: -150px">
+    <button mat-button style="background-color: #41C253; color: #FFF;" (click)='uploadImage()'>UPLOAD</button>
+  </div>
   <main>
     <div class="col-md-4 col-xs-12">
       <div class="info">
@@ -13,11 +17,13 @@
 
         <div *ngIf='!loading'>
           <div class='avatar'>
-            <img *ngIf='!loadingImage' [src]="user.profilePictureURL || 'https://s3.amazonaws.com/eyeou-public/anonymous-avatar-sm.jpg'" alt="">
+            <img *ngIf='!loadingImage' [src]="user.profilePictureURL || 'https://s3.amazonaws.com/eyeou-public/anonymous-avatar-sm.jpg'"
+              alt="">
             <mat-spinner *ngIf='loadingImage' style="margin: 0 auto"></mat-spinner>
             <div class="change" (click)="selectFile()">
               <span>Change</span>
-              <input type="file" #profileImage style="display: none;" accept="image/*" (change)="fileChangeEvent($event)" placeholder="Upload file..." />
+              <input type="file" #profileImage (change)="fileChangeEvent($event)" style="display: none;" accept="image/*" placeholder="Upload file..."
+              />
             </div>
           </div>
           <h3>{{user.firstName || 'Anonymous'}} {{user.lastName || 'User'}}</h3>

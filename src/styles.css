@@ -318,3 +318,7 @@ image-upload .customClass .img-ul-file-upload .img-ul-button {
   mat-dialog-container {
       padding: 0 !important
   }
+
+  image-cropper img {
+    visibility: hidden;
+  }

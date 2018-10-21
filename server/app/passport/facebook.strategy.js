@@ -21,10 +21,10 @@ passport.use(
       .exec((err, currentUser) => {
         if (err) console.log(err)
         if (currentUser) {
-          if (currentUser.facebookID) {
+          if (currentUser.facebookID && currentUser.profilePictureURL) {
             done(null, currentUser)
           } else {
-            User.findOneAndUpdate({ email: profile.emails[0].value }, { facebookID: profile.id }, (err, doc) => {
+            User.findOneAndUpdate({ email: profile.emails[0].value }, { facebookID: profile.id, profilePictureURL: profile.photos[0].value || 'https://s3.amazonaws.com/eyeou-public/anonymous-avatar-sm.jpg' }, (err, doc) => {
               done(null, currentUser)
             })
           }

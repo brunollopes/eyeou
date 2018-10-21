@@ -25,10 +25,10 @@ passport.use(
       .exec((err, currentUser) => {
         if (err) console.log(err)
         if (currentUser) {
-          if (currentUser.googleID) {
+          if (currentUser.googleID && currentUser.profilePictureURL) {
             done(null, currentUser)
           } else {
-            User.findOneAndUpdate({ email: profile.emails[0].value }, { googleID: profile.id }, (err, doc) => {
+            User.findOneAndUpdate({ email: profile.emails[0].value }, { googleID: profile.id, profilePictureURL: profile._json.image.url || 'https://s3.amazonaws.com/eyeou-public/anonymous-avatar-sm.jpg' }, (err, doc) => {
               done(null, currentUser)
             })
           }

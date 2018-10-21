@@ -24,25 +24,25 @@
   max-height: 70px !important;
 }
 
-.navHeader .navigations #navbarCollapse .navbar-nav li {
+.navHeader .navigations .navbarCollapse .navbar-nav li {
   position: relative;
 }
 
-.navigations #navbarCollapse .navbar-nav li a {
+.navigations .navbarCollapse .navbar-nav li a {
   padding: 0;
   background-color: transparent !important
 }
 
-.navigations #navbarCollapse .navbar-nav li:not(.login) button:hover {
+.navigations .navbarCollapse .navbar-nav li:not(.login) button:hover {
   color: #5cb85c;
   background-color: transparent !important
 }
 
-.navigations #navbarCollapse .navbar-nav li.active a button {
+.navigations .navbarCollapse .navbar-nav li.active a button {
   color: #5cb85c;
 }
 
-.navigations #navbarCollapse .navbar-nav li a button {
+.navigations .navbarCollapse .navbar-nav li a button {
   font-family: 'Roboto', serif;
   font-weight: 100;
   font-size: 15px;
@@ -51,12 +51,12 @@
   transition: all 0.1s ease-in-out
 }
 
-.navigations #navbarCollapse .navbar-nav li:last-child a{
+.navigations .navbarCollapse .navbar-nav li:last-child a{
   position: relative;
   cursor: pointer;
 }
 
-.navigations #navbarCollapse .navbar-nav li:last-child a img{
+.navigations .navbarCollapse .navbar-nav li:last-child a img{
   margin-top: -3px;
 }
 
@@ -64,10 +64,10 @@
   color:#45bf55;
 }
 
-.navigations #navbarCollapse .navbar-nav li.lang a {
+.navigations .navbarCollapse .navbar-nav li.lang a {
   font-weight: 300;
 }
-.navigations #navbarCollapse .navbar-nav li.lang a img {
+.navigations .navbarCollapse .navbar-nav li.lang a img {
   max-width: 26px;
   padding-left: 5px;
 }
@@ -89,11 +89,11 @@
   .no-menu {
     display: block;
   }
-  .navigations #navbarCollapse .navbar-nav li a button {
+  .navigations .navbarCollapse .navbar-nav li a button {
     font-size: 16px;
     font-weight: bold
   }
-  #navbarCollapse {
+  .navbarCollapse {
       position: fixed;
       width: 100%;
       background-color: #000;
@@ -102,11 +102,11 @@
       opacity: 1 !important;
       padding: 10px 12px
   }
-  #navbarCollapse ul {
+  .navbarCollapse ul {
     margin: 0;
     padding: 0
   }
-  #navbarCollapse ul li a button {
+  .navbarCollapse ul li a button {
     width: 100%;
     text-align: center
   }
@@ -137,6 +137,12 @@ li.open {
   }
   .hide-small {
     display: none
+  }
+  .float-right {
+    float: right;
+    position: relative;
+    right: 0;
+    top: -10px
   }
 }
 

@@ -7,12 +7,44 @@
   </a>
 
   <!-- Site navigation Menus -->
-  <nav class="navbar navbar-expand-md navbar-dark navigations" style="float:right;">
+
+  <nav class="navbar-dark navigations no-menu" *ngIf='auth.user'>
+    <button mat-icon-button id='button' type="button" class="navbar-toggle collapsed hide-small" data-toggle="collapse" data-target="#navbarCollapseProfile"
+      aria-expanded="false" style="max-width: 35px; max-height: 35px; min-width: 35px; min-height: 35px; margin: 0; padding: 0; border-radius: 50%; border: 1px solid #FFF; width: 35px; position: relative; outline: none; top: -10px;">
+      <img style="width: 100%; border-radius: 50%; position: absolute; top: 0; left: 0px;" [src]="auth?.user?.profilePictureURL || 'https://s3.amazonaws.com/eyeou-public/anonymous-avatar-sm.jpg'"
+        alt="">
+    </button>
+    <div class="collapse navbar-collapse navbarCollapse" id="navbarCollapseProfile" style="width: auto; margin: 0; top: 50px; height: 95px;">
+      <ul class="nav navbar-nav mr-auto">
+        <!-- MENU -->
+        <li role="nav-item">
+          <a routerLink="/me">
+            <button mat-button class='profile-button' style="width: 100%; text-transform: uppercase;">
+              <mat-icon style="position: relative; right: 10px;">account_box</mat-icon>
+              <span>Profile</span>
+            </button>
+          </a>
+        </li>
+
+        <li role="nav-item">
+          <a class="nav-link" (click)='logout()'>
+            <button mat-button style="color: #F00; width: 100%">
+              <mat-icon style="position: relative; right: 10px;">exit_to_app</mat-icon>
+              <span>{{translate.lang.logout}}</span>
+            </button>
+          </a>
+        </li>
+        <!-- / MENU -->
+      </ul>
+    </div>
+  </nav>
+
+  <nav class="navbar-dark navigations float-right">
     <button mat-icon-button id='button' type="button" class="navbar-toggle collapsed hide-small" data-toggle="collapse" data-target="#navbarCollapse"
-      aria-expanded="false" style="position: relative; bottom: 13px">
+      aria-expanded="false" style="position: relative; bottom: 13px; right: 20px">
       <mat-icon style="font-size: 35px; top: 5px; color: #FFF">menu</mat-icon>
     </button>
-    <div class="collapse navbar-collapse" id="navbarCollapse" style="position: relative; bottom: 8px;">
+    <div class="collapse navbar-collapse navbarCollapse" id="navbarCollapse" style="width: auto; top: 50px; right: 28px;">
       <ul class="nav navbar-nav mr-auto">
         <li class="nav-item">
           <a class="nav-link" routerLink='/photos'>
@@ -40,21 +72,32 @@
           </a>
         </li>
 
-        <!-- MENU -->
-        <li class="nav-item text-center menu" *ngIf='auth.user' dropdown>
-          <button id="button-basic" dropdownToggle type="button" aria-controls="dropdown-basic" style="margin: 0; padding: 0; border-radius: 50%; border: 1px solid #FFF; width: 35px; position: relative; outline: none">
-            <img style="width: 100%; border-radius: 50%;" [src]="auth.user.profilePictureURL || 'https://s3.amazonaws.com/eyeou-public/anonymous-avatar-sm.jpg'" alt="">
+        <!-- <li class="nav-item" *ngIf='auth.user'>
+          <a class="nav-link" (click)='logout()'>
+            <button mat-button style="color: #F00; width: 100%">
+              <mat-icon style="position: relative; right: 10px;">exit_to_app</mat-icon>
+              <span>{{translate.lang.logout}}</span>
+            </button>
+          </a>
+        </li> -->
+
+
+        <!-- NO MENU -->
+        <li class="nav-item menu" *ngIf='auth.user'>
+          <button mat-icon-button class='dropdown-toggle' type="button" data-toggle="dropdown" aria-expanded="false" style="max-width: 35px; max-height: 35px; min-width: 35px; min-height: 35px; margin: 0; padding: 0; border-radius: 50%; border: 1px solid #FFF; width: 35px; position: relative; outline: none; top: 1px;">
+            <img style="width: 100%; border-radius: 50%; position: absolute; top: 0; left: 0px;" [src]="auth?.user?.profilePictureURL || 'https://s3.amazonaws.com/eyeou-public/anonymous-avatar-sm.jpg'"
+              alt="">
           </button>
-          <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
-            <li role="menuitem">
-              <a class="dropdown-item" routerLink="/me">
+          <ul class="dropdown-menu">
+            <li class="nav-item" *ngIf='auth.user'>
+              <a class="nav-link" routerLink='/me'>
                 <button mat-button class='profile-button' style="width: 100%; color: #333; text-transform: uppercase;">
                   <mat-icon style="position: relative; right: 10px;">account_box</mat-icon>
                   <span>Profile</span>
                 </button>
               </a>
             </li>
-            <li role="menuitem">
+            <li class="nav-item" *ngIf='auth.user'>
               <a class="nav-link" (click)='logout()'>
                 <button mat-button style="color: #F00; width: 100%">
                   <mat-icon style="position: relative; right: 10px;">exit_to_app</mat-icon>
@@ -64,36 +107,8 @@
             </li>
           </ul>
         </li>
-        <!-- / MENU -->
-
-        <!-- NO MENU -->
-        <li class="nav-item no-menu" *ngIf='auth.user'>
-          <a class="nav-link" routerLink='/me'>
-            <button mat-button class='profile-button' style="width: 100%; color: #FFF; text-transform: uppercase;">
-              <mat-icon style="position: relative; right: 10px;">account_box</mat-icon>
-              <span>Profile</span>
-            </button>
-          </a>
-        </li>
-        <li class="nav-item no-menu" *ngIf='auth.user'>
-          <a class="nav-link" (click)='logout()'>
-            <button mat-button style="color: #F00; width: 100%">
-              <mat-icon style="position: relative; right: 10px;">exit_to_app</mat-icon>
-              <span>{{translate.lang.logout}}</span>
-            </button>
-          </a>
-        </li>
         <!-- / NO MENU -->
 
-        <!-- <li class="nav-item" *ngIf='auth.user'>
-          <a class="nav-link" (click)='logout()'>
-            <button mat-button style="color: #F00; width: 100%">
-              <mat-icon style="position: relative; right: 10px;">exit_to_app</mat-icon>
-              <span>{{translate.lang.logout}}</span>
-            </button>
-          </a>
-        </li> -->
-        
         <li class="nav-item lang">
           <a *ngIf="translate.showLang == 'pt'" (click)="switchLanguage('en')">
             <button mat-button class='trans'>
@@ -113,7 +128,7 @@
           </a>
         </li>
       </ul>
-      <img class="closeBtn" src="assets/images/cancel.png">
     </div>
   </nav>
+
 </div>

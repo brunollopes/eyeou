@@ -200,41 +200,45 @@ export class ImageModal implements OnInit {
   }
 
   reply(i, id) {
-    const data = {
-      text: this.img.comments[i].replyForm.value.text,
-      commentId: id,
-      imageId: null
+    if (this.img.comments[i].replyForm.value.text) {
+      const data = {
+        text: this.img.comments[i].replyForm.value.text,
+        commentId: id,
+        imageId: null
+      }
+      this.img.comments[i].replyForm.reset()
+      this.contestProvider.addComment(data)
+        .then(reply => {
+          this.contestProvider.getCommentReplies(id)
+            .then(replies => {
+              this.img.comments[i].viewReplies = true
+              this.img.comments[i].replies = replies
+            })
+            .catch(err => {
+              console.log(err)
+            })
+        })
     }
-    this.img.comments[i].replyForm.reset()
-    this.contestProvider.addComment(data)
-      .then(reply => {
-        this.contestProvider.getCommentReplies(id)
-          .then(replies => {
-            this.img.comments[i].viewReplies = true
-            this.img.comments[i].replies = replies
-          })
-          .catch(err => {
-            console.log(err)
-          })
-      })
   }
 
   addComment() {
-    const data = { imageId: this.img._id, text: this.commentForm.value.text, commentId: null }
-    this.contestProvider.addComment(data)
-      .then(comment => {
-        this.commentForm.reset()
-        this.contestProvider.getImage(this.img._id)
-          .then(img => {
-            this.img = img
-          })
-          .catch(err => {
-            console.log(err)
-          })
-      })
-      .catch(err => {
-        console.log(err)
-      })
+    if (this.commentForm.value.text) {
+      const data = { imageId: this.img._id, text: this.commentForm.value.text, commentId: null }
+      this.contestProvider.addComment(data)
+        .then(comment => {
+          this.commentForm.reset()
+          this.contestProvider.getImage(this.img._id)
+            .then(img => {
+              this.img = img
+            })
+            .catch(err => {
+              console.log(err)
+            })
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    }
   }
 
   ngOnInit() {

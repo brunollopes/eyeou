@@ -9,7 +9,7 @@ passport.use(
     clientSecret: process.env.facebook_clientSecret,
     callbackURL: 'https://www.eyeou.net/auth/facebook/redirect',
     // callbackURL: 'http://localhost:8080/auth/facebook/redirect',
-    profileFields: ['emails']
+    profileFields: ['emails', 'picture.type(large)']
   }, (accessToken, refreshToken, profile, done) => {
     let query = {
       email: profile.emails ? profile.emails[0].value : undefined,
@@ -17,7 +17,6 @@ passport.use(
     }
     Object.keys(query).forEach(key => query[key] === undefined && delete query[key]);
     if (query.email && query.facebookID) delete query.facebookID;
-
     User.findOne(query)
       .exec((err, currentUser) => {
         if (err) console.log(err)
@@ -34,7 +33,8 @@ passport.use(
             fullName: profile.displayName,
             facebookID: profile.id,
             verified: true,
-            email: profile.emails ? profile.emails[0].value : null
+            email: profile.emails ? profile.emails[0].value : null,
+            profilePictureURL: profile.photos[0].value || 'https://s3.amazonaws.com/eyeou-public/anonymous-avatar-sm.jpg'
           }).save((err, user) => {
             if (err) console.log(err)
             emailHelper.registrationEmail({ $mailTo: user.email })

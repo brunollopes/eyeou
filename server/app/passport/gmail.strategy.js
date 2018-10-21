@@ -37,7 +37,8 @@ passport.use(
             fullName: profile.displayName,
             googleID: profile.id,
             email: profile.emails[0].value,
-            verified: true
+            verified: true,
+            profilePictureURL: profile._json.image.url || 'https://s3.amazonaws.com/eyeou-public/anonymous-avatar-sm.jpg'
           }).save((err, user) => {
             if (err) console.log(err)
             emailHelper.registrationEmail({ $mailTo: user.email })

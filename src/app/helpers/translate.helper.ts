@@ -363,7 +363,10 @@ export const en = {
   incompleteCardNumber: 'Your card number is incomplete.',
   invalidCardNumber: 'Your card number is invalid.',
   stampURL: '../../../assets/images/stamp/stamp_en.png',
-  promoCode: 'Promo Code'
+  promoCode: 'Promo Code',
+  myProfile: 'MY PROFILE',
+  profile: 'PROFILE',
+  aboutMe: 'About me'
 }
 
 export const pt = {
@@ -730,5 +733,8 @@ export const pt = {
   incompleteCardNumber: 'Número de cartão incompleto.',
   invalidCardNumber: 'Número de cartão inválido.',
   stampURL: '../../../assets/images/stamp/stamp_pt.png',
-  promoCode: 'Código promocional'
+  promoCode: 'Código promocional',
+  myProfile: 'O MEU PERFIL',
+  profile: 'PERFIL',
+  aboutMe: 'Sobre me'
 }

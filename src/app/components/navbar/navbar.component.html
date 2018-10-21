@@ -19,16 +19,16 @@
         <!-- MENU -->
         <li role="nav-item">
           <a routerLink="/me">
-            <button mat-button class='profile-button' style="width: 100%; text-transform: uppercase;">
+            <button mat-button class='profile-button' style="width: 100%; text-transform: uppercase; text-align: left">
               <mat-icon style="position: relative; right: 10px;">account_box</mat-icon>
-              <span>Profile</span>
+              <span>{{translate.lang.profile}}</span>
             </button>
           </a>
         </li>
 
         <li role="nav-item">
           <a class="nav-link" (click)='logout()'>
-            <button mat-button style="color: #F00; width: 100%">
+            <button mat-button style="color: #F00; width: 100%; text-align: left">
               <mat-icon style="position: relative; right: 10px;">exit_to_app</mat-icon>
               <span>{{translate.lang.logout}}</span>
             </button>
@@ -91,15 +91,15 @@
           <ul class="dropdown-menu">
             <li class="nav-item" *ngIf='auth.user'>
               <a class="nav-link" routerLink='/me'>
-                <button mat-button class='profile-button' style="width: 100%; color: #333; text-transform: uppercase;">
+                <button mat-button class='profile-button' style="width: 100%; color: #333; text-transform: uppercase; text-align: left">
                   <mat-icon style="position: relative; right: 10px;">account_box</mat-icon>
-                  <span>Profile</span>
+                  <span>{{translate.lang.profile}}</span>
                 </button>
               </a>
             </li>
             <li class="nav-item" *ngIf='auth.user'>
               <a class="nav-link" (click)='logout()'>
-                <button mat-button style="color: #F00; width: 100%">
+                <button mat-button style="color: #F00; width: 100%; text-align: left">
                   <mat-icon style="position: relative; right: 10px;">exit_to_app</mat-icon>
                   <span>{{translate.lang.logout}}</span>
                 </button>

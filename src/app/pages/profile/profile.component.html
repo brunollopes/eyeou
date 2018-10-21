@@ -2,7 +2,7 @@
 
 <div class="container" style='padding: 125px 35px 0 35px; min-height: 70vh;'>
   <h2 class="title">
-    My Profile
+    {{translate.lang.myProfile}}
   </h2>
   <image-cropper *ngIf='imageChangedEvent' style="margin-bottom: 150px" [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true" [aspectRatio]="1 / 1" [resizeToWidth]="128"
     format="png" (imageCropped)="imageCropped($event)" (imageLoaded)="imageLoaded()" (loadImageFailed)="loadImageFailed()"></image-cropper>
@@ -29,7 +29,7 @@
           <h3>{{user.firstName || 'Anonymous'}} {{user.lastName || 'User'}}</h3>
           <div class="tabs">
             <button mat-button>
-              About Me
+              {{translate.lang.aboutMe}}
             </button>
           </div>
         </div>
@@ -37,7 +37,7 @@
     </div>
     <div class="col-md-8 col-xs-12 data">
       <div class="title">
-        <h5>About Me</h5>
+        <h5>{{translate.lang.aboutMe}}</h5>
       </div>
 
       <mat-spinner *ngIf='loading' style="margin: 0 auto"></mat-spinner>

@@ -113,3 +113,9 @@ div.data {
 textarea {
   max-height: 70px
 }
+
+@media only screen and (max-width: 768px) {
+  h2.title {
+    margin-bottom: 115px
+  }
+}

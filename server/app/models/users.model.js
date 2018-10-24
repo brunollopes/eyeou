@@ -16,10 +16,7 @@ const UserSchema = mongoose.Schema({
   password: String,
   resetCode: String,
   verified: Boolean,
-  profilePictureURL: {
-    type: String,
-    default: 'https://s3.amazonaws.com/eyeou-public/anonymous-avatar-sm.jpg'
-  },
+  profilePictureURL: String,
   notify: {
     type: Boolean,
     default: false

@@ -44,7 +44,6 @@ import { FailedComponent } from './pages/failed/failed.component';
 import { ResetComponent } from './components/reset/reset.component';
 import { ImagesComponent, ImageModal } from './pages/images/images.component';
 import { ProfileComponent } from './pages/profile/profile.component';
-import { ExesTableComponent } from './components/exes-table/exes-table.component';
 
 @NgModule({
   declarations: [
@@ -75,8 +74,7 @@ import { ExesTableComponent } from './components/exes-table/exes-table.component
     ImagesComponent,
     ImageModal,
     PostPaymentDialog,
-    ProfileComponent,
-    ExesTableComponent
+    ProfileComponent
   ],
   entryComponents: [
     LoginComponent,

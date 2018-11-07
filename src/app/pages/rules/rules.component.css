@@ -32,6 +32,11 @@ tr th {
   background-color: #B6D7A8
 }
 
+tr.c49 th,
+tr.c24 td {
+  padding: 0 !important
+}
+
 @media only screen and (max-width: 768px) {
   table {
     width: 100%

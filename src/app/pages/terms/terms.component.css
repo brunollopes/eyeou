@@ -28,6 +28,14 @@ tr td {
   text-align: center;
 }
 
+tr.c16 td {
+  padding: 0 !important
+}
+
+tr.c61 th {
+  padding: 0 !important
+}
+
 tr th {
   background-color: #B6D7A8
 }

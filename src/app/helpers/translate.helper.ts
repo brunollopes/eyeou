@@ -27,7 +27,7 @@ export const en = {
   weeklyContestPlaceholderEmail: 'myaddress@email.com',
   weeklyContestButton: 'NOTIFY ME!',
 
-  howitWorks: 'HOW DOES IT WORKS',
+  howitWorks: 'HOW IT WORKS',
   howitWorksList1: 'Choose one of the listed contests (paid or free)',
   howitWorksList2: 'Pay the entry fee (2€ min.) if on a paid contest',
   howitWorksList3: 'Upload your photos',
@@ -385,8 +385,7 @@ export const en = {
   promoCode: 'Promo Code',
   myProfile: 'MY PROFILE',
   profile: 'PROFILE',
-  aboutMe: 'About me',
-  ourTeam: 'Eyeou team'
+  aboutMe: 'About me'
 }
 
 export const pt = {
@@ -776,6 +775,5 @@ export const pt = {
   promoCode: 'Código promocional',
   myProfile: 'O MEU PERFIL',
   profile: 'PERFIL',
-  aboutMe: 'Sobre me',
-  ourTeam: 'Equipa Eyeou'
+  aboutMe: 'Sobre me'
 }

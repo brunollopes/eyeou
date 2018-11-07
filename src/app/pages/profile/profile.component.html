@@ -5,7 +5,7 @@
     {{translate.lang.myProfile}}
   </h2>
   <image-cropper *ngIf='imageChangedEvent' style="margin-bottom: 150px" [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true" [aspectRatio]="1 / 1" [resizeToWidth]="128"
-    format="png" (imageCropped)="imageCropped($event)" imageQuality="100" (imageLoaded)="imageLoaded()" (loadImageFailed)="loadImageFailed()"></image-cropper>
+    format="png" (imageCropped)="imageCropped($event)" (imageLoaded)="imageLoaded()" (loadImageFailed)="loadImageFailed()"></image-cropper>
   <div *ngIf='imageChangedEvent' class='text-center' style="position: relative; top: -150px">
     <button mat-button style="background-color: #41C253; color: #FFF;" (click)='uploadImage()'>UPLOAD</button>
   </div>

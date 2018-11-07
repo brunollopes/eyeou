@@ -9,39 +9,10 @@
       {{translate.lang.aboutP1}}
     </p>
     <p>
-      {{translate.lang.aboutP2}} <a class='none' routerLink="/rules">{{translate.lang.aboutA1}}</a>
-      {{translate.lang.aboutP4}}
+      {{translate.lang.aboutP2}} <a routerLink="/rules">{{translate.lang.aboutA1}}</a> {{translate.lang.aboutP4}}
     </p>
     <p>
       {{translate.lang.aboutP3}}
     </p>
-  </div>
-</div>
-
-<div class="clientBlock">
-  <div class="sliderContainer">
-    <h1>{{translate.lang.ourTeam}}</h1>
-    <div class="sliderSection container">
-      <div>
-        <div class="item col-lg-4 col-md-4 col-sm-4 col-xs-12" *ngFor="let titles of slidertitle" style='background-color: transparent; position: relative;'>
-          <div class="innerItem text-center" style='background-color: #E9E9E9; padding: 20px 15px; min-height: 520px'>
-            <div class="figureImage">
-              <img src="{{titles.profile}}" />
-            </div>
-            <h3>{{titles.name}}</h3>
-            <h6>{{titles.position[translate.lang.langKey]}}</h6>
-            <!-- <p *ngFor='let info of titles.info[translate.lang.langKey]' style="text-align: center; margin: 0">
-              {{info}}
-            </p> -->
-            <p class='ref'>
-              <a class='fa' [class.fa-globe]="titles.url == 'website'" [class.fa-instagram]="titles.url == 'instagram'"
-              [class.fa-linkedin]="titles.url == 'linkedin'"
-                aria-hidden="true" [href]="titles.href" target="_blank"></a>
-            </p>
-          </div>
-        </div>
-        <div class="clearfix"></div>
-      </div>
-    </div>
   </div>
 </div>

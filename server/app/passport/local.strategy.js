@@ -36,7 +36,8 @@ passport.use('local-signup', new LocalStrategy(
       } else {
         let user = new User({
           email,
-          password: bcrypt.hashSync(password, bcrypt.genSaltSync(5), null)
+          password: bcrypt.hashSync(password, bcrypt.genSaltSync(5), null),
+          profilePictureURL: 'https://s3.amazonaws.com/eyeou-public/anonymous-avatar-sm.jpg'
         });
         user.save(err => {
           if (err) return done(err)

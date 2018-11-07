@@ -27,7 +27,7 @@ export const en = {
   weeklyContestPlaceholderEmail: 'myaddress@email.com',
   weeklyContestButton: 'NOTIFY ME!',
 
-  howitWorks: 'HOW IT WORKS',
+  howitWorks: 'HOW DOES IT WORKS',
   howitWorksList1: 'Choose one of the listed contests (paid or free)',
   howitWorksList2: 'Pay the entry fee (2€ min.) if on a paid contest',
   howitWorksList3: 'Upload your photos',
@@ -366,10 +366,12 @@ export const en = {
   promoCode: 'Promo Code',
   myProfile: 'MY PROFILE',
   profile: 'PROFILE',
-  aboutMe: 'About me'
+  aboutMe: 'About me',
+  ourTeam: 'Eyeou team'
 }
 
 export const pt = {
+  ourTeam: 'Equipa Eyeou',
   notifyNote: "Será notificado de novos concursos",
   termsAndConditions: 'termos & privacidade & regras',
   week: 'Semana',

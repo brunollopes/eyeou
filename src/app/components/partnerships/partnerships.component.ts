@@ -53,7 +53,7 @@ export class PartnershipsComponent implements OnInit {
   openModal(listing) {
     if (this.auth.user) {
       localStorage.setItem('contestId', listing._id)
-      this.bsModalRef = this.modalService.show(ContestDialog, { initialState: { data: listing } })
+      this.bsModalRef = this.modalService.show(ContestDialogTwo, { initialState: { data: listing } })
     } else {
       this.app.openLoginDialog()
     }
@@ -103,7 +103,7 @@ export class PartnershipsComponent implements OnInit {
   templateUrl: '../gallery-list/contest-dialog.html',
   styleUrls: ["../gallery-list/gallery-list.component.css"]
 })
-export class ContestDialog implements OnInit {
+export class ContestDialogTwo implements OnInit {
 
   public payed: Boolean = false;
   public contestId: string;
@@ -180,7 +180,7 @@ export class ContestDialog implements OnInit {
           })
           .catch(err => { console.log(err) })
       } else if (paymentMethod == 'CreditCard') {
-        this.dialog.open(StripeModal, {
+        this.dialog.open(StripeModalTwo, {
           width: '600px',
           data: {
             ...this.paymentForm.value,
@@ -295,9 +295,9 @@ export class ContestDialog implements OnInit {
     </form>
   `,
   styleUrls: ["../gallery-list/gallery-list.component.css"],
-  providers: [ContestDialog]
+  providers: [ContestDialogTwo]
 })
-export class StripeModal {
+export class StripeModalTwo {
 
   @ViewChild('cardInfo') cardInfo: ElementRef;
 
@@ -310,9 +310,9 @@ export class StripeModal {
     private cd: ChangeDetectorRef,
     public translate: TranslateService,
     public stripe: StripeService,
-    public dialogRef: MatDialogRef<StripeModal>,
+    public dialogRef: MatDialogRef<StripeModalTwo>,
     public router: Router,
-    public contestDialog: ContestDialog,
+    public contestDialog: ContestDialogTwo,
     @Inject(MAT_DIALOG_DATA) public data
   ) { }
 

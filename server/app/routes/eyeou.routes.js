@@ -14,7 +14,7 @@ module.exports = (app) => {
     // Retrieve all Contests
     app.get('/contests', contests.findAll);
     // Retrieve a single Contest with ContestId
-    app.get('/contests/findById/:contestId', contests.findOne);
+    app.get('/contests/findById/:contestId', userMiddlewares.isUserInContest, contests.findOne);
     // Retrieve a single Contest with Contest SlugName
     app.get('/contests/findBySlug/:slug', userMiddlewares.isUserInContest, contests.findSlug)
     // Update a Note with ContestId

@@ -46,6 +46,7 @@ import { ImagesComponent, ImageModal } from './pages/images/images.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { PartnershipsComponent } from './components/partnerships/partnerships.component';
 import { PartnersSliderTitleComponent } from './components/partners-slider-title/partners-slider-title.component';
+import { ContestDialogTwo, StripeModalTwo } from './components/partnerships/partnerships.component';
 
 @NgModule({
   declarations: [

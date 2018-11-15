@@ -1,0 +1,75 @@
+<mat-card>
+  <div class="container">
+    <div class="col-md-6 col-xs-12">
+      <h3>In partnership with</h3>
+    </div>
+    <div class="text-center col-md-6 col-xs-12">
+      <img src="../../../assets/images/partners/fujifilm.png" alt="">
+    </div>
+    <div class="clearfix"></div>
+  </div>
+</mat-card>
+
+<mat-card class='partner-contest'>
+  <div class="container">
+    <h4 style="margin: 0 0 25px 0; color: #FFF; text-transform: uppercase; font-size: 25px; text-align: center;">Contests By Fujifilm</h4>
+    <div class="col-md-7 col-xs-12" *ngIf='listing'>
+      <div class="grid-element">
+        <img class="contestimg" style="width:100%;" [src]="listing.image">
+        <div class="imageDesc">
+          <span class='contest-duration'>
+            <img [src]="listing.badge" style="width: 20px; height: 20px; position: relative; top: -1px; right: 8px;" />
+            <span class='duration'>{{listing.openphase_duration | duration}}</span>
+          </span>
+          <div class="contest_name_app">
+            <h2>{{listing.contest_name}}</h2>
+            <h2>{{listing.prize_money}}</h2>
+            <p>{{listing.contest_title}}</p>
+          </div>
+        </div>
+        <div class="contestcontent" style="cursor: pointer;">
+          <p class="timeing">
+            <span>
+              <img src="../../../assets/images/clock.png" alt=""> {{listing.timeRemains.days}} {{translate.lang.days}}
+              {{listing.timeRemains.hours}} {{translate.lang.hours}}
+            </span>
+          </p>
+
+          <div class="bottomShare" (mouseenter)="listing.enableShare()">
+
+            <img src="../../../assets/images/share.png" *ngIf='!listing.share'>
+
+            <div class="show-icons" *ngIf='listing.share'>
+              <ul style="background-color: #ededed; border-radius: 6px; box-shadow: 0 0 4px 1px rgba(0,0,0,0.5);">
+                <li class="facebook" shareButton="facebook">
+                  <i class="fa fa-facebook-official" aria-hidden="true" style="font-size: 24px; color: #3b5998"></i>
+                </li>
+                <li class="twitter" shareButton="twitter">
+                  <i class="fa fa-twitter-square" aria-hidden="true" style="font-size: 24px; color: #55acee"></i>
+                </li>
+                <li class="linkedin" shareButton="linkedin">
+                  <i class="fa fa-linkedin-square" aria-hidden="true" style="font-size: 24px; color: #0077b5"></i>
+                </li>
+                <li class="instagram" shareButton="instagram" *ngIf='false'>
+                  <i class="fa fa-instagram" aria-hidden="true" style="font-size: 24px; color: #517fa4"></i>
+                </li>
+                <div class="clearfix"></div>
+              </ul>
+            </div>
+
+          </div>
+          <div class="innerBlock" (click)="openModal(listing)">
+            <h3>{{listing.contest_name}}</h3>
+            <h3>{{listing.prize_money}}</h3>
+            <p>{{listing.entry_price != 0 ? translate.lang.from + ' ' + 2 + '€' : 'Free'}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-5 col-xs-12" style="position: relative;">
+      <div class="overlay"></div>
+      <img src="../../../assets/images/partners/x-t100.png" style="position: relative; z-index: 2;" alt="Fujifilm X-T100">
+    </div>
+    <div class="clearfix"></div>
+  </div>
+</mat-card>

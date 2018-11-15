@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const ContestSchema = mongoose.Schema({
-    prize_money: Number,
+    prize_money: Schema.Types.Mixed,
     start_date: Date,
     contest_name: String,
     openphase_duration: Number,
@@ -30,8 +30,8 @@ const ContestSchema = mongoose.Schema({
     users: [{
         type: Schema.Types.ObjectId,
         ref: 'User'
-    }]
-
+    }],
+    published: Boolean
 }, {
     timestamps: true
 });

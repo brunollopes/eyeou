@@ -34,6 +34,13 @@ export class ContestService {
       .catch(err => err)
   }
 
+  getContestById(id) {
+    return this.httpClient.get(`/contests/findById/${id}`, { headers: this.headers })
+      .toPromise()
+      .then(res => res)
+      .catch(err => err)
+  }
+
   getContestBySlug(slug) {
     return this.httpClient.get(`/contests/findBySlug/${slug}`)
       .toPromise()

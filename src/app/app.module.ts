@@ -44,6 +44,8 @@ import { FailedComponent } from './pages/failed/failed.component';
 import { ResetComponent } from './components/reset/reset.component';
 import { ImagesComponent, ImageModal } from './pages/images/images.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { PartnershipsComponent } from './components/partnerships/partnerships.component';
+import { PartnersSliderTitleComponent } from './components/partners-slider-title/partners-slider-title.component';
 
 @NgModule({
   declarations: [
@@ -74,7 +76,9 @@ import { ProfileComponent } from './pages/profile/profile.component';
     ImagesComponent,
     ImageModal,
     PostPaymentDialog,
-    ProfileComponent
+    ProfileComponent,
+    PartnershipsComponent,
+    PartnersSliderTitleComponent
   ],
   entryComponents: [
     LoginComponent,

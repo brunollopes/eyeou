@@ -1,4 +1,6 @@
 <!-- Gallery content loop Start-->
+<h4 style="margin: 0 0 25px 0; text-transform: uppercase; font-size: 28px; text-align: center; font-family: 'Roboto', serif;">Contests
+  By Eyeou</h4>
 <div class=" card-columns  grid-column">
   <div class="grid-element" *ngFor="let listing of gallerylist">
     <img class="contestimg" style="width:100%;" [src]="listing.image">
@@ -16,12 +18,13 @@
     <div class="contestcontent" style="cursor: pointer;">
       <p class="timeing">
         <span>
-          <img src="../../../assets/images/clock.png" alt=""> {{listing.timeRemains.days}} {{translate.lang.days}} {{listing.timeRemains.hours}} {{translate.lang.hours}}
+          <img src="../../../assets/images/clock.png" alt=""> {{listing.timeRemains.days}} {{translate.lang.days}}
+          {{listing.timeRemains.hours}} {{translate.lang.hours}}
         </span>
       </p>
 
       <div class="bottomShare" (mouseenter)="listing.enableShare()">
-        
+
         <img src="../../../assets/images/share.png" *ngIf='!listing.share'>
 
         <div class="show-icons" *ngIf='listing.share'>

@@ -38,10 +38,12 @@ exports.create = (req, res) => {
 
 // Retrieve and return all contests from the database.
 exports.findAll = (req, res) => {
-  Contests.find()
+  Contests
+    .find({ published: true })
     .then(contests => {
       res.send(contests);
-    }).catch(err => {
+    })
+    .catch(err => {
       res.status(500).send({
         message: err.message || "Some error occurred while retrieving contests."
       });
@@ -58,16 +60,12 @@ exports.findOne = (req, res) => {
           message: "Contests not found with id " + req.params.contestId
         });
       }
-      contest.userIncluded = req.locals.userIncluded;
+      contest.userIncluded = req.locals ? req.locals.userIncluded : false;
       res.status(200).json(contest);
     }).catch(err => {
-      if (err.kind === 'ObjectId') {
-        return res.status(404).send({
-          message: "Contest not found with id " + req.params.contestId
-        });
-      }
-      return res.status(500).send({
-        message: "Error retrieving contests with id " + req.params.contestId
+      console.log(err)
+      res.status(500).send({
+        message: err.message || "Some error occurred while retrieving contests."
       });
     });
 };

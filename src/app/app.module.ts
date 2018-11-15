@@ -79,7 +79,8 @@ import { ContestDialogTwo, StripeModalTwo } from './components/partnerships/part
     PostPaymentDialog,
     ProfileComponent,
     PartnershipsComponent,
-    PartnersSliderTitleComponent
+    PartnersSliderTitleComponent,
+    ContestDialogTwo, StripeModalTwo
   ],
   entryComponents: [
     LoginComponent,
@@ -87,7 +88,8 @@ import { ContestDialogTwo, StripeModalTwo } from './components/partnerships/part
     ContestDialog,
     StripeModal,
     ImageModal,
-    PostPaymentDialog
+    PostPaymentDialog,
+    ContestDialogTwo, StripeModalTwo
   ],
   imports: [
     BrowserModule,

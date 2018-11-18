@@ -81,3 +81,21 @@ color: #fff;
         top: 70%
     }
 }
+
+div.sponsorship {
+    position: absolute;
+    bottom: 0;
+    width: 152px;
+    padding-left: 20px;
+    padding-bottom: 20px;
+}
+
+div.sponsorship p {
+    color: #FFF;
+    font-size: 14px;
+    margin: 0 0 5px 0;
+}
+
+div.sponsorship img {
+    width: 100%
+}

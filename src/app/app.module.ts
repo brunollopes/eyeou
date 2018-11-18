@@ -44,9 +44,6 @@ import { FailedComponent } from './pages/failed/failed.component';
 import { ResetComponent } from './components/reset/reset.component';
 import { ImagesComponent, ImageModal } from './pages/images/images.component';
 import { ProfileComponent } from './pages/profile/profile.component';
-import { PartnershipsComponent } from './components/partnerships/partnerships.component';
-import { PartnersSliderTitleComponent } from './components/partners-slider-title/partners-slider-title.component';
-import { ContestDialogTwo, StripeModalTwo } from './components/partnerships/partnerships.component';
 
 @NgModule({
   declarations: [
@@ -77,10 +74,7 @@ import { ContestDialogTwo, StripeModalTwo } from './components/partnerships/part
     ImagesComponent,
     ImageModal,
     PostPaymentDialog,
-    ProfileComponent,
-    PartnershipsComponent,
-    PartnersSliderTitleComponent,
-    ContestDialogTwo, StripeModalTwo
+    ProfileComponent
   ],
   entryComponents: [
     LoginComponent,
@@ -88,8 +82,7 @@ import { ContestDialogTwo, StripeModalTwo } from './components/partnerships/part
     ContestDialog,
     StripeModal,
     ImageModal,
-    PostPaymentDialog,
-    ContestDialogTwo, StripeModalTwo
+    PostPaymentDialog
   ],
   imports: [
     BrowserModule,

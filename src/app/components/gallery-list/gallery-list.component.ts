@@ -59,10 +59,20 @@ export class GalleryListComponent implements OnInit {
     }
   }
 
+  _isFinite(int) {
+    return isFinite(int)
+  }
+
   // Get gallery data
   getContentData() {
     return new Promise((resolve, reject) => {
-      this.contestprovider.getContests().then((data: Array<any>) => {
+      this.contestprovider.getContests().then(async (data: Array<any>) => {
+        try {
+          const sponsorContests = await this.contestprovider.sponsorContests('5c018389013f9c1ce46b8873')
+          data.push(sponsorContests.contests[0])
+        } catch(e) {
+          console.log(e)
+        }
         this.gallerylist = data;
         this.gallerylist.forEach(gallery => {
           gallery.timeRemains = this.app.dateDiff(gallery.review_time)

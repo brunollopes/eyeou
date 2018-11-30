@@ -31,7 +31,11 @@ const ContestSchema = mongoose.Schema({
         type: Schema.Types.ObjectId,
         ref: 'User'
     }],
-    published: Boolean
+    published: Boolean,
+    sponsor: {
+        type: Schema.Types.ObjectId,
+        ref: 'Sponsor'
+    }
 }, {
     timestamps: true
 });

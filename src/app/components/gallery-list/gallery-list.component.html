@@ -9,7 +9,7 @@
       </span>
       <div class="contest_name_app">
         <h2>{{listing.contest_name}}</h2>
-        <h2>{{listing.prize_money}}€</h2>
+        <h2>{{listing.prize_money}} {{_isFinite(listing.prize_money) ? '€' : ''}}</h2>
         <p>{{listing.contest_title}}</p>
       </div>
     </div>
@@ -46,8 +46,16 @@
       </div>
       <div class="innerBlock" (click)="openModal(listing)">
         <h3>{{listing.contest_name}}</h3>
-        <h3>{{listing.prize_money}}€</h3>
-        <p>{{listing.entry_price != 0 ? translate.lang.from + ' ' + 2 + '€' : 'Free'}}</p>
+        <h3>{{listing.prize_money}} {{_isFinite(listing.prize_money) ? '€' : ''}}</h3>
+        <div *ngIf='listing.sponsor' style="padding-bottom: 10px">
+          <span style="color: #FFF;
+            font-weight: bold;
+            font-size: 15px;
+            font-family: 'Roboto', serif;
+            margin-right: 5px;">by</span>
+          <img src="../../../assets/images/partners/fujifilm-white.png" style="width: 15%; height: 15%" alt="">
+        </div>
+        <p [style.margin-bottom]='listing.sponsor ? "35px" : "50px"'>{{listing.entry_price != 0 ? translate.lang.from + ' ' + 2 + '€' : 'Free'}}</p>
       </div>
     </div>
   </div>

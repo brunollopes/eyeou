@@ -20,6 +20,13 @@ export class ContestService {
       .catch(err => err)
   }
 
+  sponsorContests(sponsorId) {
+    return this.httpClient.get(`/sponsors/${sponsorId}/contests`)
+      .toPromise()
+      .then(res => res)
+      .catch(err => err)
+  }
+
   sendEmail({ name, email, subject, message }) {
     return this.httpClient.post('/email/send', { name, email, subject, message })
       .toPromise()

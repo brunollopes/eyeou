@@ -119,7 +119,7 @@ export const en = {
   rulesP5: 'Looking to the second line, we can have a 2500€ contest with an entry fee of 5€ or 15€ or 25€. The value of the entry fee will be linked to the time set for the contest as show in the previous table.',
 
   rulesSection4: 'Winners',
-  rulesP6: 'The winners will be decided by the chosen judge for that contest, there will be 3 places available for the winners.',
+  rulesP6: 'The winners will be decided by the chosen judge for that contest, there will be 3 places available for the winners on sponsor contests and for prize money contests the top 20% will be awarded',
   rulesP7: 'EYEOU judges will be judging the photos based on the following criteria:',
 
   rulesLi4: 'technic',
@@ -491,7 +491,7 @@ export const pt = {
   rulesP5: 'Olhando para a segunda linha, podemos assim ter um concurso de 2500€ com um valor de entrada de 5€ ou 15€ ou 25€. O valor da entrada está associado ao tempo definido para o concurso, conforme mostrado na tabela anterior.',
 
   rulesSection4: 'Vencedores',
-  rulesP6: 'Os vencedores serão decididos pelo júri escolhido para o concurso, haverá 3 lugares disponíveis para os vencedores.',
+  rulesP6: 'Os vencedores serão decididos pelo júri escolhido para o concurso, haverá 3 lugares disponíveis para os vencedores em concursos patrocinados e para concursos com prémio a dinheiro o top 20% será premiado',
   rulesP7: 'O júri irá julgar as fotos com base nos seguintes critérios: ',
 
   rulesLi4: 'técnica',

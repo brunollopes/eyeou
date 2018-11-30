@@ -8,6 +8,9 @@ const emailHelper = require('../helpers/mail.helper');
 module.exports = (app) => {
     const upload = multer();
 
+    const sponsors = require('../controllers/sponsors.controller')
+    app.get('/sponsors/:id/contests', sponsors.sponsorContests)
+
     const contests = require('../controllers/contests.controller.js');
     // Create a new Contests
     app.post('/contests', contests.create);

@@ -125,6 +125,10 @@ export class ContestDialog implements OnInit {
   public voucherError;
   public loadingVoucher: Boolean = false
 
+  _isFinite(int) {
+    return isFinite(int)
+  }
+
   constructor(
     public paypalProvider: PaypalProvider,
     public dialog: MatDialog,

@@ -44,7 +44,7 @@
         </div>
 
       </div>
-      <div class="innerBlock" (click)="openModal(listing)">
+      <div class="innerBlock" (click)="openModal(listing)" [class.longTel]='!_isFinite(listing.prize_money)'>
         <h3>{{listing.contest_name}}</h3>
         <h3>{{listing.prize_money}} {{_isFinite(listing.prize_money) ? '€' : ''}}</h3>
         <div *ngIf='listing.sponsor' style="padding-bottom: 10px">

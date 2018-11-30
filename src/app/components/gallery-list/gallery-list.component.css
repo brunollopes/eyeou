@@ -139,9 +139,12 @@
     .imageDesc h2 {
         font-size: 32px
     }
-    .innerBlock {
+    /* .innerBlock {
         bottom: 60px
     }
+    .longTel {
+        bottom: 0px !important
+    } */
     .innerBlock h3 {
         font-size: 27px
     }

@@ -7,11 +7,11 @@
     <h4 class="modal-title pull-left" *ngIf='!data.entry_price || payed'>
       {{translate.lang.validation}}
     </h4>
-    <h4 class="modal-title pull-left" *ngIf='data.entry_price && !payed'>
+    <h4 class="modal-title pull-left" *ngIf='(data.entry_price && !payed) || data.allowPhotos'>
       Checkout
     </h4>
   </div>
-  <div class="bar" *ngIf="data.entry_price && !payed">
+  <div class="bar" *ngIf="(data.entry_price && !payed) || data.allowPhotos">
     <h4 style="margin: 0; height: 49px; font-size: 18px">PayPal</h4>
   </div>
   <div class="modal-body">
@@ -37,11 +37,11 @@
     <mat-spinner *ngIf='!transactionChecked' style="margin: 10px auto"></mat-spinner>
 
     <div class="payment" *ngIf='transactionChecked'>
-      <h5 *ngIf="data.entry_price && !payed">{{translate.lang.paymentMethod}}</h5>
+      <h5 *ngIf="(data.entry_price && !payed) || data.allowPhotos">{{translate.lang.paymentMethod}}</h5>
       <form [formGroup]="paymentForm">
         <div class="row">
 
-          <mat-form-field class="payment col-xs-6" *ngIf="data.entry_price && !payed">
+          <mat-form-field class="payment col-xs-6" *ngIf="(data.entry_price && !payed) || data.allowPhotos">
             <mat-select [placeholder]="translate.lang.paymentMethod" (selectionChange)="paymentMethodChange($event.value)" formControlName='paymentMethod'
               style="width: 100%">
               <mat-option value="Paypal">Paypal</mat-option>
@@ -50,7 +50,7 @@
             </mat-select>
           </mat-form-field>
 
-          <div class="col-xs-6" style="padding: 0" *ngIf="data.entry_price && !payed">
+          <div class="col-xs-6" style="padding: 0" *ngIf="(data.entry_price && !payed) || data.allowPhotos">
 
             <mat-form-field class='payment col-xs-6' *ngIf="paymentMethod == 'promoCode'">
               <mat-select [placeholder]="translate.lang.photos" formControlName='photos'>
@@ -93,7 +93,7 @@
           </p>
         </div>
 
-        <div *ngIf="data.entry_price && !payed" class='text-center '>
+        <div *ngIf="(data.entry_price && !payed) || data.allowPhotos" class='text-center '>
           <button type="button" style="text-transform: uppercase" *ngIf="!payed" class="btn btn-success" [disabled]="paymentForm.invalid || clicked"
             (click)="submitform()">{{translate.lang.pay}}</button>
           <button type="button" style="text-transform: uppercase" *ngIf="payed" class="btn btn-success" [disabled]="paymentForm.invalid"

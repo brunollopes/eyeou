@@ -29,6 +29,10 @@ export class ContestComponent implements OnInit {
   public maxLimitReached: Boolean = false;
   public uploadLimit;
 
+  _isFinite(int) {
+    return isFinite(int)
+  }
+
   constructor(
     public router: Router,
     public routeParams: ActivatedRoute,
@@ -44,7 +48,8 @@ export class ContestComponent implements OnInit {
   public openDialog() {
     const initialState = {
       data: {
-        _id: this.contestId
+        _id: this.contestId,
+        allowPhotos: true
       }
     }
     this.bsModalRef = this.modalService.show(PostPaymentDialog, { initialState });
@@ -230,8 +235,10 @@ export class ContestComponent implements OnInit {
                     this.contest = $contest.contest;
                     this.contest['timeRemains'] = this.helper.dateDiff(this.contest.review_time);
 
-                    if (this.contest.prize_money == 0)
-                      this.uploadLimit = 1
+                    if (this.contest.type == 'free') {
+                      const reducer = (accumulator, currentValue) => accumulator + currentValue;
+                      this.uploadLimit = $contest.transaction.map(trans => trans.maxPhotosLimit).reduce(reducer) + 10
+                    }
 
                     localStorage.setItem('contestSlug', data.slug);
                   })
@@ -245,12 +252,13 @@ export class ContestComponent implements OnInit {
                   .then($contest => {
                     this.contest = $contest.contest;
                     this.contest['timeRemains'] = this.helper.dateDiff(this.contest.review_time);
-                    if (this.contest.entry_price == 0) {
-                      this.uploadLimit = 1
-                    } else {
-                      const reducer = (accumulator, currentValue) => accumulator + currentValue;
+                    const reducer = (accumulator, currentValue) => accumulator + currentValue;
+
+                    if (this.contest.type == 'free')
+                      this.uploadLimit = $contest.transaction.map(trans => trans.maxPhotosLimit).reduce(reducer) + 10
+                    else
                       this.uploadLimit = $contest.transaction.map(trans => trans.maxPhotosLimit).reduce(reducer);
-                    }
+
                     localStorage.setItem('contestSlug', data.slug);
                   })
                   .catch(err => { console.log(">> ERROR GET CONTEST USER INCLUDED:", err) })

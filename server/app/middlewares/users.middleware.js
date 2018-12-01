@@ -41,6 +41,8 @@ const isUserInContest = (req, res, next) => {
               next()
             }
           } else {
+            const $transactions = await Transactions.find({ user: userId, contest: contest._id }, ['maxPhotosLimit', '_id']).exec()
+            req.locals.transaction = $transactions;
             req.locals.userIncluded = true;
             req.locals.contestId = contest.id;
             next()

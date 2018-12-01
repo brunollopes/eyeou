@@ -33,9 +33,9 @@
         </div>
         <div>
           <mat-icon [matTooltip]="translate.lang.prizeMoney">attach_money</mat-icon>
-          <span>{{contest.prize_money}} €</span>
+          <span>{{contest.prize_money}} {{_isFinite(contest.prize_money) ? '€' : ''}}</span>
         </div>
-        <div *ngIf='contest.entry_price'>
+        <div>
           <button mat-button style="background-color: #41C253; color: #FFF; text-transform: uppercase" (click)="openDialog()">
             <mat-icon style="font-size: 22px">add_circle</mat-icon>
             <span style="top: 0">Buy more photos</span>

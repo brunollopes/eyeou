@@ -18,10 +18,19 @@ exports.photosLimit = (req, res, next) => {
             contest: contest_name
           }, async (err, $images) => {
             if (err) return res.status(500).json(err)
-            const $transactions = await Transaction.find({ user: user_id, contest: contest_name }).exec()
-            const reducer = (accumulator, currentValue) => accumulator + currentValue;
-            let maxPhotosLength = $transactions.map($transaction => $transaction.maxPhotosLimit).reduce(reducer)
-            return $images.length + files.length > 10 + maxPhotosLength ? res.status(403).send('Authorization Error: You can\'t upload more than 1 image to this contest') : next()
+            try {
+              const $transactions = await Transaction.find({ user: user_id, contest: contest_name }).exec()
+              if ($transactions.length) {
+                const reducer = (accumulator, currentValue) => accumulator + currentValue;
+                let maxPhotosLength = $transactions.map($transaction => $transaction.maxPhotosLimit).reduce(reducer)
+                return $images.length + files.length > 10 + maxPhotosLength ? res.status(403).send(`Authorization Error: You can\'t upload more than ${maxPhotosLength + 10} image to this contest`) : next()
+              } else {
+                return $images.length + files.length > 10 ? res.status(403).send('Authorization Error: You can\'t upload more than 10 images to this contest') : next()
+              }
+            } catch (err) {
+              console.log('>> ERROR:', err)
+              return res.status(500).json(err)
+            }
           })
         } else {
           try {

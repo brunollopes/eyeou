@@ -367,7 +367,8 @@ export const en = {
   myProfile: 'MY PROFILE',
   profile: 'PROFILE',
   aboutMe: 'About me',
-  ourTeam: 'Eyeou team'
+  ourTeam: 'Eyeou team',
+  free: 'free'
 }
 
 export const pt = {
@@ -738,5 +739,6 @@ export const pt = {
   promoCode: 'Código promocional',
   myProfile: 'O MEU PERFIL',
   profile: 'PERFIL',
-  aboutMe: 'Sobre me'
+  aboutMe: 'Sobre me',
+  free: 'grátis'
 }

@@ -9,7 +9,16 @@ const ImageSchema = mongoose.Schema(
         contest: { type: Schema.Types.ObjectId, ref: 'Contest' },
         cools: [{ type: Schema.Types.ObjectId, ref: 'User' }],
         approved: Boolean,
-        comments: [{ type: Schema.Types.ObjectId, ref: 'Comment' }]
+        comments: [{ type: Schema.Types.ObjectId, ref: 'Comment' }],
+        
+        cameraModel: String,
+        cameraLens: String,
+        aperture: String,
+        iso: String,
+        focalLens: String,
+        dateTaken: Date,
+        location: String,
+        description: String
     }, {
         timestamps: true
     });

@@ -6,6 +6,7 @@ const AWS = require('aws-sdk');
 const sharp = require('sharp');
 const emailHelper = require('../helpers/mail.helper');
 
+
 AWS.config.update({
   accessKeyId: process.env.aws_access_key,
   secretAccessKey: process.env.aws_access_secret
@@ -218,6 +219,7 @@ exports.getCommentReplies = (req, res) => {
     })
 }
 
+
 // Retrieve and return all images from the mongo database.
 exports.findAll = (req, res) => {
   const userId = req.user ? req.user.id : null
@@ -241,42 +243,29 @@ exports.findAll = (req, res) => {
         message: err.message || "Some error occurred while retrieving images."
       });
     });
-
 };
+
+exports.getMyImages = (req, res) => {
+  const userId = req.user.id
+
+  Image
+    .find({ user: userId })
+    .exec()
+    .then(images => res.status(200).json(images))
+    .catch(err => res.status(500).json(err))
+}
 
 // Update a image identified by the contest_id in the request
 exports.update = (req, res) => {
+  const data = req.body
+  const { id } = req.params
 
-  // Validate Request
-  if (!req.body.user_id) {
-    return res.status(400).send({
-      message: "user_email cannot be empty"
-    });
-  }
+  Image
+    .findByIdAndUpdate(id, data, { new: true })
+    .exec()
+    .then(image => res.status(200).json(image))
+    .catch(err => res.status(500).json(err))
 
-  // Find image and update it with the request body
-  Image.findByIdAndUpdate(req.params.user_id, {
-    user_id: req.body.user_id,
-  }, {
-      new: true
-    })
-    .then(images => {
-      if (!images) {
-        return res.status(404).send({
-          message: "user_email not found with user_id " + req.params.user_id
-        });
-      }
-      res.send(images);
-    }).catch(err => {
-      if (err.kind === 'ObjectId') {
-        return res.status(404).send({
-          message: "user_email not found with user_id " + req.params.user_id
-        });
-      }
-      return res.status(500).send({
-        message: "Error updating user_id with user_id " + req.params.user_id
-      });
-    });
 
 };
 

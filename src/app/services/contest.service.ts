@@ -13,6 +13,20 @@ export class ContestService {
     this.headers.append("content-Type", "Application/json");
   }
 
+  myImages() {
+    return this.httpClient.get("/myImages")
+      .toPromise()
+      .then(res => res)
+      .catch(err => err)
+  }
+
+  updateImage(id, data) {
+    return this.httpClient.patch(`/images/${id}`, data)
+      .toPromise()
+      .then(res => res)
+      .catch(err => err)
+  }
+
   isInContest({ slug }) {
     return this.httpClient.get(`/users/isInContest/${slug}`)
       .toPromise()

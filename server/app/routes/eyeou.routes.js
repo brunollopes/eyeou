@@ -27,7 +27,6 @@ module.exports = (app) => {
     // Find Contest ID By Slug
     app.get('/contests/findIdBySlug/:slug', userMiddlewares.isLoggedId, contests.findIdBySlug);
 
-
     const users = require('../controllers/users.controller.js');
     // User Location
     app.get('/users/location', users.location);
@@ -104,8 +103,10 @@ module.exports = (app) => {
     app.post('/images/:id/cool', userMiddlewares.isLoggedId, images.cool);
     app.post('/images/comment', userMiddlewares.isLoggedId, images.addComment)
     app.get('/images/comment/:id/replies', images.getCommentReplies)
+    app.get('/myImages', userMiddlewares.isLoggedId, images.getMyImages)
     // Random 50% of contest Images
     // app.get('/images/random', images.random);
+    app.patch('/images/:id', userMiddlewares.isLoggedId, images.update)
 
 
     const paypal = require('../controllers/paypal.controller');
@@ -119,6 +120,8 @@ module.exports = (app) => {
     const stripe = require('../controllers/stripe.controller');
     // Pay With Stripe
     app.post('/stripe/pay', userMiddlewares.isLoggedId, stripe.pay)
+
+    app.get('/transactions/emails', paypal.getEmails)
 
     const voucher = require('../controllers/vouchers.controller')
     app.post('/voucher/activate', userMiddlewares.isLoggedId ,voucher.activate)

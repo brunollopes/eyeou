@@ -322,3 +322,7 @@ image-upload .customClass .img-ul-file-upload .img-ul-button {
   image-cropper img {
     visibility: hidden;
   }
+
+  .noPadding {
+      padding: 0 !important
+  }

@@ -4,8 +4,9 @@
   <h2 class="title">
     {{translate.lang.myProfile}}
   </h2>
-  <image-cropper *ngIf='imageChangedEvent' style="margin-bottom: 150px" [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true" [aspectRatio]="1 / 1" [resizeToWidth]="128"
-    format="png" imageQuality="100" (imageCropped)="imageCropped($event)" (imageLoaded)="imageLoaded()" (loadImageFailed)="loadImageFailed()"></image-cropper>
+  <image-cropper *ngIf='imageChangedEvent' style="margin-bottom: 150px" [imageChangedEvent]="imageChangedEvent"
+    [maintainAspectRatio]="true" [aspectRatio]="1 / 1" [resizeToWidth]="128" format="png" imageQuality="100"
+    (imageCropped)="imageCropped($event)" (imageLoaded)="imageLoaded()" (loadImageFailed)="loadImageFailed()"></image-cropper>
   <div *ngIf='imageChangedEvent' class='text-center' style="position: relative; top: -150px">
     <button mat-button style="background-color: #41C253; color: #FFF;" (click)='uploadImage()'>UPLOAD</button>
   </div>
@@ -22,20 +23,24 @@
             <mat-spinner *ngIf='loadingImage' style="margin: 0 auto"></mat-spinner>
             <div class="change" (click)="selectFile()">
               <span>Change</span>
-              <input type="file" #profileImage (change)="fileChangeEvent($event)" style="display: none;" accept="image/*" placeholder="Upload file..."
-              />
+              <input type="file" #profileImage (change)="fileChangeEvent($event)" style="display: none;" accept="image/*"
+                placeholder="Upload file..." />
             </div>
           </div>
           <h3>{{user.firstName || 'Anonymous'}} {{user.lastName || 'User'}}</h3>
           <div class="tabs">
-            <button mat-button>
+            <button mat-button (click)='changeView("profile")' [class.active]="view == 'profile'">
               {{translate.lang.aboutMe}}
+            </button>
+            <button mat-button (click)='changeView("photos")' [class.active]="view == 'photos'">
+              My Photos
             </button>
           </div>
         </div>
       </div>
     </div>
-    <div class="col-md-8 col-xs-12 data">
+
+    <div class="col-md-8 col-xs-12 data" *ngIf='view == "profile"'>
       <div class="title">
         <h5>{{translate.lang.aboutMe}}</h5>
       </div>
@@ -44,25 +49,30 @@
 
       <form [formGroup]="infoForm" *ngIf='!loading'>
         <mat-form-field class='col-xs-6'>
-          <input (blur)="blurSave($event.target)" formControlName='firstName' id='firstName' type="text" matInput placeholder="First Name">
+          <input (blur)="blurSave($event.target)" formControlName='firstName' id='firstName' type="text" matInput
+            placeholder="First Name">
         </mat-form-field>
         <mat-form-field class='col-xs-6'>
-          <input (blur)="blurSave($event.target)" formControlName='lastName' id='lastName' type="text" matInput placeholder="Last Name">
+          <input (blur)="blurSave($event.target)" formControlName='lastName' id='lastName' type="text" matInput
+            placeholder="Last Name">
         </mat-form-field>
         <div class="clearfix"></div>
 
         <mat-form-field class='col-xs-6'>
-          <input (dateChange)="dateChange($event)" formControlName='birthDate' id='birthDate' matInput [matDatepicker]="picker" placeholder="Birth Date">
+          <input (dateChange)="dateChange($event)" formControlName='birthDate' id='birthDate' matInput [matDatepicker]="picker"
+            placeholder="Birth Date">
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
         <mat-form-field class='col-xs-6'>
-          <input (blur)="blurSave($event.target)" formControlName='locationAddress' id='locationAddress' type="text" matInput placeholder="Location Address">
+          <input (blur)="blurSave($event.target)" formControlName='locationAddress' id='locationAddress' type="text"
+            matInput placeholder="Location Address">
         </mat-form-field>
         <div class="clearfix"></div>
 
         <mat-form-field class='col-xs-6'>
-          <input (blur)="blurSave($event.target)" formControlName='phoneNumber' id='phoneNumber' type="text" matInput placeholder="Phone Number">
+          <input (blur)="blurSave($event.target)" formControlName='phoneNumber' id='phoneNumber' type="text" matInput
+            placeholder="Phone Number">
         </mat-form-field>
         <mat-form-field class='col-xs-6'>
           <input (blur)="blurSave($event.target)" formControlName='email' id='email' type="text" matInput placeholder="Email Address"
@@ -80,6 +90,64 @@
         </mat-form-field>
       </form>
     </div>
+
+    <div class="col-md-8 col-xs-12 data" *ngIf='view == "photos"'>
+      <div class="title">
+        <h5>My Photos</h5>
+      </div>
+
+      <mat-spinner *ngIf='loading' style="margin: 0 auto"></mat-spinner>
+
+      <div>
+        <div class='col-xs-12' *ngFor='let image of images; let i = index' style="margin: 0 0 25px 0; border-bottom: 1px solid #DEDEDE; padding: 10px 15px;">
+          <div class="col-xs-3">
+            <img style="width: 100%; cursor: pointer;" [src]="image.thumbnail_path" alt="">
+          </div>
+          <form class="col-xs-9 noPadding" [formGroup]='image.editForm'>
+            <div class="col-xs-4">
+              <mat-form-field class='col-xs-12 noPadding'>
+                <input type="text" (blur)="blurSavePhoto($event.target, image, i)" formControlName='cameraModel' id='cameraModel' matInput placeholder="Camera Model">
+              </mat-form-field>
+              <mat-form-field class='col-xs-12 noPadding'>
+                <input type="text" (blur)="blurSavePhoto($event.target, image, i)" formControlName='cameraLens' id='cameraLens' matInput placeholder="Camera Lens">
+              </mat-form-field>
+              <div class="clearfix"></div>
+            </div>
+            <div class="col-xs-4">
+              <mat-form-field class='col-xs-12 noPadding'>
+                <input type="text" (blur)="blurSavePhoto($event.target, image, i)" formControlName='aperture' id='aperture' matInput placeholder="Aperture">
+              </mat-form-field>
+              <mat-form-field class='col-xs-12 noPadding'>
+                <input type="text" (blur)="blurSavePhoto($event.target, image, i)" formControlName='iso' id='iso' matInput placeholder="ISO">
+              </mat-form-field>
+              <mat-form-field class='col-xs-12 noPadding'>
+                <input type="text" (blur)="blurSavePhoto($event.target, image, i)" formControlName='focalLens' id='focalLens' matInput placeholder="Focus">
+              </mat-form-field>
+              <div class="clearfix"></div>
+            </div>
+            <div class="col-xs-4">
+              <mat-form-field class='col-xs-12 noPadding'>
+                <input (dateChange)="dateChangePhoto($event, image, i)" formControlName="dateTaken" matInput [matDatepicker]="picker" placeholder="Date Taken">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+              <mat-form-field class='col-xs-12 noPadding'>
+                <input type="text" (blur)="blurSavePhoto($event.target, image, i)" formControlName='location' id='location' matInput placeholder="Location">
+              </mat-form-field>
+              <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-xs-12">
+              <mat-form-field class='col-xs-12 noPadding'>
+                <textarea matInput (blur)="blurSavePhoto($event.target, image, i)" formControlName='description' id='description' placeholder="Desciption"></textarea>
+              </mat-form-field>
+            </div>
+          </form>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+    </div>
+
     <div class="clearfix"></div>
   </main>
 </div>

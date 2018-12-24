@@ -82,13 +82,17 @@ div.tabs button {
   width: 100%;
   font-size: 18px;
   text-align: left;
-  border-left: 11px solid #45bf55;
+  border-left: 11px solid #999;
   border-top: 1px solid #DEDEDE;
   background-color: #FFF;
   font-family: 'Roboto', serif;
   font-weight: 400;
   box-shadow: 0 -5px 5px -5px rgba(0, 0, 0, 0.2);
   background-color: #F5F5F5
+}
+
+div.tabs button.active {
+  border-left: 11px solid #45bf55
 }
 
 div.info h3 {

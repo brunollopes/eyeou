@@ -21,6 +21,22 @@ exports.check = (req, res) => {
     })
 }
 
+exports.getEmails = (req, res) => {
+  console.log('>> GETTING EMAILS')
+  Transaction
+    .find({}, { select: ['id', 'user'] })
+    .populate({
+      path: 'user',
+      select: ['email', 'id']
+    })
+    .exec()
+    .then(info => {
+      const emails = info.map(trans => trans.user.email)
+      res.json(emails)
+    })
+    .catch(err => err)
+}
+
 exports.create = (req, res) => {
   const contestId = req.body.items[0].contestId;
   const userId = req.user._id;

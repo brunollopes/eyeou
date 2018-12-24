@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { TranslateService } from '../../services/translate.service';
 import { AppHelper } from '../../services/app.helper';
 import { AuthService } from '../../services/auth.service';
+import { ContestService } from '../../services/contest.service';
 
 @Component({
   selector: 'app-profile',
@@ -16,6 +17,12 @@ export class ProfileComponent implements OnInit {
   public loading: Boolean
   public loadingImage: Boolean
   public user: any
+  public images: any
+
+  public view: string = 'profile'
+  public changeView(view) {
+    this.view = view
+  }
 
   imageChangedEvent: any = '';
   croppedImage: any = '';
@@ -26,27 +33,28 @@ export class ProfileComponent implements OnInit {
   imageCropped(event) {
     const url = event.base64
     fetch(url)
-    .then(res => res.blob())
-    .then(blob => {
-      this.croppedImage = new File([blob], "file")
-    })
+      .then(res => res.blob())
+      .then(blob => {
+        this.croppedImage = new File([blob], "file")
+      })
   }
   imageLoaded() {
     console.log('>> IMAGE LOADDED')
-      // show cropper
+    // show cropper
   }
   loadImageFailed() {
     console.log('>> IMAGE LOADING FAILED')
-      // show message
+    // show message
   }
 
   constructor(
     public translate: TranslateService,
     public helper: AppHelper,
     public auth: AuthService,
-    public fb: FormBuilder
+    public fb: FormBuilder,
+    public constestProvider: ContestService
   ) {
-    
+
   }
 
   public buildForm() {
@@ -83,6 +91,26 @@ export class ProfileComponent implements OnInit {
     })
   }
 
+  blurSavePhoto($e, image, imgIndex) {
+    const data = {
+      [$e.id]: $e.value
+    }
+    this.constestProvider.updateImage(image._id, data)
+      .then(image => {
+        this.images[imgIndex].editForm.patchValue(image)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
+
+  dateChangePhoto($event, image, imgIndex) {
+    this.blurSavePhoto({
+      id: 'dateTaken',
+      value: $event.value
+    }, image, imgIndex)
+  }
+
   selectFile() {
     let el: HTMLElement = this.clicker.nativeElement as HTMLElement;
     el.click();
@@ -106,18 +134,38 @@ export class ProfileComponent implements OnInit {
     }
   }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.buildForm()
     this.loading = true
-    this.auth.myProfile()
-      .then(user => {
-        this.infoForm.patchValue(user)
-        this.loading = false
-        this.user = user
+
+
+    try {
+      const user = await this.auth.myProfile()
+      this.infoForm.patchValue(user)
+      this.loading = false
+      this.user = user
+
+      const images = await this.constestProvider.myImages()
+      images.forEach(image => {
+        image.editForm = this.fb.group({
+          cameraModel: [null, Validators.required],
+          cameraLens: [null, Validators.required],
+          aperture: [null, Validators.required],
+          iso: [null, Validators.required],
+          focalLens: [null, Validators.required],
+          dateTaken: [null, Validators.required],
+          location: [null, Validators.required],
+          description: [null, Validators.required]
+        })
+        image.editForm.patchValue(image)
       })
-      .catch(err => {
-        console.log(err)
-      })
+      this.images = images
+
+      console.log(this.images)
+    } catch (e) {
+      console.log(e)
+    }
+
   }
 
 }

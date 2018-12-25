@@ -152,7 +152,7 @@ export class ProfileComponent implements OnInit {
           cameraLens: [null, Validators.required],
           aperture: [null, Validators.required],
           iso: [null, Validators.required],
-          focalLens: [null, Validators.required],
+          focus: [null, Validators.required],
           dateTaken: [null, Validators.required],
           location: [null, Validators.required],
           description: [null, Validators.required]

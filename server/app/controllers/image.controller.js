@@ -5,7 +5,7 @@ const Comments = require('../models/comment.model');
 const AWS = require('aws-sdk');
 const sharp = require('sharp');
 const emailHelper = require('../helpers/mail.helper');
-
+const ExifImage = require('exif').ExifImage;
 
 AWS.config.update({
   accessKeyId: process.env.aws_access_key,
@@ -14,11 +14,30 @@ AWS.config.update({
 
 var s3 = new AWS.S3();
 
+const imageExif = (buffer) => {
+  return new Promise((resolve, reject) => {
+    new ExifImage(buffer, (err, exifData) => {
+      if (err) return resolve({})
+
+      const { ISO, ApertureValue, FocalLength, LensModel } = exifData.exif
+      const { Make, Model } = exifData.image
+
+      return resolve({
+        iso: ISO,
+        aperture: ApertureValue,
+        focus: FocalLength,
+        cameraModel: `${Make} ${Model}`,
+        cameraLens: LensModel
+      })
+    })
+  })
+}
+
 exports.uploadimage = (req, res) => {
   const { files } = req;
   const { contest_name } = req.body;
   const user_id = req.user._id
-  // const { user_id } = req.body
+
   function createParams($files, $contest_name, $user_id) {
     let params = [];
     return new Promise(async (resolve, reject) => {
@@ -56,39 +75,52 @@ exports.uploadimage = (req, res) => {
     .then(params => {
       params.forEach(async (param, i) => {
         if (!param.Key.includes('thumbnail020GH')) {
+
           s3.upload(param, async (err, data) => {
             if (err) {
               console.log('>> UPLOAD ERROR', err)
               // return res.status(403).json(err)
             }
+
+            const exifData = await imageExif(params[i].Body)
+
             const img = new Image({
               contest: contest_name,
               user: user_id,
-              image_path: data.Location
+              image_path: data.Location,
+              ...exifData
             });
+
             try {
               const imgSaved = await img.save();
               const userUpdate = await User.findByIdAndUpdate(user_id, { $push: { images: imgSaved.id } }).exec();
               const contestUpdate = await Contest.findByIdAndUpdate(contest_name, { $push: { images: imgSaved.id } }).exec();
+
               s3.upload(params[i + 1], async (errThumb, thumbnail) => {
+
                 if (errThumb) return res.status(203).json(imgSaved)
+
                 Image.findByIdAndUpdate(imgSaved.id, { thumbnail_path: thumbnail.Location }, { new: true })
                   .then(async imgUpdated => {
-                    const sentMail = await emailHelper.sendEmail({
+
+                    emailHelper.sendEmail({
                       $mailTo: process.env.owner_email,
                       $subject: `New Image Is Uploaded`,
                       $html: `<p>${userUpdate.email} Uploaded a new image in <strong>${contestUpdate.contest_name}</strong></p>
                               <p>Image URL on AWS: <a href="${data.Location}">Here</a></p>`
                     })
+
                     if (i == params.length - 1)
                       return res.status(200).send(imgUpdated)
                   })
                   .catch(error => {
+
                     Image.findByIdAndRemove(imgSaved.id)
                       .then(imgDeleted => {
                         console.log('>> IMAGE DELETED', error)
                         return res.status(403).send("Image Thumbnail Wasn't save, Image has been deleted")
                       })
+
                   })
               })
             } catch (e) {

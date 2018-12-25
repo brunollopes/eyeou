@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener, Inject } from '@angular/core';
+import { Component, OnInit, HostListener, Inject, ViewChildren } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms'
 import { ContestService } from '../../services/contest.service';
@@ -27,6 +27,7 @@ Object.defineProperty(Array.prototype, 'chunk_inefficient', {
 })
 export class ImagesComponent implements OnInit {
   @HostListener('window:resize', ['$event'])
+  // @ViewChildren('imageSections') imageSections
   onResize(event) {
     this.images = this.fullArray.chunk_inefficient(Math.ceil(this.fullArray.length / this.widthContainer()))
   }
@@ -47,9 +48,18 @@ export class ImagesComponent implements OnInit {
     this.contestProvider.getImages()
       .then(res => {
         this.fullArray = res;
-        this.images = res.chunk_inefficient(Math.ceil(res.length / this.widthContainer()))
+        // this.images = [
+        //   [res[0]],
+        //   [res[1]],
+        //   [res[2]],
+        //   [res[3]]
+        // ]
+        // const children = this.imageSections.toArray().map(x => x.nativeElement)
+        // console.log(children)
+        this.images = res.chunk_inefficient(Math.floor(res.length / this.widthContainer()))
       })
       .catch(err => {
+        console.log(err)
         this.router.navigate(['/'])
       })
   }

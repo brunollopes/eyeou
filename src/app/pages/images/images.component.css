@@ -6,7 +6,7 @@ h2 {
 
 div.imgContainer {
   position: relative;
-  margin: 10px 0; 
+  margin: 10px 0
 }
 
 div.imgContainer:hover div.overlay {

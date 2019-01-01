@@ -282,6 +282,10 @@ exports.getMyImages = (req, res) => {
 
   Image
     .find({ user: userId })
+    .populate({
+      path: 'contest',
+      select: ['id', 'contest_name', 'slug']
+    })
     .exec()
     .then(images => res.status(200).json(images))
     .catch(err => res.status(500).json(err))

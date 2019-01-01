@@ -27,7 +27,6 @@ Object.defineProperty(Array.prototype, 'chunk_inefficient', {
 })
 export class ImagesComponent implements OnInit {
   @HostListener('window:resize', ['$event'])
-  // @ViewChildren('imageSections') imageSections
   onResize(event) {
     this.images = this.fullArray.chunk_inefficient(Math.ceil(this.fullArray.length / this.widthContainer()))
   }
@@ -47,15 +46,7 @@ export class ImagesComponent implements OnInit {
   ngOnInit() {
     this.contestProvider.getImages()
       .then(res => {
-        this.fullArray = res;
-        // this.images = [
-        //   [res[0]],
-        //   [res[1]],
-        //   [res[2]],
-        //   [res[3]]
-        // ]
-        // const children = this.imageSections.toArray().map(x => x.nativeElement)
-        // console.log(children)
+        this.fullArray = res
         this.images = res.chunk_inefficient(Math.floor(res.length / this.widthContainer()))
       })
       .catch(err => {

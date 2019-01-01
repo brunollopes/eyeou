@@ -159,8 +159,7 @@ export class ProfileComponent implements OnInit {
         })
         image.editForm.patchValue(image)
       })
-      this.images = images
-
+      this.images = images.sort((a: any, b: any) => new Date(b.createdAt).getDate() - new Date(a.createdAt).getDate())
       console.log(this.images)
     } catch (e) {
       console.log(e)

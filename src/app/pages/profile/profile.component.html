@@ -102,44 +102,53 @@
         <div class='col-xs-12' *ngFor='let image of images; let i = index' style="margin: 0 0 25px 0; border-bottom: 1px solid #DEDEDE; padding: 10px 15px;">
           <div class="col-xs-3">
             <img style="width: 100%; cursor: pointer;" [src]="image.thumbnail_path" alt="">
+            <a [routerLink]="'/contest/' + image.contest.slug" style="font-size: 16px; color: #333; display: block; text-align: center; margin-top: 10px">{{image.contest.contest_name}}</a>
           </div>
           <form class="col-xs-9 noPadding" [formGroup]='image.editForm'>
             <div class="col-xs-4">
               <mat-form-field class='col-xs-12 noPadding'>
-                <input type="text" (blur)="blurSavePhoto($event.target, image, i)" formControlName='cameraModel' id='cameraModel' matInput placeholder="Camera Model">
+                <input type="text" (blur)="blurSavePhoto($event.target, image, i)" formControlName='cameraModel' id='cameraModel'
+                  matInput placeholder="Camera Model">
               </mat-form-field>
               <mat-form-field class='col-xs-12 noPadding'>
-                <input type="text" (blur)="blurSavePhoto($event.target, image, i)" formControlName='cameraLens' id='cameraLens' matInput placeholder="Camera Lens">
-              </mat-form-field>
-              <div class="clearfix"></div>
-            </div>
-            <div class="col-xs-4">
-              <mat-form-field class='col-xs-12 noPadding'>
-                <input type="text" (blur)="blurSavePhoto($event.target, image, i)" formControlName='aperture' id='aperture' matInput placeholder="Aperture">
-              </mat-form-field>
-              <mat-form-field class='col-xs-12 noPadding'>
-                <input type="text" (blur)="blurSavePhoto($event.target, image, i)" formControlName='iso' id='iso' matInput placeholder="ISO">
-              </mat-form-field>
-              <mat-form-field class='col-xs-12 noPadding'>
-                <input type="text" (blur)="blurSavePhoto($event.target, image, i)" formControlName='focus' id='focus' matInput placeholder="Focus">
+                <input type="text" (blur)="blurSavePhoto($event.target, image, i)" formControlName='cameraLens' id='cameraLens'
+                  matInput placeholder="Camera Lens">
               </mat-form-field>
               <div class="clearfix"></div>
             </div>
             <div class="col-xs-4">
               <mat-form-field class='col-xs-12 noPadding'>
-                <input (dateChange)="dateChangePhoto($event, image, i)" formControlName="dateTaken" matInput [matDatepicker]="picker" placeholder="Date Taken">
+                <input type="text" (blur)="blurSavePhoto($event.target, image, i)" formControlName='aperture' id='aperture'
+                  matInput placeholder="Aperture">
+              </mat-form-field>
+              <mat-form-field class='col-xs-12 noPadding'>
+                <input type="text" (blur)="blurSavePhoto($event.target, image, i)" formControlName='iso' id='iso'
+                  matInput placeholder="ISO">
+              </mat-form-field>
+              <mat-form-field class='col-xs-12 noPadding'>
+                <input type="text" (blur)="blurSavePhoto($event.target, image, i)" formControlName='focus' id='focus'
+                  matInput placeholder="Focus">
+              </mat-form-field>
+              <div class="clearfix"></div>
+            </div>
+            <div class="col-xs-4">
+              <mat-form-field class='col-xs-12 noPadding'>
+                <input (dateChange)="dateChangePhoto($event, image, i)" formControlName="dateTaken" matInput
+                  [matDatepicker]="picker" placeholder="Date Taken">
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
               </mat-form-field>
               <mat-form-field class='col-xs-12 noPadding'>
-                <input type="text" (blur)="blurSavePhoto($event.target, image, i)" formControlName='location' id='location' matInput placeholder="Location">
+                <input type="text" (blur)="blurSavePhoto($event.target, image, i)" formControlName='location' id='location'
+                  matInput placeholder="Location">
               </mat-form-field>
               <div class="clearfix"></div>
             </div>
             <div class="clearfix"></div>
             <div class="col-xs-12">
               <mat-form-field class='col-xs-12 noPadding'>
-                <textarea matInput (blur)="blurSavePhoto($event.target, image, i)" formControlName='description' id='description' placeholder="Desciption"></textarea>
+                <textarea matInput (blur)="blurSavePhoto($event.target, image, i)" formControlName='description' id='description'
+                  placeholder="Desciption"></textarea>
               </mat-form-field>
             </div>
           </form>

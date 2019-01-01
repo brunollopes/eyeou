@@ -85,7 +85,7 @@ export const en = {
   rulesTitle: 'CONTEST RULES',
 
   rulesSection1: 'RULES',
-  rulesP1: 'EYEOU website has always several contests up and running, some of them are free to enter, others require a fee to submit your photos. You’re only allowed to upload one photo per email/user in a free contest, while the paid ones allow you to upload up to 30 photos.',
+  rulesP1: 'EYEOU website has always several contests up and running create by Eyeou or our sponsors, some of them are free to enter, others require a fee to submit your photos. You’re only allowed to upload ten photos per email/user in a free contest, while the paid ones allow you to upload up to 30 photos.',
   rulesP2: 'Unless stated otherwise, there’s a minimum amount of entries (users/emails) we require to move forward with a contest. If by the end of the submission period we haven’t reached the minimum amount of entries required to start the contest, it will be canceled, or extended a few more days, in any case we’ll announce after making the decision. All users will be refunded if we decide to cancel a contest.',
   rulesP3: 'However, we may decide to carry on with the contest even though the minimum amount of entries hasn’t been met; this decision will be taken by EYEOU´s managers.',
   rulesP4: 'Each contest will happen in 3 consecutive phases:',
@@ -458,7 +458,7 @@ export const pt = {
   rulesTitle: 'REGRAS',
   rules: 'regras',
   rulesSection1: 'Concursos',
-  rulesP1: 'O site da EYEOU disponibiliza continuamente vários concursos, sendo alguns gratuitos e outros pagos. Os concursos gratuitos só permitem que se faça o carregamento de uma foto por cada endereço de e-mail/utilizador, enquanto os concursos pagos permitem até 30 fotos.',
+  rulesP1: 'O site da EYEOU disponibiliza continuamente vários concursos criados pela Eyeou ou por patrocinadores, sendo alguns gratuitos e outros pagos. Os concursos gratuitos só permitem que se faça o carregamento de dez fotos por cada endereço de e-mail/utilizador, enquanto os concursos pagos permitem até 30 fotos.',
   rulesP2: 'Há um número mínimo aceitável de entradas por (utilizador / endereço de e-mail) necessários (salvo algumas exceções) para iniciar o concurso. Se no final da data de submissão, esse número não for alcançado, o concurso será cancelado ou será estendido por mais alguns dias a anunciar no momento da decisão. Se o concurso for cancelado, todos os utilizadores receberão de volta o valor pago.',
   rulesP3: 'Podemos continuar com o concurso mesmo que o número mínimo de entradas aceitáveis não seja alcançado, essa decisão será decidida pelos diretores da EYEOU.',
   rulesP4: 'Cada concurso terá 3 fases:',
